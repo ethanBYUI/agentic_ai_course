@@ -1,0 +1,49 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  favicon: Assets/Images/byui_logo.png
+  navbar:
+    background: primary
+    logo: Assets/Images/byui_logo.png
+    left:
+      - text: "Home"
+        href: index.qmd
+
+      - text: "Course Modules"
+        menu:
+          - text: "Module 1"
+            href: modules/module1.qmd
+          - text: "Module 2"
+            href: modules/module2.qmd
+          - text: "Module 3"
+            href: modules/module3.qmd
+          - text: "Module 4"
+            href: modules/module4.qmd
+          - text: "Module 5"
+            href: modules/module5.qmd
+          - text: "Module 6"
+            href: modules/module6.qmd
+          - text: "Module 7"
+            href: modules/module7.qmd
+          - text: "Module 8"
+            href: modules/module8.qmd
+          - text: "Module 9"
+            href: modules/module9.qmd
+          - text: "Module 10"
+            href: modules/module10.qmd
+          - text: "Module 11"
+            href: modules/module11.qmd
+          - text: "Module 12"
+            href: modules/module12.qmd
+
+      - text: "Dictionary"
+        href: dictionary.qmd
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+    toc-depth: 2

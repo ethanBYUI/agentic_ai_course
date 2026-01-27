@@ -1,0 +1,96 @@
+---
+title: "Agentic AI Dictionary"
+format: html
+toc: true
+---
+
+# Agentic AI Dictionary
+
+### Agent
+A software system that can take in information, reason about what to do, and take actions, often repeatedly, to achieve a goal.
+
+### Agentic AI
+An approach to AI where systems are built as agents that plan, use tools, remember information, and act autonomously or semi-autonomously rather than just generating single responses.
+
+### API (Application Programming Interface)
+A set of rules that lets software systems talk to each other, such as an agent calling a weather service, database, or payment system.
+
+### Architecture (Agent Architecture)
+The overall design of how an agent is structured, including how it reasons, stores memory, calls tools, and loops through tasks.
+
+### DAGs (Directed Acyclic Graphs)
+A way to represent workflows as connected steps with a clear order and no loops. Often used to model structured agent workflows or pipelines.
+
+### Deliberative Agent
+An agent that explicitly plans its actions before executing them, rather than reacting immediately.
+
+### Determinism
+How consistent an agent’s outputs are when given the same input. Lower randomness (temperature) leads to more deterministic behavior.
+
+### ELT (Extract, Load, Transform)
+A data workflow where data is collected, stored, and then transformed later. Common in systems where agents need access to raw data.
+
+### EtLT (Extract, Transform Lightly, Load, Transform)
+A hybrid data approach where minimal cleanup happens before storage, followed by more detailed processing later.
+
+### Evaluation (Evals)
+Methods used to measure how well an agent performs, including correctness, reliability, cost, latency, and safety.
+
+### Function Calling / Tool Calling
+A structured way for an agent to choose and invoke tools (APIs, functions, databases) instead of responding only with text.
+
+### Grounding
+Connecting an agent’s responses to real, trusted data sources (like databases or documents) to improve accuracy and reduce hallucinations.
+
+### Guardrails
+Rules and constraints that prevent unsafe, unethical, or unwanted agent behavior.
+
+### Human-in-the-Loop (HITL)
+Workflows where a human reviews, approves, or edits an agent’s actions or plans before they are executed.
+
+### Memory
+Information an agent can store and reuse.  
+- **Short-term memory:** recent conversation or task context  
+- **Long-term memory:** stored facts, documents, or embeddings
+
+### Multi-Agent System
+A system where multiple agents work together, often with different roles or responsibilities.
+
+### Observability
+The ability to see what an agent is doing internally, including its prompts, tool calls, decisions, and errors.
+
+### Orchestration
+The coordination of agent steps, tools, and workflows so tasks happen in the correct order and failures are handled.
+
+### Perception
+How an agent receives and interprets inputs such as user messages, documents, API responses, or web data.
+
+### Planning
+The process of breaking a goal into smaller steps before acting.
+
+### Prompt
+Instructions or input given to a language model.  
+- **System prompt:** high-level rules and behavior  
+- **User prompt:** user input  
+- **Tool prompt:** information returned from tools
+
+### Prompt Injection
+A security risk where malicious input attempts to override an agent’s instructions or policies.
+
+### RAG (Retrieval-Augmented Generation)
+A technique where relevant documents or data are retrieved at runtime and provided to the model before it generates a response.
+
+### Reactive Agent
+An agent that responds immediately to inputs without long-term planning or reasoning.
+
+### Reflection
+An agent’s ability to review its own output or mistakes and adjust future behavior.
+
+### State
+All information that defines where an agent is in a task, including memory, progress, and tool results.
+
+### Tool
+An external capability an agent can use, such as an API, database, calculator, or web search.
+
+### Workflow
+A structured sequence of steps that an agent follows to complete a task.
