@@ -141,7 +141,7 @@ By the end of this course, students will be able to:
 
 ---
 
-### Modules 12–14: Capstone Agent System (Weeks 13–14)
+### Modules 12: Capstone Agent System (Weeks 13–14)
 **Final Project:** Build a production-ready agent system with:  
 - Planning  
 - Tools  

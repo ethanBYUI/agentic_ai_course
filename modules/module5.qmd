@@ -1,8 +1,14 @@
 ---
-title: "Module 5"
+title: "Module 5: Connections: Tools, MCP, APIs, Web (Week 6)"
 ---
 
-## Module 5: 
+## Module 5: Connections: Tools, MCP, APIs, Web (Week 6)
 
+**Topics:**
+- Tool calling in Gemini
+- MCP concepts
+- REST APIs
+- Web search and scraping (ethically)
 
-
+**Project:**
+- Build an agent that queries live APIs and web data

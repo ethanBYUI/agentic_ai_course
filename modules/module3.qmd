@@ -1,7 +1,14 @@
 ---
-title: "Module 3"
+title: "Module 3: Structure, State, and Diagramming (Week 4)"
 ---
 
-## Module 3: 
+## Module 3: Structure, State, and Diagramming (Week 4)
 
+**Topics:**
+- Agent loops
+- State machines
+- DAGs vs planners
+- Mermaid / architecture diagrams
 
+**Project:**
+- Design and implement a stateful agent workflow with diagrams

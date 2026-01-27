@@ -1,0 +1,14 @@
+---
+title: "Module 9: Human in the Loop and UX (Week 10)"
+---
+
+## Module 9: Human in the Loop and UX (Week 10)
+
+**Topics:**
+- Approval flows
+- Editable plans
+- Feedback loops
+- UI vs CLI agents
+
+**Project:**
+- Build an agent with human approval checkpoints

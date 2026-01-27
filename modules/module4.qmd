@@ -1,8 +1,14 @@
 ---
-title: "Module 4"
+title: "Module 4: Agent Orchestration and Planning (Week 5)"
 ---
 
-## Module 4: 
+## Module 4: Agent Orchestration and Planning (Week 5)
 
+**Topics:**
+- ReAct, Plan-Execute, Reflection
+- Tool selection strategies
+- Multi-agent vs single-agent systems
+- Failure modes
 
-
+**Project:**
+- Build an agent that plans tasks before execution

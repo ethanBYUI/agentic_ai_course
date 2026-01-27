@@ -1,8 +1,14 @@
 ---
-title: "Module 6"
+title: "Module 6: Grounding → Databases, SQL, Vector Stores (Week 7)"
 ---
 
-## Module 6: 
+## Module 6: Grounding → Databases, SQL, Vector Stores (Week 7)
 
+**Topics:**
+- RAG vs fine-tuning
+- SQL generation
+- Embeddings and retrieval
+- Hybrid search
 
-
+**Project:**
+- Build a grounded agent over a database

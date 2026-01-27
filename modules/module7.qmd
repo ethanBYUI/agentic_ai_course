@@ -1,8 +1,14 @@
 ---
-title: "Module 7"
+title: "Module 7: Diagnostics and Evaluation (LangSmith, etc.) (Week 8)"
 ---
 
-## Module 7: 
+## Module 7: Diagnostics and Evaluation (LangSmith, etc.) (Week 8)
 
+**Topics:**
+- Tracing agent runs
+- Debugging hallucinations
+- Token and latency analysis
+- Regression testing agents
 
-
+**Project:**
+- Add observability and evaluation to a prior agent

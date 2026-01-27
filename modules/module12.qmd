@@ -1,0 +1,15 @@
+---
+title: "Module 12: Capstone Agent System (Weeks 13-14)"
+---
+
+## Modules 12: Capstone Agent System (Weeks 13-14)
+
+**Final Project:**
+- A production-ready agent system with:
+  - Planning
+  - Tools
+  - Grounding
+  - Evaluations
+  - Safety
+  - UI
+  - Observability

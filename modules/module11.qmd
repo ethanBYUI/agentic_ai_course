@@ -1,0 +1,14 @@
+---
+title: "Module 11: Retraining, Fine Tuning, and Weight Adjustments (Week 12)"
+---
+
+## Module 11: Retraining, Fine Tuning, and Weight Adjustments (Week 12)
+
+**Topics:**
+- When to fine-tune vs RAG
+- Data curation
+- Eval-driven tuning
+- Gemini fine-tuning workflows
+
+**Project:**
+- Improve an agent via data-driven iteration

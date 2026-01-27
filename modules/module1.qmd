@@ -1,7 +1,14 @@
 ---
-title: "Module 1"
+title: "Module 1: Setup and Intro to LLM Programming"
 ---
 
-## Module 1: 
+## Module 1: Setup and Intro to LLM Programming (Weeks 1-2)
 
+**Topics:**
+- Gemini APIs and SDKs
+- Prompting vs structured outputs
+- Determinism, temperature, schemas
+- Function calling basics
 
+**Project:**
+- Build a single-task Gemini agent (e.g., document summarizer, code reviewer, tutor)

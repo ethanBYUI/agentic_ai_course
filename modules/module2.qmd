@@ -1,6 +1,14 @@
 ---
-title: "Module 2"
+title: "Module 2: Prompt Engineering → Agent Design (Week 3)"
 ---
 
-## Module 2: 
+## Module 2: Prompt Engineering → Agent Design (Week 3)
 
+**Topics:**
+- System vs user vs tool prompts
+- Memory types (short-term vs long-term)
+- Instruction hierarchies
+- Role-based prompting
+
+**Project:**
+- Convert the single-task agent into a multi-step reasoning agent

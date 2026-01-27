@@ -1,0 +1,15 @@
+---
+title: "Module 10: Production, Scaling, and Interfaces (Week 11)"
+---
+
+## Module 10: Production, Scaling, and Interfaces (Week 11)
+
+**Topics:**
+- Rate limits
+- Caching
+- Async workflows
+- Frontends (web/chat)
+- Cost control
+
+**Project:**
+- Deploy an agent with a real interface

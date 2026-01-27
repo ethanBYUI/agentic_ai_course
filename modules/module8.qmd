@@ -1,0 +1,15 @@
+---
+title: "Module 8: Safety, Alignment, and Guardrails (Week 9)"
+---
+
+## Module 8: Safety, Alignment, and Guardrails (Week 9)
+
+**Topics:**
+- Prompt injection
+- Data leakage
+- Tool abuse
+- Policy enforcement
+- Gemini safety tooling
+
+**Project:**
+- Harden an agent against prompt injection and misuse

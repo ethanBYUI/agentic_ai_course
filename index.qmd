@@ -181,7 +181,7 @@ toc: true
 
 ---
 
-## Modules 12–14: Capstone Agent System (Weeks 13-14)
+## Modules 12: Capstone Agent System (Weeks 13-14)
 
 **Final Project:**
 - A production-ready agent system with:
