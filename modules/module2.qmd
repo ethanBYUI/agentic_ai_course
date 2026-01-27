@@ -1,5 +1,6 @@
 ---
 title: "Module 2: Prompt Engineering → Agent Design (Week 3)"
+toc: true
 ---
 
 ## Module 2: Prompt Engineering → Agent Design (Week 3)

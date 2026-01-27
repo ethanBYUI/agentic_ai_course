@@ -1,5 +1,6 @@
 ---
 title: "Module 11: Retraining, Fine Tuning, and Weight Adjustments (Week 12)"
+toc: true
 ---
 
 ## Module 11: Retraining, Fine Tuning, and Weight Adjustments (Week 12)

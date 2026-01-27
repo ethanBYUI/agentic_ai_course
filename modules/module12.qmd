@@ -1,5 +1,6 @@
 ---
 title: "Module 12: Capstone Agent System (Weeks 13-14)"
+toc: true
 ---
 
 ## Modules 12: Capstone Agent System (Weeks 13-14)

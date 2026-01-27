@@ -1,5 +1,6 @@
 ---
 title: "Module 4: Agent Orchestration and Planning (Week 5)"
+toc: true
 ---
 
 ## Module 4: Agent Orchestration and Planning (Week 5)

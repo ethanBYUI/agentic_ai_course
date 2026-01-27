@@ -1,5 +1,6 @@
 ---
 title: "Module 7: Diagnostics and Evaluation (LangSmith, etc.) (Week 8)"
+toc: true
 ---
 
 ## Module 7: Diagnostics and Evaluation (LangSmith, etc.) (Week 8)

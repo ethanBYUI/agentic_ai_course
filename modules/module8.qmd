@@ -1,5 +1,6 @@
 ---
 title: "Module 8: Safety, Alignment, and Guardrails (Week 9)"
+toc: true
 ---
 
 ## Module 8: Safety, Alignment, and Guardrails (Week 9)

@@ -1,5 +1,6 @@
 ---
 title: "Module 5: Connections: Tools, MCP, APIs, Web (Week 6)"
+toc: true
 ---
 
 ## Module 5: Connections: Tools, MCP, APIs, Web (Week 6)

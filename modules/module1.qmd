@@ -1,5 +1,6 @@
 ---
 title: "Module 1: Setup and Intro to LLM Programming"
+toc: true
 ---
 
 ## Module 1: Setup and Intro to LLM Programming (Weeks 1-2)

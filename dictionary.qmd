@@ -1,7 +1,6 @@
 ---
 title: "Agentic AI Dictionary"
 format: html
-toc: true
 ---
 
 # Agentic AI Dictionary

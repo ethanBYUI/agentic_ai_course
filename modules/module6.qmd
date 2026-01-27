@@ -1,5 +1,6 @@
 ---
 title: "Module 6: Grounding → Databases, SQL, Vector Stores (Week 7)"
+toc: true
 ---
 
 ## Module 6: Grounding → Databases, SQL, Vector Stores (Week 7)

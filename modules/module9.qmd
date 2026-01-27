@@ -1,5 +1,6 @@
 ---
 title: "Module 9: Human in the Loop and UX (Week 10)"
+toc: true
 ---
 
 ## Module 9: Human in the Loop and UX (Week 10)

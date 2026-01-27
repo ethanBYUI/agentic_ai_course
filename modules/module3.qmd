@@ -1,5 +1,6 @@
 ---
 title: "Module 3: Structure, State, and Diagramming (Week 4)"
+toc: true
 ---
 
 ## Module 3: Structure, State, and Diagramming (Week 4)

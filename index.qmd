@@ -4,26 +4,6 @@ format: html
 toc: true
 ---
 
-# Quick Navigation
-
-- [Home](index.html)
-- [Dictionary](dictionary.html)
-- **Course Modules**
-  - [Module 1: Setup and Intro to LLM Programming](modules/module1.html)
-  - [Module 2: Prompt Engineering → Agent Design](modules/module2.html)
-  - [Module 3: Structure, State, and Diagramming](modules/module3.html)
-  - [Module 4: Agent Orchestration and Planning](modules/module4.html)
-  - [Module 5: Connections: Tools, MCP, APIs, Web](modules/module5.html)
-  - [Module 6: Grounding → Databases, SQL, Vector Stores](modules/module6.html)
-  - [Module 7: Diagnostics and Evaluation (LangSmith, etc.)](modules/module7.html)
-  - [Module 8: Safety, Alignment, and Guardrails](modules/module8.html)
-  - [Module 9: Human in the Loop and UX](modules/module9.html)
-  - [Module 10: Production, Scaling, and Interfaces](modules/module10.html)
-  - [Module 11: Retraining, Fine Tuning, and Weight Adjustments](modules/module11.html)
-  - [Modules 12–14: Capstone Agent System](modules/module12.html)
-
----
-
 # Course Objectives
 
 - Design, diagram, implement, evaluate, productize, and scale agentic AI systems using modern LLM frameworks and tooling.
@@ -38,6 +18,8 @@ toc: true
 
 ## Module 1: Setup and Intro to LLM Programming (Weeks 1-2)
 
+  - [Module 1](modules/module1.html)
+
 **Topics:**
 - Gemini APIs and SDKs
 - Prompting vs structured outputs
@@ -50,6 +32,8 @@ toc: true
 ---
 
 ## Module 2: Prompt Engineering → Agent Design (Week 3)
+
+  - [Module 2](modules/module2.html)
 
 **Topics:**
 - System vs user vs tool prompts
@@ -64,6 +48,8 @@ toc: true
 
 ## Module 3: Structure, State, and Diagramming (Week 4)
 
+  - [Module 3](modules/module3.html)
+
 **Topics:**
 - Agent loops
 - State machines
@@ -76,6 +62,8 @@ toc: true
 ---
 
 ## Module 4: Agent Orchestration and Planning (Week 5)
+
+  - [Module 4](modules/module4.html)
 
 **Topics:**
 - ReAct, Plan-Execute, Reflection
@@ -90,6 +78,8 @@ toc: true
 
 ## Module 5: Connections: Tools, MCP, APIs, Web (Week 6)
 
+  - [Module 5](modules/module5.html)
+
 **Topics:**
 - Tool calling in Gemini
 - MCP concepts
@@ -102,6 +92,8 @@ toc: true
 ---
 
 ## Module 6: Grounding → Databases, SQL, Vector Stores (Week 7)
+
+  - [Module 6](modules/module6.html)
 
 **Topics:**
 - RAG vs fine-tuning
@@ -116,6 +108,8 @@ toc: true
 
 ## Module 7: Diagnostics and Evaluation (LangSmith, etc.) (Week 8)
 
+  - [Module 7](modules/module7.html)
+
 **Topics:**
 - Tracing agent runs
 - Debugging hallucinations
@@ -128,6 +122,8 @@ toc: true
 ---
 
 ## Module 8: Safety, Alignment, and Guardrails (Week 9)
+
+  - [Module 8](modules/module8.html)
 
 **Topics:**
 - Prompt injection
@@ -143,6 +139,8 @@ toc: true
 
 ## Module 9: Human in the Loop and UX (Week 10)
 
+  - [Module 9](modules/module9.html)
+
 **Topics:**
 - Approval flows
 - Editable plans
@@ -155,6 +153,8 @@ toc: true
 ---
 
 ## Module 10: Production, Scaling, and Interfaces (Week 11)
+
+  - [Module 10](modules/module10.html)
 
 **Topics:**
 - Rate limits
@@ -170,6 +170,8 @@ toc: true
 
 ## Module 11: Retraining, Fine Tuning, and Weight Adjustments (Week 12)
 
+  - [Module 11](modules/module11.html)
+
 **Topics:**
 - When to fine-tune vs RAG
 - Data curation
@@ -182,6 +184,8 @@ toc: true
 ---
 
 ## Modules 12: Capstone Agent System (Weeks 13-14)
+
+  - [Module 12](modules/module12.html)
 
 **Final Project:**
 - A production-ready agent system with:
