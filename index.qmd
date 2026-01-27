@@ -6,21 +6,21 @@ toc: true
 
 # Quick Navigation
 
-- [Home](index.qmd)
-- [Dictionary](dictionary.qmd)
+- [Home](index.html)
+- [Dictionary](dictionary.html)
 - **Course Modules**
-  - [Module 1: Setup and Intro to LLM Programming](modules/module1.qmd)
-  - [Module 2: Prompt Engineering → Agent Design](modules/module2.qmd)
-  - [Module 3: Structure, State, and Diagramming](modules/module3.qmd)
-  - [Module 4: Agent Orchestration and Planning](modules/module4.qmd)
-  - [Module 5: Connections: Tools, MCP, APIs, Web](modules/module5.qmd)
-  - [Module 6: Grounding → Databases, SQL, Vector Stores](modules/module6.qmd)
-  - [Module 7: Diagnostics and Evaluation (LangSmith, etc.)](modules/module7.qmd)
-  - [Module 8: Safety, Alignment, and Guardrails](modules/module8.qmd)
-  - [Module 9: Human in the Loop and UX](modules/module9.qmd)
-  - [Module 10: Production, Scaling, and Interfaces](modules/module10.qmd)
-  - [Module 11: Retraining, Fine Tuning, and Weight Adjustments](modules/module11.qmd)
-  - [Modules 12–14: Capstone Agent System](modules/module12.qmd)
+  - [Module 1: Setup and Intro to LLM Programming](modules/module1.html)
+  - [Module 2: Prompt Engineering → Agent Design](modules/module2.html)
+  - [Module 3: Structure, State, and Diagramming](modules/module3.html)
+  - [Module 4: Agent Orchestration and Planning](modules/module4.html)
+  - [Module 5: Connections: Tools, MCP, APIs, Web](modules/module5.html)
+  - [Module 6: Grounding → Databases, SQL, Vector Stores](modules/module6.html)
+  - [Module 7: Diagnostics and Evaluation (LangSmith, etc.)](modules/module7.html)
+  - [Module 8: Safety, Alignment, and Guardrails](modules/module8.html)
+  - [Module 9: Human in the Loop and UX](modules/module9.html)
+  - [Module 10: Production, Scaling, and Interfaces](modules/module10.html)
+  - [Module 11: Retraining, Fine Tuning, and Weight Adjustments](modules/module11.html)
+  - [Modules 12–14: Capstone Agent System](modules/module12.html)
 
 ---
 
