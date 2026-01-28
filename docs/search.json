@@ -1,0 +1,282 @@
+[
+  {
+    "objectID": "modules/module9.html",
+    "href": "modules/module9.html",
+    "title": "Module 9: Human in the Loop and UX (Week 10)",
+    "section": "",
+    "text": "Topics: - Approval flows - Editable plans - Feedback loops - UI vs CLI agents\nProject: - Build an agent with human approval checkpoints"
+  },
+  {
+    "objectID": "modules/module9.html#module-9-human-in-the-loop-and-ux-week-10",
+    "href": "modules/module9.html#module-9-human-in-the-loop-and-ux-week-10",
+    "title": "Module 9: Human in the Loop and UX (Week 10)",
+    "section": "",
+    "text": "Topics: - Approval flows - Editable plans - Feedback loops - UI vs CLI agents\nProject: - Build an agent with human approval checkpoints"
+  },
+  {
+    "objectID": "modules/module7.html",
+    "href": "modules/module7.html",
+    "title": "Module 7: Diagnostics and Evaluation (LangSmith, etc.) (Week 8)",
+    "section": "",
+    "text": "Topics: - Tracing agent runs - Debugging hallucinations - Token and latency analysis - Regression testing agents\nProject: - Add observability and evaluation to a prior agent"
+  },
+  {
+    "objectID": "modules/module7.html#module-7-diagnostics-and-evaluation-langsmith-etc.-week-8",
+    "href": "modules/module7.html#module-7-diagnostics-and-evaluation-langsmith-etc.-week-8",
+    "title": "Module 7: Diagnostics and Evaluation (LangSmith, etc.) (Week 8)",
+    "section": "",
+    "text": "Topics: - Tracing agent runs - Debugging hallucinations - Token and latency analysis - Regression testing agents\nProject: - Add observability and evaluation to a prior agent"
+  },
+  {
+    "objectID": "modules/module5.html",
+    "href": "modules/module5.html",
+    "title": "Module 5: Connections: Tools, MCP, APIs, Web (Week 6)",
+    "section": "",
+    "text": "Topics: - Tool calling in Gemini - MCP concepts - REST APIs - Web search and scraping (ethically)\nProject: - Build an agent that queries live APIs and web data"
+  },
+  {
+    "objectID": "modules/module5.html#module-5-connections-tools-mcp-apis-web-week-6",
+    "href": "modules/module5.html#module-5-connections-tools-mcp-apis-web-week-6",
+    "title": "Module 5: Connections: Tools, MCP, APIs, Web (Week 6)",
+    "section": "",
+    "text": "Topics: - Tool calling in Gemini - MCP concepts - REST APIs - Web search and scraping (ethically)\nProject: - Build an agent that queries live APIs and web data"
+  },
+  {
+    "objectID": "modules/module3.html",
+    "href": "modules/module3.html",
+    "title": "Module 3: Structure, State, and Diagramming (Week 4)",
+    "section": "",
+    "text": "Topics: - Agent loops - State machines - DAGs vs planners - Mermaid / architecture diagrams\nProject: - Design and implement a stateful agent workflow with diagrams"
+  },
+  {
+    "objectID": "modules/module3.html#module-3-structure-state-and-diagramming-week-4",
+    "href": "modules/module3.html#module-3-structure-state-and-diagramming-week-4",
+    "title": "Module 3: Structure, State, and Diagramming (Week 4)",
+    "section": "",
+    "text": "Topics: - Agent loops - State machines - DAGs vs planners - Mermaid / architecture diagrams\nProject: - Design and implement a stateful agent workflow with diagrams"
+  },
+  {
+    "objectID": "modules/module12.html",
+    "href": "modules/module12.html",
+    "title": "Module 12: Capstone Agent System (Weeks 13-14)",
+    "section": "",
+    "text": "Final Project:\n\nA production-ready agent system with:\nPlanning\nTools\nGrounding\nEvaluations\nSafety\nUI\nObservability"
+  },
+  {
+    "objectID": "modules/module12.html#modules-12-capstone-agent-system-weeks-13-14",
+    "href": "modules/module12.html#modules-12-capstone-agent-system-weeks-13-14",
+    "title": "Module 12: Capstone Agent System (Weeks 13-14)",
+    "section": "",
+    "text": "Final Project:\n\nA production-ready agent system with:\nPlanning\nTools\nGrounding\nEvaluations\nSafety\nUI\nObservability"
+  },
+  {
+    "objectID": "modules/module10.html",
+    "href": "modules/module10.html",
+    "title": "Module 10: Production, Scaling, and Interfaces (Week 11)",
+    "section": "",
+    "text": "Topics: - Rate limits - Caching - Async workflows - Frontends (web/chat) - Cost control\nProject: - Deploy an agent with a real interface"
+  },
+  {
+    "objectID": "modules/module10.html#module-10-production-scaling-and-interfaces-week-11",
+    "href": "modules/module10.html#module-10-production-scaling-and-interfaces-week-11",
+    "title": "Module 10: Production, Scaling, and Interfaces (Week 11)",
+    "section": "",
+    "text": "Topics: - Rate limits - Caching - Async workflows - Frontends (web/chat) - Cost control\nProject: - Deploy an agent with a real interface"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Agentic AI Course",
+    "section": "",
+    "text": "Design, diagram, implement, evaluate, productize, and scale agentic AI systems using modern LLM frameworks and tooling.\nIdentify and evaluate problems that are appropriate for agentic AI solutions, and distinguish them from problems better solved by traditional software or non-agentic LLM approaches.\nClearly define Agentic AI and related concepts, including agents, tools, planning, grounding, orchestration, evaluation, and human-in-the-loop workflows.\nDevelop and articulate ethical guidelines for the use of LLMs and agentic AI, including responsible data usage, AI governance principles, safety, privacy, and organizational policy considerations.\nBuild the capability to independently learn, evaluate, and adapt to new AI models, tools, and paradigms in a rapidly evolving AI ecosystem."
+  },
+  {
+    "objectID": "index.html#module-1-setup-and-intro-to-llm-programming-weeks-1-2",
+    "href": "index.html#module-1-setup-and-intro-to-llm-programming-weeks-1-2",
+    "title": "Agentic AI Course",
+    "section": "Module 1: Setup and Intro to LLM Programming (Weeks 1-2)",
+    "text": "Module 1: Setup and Intro to LLM Programming (Weeks 1-2)\n\nModule 1\n\nTopics: - Gemini APIs and SDKs - Prompting vs structured outputs - Determinism, temperature, schemas - Function calling basics\nProject: - Build a single-task Gemini agent (e.g., document summarizer, code reviewer, tutor)"
+  },
+  {
+    "objectID": "index.html#module-2-prompt-engineering-agent-design-week-3",
+    "href": "index.html#module-2-prompt-engineering-agent-design-week-3",
+    "title": "Agentic AI Course",
+    "section": "Module 2: Prompt Engineering → Agent Design (Week 3)",
+    "text": "Module 2: Prompt Engineering → Agent Design (Week 3)\n\nModule 2\n\nTopics: - System vs user vs tool prompts - Memory types (short-term vs long-term) - Instruction hierarchies - Role-based prompting\nProject: - Convert the single-task agent into a multi-step reasoning agent"
+  },
+  {
+    "objectID": "index.html#module-3-structure-state-and-diagramming-week-4",
+    "href": "index.html#module-3-structure-state-and-diagramming-week-4",
+    "title": "Agentic AI Course",
+    "section": "Module 3: Structure, State, and Diagramming (Week 4)",
+    "text": "Module 3: Structure, State, and Diagramming (Week 4)\n\nModule 3\n\nTopics: - Agent loops - State machines - DAGs vs planners - Mermaid / architecture diagrams\nProject: - Design and implement a stateful agent workflow with diagrams"
+  },
+  {
+    "objectID": "index.html#module-4-agent-orchestration-and-planning-week-5",
+    "href": "index.html#module-4-agent-orchestration-and-planning-week-5",
+    "title": "Agentic AI Course",
+    "section": "Module 4: Agent Orchestration and Planning (Week 5)",
+    "text": "Module 4: Agent Orchestration and Planning (Week 5)\n\nModule 4\n\nTopics: - ReAct, Plan-Execute, Reflection - Tool selection strategies - Multi-agent vs single-agent systems - Failure modes\nProject: - Build an agent that plans tasks before execution"
+  },
+  {
+    "objectID": "index.html#module-5-connections-tools-mcp-apis-web-week-6",
+    "href": "index.html#module-5-connections-tools-mcp-apis-web-week-6",
+    "title": "Agentic AI Course",
+    "section": "Module 5: Connections: Tools, MCP, APIs, Web (Week 6)",
+    "text": "Module 5: Connections: Tools, MCP, APIs, Web (Week 6)\n\nModule 5\n\nTopics: - Tool calling in Gemini - MCP concepts - REST APIs - Web search and scraping (ethically)\nProject: - Build an agent that queries live APIs and web data"
+  },
+  {
+    "objectID": "index.html#module-6-grounding-databases-sql-vector-stores-week-7",
+    "href": "index.html#module-6-grounding-databases-sql-vector-stores-week-7",
+    "title": "Agentic AI Course",
+    "section": "Module 6: Grounding → Databases, SQL, Vector Stores (Week 7)",
+    "text": "Module 6: Grounding → Databases, SQL, Vector Stores (Week 7)\n\nModule 6\n\nTopics: - RAG vs fine-tuning - SQL generation - Embeddings and retrieval - Hybrid search\nProject: - Build a grounded agent over a database"
+  },
+  {
+    "objectID": "index.html#module-7-diagnostics-and-evaluation-langsmith-etc.-week-8",
+    "href": "index.html#module-7-diagnostics-and-evaluation-langsmith-etc.-week-8",
+    "title": "Agentic AI Course",
+    "section": "Module 7: Diagnostics and Evaluation (LangSmith, etc.) (Week 8)",
+    "text": "Module 7: Diagnostics and Evaluation (LangSmith, etc.) (Week 8)\n\nModule 7\n\nTopics: - Tracing agent runs - Debugging hallucinations - Token and latency analysis - Regression testing agents\nProject: - Add observability and evaluation to a prior agent"
+  },
+  {
+    "objectID": "index.html#module-8-safety-alignment-and-guardrails-week-9",
+    "href": "index.html#module-8-safety-alignment-and-guardrails-week-9",
+    "title": "Agentic AI Course",
+    "section": "Module 8: Safety, Alignment, and Guardrails (Week 9)",
+    "text": "Module 8: Safety, Alignment, and Guardrails (Week 9)\n\nModule 8\n\nTopics: - Prompt injection - Data leakage - Tool abuse - Policy enforcement - Gemini safety tooling\nProject: - Harden an agent against prompt injection and misuse"
+  },
+  {
+    "objectID": "index.html#module-9-human-in-the-loop-and-ux-week-10",
+    "href": "index.html#module-9-human-in-the-loop-and-ux-week-10",
+    "title": "Agentic AI Course",
+    "section": "Module 9: Human in the Loop and UX (Week 10)",
+    "text": "Module 9: Human in the Loop and UX (Week 10)\n\nModule 9\n\nTopics: - Approval flows - Editable plans - Feedback loops - UI vs CLI agents\nProject: - Build an agent with human approval checkpoints"
+  },
+  {
+    "objectID": "index.html#module-10-production-scaling-and-interfaces-week-11",
+    "href": "index.html#module-10-production-scaling-and-interfaces-week-11",
+    "title": "Agentic AI Course",
+    "section": "Module 10: Production, Scaling, and Interfaces (Week 11)",
+    "text": "Module 10: Production, Scaling, and Interfaces (Week 11)\n\nModule 10\n\nTopics: - Rate limits - Caching - Async workflows - Frontends (web/chat) - Cost control\nProject: - Deploy an agent with a real interface"
+  },
+  {
+    "objectID": "index.html#module-11-retraining-fine-tuning-and-weight-adjustments-week-12",
+    "href": "index.html#module-11-retraining-fine-tuning-and-weight-adjustments-week-12",
+    "title": "Agentic AI Course",
+    "section": "Module 11: Retraining, Fine Tuning, and Weight Adjustments (Week 12)",
+    "text": "Module 11: Retraining, Fine Tuning, and Weight Adjustments (Week 12)\n\nModule 11\n\nTopics: - When to fine-tune vs RAG - Data curation - Eval-driven tuning - Gemini fine-tuning workflows\nProject: - Improve an agent via data-driven iteration"
+  },
+  {
+    "objectID": "index.html#modules-12-capstone-agent-system-weeks-13-14",
+    "href": "index.html#modules-12-capstone-agent-system-weeks-13-14",
+    "title": "Agentic AI Course",
+    "section": "Modules 12: Capstone Agent System (Weeks 13-14)",
+    "text": "Modules 12: Capstone Agent System (Weeks 13-14)\n\nModule 12\n\nFinal Project: - A production-ready agent system with: - Planning - Tools - Grounding - Evaluations - Safety - UI - Observability"
+  },
+  {
+    "objectID": "dictionary.html",
+    "href": "dictionary.html",
+    "title": "Agentic AI Dictionary",
+    "section": "",
+    "text": "Agentic AI Dictionary\n\nAgent\nA software system that can take in information, reason about what to do, and take actions, often repeatedly, to achieve a goal.\n\n\nAgentic AI\nAn approach to AI where systems are built as agents that plan, use tools, remember information, and act autonomously or semi-autonomously rather than just generating single responses.\n\n\nAPI (Application Programming Interface)\nA set of rules that lets software systems talk to each other, such as an agent calling a weather service, database, or payment system.\n\n\nArchitecture (Agent Architecture)\nThe overall design of how an agent is structured, including how it reasons, stores memory, calls tools, and loops through tasks.\n\n\nDAGs (Directed Acyclic Graphs)\nA way to represent workflows as connected steps with a clear order and no loops. Often used to model structured agent workflows or pipelines.\n\n\nDeliberative Agent\nAn agent that explicitly plans its actions before executing them, rather than reacting immediately.\n\n\nDeterminism\nHow consistent an agent’s outputs are when given the same input. Lower randomness (temperature) leads to more deterministic behavior.\n\n\nELT (Extract, Load, Transform)\nA data workflow where data is collected, stored, and then transformed later. Common in systems where agents need access to raw data.\n\n\nEtLT (Extract, Transform Lightly, Load, Transform)\nA hybrid data approach where minimal cleanup happens before storage, followed by more detailed processing later.\n\n\nEvaluation (Evals)\nMethods used to measure how well an agent performs, including correctness, reliability, cost, latency, and safety.\n\n\nFunction Calling / Tool Calling\nA structured way for an agent to choose and invoke tools (APIs, functions, databases) instead of responding only with text.\n\n\nGrounding\nConnecting an agent’s responses to real, trusted data sources (like databases or documents) to improve accuracy and reduce hallucinations.\n\n\nGuardrails\nRules and constraints that prevent unsafe, unethical, or unwanted agent behavior.\n\n\nHuman-in-the-Loop (HITL)\nWorkflows where a human reviews, approves, or edits an agent’s actions or plans before they are executed.\n\n\nMemory\nInformation an agent can store and reuse.\n- Short-term memory: recent conversation or task context\n- Long-term memory: stored facts, documents, or embeddings\n\n\nMulti-Agent System\nA system where multiple agents work together, often with different roles or responsibilities.\n\n\nObservability\nThe ability to see what an agent is doing internally, including its prompts, tool calls, decisions, and errors.\n\n\nOrchestration\nThe coordination of agent steps, tools, and workflows so tasks happen in the correct order and failures are handled.\n\n\nPerception\nHow an agent receives and interprets inputs such as user messages, documents, API responses, or web data.\n\n\nPlanning\nThe process of breaking a goal into smaller steps before acting.\n\n\nPrompt\nInstructions or input given to a language model.\n- System prompt: high-level rules and behavior\n- User prompt: user input\n- Tool prompt: information returned from tools\n\n\nPrompt Injection\nA security risk where malicious input attempts to override an agent’s instructions or policies.\n\n\nRAG (Retrieval-Augmented Generation)\nA technique where relevant documents or data are retrieved at runtime and provided to the model before it generates a response.\n\n\nReactive Agent\nAn agent that responds immediately to inputs without long-term planning or reasoning.\n\n\nReflection\nAn agent’s ability to review its own output or mistakes and adjust future behavior.\n\n\nState\nAll information that defines where an agent is in a task, including memory, progress, and tool results.\n\n\nTool\nAn external capability an agent can use, such as an API, database, calculator, or web search.\n\n\nWorkflow\nA structured sequence of steps that an agent follows to complete a task."
+  },
+  {
+    "objectID": "modules/module1.html",
+    "href": "modules/module1.html",
+    "title": "Module 1: Setup and Intro to LLM Programming",
+    "section": "",
+    "text": "Install Python, VS Code, Dependancies\nGet Gemini API Key\nBuild small Agentic AI project\n\n\n\n\nWelcome to the Agentic AI Course! In this course, you’ll learn how to build, evaluate, and scale agentic AI systems using Python and Google Gemini. You’ll explore key concepts like agents, tools, planning, and human-in-the-loop workflows, and learn to identify which problems are best solved with agentic AI. We’ll also cover ethical and responsible AI use, and give you the skills to stay up to date with new AI tools and approaches in a fast changing field.\n\n\n\nThe setup for the course is not very intensive and many of you likely have already completed much of the work already through other course. We wiil need the following:\n\n\nIf you already have python installed feel free to skip this step. If not, please visit the link below and download python onto your machine\n\nPython\n\n\n\n\nIf you already have VS Code installed or you use another IDE with which you are comfortable then please feel free to skip this step. If not, please visit the link below and download VS Code onto your machine\n\nVS Code\n\nVS Code offers extensions by clicking the boxes icon on the left side of the screen\nHere are some recommended VS Code extensions to get started:\n\nPython – Makes Python easier by offering language support, debugging, and linting\nPylance – Makes Python even easier, works well with the above\n\nJupyter – Enables running and editing Jupyter notebooks directly in VS Code\nGitLens – Enhances Git integration with code authorship, history, and insights\nPrettier – Automatically formats code for consistent style\nBracket Pair Colorizer – Makes it easier to match brackets by color coding them\nLive Share – Allows real time collaboration and pair programming\n\n\n\n\nPlease run the following in your terminal in VS Code. If you cannot find the terminal there is a tab on the top of the screen called terminal, select New Terminal and paste the code below into it and press ENTER\npip install -q -U langchain langchain-google-genai python-dotenv\n\n\n\nThis class will be using this website, but we will be running the code on your own machines. We highly recommend setting up a folder system like this:\nAgenticAI-Course/\n│\n├─ notebooks/          # Jupyter notebooks and example scripts\n│\n├─ src/                # Python scripts and modules you create\n│\n├─ data/               # Any datasets or downloaded resources\n│\n├─ models/             # Saved AI models, checkpoints, or outputs\n│\n├─  outputs/           # Results, logs, and exported files\n│\n└─ .env                # Environment variables, API keys, and secrets"
+  },
+  {
+    "objectID": "modules/module1.html#objectives",
+    "href": "modules/module1.html#objectives",
+    "title": "Module 1: Setup and Intro to LLM Programming",
+    "section": "",
+    "text": "Install Python, VS Code, Dependancies\nGet Gemini API Key\nBuild small Agentic AI project"
+  },
+  {
+    "objectID": "modules/module1.html#overview",
+    "href": "modules/module1.html#overview",
+    "title": "Module 1: Setup and Intro to LLM Programming",
+    "section": "",
+    "text": "Welcome to the Agentic AI Course! In this course, you’ll learn how to build, evaluate, and scale agentic AI systems using Python and Google Gemini. You’ll explore key concepts like agents, tools, planning, and human-in-the-loop workflows, and learn to identify which problems are best solved with agentic AI. We’ll also cover ethical and responsible AI use, and give you the skills to stay up to date with new AI tools and approaches in a fast changing field."
+  },
+  {
+    "objectID": "modules/module1.html#setup",
+    "href": "modules/module1.html#setup",
+    "title": "Module 1: Setup and Intro to LLM Programming",
+    "section": "",
+    "text": "The setup for the course is not very intensive and many of you likely have already completed much of the work already through other course. We wiil need the following:\n\n\nIf you already have python installed feel free to skip this step. If not, please visit the link below and download python onto your machine\n\nPython\n\n\n\n\nIf you already have VS Code installed or you use another IDE with which you are comfortable then please feel free to skip this step. If not, please visit the link below and download VS Code onto your machine\n\nVS Code\n\nVS Code offers extensions by clicking the boxes icon on the left side of the screen\nHere are some recommended VS Code extensions to get started:\n\nPython – Makes Python easier by offering language support, debugging, and linting\nPylance – Makes Python even easier, works well with the above\n\nJupyter – Enables running and editing Jupyter notebooks directly in VS Code\nGitLens – Enhances Git integration with code authorship, history, and insights\nPrettier – Automatically formats code for consistent style\nBracket Pair Colorizer – Makes it easier to match brackets by color coding them\nLive Share – Allows real time collaboration and pair programming\n\n\n\n\nPlease run the following in your terminal in VS Code. If you cannot find the terminal there is a tab on the top of the screen called terminal, select New Terminal and paste the code below into it and press ENTER\npip install -q -U langchain langchain-google-genai python-dotenv\n\n\n\nThis class will be using this website, but we will be running the code on your own machines. We highly recommend setting up a folder system like this:\nAgenticAI-Course/\n│\n├─ notebooks/          # Jupyter notebooks and example scripts\n│\n├─ src/                # Python scripts and modules you create\n│\n├─ data/               # Any datasets or downloaded resources\n│\n├─ models/             # Saved AI models, checkpoints, or outputs\n│\n├─  outputs/           # Results, logs, and exported files\n│\n└─ .env                # Environment variables, API keys, and secrets"
+  },
+  {
+    "objectID": "modules/module11.html",
+    "href": "modules/module11.html",
+    "title": "Module 11: Retraining, Fine Tuning, and Weight Adjustments (Week 12)",
+    "section": "",
+    "text": "Topics: - When to fine-tune vs RAG - Data curation - Eval-driven tuning - Gemini fine-tuning workflows\nProject: - Improve an agent via data-driven iteration"
+  },
+  {
+    "objectID": "modules/module11.html#module-11-retraining-fine-tuning-and-weight-adjustments-week-12",
+    "href": "modules/module11.html#module-11-retraining-fine-tuning-and-weight-adjustments-week-12",
+    "title": "Module 11: Retraining, Fine Tuning, and Weight Adjustments (Week 12)",
+    "section": "",
+    "text": "Topics: - When to fine-tune vs RAG - Data curation - Eval-driven tuning - Gemini fine-tuning workflows\nProject: - Improve an agent via data-driven iteration"
+  },
+  {
+    "objectID": "modules/module2.html",
+    "href": "modules/module2.html",
+    "title": "Module 2: Prompt Engineering → Agent Design (Week 3)",
+    "section": "",
+    "text": "Topics: - System vs user vs tool prompts - Memory types (short-term vs long-term) - Instruction hierarchies - Role-based prompting\nProject: - Convert the single-task agent into a multi-step reasoning agent"
+  },
+  {
+    "objectID": "modules/module2.html#module-2-prompt-engineering-agent-design-week-3",
+    "href": "modules/module2.html#module-2-prompt-engineering-agent-design-week-3",
+    "title": "Module 2: Prompt Engineering → Agent Design (Week 3)",
+    "section": "",
+    "text": "Topics: - System vs user vs tool prompts - Memory types (short-term vs long-term) - Instruction hierarchies - Role-based prompting\nProject: - Convert the single-task agent into a multi-step reasoning agent"
+  },
+  {
+    "objectID": "modules/module4.html",
+    "href": "modules/module4.html",
+    "title": "Module 4: Agent Orchestration and Planning (Week 5)",
+    "section": "",
+    "text": "Topics: - ReAct, Plan-Execute, Reflection - Tool selection strategies - Multi-agent vs single-agent systems - Failure modes\nProject: - Build an agent that plans tasks before execution"
+  },
+  {
+    "objectID": "modules/module4.html#module-4-agent-orchestration-and-planning-week-5",
+    "href": "modules/module4.html#module-4-agent-orchestration-and-planning-week-5",
+    "title": "Module 4: Agent Orchestration and Planning (Week 5)",
+    "section": "",
+    "text": "Topics: - ReAct, Plan-Execute, Reflection - Tool selection strategies - Multi-agent vs single-agent systems - Failure modes\nProject: - Build an agent that plans tasks before execution"
+  },
+  {
+    "objectID": "modules/module6.html",
+    "href": "modules/module6.html",
+    "title": "Module 6: Grounding → Databases, SQL, Vector Stores (Week 7)",
+    "section": "",
+    "text": "Topics: - RAG vs fine-tuning - SQL generation - Embeddings and retrieval - Hybrid search\nProject: - Build a grounded agent over a database"
+  },
+  {
+    "objectID": "modules/module6.html#module-6-grounding-databases-sql-vector-stores-week-7",
+    "href": "modules/module6.html#module-6-grounding-databases-sql-vector-stores-week-7",
+    "title": "Module 6: Grounding → Databases, SQL, Vector Stores (Week 7)",
+    "section": "",
+    "text": "Topics: - RAG vs fine-tuning - SQL generation - Embeddings and retrieval - Hybrid search\nProject: - Build a grounded agent over a database"
+  },
+  {
+    "objectID": "modules/module8.html",
+    "href": "modules/module8.html",
+    "title": "Module 8: Safety, Alignment, and Guardrails (Week 9)",
+    "section": "",
+    "text": "Topics: - Prompt injection - Data leakage - Tool abuse - Policy enforcement - Gemini safety tooling\nProject: - Harden an agent against prompt injection and misuse"
+  },
+  {
+    "objectID": "modules/module8.html#module-8-safety-alignment-and-guardrails-week-9",
+    "href": "modules/module8.html#module-8-safety-alignment-and-guardrails-week-9",
+    "title": "Module 8: Safety, Alignment, and Guardrails (Week 9)",
+    "section": "",
+    "text": "Topics: - Prompt injection - Data leakage - Tool abuse - Policy enforcement - Gemini safety tooling\nProject: - Harden an agent against prompt injection and misuse"
+  }
+]
