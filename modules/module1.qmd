@@ -77,7 +77,7 @@ AgenticAI-Course/
 
 API keys are coveted (especially for LLM's). To keep yours safe, store it in the `.env` file in the main directory. You should have created this file along with the folders in the last step. This environment variable file store important and sensitive data for you. The code for this file looks like the following:
 
-```{python, eval=FALSE}
+```{python}
 GEMINI_API_KEY = 12345 # replace this with your key
 ```
 
@@ -95,19 +95,23 @@ pip install -q -U langchain langchain-google-genai python-dotenv
 
 ### Load the `.env` File
 
-You will need to rerun `load_dotenv()` every time you open the file again, but not `pip install` above, which is a one time run
+This code we need to run inside a notebook. Go into the notebooks folder and create a file called `setup.ipynb` then create a code chunk and paste in the following code
 
-```{python, eval=FALSE}
+```{python}
+#| echo: FALSE
+
 # Load environment variables from .env file
 from dotenv import load_dotenv
 load_dotenv()
 ```
 
+You will need to rerun `load_dotenv()` every time you open the file again, but not `pip install` above, which is a one time run
+
 ### Check if it works
 
 Now that everything is set up, lets see if the LLM will respond to us
 
-```{python, eval=FALSE}
+```{python}
 from langchain.chat_models import init_chat_model
 
 model = init_chat_model(
