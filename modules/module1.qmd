@@ -78,7 +78,7 @@ AgenticAI-Course/
 API keys are coveted (especially for LLM's). To keep yours safe, store it in the `.env` file in the main directory. You should have created this file along with the folders in the last step. This environment variable file store important and sensitive data for you. The code for this file looks like the following:
 
 ```{python, eval=FALSE}
-GEMINI_API_KEY = # Your key goes here
+GEMINI_API_KEY = 12345 # replace this with your key
 ```
 
 Lastly, **save the `.env` file.**
