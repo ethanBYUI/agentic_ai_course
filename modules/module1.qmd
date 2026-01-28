@@ -3,13 +3,68 @@ title: "Module 1: Setup and Intro to LLM Programming"
 toc: true
 ---
 
-## Module 1: Setup and Intro to LLM Programming (Weeks 1-2)
+# Phase One: Welcome to Agentic AI!
+## Objectives
 
-**Topics:**
-- Gemini APIs and SDKs
-- Prompting vs structured outputs
-- Determinism, temperature, schemas
-- Function calling basics
+- Install Python, VS Code, Dependancies
+- Get Gemini API Key
+- Build small Agentic AI project
 
-**Project:**
-- Build a single-task Gemini agent (e.g., document summarizer, code reviewer, tutor)
+## Overview
+
+**Welcome to the Agentic AI Course!**
+In this course, you’ll learn how to build, evaluate, and scale agentic AI systems **using Python and Google Gemini**. You’ll explore key concepts like agents, tools, planning, and human-in-the-loop workflows, and learn to identify which problems are best solved with agentic AI. We’ll also cover ethical and responsible AI use, and give you the skills to stay up to date with new AI tools and approaches in a fast changing field.
+
+## Setup
+The setup for the course is not very intensive and many of you likely have already completed much of the work already through other course. We wiil need teh following:
+
+### Python
+
+If you already have python installed feel free to skip this step. If not, please visit the link below and download python onto your machine
+
+- [Python](https://www.python.org/downloads/)
+
+### VS Code
+
+If you already have VS Code installed or you use another IDE with which you are comfortable then please feel free to skip this step. If not, please visit the link below and download VS Code onto your machine
+
+- [VS Code](https://code.visualstudio.com/)
+
+VS Code offers extensions by clicking the boxes icon on the left side of the screen
+
+Here are some recommended VS Code extensions to get started:  
+- **Python** – Makes Python easier by offering language support, debugging, and linting
+- **Pylance** – Makes Python even easier, works well with the above  
+- **Jupyter** – Enables running and editing Jupyter notebooks directly in VS Code
+- **GitLens** – Enhances Git integration with code authorship, history, and insights 
+- **Prettier** – Automatically formats code for consistent style
+- **Bracket Pair Colorizer** – Makes it easier to match brackets by color coding them
+- **Live Share** – Allows real time collaboration and pair programming
+
+### Dependancies
+
+Please run the following in your terminal in VS Code. If you cannot find the terminal there is a tab on the top of the screen called terminal, select New Terminal and paste the code below into it and press ENTER
+
+```bash
+pip install -q -U langchain langchain-google-genai python-dotenv
+```
+
+### Set Up Folders For The Class
+
+This class will be using this website, but we will be running the code on your own machines. We highly recommend setting up a folder system like this:
+
+AgenticAI-Course/
+│
+├─ notebooks/          # Jupyter notebooks and example scripts
+│
+├─ src/                # Python scripts and modules you create
+│
+├─ data/               # Any datasets or downloaded resources
+│
+├─ models/             # Saved AI models, checkpoints, or outputs
+│
+├─  outputs/           # Results, logs, and exported files
+│
+└─ .env                # Environment variables, API keys, and secrets
+
+### Gemini Key
