@@ -42,14 +42,6 @@ Here are some recommended VS Code extensions to get started:
 - **Bracket Pair Colorizer** – Makes it easier to match brackets by color coding them
 - **Live Share** – Allows real time collaboration and pair programming
 
-### Dependancies
-
-Please run the following in your terminal in VS Code. If you cannot find the terminal there is a tab on the top of the screen called terminal, select New Terminal and paste the code below into it and press ENTER
-
-```bash
-pip install -q -U langchain langchain-google-genai python-dotenv
-```
-
 ### Set Up Folders For The Class
 
 This class will be using this website, but we will be running the code on your own machines. We highly recommend setting up a folder system like this:
@@ -70,4 +62,62 @@ AgenticAI-Course/
 └─ .env                # Environment variables, API keys, and secrets
 ```
 
-### Gemini Key
+### Gemini API Key
+
+**An API key is a password for someone's services**. It opens the door of communication between your computer and their servers. In accessing Gemini with Python, you send your prompt and API key to their server; if the key is accepted, it will process your prompt and return its response (along with some other metadata). It is your first step to opening the AI door. Let's get one!
+
+1. Access the developer's site for Gemini here: [Gemini API key](https://aistudio.google.com/api-keys)
+2. You will need to sign in
+    - If it doesn't work, make sure you are using a personal Google account, not your school email
+    - Secondly, if it says you don't have access in your region, you may need to verify your age in your Google account settings
+        - If this becomes too much of a hassle, you use an OpenAI API key instead, but you will have to pay $5 and become familiar with what code to change as you go through the course (slight added complexity, but really not that much)
+3. A key should be created automatically. You can click on it and copy the large string of characters and numbers.
+
+##### I have a key, now what do I do with it?
+
+API keys are coveted (especially for LLM's). To keep yours safe, store it in the `.env` file in the main directory. You should have created this file along with the folders in the last step. This environment variable file store important and sensitive data for you. The code for this file looks like the following:
+
+```{python, eval=FALSE}
+GEMINI_API_KEY = # Your key goes here
+```
+
+Lastly, **save the `.env` file.**
+
+You can now run the below code to install needed packages and load the environment variables from `.env` into this file
+
+### Dependancies
+
+Please run the following in your terminal in VS Code. If you cannot find the terminal there is a tab on the top of the screen called terminal, select New Terminal and paste the code below into it and press ENTER
+
+```bash
+pip install -q -U langchain langchain-google-genai python-dotenv
+```
+
+### Load the `.env` File
+
+You will need to rerun `load_dotenv()` every time you open the file again, but not `pip install` above, which is a one time run
+
+```{python, eval=FALSE}
+# Load environment variables from .env file
+from dotenv import load_dotenv
+load_dotenv()
+```
+
+### Check if it works
+
+Now that everything is set up, lets see if the LLM will respond to us
+
+```{python, eval=FALSE}
+from langchain.chat_models import init_chat_model
+
+model = init_chat_model(
+    model="gemini-2.5-flash", 
+    model_provider="google_genai"
+)
+
+model.invoke("Hello world!")
+```
+
+If you got things working, rejoice! 
+
+Make sure to help your neighbor gets there too. Then you can continue.
