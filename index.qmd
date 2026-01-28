@@ -1,7 +1,6 @@
 ---
 title: "Agentic AI Course"
 format: html
-toc: true
 ---
 
 # Course Objectives
