@@ -2,8 +2,6 @@
 title: "Agentic AI Dictionary"
 ---
 
-# Agentic AI Dictionary
-
 ### Agent
 A software system that can take in information, reason about what to do, and take actions — often repeatedly — to achieve a goal.
 

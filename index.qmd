@@ -163,4 +163,4 @@ Apply everything from all three units to build a production-ready agent of your 
 | 9 | Putting It All Together — revisit the Unit 1 agent, apply context strategies, document improvements |
 | 10 | Final Agent Design — choose tools, context strategy, memory approach, and subagent structure |
 | 11 | Final Build Day — full build session, peer testing and stress-testing |
-| 12 | ⚡ Battle of the Bots! — structured challenges, audience voting, reflect on the full arc |
+| 12 | Battle of the Bots! — structured challenges, audience voting, reflect on the full arc |
