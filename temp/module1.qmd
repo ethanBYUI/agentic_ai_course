@@ -1,0 +1,127 @@
+---
+title: "Module 1: Setup and Intro to LLM Programming"
+toc: true
+---
+
+# Phase One: Welcome to Agentic AI!
+## Objectives
+
+- Install Python, VS Code, Dependancies
+- Get Gemini API Key
+- Build small Agentic AI project
+
+## Overview
+
+**Welcome to the Agentic AI Course!**
+In this course, you’ll learn how to build, evaluate, and scale agentic AI systems **using Python and Google Gemini**. You’ll explore key concepts like agents, tools, planning, and human-in-the-loop workflows, and learn to identify which problems are best solved with agentic AI. We’ll also cover ethical and responsible AI use, and give you the skills to stay up to date with new AI tools and approaches in a fast changing field.
+
+## Setup
+The setup for the course is not very intensive and many of you likely have already completed much of the work already through other course. We wiil need the following:
+
+### Python
+
+If you already have python installed feel free to skip this step. If not, please visit the link below and download python onto your machine
+
+- [Python](https://www.python.org/downloads/)
+
+### VS Code
+
+If you already have VS Code installed or you use another IDE with which you are comfortable then please feel free to skip this step. If not, please visit the link below and download VS Code onto your machine
+
+- [VS Code](https://code.visualstudio.com/)
+
+VS Code offers extensions by clicking the boxes icon on the left side of the screen
+
+Here are some recommended VS Code extensions to get started:  
+
+- **Python** – Makes Python easier by offering language support, debugging, and linting
+- **Pylance** – Makes Python even easier, works well with the above  
+- **Jupyter** – Enables running and editing Jupyter notebooks directly in VS Code
+- **GitLens** – Enhances Git integration with code authorship, history, and insights 
+- **Prettier** – Automatically formats code for consistent style
+- **Bracket Pair Colorizer** – Makes it easier to match brackets by color coding them
+- **Live Share** – Allows real time collaboration and pair programming
+
+### Set Up Folders For The Class
+
+This class will be using this website, but we will be running the code on your own machines. We highly recommend setting up a folder system like this:
+
+```text
+AgenticAI-Course/
+│
+├─ notebooks/          # Jupyter notebooks and example scripts
+│
+├─ src/                # Python scripts and modules you create
+│
+├─ data/               # Any datasets or downloaded resources
+│
+├─ models/             # Saved AI models, checkpoints, or outputs
+│
+├─  outputs/           # Results, logs, and exported files
+│
+└─ .env                # Environment variables, API keys, and secrets
+```
+
+### Gemini API Key
+
+**An API key is a password for someone's services**. It opens the door of communication between your computer and their servers. In accessing Gemini with Python, you send your prompt and API key to their server; if the key is accepted, it will process your prompt and return its response (along with some other metadata). It is your first step to opening the AI door. Let's get one!
+
+1. Access the developer's site for Gemini here: [Gemini API key](https://aistudio.google.com/api-keys)
+2. You will need to sign in
+    - If it doesn't work, make sure you are using a personal Google account, not your school email
+    - Secondly, if it says you don't have access in your region, you may need to verify your age in your Google account settings
+        - If this becomes too much of a hassle, you use an OpenAI API key instead, but you will have to pay $5 and become familiar with what code to change as you go through the course (slight added complexity, but really not that much)
+3. A key should be created automatically. You can click on it and copy the large string of characters and numbers.
+
+##### I have a key, now what do I do with it?
+
+API keys are coveted (especially for LLM's). To keep yours safe, store it in the `.env` file in the main directory. You should have created this file along with the folders in the last step. This environment variable file store important and sensitive data for you. The code for this file looks like the following:
+
+```{python}
+GEMINI_API_KEY = 12345 # replace this with your key
+```
+
+Lastly, **save the `.env` file.**
+
+You can now run the below code to install needed packages and load the environment variables from `.env` into this file
+
+### Dependancies
+
+Please run the following in your terminal in VS Code. If you cannot find the terminal there is a tab on the top of the screen called terminal, select New Terminal and paste the code below into it and press ENTER
+
+```bash
+pip install -q -U langchain langchain-google-genai python-dotenv
+```
+
+### Load the `.env` File
+
+This code we need to run inside a notebook. Go into the notebooks folder and create a file called `setup.ipynb` then create a code chunk and paste in the following code
+
+```{python}
+#| echo: FALSE
+
+# Load environment variables from .env file
+from dotenv import load_dotenv
+load_dotenv()
+```
+
+You will need to rerun `load_dotenv()` every time you open the file again, but not `pip install` above, which is a one time run
+
+### Check if it works
+
+Now that everything is set up, lets see if the LLM will respond to us
+
+```{python}
+from langchain.chat_models import init_chat_model
+
+model = init_chat_model(
+    model="gemini-2.5-flash", 
+    model_provider="google_genai"
+)
+
+model.invoke("Hello world!")
+```
+
+If you got things working, rejoice! 
+
+Make sure to help your neighbor gets there too. Then you can continue.

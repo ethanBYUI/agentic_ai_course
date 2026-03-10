@@ -1,0 +1,490 @@
+---
+title: "AI Agents Diagnostics with LangSmith"
+subtitle: "CSE 310 | AI Agents Unit"
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    theme: cosmo
+    highlight-style: github
+    code-fold: true
+    embed-resources: true
+---
+
+---
+
+# Lesson Overview
+
+| Segment | Duration |
+|---|---|
+| Lecture: Review & New Concepts | 30 minutes |
+| Guided Activity: LangSmith Walkthrough | 20 minutes |
+| Independent Activity | 10 minutes |
+
+**Learning Objectives:** By the end of this lesson, students will be able to:
+
+- Recall how MCP servers and tools connect to AI agents
+- Explain what LangSmith is and why observability matters
+- Use `@traceable` to expose internal function calls as named spans in a trace
+- Read a LangSmith trace tree to pinpoint errors and latency bottlenecks
+- Build and run a LangSmith evaluation dataset against a real agent
+
+**Colab Notebooks for Today:**
+
+> [Wellness Agent](https://drive.google.com/file/d/1Qn4HPOvW30CWQJCCondY8bDYw-RmQDPF/view?usp=sharing)  
+> [Canvas AI Tutor](https://drive.google.com/file/d/1uyP9BbDNVTBBQ7lmsEIqh47DkS-U4-O_/view?usp=sharing)  
+> *(Replace links with your actual shared Colab URLs before distributing)*
+
+**Reference Video:**
+
+> [LangSmith 101 for AI Observability   James Briggs](https://www.youtube.com/watch?v=Iyc80hY2yYk)  
+> This lesson follows the concepts from that video and applies them directly to our two agents.
+
+---
+
+# Part 1   Lecture (30 Minutes)
+
+## Review: MCPs & Tools
+
+Before we dive into observability, let's revisit the building blocks that let agents *do things*.
+
+### What is an MCP Server?
+
+An **MCP (Model Context Protocol) server** is a standardized interface that exposes real-world capabilities   file access, API calls, database lookups   to an AI model. The model doesn't "know" how to read a CSV or call a web API; it asks an MCP server to do the actual work.
+
+```
+User Prompt
+    │
+    ▼
+AI Model (LLM)
+    │  decides to call a tool
+    ▼
+MCP Server ──► External Service (Canvas API, Google Drive, etc)
+    │
+    ▼
+Tool Result returns to model
+    │
+    ▼
+Final Response to User
+```
+
+**The model is the brain; MCP servers and tools are the hands.**
+
+### What are Tools?
+
+Tools are the individual functions an agent can invoke. In LangChain, you create tools with the `@tool` decorator. Three things every tool must have:
+
+- A **name**   how the agent refers to it
+- A **description** (the docstring)   what the LLM reads to decide *when* to call it
+- A **schema**   the parameter types, inferred from the function signature
+
+```python
+from langchain_core.tools import tool
+
+@tool
+def log_food(name: str, calories: int, protein: int = 0) -> str:
+    """Log a food item to the wellness tracker.
+    Use this whenever the user mentions eating something.
+    Estimate calories and macros if the user does not give exact numbers.
+    """
+    # ... implementation
+```
+
+The docstring is not just documentation   **it is part of the prompt the model receives.** Vague docstrings produce wrong tool choices, and the effect shows up immediately in LangSmith.
+
+---
+
+## LangGraph Agent Architecture
+
+Both agents use the same structure. The key import:
+
+```python
+# CORRECT: works with current LangChain/LangGraph
+from langgraph.prebuilt import create_react_agent
+
+# BROKEN: removed in LangChain v0.2
+from langchain.agents import create_react_agent
+```
+
+**NOTE:** *This is something AI will mess up a lot, if you are using AI you need to specify to use are using LangChain v1.x instead of v0.3*
+
+`create_react_agent` builds a **ReAct** graph. The agent reasons step-by-step before every tool call, making behavior predictable and easy to trace. You invoke it with a `messages` list and read the final reply from `result["messages"][-1].content`.
+
+---
+
+## LangSmith: Three Layers of Observability
+
+### Layer 1   Automatic Tracing
+
+Set four environment variables before your agent runs. LangChain and LangGraph automatically send every run to LangSmith   no code changes needed.
+
+```python
+os.environ["LANGCHAIN_TRACING_V2"] = "true"
+os.environ["LANGCHAIN_ENDPOINT"]   = "https://api.smith.langchain.com"
+os.environ["LANGCHAIN_API_KEY"]    = LANGSMITH_API_KEY
+os.environ["LANGCHAIN_PROJECT"]    = "wellness-agent"
+```
+
+This gives you traces for every `agent.invoke()` call, with LLM nodes and tool nodes visible.
+
+### Layer 2   `@traceable` for Custom Functions
+
+Automatic tracing captures LangChain objects, but what about your own Python functions like the Canvas API calls or the CSV writes? That's where `@traceable` comes in.
+
+```python
+from langsmith import traceable
+
+@traceable(name="Canvas API: list_courses")
+def _get_all_courses_raw() -> list:
+    # This HTTP call is now a named span in the trace
+    ...
+```
+
+With `@traceable`, the trace tree goes from flat to **fully nested**:
+
+```
+# WITHOUT @traceable   opaque single node:
+▼ tools
+  ▼ get_upcoming_assignments     [2.1s] ✅
+
+# WITH @traceable   full call tree:
+▼ tools
+  ▼ get_upcoming_assignments              [2.1s] ✅
+    ▼ Canvas API: get_upcoming_assignments [2.0s] ✅
+      ▼ Canvas API: list_courses           [0.4s] ✅
+      ▼ Canvas API: list_assignments       [0.3s] ✅  ← CSE 490R
+      ▼ Canvas API: list_assignments       [0.3s] ✅  ← DS 460
+      ▼ Canvas API: list_assignments       [0.9s] ⚠️  ← MATH 488 (slow!)
+```
+
+Now you can see *which* endpoint is slow, *which* API call returned a 404, and exactly how long each step took. This is the biggest diagnostic improvement from the original notebooks.
+
+The pattern we use throughout both notebooks is: `@traceable` on the raw implementation, `@tool` on the wrapper the agent calls.
+
+```python
+@traceable(name="CSV: write_food_entry")   # ← becomes a child span in LangSmith
+def _write_food(name, calories, ...):
+    # actual CSV write
+    ...
+
+@tool
+def log_food(name: str, calories: int, ...) -> str:
+    """Log a food item..."""
+    _write_food(name, calories, ...)        # ← calls the traceable helper
+    return "✅ Logged..."
+```
+
+### Layer 3   Evaluations with Datasets
+
+Tracing tells you *what happened* in a single run. Evaluations tell you *how well your agent performs*   repeatably, across many inputs at once.
+
+A LangSmith evaluation has three parts:
+
+**1. A dataset**   input/output example pairs stored in LangSmith:
+
+```python
+from langsmith import Client
+
+client = Client()
+dataset = client.create_dataset("wellness-agent-eval")
+client.create_examples(
+    inputs=[
+        {"input": "I just ate oatmeal for breakfast"},
+        {"input": "I went for a 30-minute run"},
+    ],
+    outputs=[
+        {"expected_tool": "log_food"},
+        {"expected_tool": "log_workout"},
+    ],
+    dataset_id=dataset.id,
+)
+```
+
+**2. An evaluator**   a function that scores each run:
+
+```python
+def correct_tool_called(inputs, outputs, reference_outputs):
+    expected = reference_outputs.get("expected_tool", "")
+    for msg in outputs.get("messages", []):
+        if hasattr(msg, "tool_calls"):
+            for call in msg.tool_calls:
+                if call.get("name") == expected:
+                    return {"score": 1, "comment": f"Called '{expected}' ✅"}
+    return {"score": 0, "comment": f"Expected '{expected}' ❌"}
+```
+
+**3. `evaluate()`**   runs every dataset example through your agent, scores the results, and saves the experiment to LangSmith:
+
+```python
+from langsmith.evaluation import evaluate
+
+results = evaluate(
+    run_agent,                              # your agent wrapper function
+    data="wellness-agent-eval",             # dataset name
+    evaluators=[correct_tool_called],
+    experiment_prefix="wellness-tool-selection",
+)
+```
+
+After `evaluate()` finishes, open LangSmith → your project → **Experiments** tab. You get a scored table for every input. Run it again after a fix and the two experiments appear side by side   you now have data proving the fix worked.
+
+---
+
+## Reading a Full Trace
+
+Here is what a complete trace looks like in the Canvas tutor with all three layers active:
+
+```
+▼ LangGraph                                           [4.3s] ✅
+  ▼ agent  (LLM: decides what tool to call)          [1.1s] ✅
+      input:  [user: "What's due this week?"]
+      output: [tool_call: get_upcoming_assignments({days_ahead: 7})]
+  ▼ tools                                             [3.1s] ✅
+    ▼ get_upcoming_assignments                        [3.1s] ✅
+      ▼ Canvas API: get_upcoming_assignments          [3.0s] ✅
+        ▼ Canvas API: list_courses                   [0.5s] ✅
+            output: 6 courses found
+        ▼ Canvas API: list_assignments               [0.4s] ✅  CSE 490R
+        ▼ Canvas API: list_assignments               [0.4s] ✅  DS 460
+        ▼ Canvas API: list_assignments               [0.3s] ✅  MATH 488
+  ▼ agent  (LLM: writes final reply)                 [1.1s] ✅
+      output: [ai: "You have 3 assignments due this week..."]
+```
+
+**What to look for on every trace:**
+
+- **Red nodes**   unhandled exceptions with the exact error message right there
+- **Duration outliers**   one `list_assignments` span taking 3s when others take 0.3s
+- **Tool inputs**   did the agent pass `days_ahead: 7` or `days_ahead: 30`? The LLM's extraction is visible
+- **Missing tool nodes**   if the agent answered without any tools node, the docstrings may be too vague
+
+---
+
+## Common Bugs and Their Trace Signatures
+
+| Bug | Where to look |
+|---|---|
+| Wrong tool selected | Tool name in the `tools` node doesn't match intent |
+| Vague tool description | LLM `agent` node shows reasoning that ignores the right tool |
+| 404 from an API | `@traceable` span for that endpoint is red with HTTP 404 |
+| Slow response | Compare durations across `@traceable` API spans |
+| Agent skips tools entirely | No `tools` node at all in the trace |
+| Bad argument extraction | Tool input in the trace shows wrong parameter values |
+
+### The Diagnostic Loop
+
+```
+1. Reproduce the bug
+      │
+      ▼
+2. Open the trace in LangSmith
+      │
+      ▼
+3. Find the failing node (red, wrong tool, missing span)
+      │
+      ▼
+4. Inspect: inputs, outputs, duration, error message
+      │
+      ▼
+5. Fix in code → re-run → compare new trace to old
+      │
+      ▼
+6. Add the failing input to your eval dataset
+   so regressions are caught automatically next time
+```
+
+---
+
+# Part 2   Guided Activity (20 Minutes)
+
+## Setup
+
+Open both agents in Google Colab:
+
+| Notebook | Link |
+|---|---|
+| Wellness Agent | [Open in Colab](https://colab.research.google.com/github/your-org/your-repo/blob/main/wellness_agent_langchain.ipynb) |
+| Canvas AI Tutor | [Open in Colab](https://colab.research.google.com/github/your-org/your-repo/blob/main/canvas_ai_langchain.ipynb) |
+
+**LangSmith account:** go to [smith.langchain.com](https://smith.langchain.com), sign up, create an API key under **Settings → API Keys**, and add it to your `.env` file:
+
+```
+LANGSMITH_API_KEY=ls__your_key_here
+```
+
+---
+
+## Activity 1   Observe `@traceable` Nested Spans
+
+Run Steps 1–7 in the Wellness Agent, then:
+
+```python
+def ask(msg):
+    result = agent.invoke({"messages": [{"role": "user", "content": msg}]})
+    print("Assistant:", result["messages"][-1].content)
+
+ask("I just ate oatmeal with banana for breakfast")
+ask("I went for a 30-minute run")
+ask("I had a big breakfast")      # intentionally vague
+ask("Show me today's summary")
+```
+
+Open each trace in LangSmith → **wellness-agent**.
+
+**For the first prompt, expand the `log_food` tool node:**
+
+1. Do you see a `CSV: write_food_entry` child span? What does its output say?
+2. How long did the CSV write take compared to the LLM call?
+3. What values did the agent pass for `protein`, `carbs`, and `fat`? How did it estimate these?
+
+**For the vague prompt ("I had a big breakfast"):**
+
+4. Which tool was called? What calorie number was passed?
+5. Is this a reasonable estimate? Would you flag this run?
+
+---
+
+## Activity 2   Break a Tool Description, Read the Trace
+
+**Step 1**   In the Wellness Agent Step 5, change the `log_food` docstring:
+
+```python
+# ORIGINAL
+"""Log a food item to the wellness tracker.
+Use this whenever the user mentions eating something.
+Estimate calories and macros if the user does not give exact numbers.
+"""
+
+# BROKEN
+"""Does something with food data."""
+```
+
+Re-run Steps 5 and 6 to rebuild the agent.
+
+**Step 2**   Re-run two prompts:
+
+```python
+ask("I just ate a chicken sandwich for lunch")
+ask("I had a big breakfast")
+```
+
+**Step 3**   Compare the old trace and new trace side-by-side in LangSmith.
+
+Discuss as a class:
+
+- Did the `tools` node appear in the broken trace, or did the agent skip it entirely?
+- Look at the first `agent` node output. How did the reasoning change?
+- Is there a `CSV: write_food_entry` child span? What does its presence or absence tell you?
+
+**Step 4**   Restore the original docstring before continuing.
+
+---
+
+## Activity 3   Run the Evaluation Dataset
+
+In the Wellness Agent, run **Steps 9a, 9b, and 9c**.
+
+While it runs, watch LangSmith   you will see five new traces appear in the **wellness-agent** project, one per dataset example.
+
+After it finishes, go to LangSmith → **wellness-agent** → **Experiments** tab.
+
+**Answer:**
+
+1. What was the overall `correct_tool_called` score (out of 5)?
+2. Which example(s) scored 0? What tool did the agent call instead?
+3. Now break the `log_workout` docstring (same approach as Activity 2) and re-run the eval. How did the score change? Which examples were newly affected?
+
+---
+
+# Part 3   Independent Activity (10 Minutes)
+
+## Your Turn: Diagnose and Evaluate the Canvas Tutor
+
+**Task 1   Run the Canvas tutor and analyze the trace (3 min)**
+
+Run Steps 1–7. Ask:
+
+```python
+def ask(msg):
+    result = agent.invoke({"messages": [{"role": "user", "content": msg}]})
+    display(Markdown(f"**Tutor:** {result['messages'][-1].content}"))
+
+ask("What assignments do I have due this week?")
+```
+
+Open the trace in LangSmith → **canvas-tutor**. Fill in this table:
+
+| Span | Duration | What it returned |
+|---|---|---|
+| `Canvas API: list_courses` | | |
+| `Canvas API: list_assignments` (first course) | | |
+| Full `get_upcoming_assignments` | | |
+| Full LangGraph run | | |
+
+**Task 2   Break a tool description and run the eval (5 min)**
+
+Change `get_upcoming_assignments`'s docstring to:
+
+```python
+"""Retrieves some data from Canvas."""
+```
+
+Re-run Steps 5 and 6, then run the evaluation (Steps 8a and 8b):
+
+```python
+results = evaluate(
+    run_agent,
+    data="canvas-tutor-eval",
+    evaluators=[correct_tool_called],
+    experiment_prefix="canvas-broken-description",
+)
+```
+
+Compare the two experiments in LangSmith → **canvas-tutor** → **Experiments**.
+
+**Task 3   Reflection (2 min)**
+
+Answer in 3–4 sentences:
+
+> *What advantage does running `evaluate()` give you over just reading traces manually?  
+> How would you use eval datasets in a real project to prevent regressions when you change a tool description or system prompt?*
+
+**Submit your duration table and reflection to Canvas before leaving class.**
+
+---
+
+# Key Takeaways
+
+- **Automatic tracing** requires only four environment variables. Every `agent.invoke()` call is recorded in LangSmith with no code changes.
+
+- **`@traceable`** (from `langsmith`) wraps any Python function as a named span. Pair it with `@tool` to see the full internal call tree   individual API calls, file writes, database queries   each with their own timing and output visible in LangSmith.
+
+- **Evaluations** turn ad-hoc testing into a repeatable experiment. Create a dataset, write an evaluator function, call `evaluate()`, and LangSmith scores every run. Run it before and after a fix to prove with data that the fix worked.
+
+- **Vague `@tool` docstrings** are one of the most common agent bugs. The LLM `agent` node in the trace is the clearest signal   you can see exactly where the reasoning went wrong before any tool was called.
+
+- **The full diagnostic loop** is: reproduce → trace → find failing node → inspect → fix → re-run eval to confirm no regression.
+
+---
+
+# Resources
+
+- [LangSmith 101 for AI Observability   James Briggs](https://www.youtube.com/watch?v=Iyc80hY2yYk)
+- [LangSmith Documentation](https://docs.smith.langchain.com)
+- [LangSmith `@traceable` Reference](https://docs.smith.langchain.com/observability/how_to_guides/tracing/annotate_code)
+- [LangSmith Evaluation Quickstart](https://docs.smith.langchain.com/evaluation/quickstart)
+- [LangGraph `create_react_agent` Docs](https://langchain-ai.github.io/langgraph/reference/prebuilt/#create_react_agent)
+- [Model Context Protocol Spec](https://spec.modelcontextprotocol.io)
+
+
+# Homework (I guess)
+
+Go to [this site](https://github.com/wong2/awesome-mcp-servers) and find an MCP server you think is cool
+
+Take the colab notebooks as a baseline and make an agent using one of those MCPs
+
+Build the agent
+
+Debug the agent with LangSmith
+
+Come back next week having a working agent

@@ -1,5 +1,5 @@
 ---
-title: "Agentic AI Course"
+title: "Welcome to the Agentic AI Course!"
 ---
 
 # Course Objectives
@@ -30,7 +30,7 @@ title: "Agentic AI Course"
 
 **Project:** Personal Assistant Agent
 
-Build a personal assistant agent that connects to real tools — Canvas, Google Calendar, Slack, the file system, and the web — and carries on a coherent, stateful conversation. You will write your own prompts from scratch; no AI, peer, or internet-generated prompts are permitted. The agent will be stress-tested in class to deliberately surface its weaknesses, setting the stage for Unit 2.
+Build a personal assistant agent that connects to real tools — Canvas, Google Calendar, Slack, the file system, and the web — and carries on a coherent, stateful conversation. You will write your own prompts from scratch; no AI, peer, or internet-generated prompts are permitted. The agent will be stress-tested in class to deliberately surface its weaknesses, and those failures become the raw material for Unit 2.
 
 **Outcomes:**
 - Call an LLM and receive a response
@@ -39,7 +39,7 @@ Build a personal assistant agent that connects to real tools — Canvas, Google 
 - Connect and invoke tools (MCP, file system, browser, web search, Canvas, Google Calendar, Slack)
 - Implement conversation history manually and with built-in methods
 - Introduce statefulness to an agent
-- Demonstrate a working personal assistant agent and identify where it breaks
+- Demonstrate a working personal assistant agent and document where it breaks
 
 **Note on AI use:** AI assistance is not permitted this unit. Debugging help comes from class time and the Slack group (ChatClass). This is intentional — it builds class unity, surfaces your own assumptions, and gives you room to fail. Failure is a core part of this unit, not a grading penalty. Set a time limit on any problem; if you're stuck, post in Slack or bring it to class unfinished. That is OK.
 
@@ -47,39 +47,42 @@ Build a personal assistant agent that connects to real tools — Canvas, Google 
 
 | Day | Topic |
 |-----|-------|
-| 1 | Orientation — meet the professor, course objectives, demo of what you'll build, requirements and expectations |
+| 1 | Orientation — meet the professor, course objectives, demo of what you'll build, requirements and expectations, hype Battle of the Bots |
 | 2 | APIs & Your First LLM Call — define an API, make a call, handle common challenges |
 | 3 | Tools: Building & Using Them — custom tools, the @ decorator, LangChain Community tools |
 | 4 | Statefulness & Conversation History — manual and built-in conversation history |
 | 5 | Data & Local Resources — local data, file system access, running code |
 | 6 | Connecting to the World — web search, browser use, MCP connections |
 | 7 | Sandboxing & Multi-Agent Intro — LangChain/Daytona sandboxing, subagent concepts |
-| 8 | Project Kickoff — design the personal assistant, plan tools and personality |
-| 9 | Build Day — assemble tools into a working agent |
+| 8 | Project Kickoff & Build Day — design the personal assistant, begin assembling tools |
+| 9 | Showcase & Stress-Test — demo agents, deliberately break them, document failures |
 
 ---
 
-## Unit 2: Diagnostics — Why Is It "Bad"? (Weeks 4–5)
+## Unit 2: Diagnostics — Why Is It "Bad"? (Weeks 4–6)
 
   - [Unit 2](units/unit2.html)
 
 **Goal:** Develop diagnostic tools to peer into the black box of agentic AI, in preparation for building reliable agents.
 
 **Topics:**
+- Categories of agent failure: errors, loops, cost explosion, hallucination, unreliability
 - Observability and tracing with LangSmith
-- Debugging hallucinations and unexpected behavior
 - Token and latency analysis
+- Debugging hallucinations and unexpected behavior
 - Identifying and fixing code bugs
 
 **Project:** Diagnostic Report — Fix a Broken Agent
 
-You are given a broken agent to diagnose. Your job is to implement tracing, identify why it fails, and produce a structured diagnostic report documenting each failure and its root cause.
+You are given a pre-built broken agent to diagnose. Your job is to implement tracing, identify every failure, document root causes, and produce a structured diagnostic report. You will implement at least one fix and verify it with traces before presenting to the class.
 
 **Outcomes:**
 - Set up LangSmith and capture screenshot traces
 - Implement tracing features and explain what each one does and why
-- Identify categories of agent failure (context, tool use, looping, cost, etc.)
-- Fix identified code bugs
+- Measure token usage and latency across tool calls and LLM responses
+- Identify categories of agent failure from trace data
+- Distinguish model errors from prompt errors from code bugs
+- Fix identified bugs and verify with re-tracing
 - Produce and present a diagnostic report
 
 **Note on AI use:** AI assistance may be permitted this unit — details TBD. If used, post in Slack what you discussed and any lessons learned.
@@ -88,20 +91,23 @@ You are given a broken agent to diagnose. Your job is to implement tracing, iden
 
 | Day | Topic |
 |-----|-------|
-| 1 | What Makes an Agent "Bad"? — review Unit 1 failures, introduce diagnostic framing |
-| 2 | Observability & Tracing — LangSmith setup, API key, navigating traces |
+| 1 | What Makes an Agent "Bad"? — review Unit 1 failures, define failure categories, introduce the diagnostic mindset |
+| 2 | Observability & Tracing — LangSmith setup, API key, navigating the interface |
 | 3 | Scavenger Hunt — find specific traces and failure signatures in LangSmith |
-| 4 | Analyze a Broken Agent — trace behavior, document what goes wrong |
-| 5 | Build the Diagnostic Report — categorize failures, structure findings |
-| 6 | Present & Discuss — share reports, find patterns, introduce context engineering |
+| 4 | Token & Latency Analysis — understand cost growth, measure slowness and expense |
+| 5 | Debugging Hallucinations & Unexpected Behavior — trace errors back to their source |
+| 6 | Finding & Fixing Code Bugs — systematic debugging workflow, fix and verify |
+| 7 | Analyze a Broken Agent — run, trace, and document every failure |
+| 8 | Build the Diagnostic Report — categorize failures, document root causes, implement a fix |
+| 9 | Present & Discuss — share reports, find class-wide patterns, bridge to context engineering |
 
 ---
 
-## Unit 3: Context Engineering — Make a "Good" Agent (Weeks 6–8)
+## Unit 3: Context Engineering — Make a "Good" Agent (Weeks 7–9)
 
   - [Unit 3](units/unit3.html)
 
-**Goal:** Engineer context effectively to produce agents that are reliable, specialized, and capable of operating over long horizons.
+**Goal:** Engineer context effectively to produce agents that are reliable, specialized, and capable of operating over long horizons — then prove it in competition.
 
 **Topics:**
 - Context engineering vs. prompt engineering
@@ -112,9 +118,9 @@ You are given a broken agent to diagnose. Your job is to implement tracing, iden
 - Checkpointing, human-in-the-loop, and context self-adaptation
 - Cost-aware context design
 
-**Project:** Rebuilt Personal Assistant
+**Project:** Battle of the Bots
 
-Take the Unit 1 personal assistant and rebuild it with context engineering applied. Demonstrate measurable improvements in reliability, coherence, and cost efficiency compared to the original version.
+Apply everything from all three units to build a production-ready agent of your own design. Agents compete in structured challenges testing usefulness, resilience, and cost efficiency. The best agent is not necessarily the most powerful — it is the most reliable, the most purposeful, and the most improved from where you started in Unit 1.
 
 **Outcomes:**
 - Define context engineering and distinguish it from prompt engineering
@@ -122,70 +128,26 @@ Take the Unit 1 personal assistant and rebuild it with context engineering appli
 - Apply context offloading using semantic search or graph memory
 - Implement parallelized and serialized subagent patterns
 - Add checkpointing and human-in-the-loop interrupts
-- Compare the rebuilt agent directly to the Unit 1 version
+- Design an agent that handles cost, failure, and long-horizon tasks gracefully
+- Compete in Battle of the Bots and articulate design decisions made
 
 **Daily Schedule:**
 
 | Day | Topic |
 |-----|-------|
-| 1 | What Is Context Engineering? — definition, levels of intent, why it matters |
+| 1 | What Is Context Engineering? — definition, levels of intent, why prompting alone isn't enough |
 | 2 | Simple Context Management — truncate, summarize, select, offload; implement truncation and summarization |
 | 3 | Context Offloading — semantic search, forgetting vector, graph approaches |
 | 4 | Subagent Architecture — parallelization, serialization, Ralph Wiggum Loop, deep research agent |
 | 5 | Checkpointing, HITL & File Systems — messy file navigation, checkpoints, human-in-the-loop |
-| 6 | Context Self-Adaptation & Cost Saving — adaptive context, cost reduction review |
-| 7 | Project Kickoff — redesign the personal assistant with context engineering applied |
-| 8 | Build Day — hands-on build with instructor support |
-| 9 | Demo & Compare — showcase rebuilt agent, compare to Unit 1 version |
+| 6 | Context Self-Adaptation & Cost Saving — adaptive context, cost reduction, full toolkit review |
+| 7 | Final Agent Design — choose tools, context strategy, memory approach, and subagent structure |
+| 8 | Final Build Day — full build session, peer testing and stress-testing |
+| 9 | ⚡ Battle of the Bots! — structured challenges, audience voting, reflect on the full arc |
 
 ---
 
-## Unit 4: Productization and Scaling — Make a "Useful" Agent (Weeks 9–11)
-
-  - [Unit 4](units/unit4.html)
-
-**Goal:** Take a working agent and make it production-ready: scalable, safe, observable, and user-facing.
-
-**Topics:**
-- Token economics and quadratic cost growth
-- Context caps, sliding window, and retrieval-based memory
-- Rate limiting, caching, async workflows, and budget controls
-- RAG pipelines and knowledge grounding at scale
-- Human-in-the-loop workflows and approval flows
-- Prompt injection, data leakage, and guardrails
-- Frontend interfaces (web/chat)
-- Organizational policy and AI governance
-
-**Project:** Battle of the Bots
-
-Design and deploy a production-ready agent of your choice. Agents will compete in a series of structured challenges testing usefulness, resilience, and cost efficiency. Categories include speed, cheapest correct answer, graceful failure, and most improved from Unit 1.
-
-**Outcomes:**
-- Explain why cost grows quadratically and how to prevent it
-- Implement a context cap and at least one cost reduction technique
-- Build and deploy an agent with a real frontend interface
-- Harden the agent against prompt injection and misuse
-- Apply rate limiting and budget controls
-- Implement human-in-the-loop approval flows
-- Articulate governance and ethical considerations for production AI
-
-**Daily Schedule:**
-
-| Day | Topic |
-|-----|-------|
-| 1 | Why Scale Breaks Things — token economics, quadratic cost growth, context windows |
-| 2 | Cost Reduction Techniques — sliding window, summary memory, retrieval, saving skills as code |
-| 3 | Who Is This Agent For? — defining users, use cases, RAG possibilities |
-| 4 | Production Safety & Budget Controls — rate limiting, budget alerts, preventing runaway loops |
-| 5 | RAG & Retrieval at Scale — build a RAG pipeline, tune retrieval quality |
-| 6 | Hardening the Agent — prompt injection, guardrails, stress testing at scale |
-| 7 | Final Agent Design — choose tools, context strategy, and scaling safeguards |
-| 8 | Final Build Day — full build session, peer testing and feedback |
-| 9 | Battle of the Bots! — structured challenges, audience voting, final showcase |
-
----
-
-## Capstone (Weeks 12–14)
+## Capstone (Weeks 10–12)
 
   - [Capstone](units/capstone.html)
 
