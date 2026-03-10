@@ -1,161 +1,138 @@
-# Agentic AI Course
+# Agentic AI Course — Site Repository
 
-Welcome to the **Agentic AI Course**, a hands-on program designed to teach you how to design, build, and scale agentic AI systems using modern LLM frameworks and tooling.  
-
----
-
-## Course Objectives
-
-By the end of this course, students will be able to:
-
-- Design, diagram, implement, evaluate, productize, and scale agentic AI systems.
-- Identify and evaluate problems suitable for agentic AI solutions versus traditional software or non-agentic LLM approaches.
-- Clearly define Agentic AI and related concepts, including agents, tools, planning, grounding, orchestration, evaluation, and human-in-the-loop workflows.
-- Develop ethical guidelines for the use of LLMs and agentic AI, including responsible data usage, AI governance principles, safety, privacy, and organizational policies.
-- Independently learn, evaluate, and adapt to new AI models, tools, and paradigms in a rapidly evolving AI ecosystem.
+This repo contains the source files for the Agentic AI course website, built with [Quarto](https://quarto.org). The site renders to the `docs/` folder and is served via GitHub Pages.
 
 ---
 
-## Module Setup
+## Prerequisites
 
-### Module 1: Setup and Intro to LLM Programming (Weeks 1–2)
-**Topics:**
-- Gemini APIs and SDKs  
-- Prompting vs structured outputs  
-- Determinism, temperature, schemas  
-- Function calling basics  
+Install Quarto before working with this repo:
 
-**Project:** Build a single-task Gemini agent (e.g., document summarizer, code reviewer, tutor)
+```bash
+# Check if already installed
+quarto --version
 
----
+# Download from https://quarto.org/docs/get-started/
+```
 
-### Module 2: Prompt Engineering → Agent Design (Week 3)
-**Topics:**
-- System vs user vs tool prompts  
-- Memory types (short term vs long term)  
-- Instruction hierarchies  
-- Role-based prompting  
-
-**Project:** Convert the single-task agent into a multi-step reasoning agent
+No other dependencies are required — Quarto handles all rendering.
 
 ---
 
-### Module 3: Structure, State, and Diagramming (Week 4)
-**Topics:**
-- Agent loops  
-- State machines  
-- DAGs vs planners  
-- Mermaid / architecture diagrams  
+## Local Development
 
-**Project:** Design and implement a stateful agent workflow with diagrams
+**Preview the site with live reload:**
+```bash
+quarto preview
+```
+This spins up a local server at `http://localhost:4567` and automatically refreshes when you save changes.
 
----
-
-### Module 4: Agent Orchestration and Planning (Week 5)
-**Topics:**
-- ReAct, Plan-Execute, Reflection  
-- Tool selection strategies  
-- Multi-agent vs single-agent systems  
-- Failure modes  
-
-**Project:** Build an agent that plans tasks before execution
+**Build the site for deployment:**
+```bash
+quarto render
+```
+This outputs all rendered HTML to the `docs/` folder, which GitHub Pages serves.
 
 ---
 
-### Module 5: Connections: Tools, MCP, APIs, Web (Week 6)
-**Topics:**
-- Tool calling in Gemini  
-- MCP concepts  
-- REST APIs  
-- Web search and scraping (ethically)  
+## Repo Structure
 
-**Project:** Build an agent that queries live APIs and web data
+```
+/
+├── index.qmd               # Course homepage (student-facing)
+├── dictionary.qmd          # Agentic AI glossary
+├── _quarto.yml             # Site config: navbar, theme, output settings
+├── styles.css              # Custom CSS overrides
+├── docs/                   # Rendered output — do not edit directly
+├── Assets/
+│   └── Images/             # Logo, images used across the site
+└── units/
+    ├── unit1.qmd           # Unit 1 overview page
+    ├── unit1_1.qmd         # Unit 1, Day 1
+    ├── unit1_2.qmd         # Unit 1, Day 2
+    │   ...
+    ├── unit1_12.qmd        # Unit 1, Day 12
+    ├── unit2.qmd           # Unit 2 overview page
+    ├── unit2_1.qmd         # Unit 2, Day 1
+    │   ...
+    ├── unit2_12.qmd        # Unit 2, Day 12
+    ├── unit3.qmd           # Unit 3 overview page
+    ├── unit3_1.qmd         # Unit 3, Day 1
+    │   ...
+    └── unit3_12.qmd        # Unit 3, Day 12
+```
 
----
+### Naming Convention
 
-### Module 6: Grounding → Databases, SQL, Vector Stores (Week 7)
-**Topics:**
-- RAG vs fine-tuning  
-- SQL generation  
-- Embeddings and retrieval  
-- Hybrid search  
+| File | Purpose |
+|------|---------|
+| `units/unit1.qmd` | Unit overview — goal, topics, project, outcomes |
+| `units/unit1_1.qmd` | Individual lesson — Unit 1, Day 1 |
+| `units/unit2_5.qmd` | Individual lesson — Unit 2, Day 5 |
 
-**Project:** Build a grounded agent over a database
-
----
-
-### Module 7: Diagnostics and Evaluation (Week 8)
-**Topics:**
-- Tracing agent runs  
-- Debugging hallucinations  
-- Token and latency analysis  
-- Regression testing agents  
-
-**Project:** Add observability and evaluation to a prior agent
-
----
-
-### Module 8: Safety, Alignment, and Guardrails (Week 9)
-**Topics:**
-- Prompt injection  
-- Data leakage  
-- Tool abuse  
-- Policy enforcement  
-- Gemini safety tooling  
-
-**Project:** Harden an agent against prompt injection and misuse
+Days are numbered **within each unit** (1–12), not across the whole course.
 
 ---
 
-### Module 9: Human in the Loop and UX (Week 10)
-**Topics:**
-- Approval flows  
-- Editable plans  
-- Feedback loops  
-- UI vs CLI agents  
+## Adding a New Lesson Page
 
-**Project:** Build an agent with human approval checkpoints
+1. Create the file in `units/` following the naming convention (e.g., `units/unit2_7.qmd`)
+2. Add a YAML header at the top:
+
+```yaml
+---
+title: "Unit 2 — Day 7: Prompt Failure Patterns"
+---
+```
+
+3. Write your content in Markdown below the header
+4. The page is already linked in `_quarto.yml` — no changes needed there
+5. Run `quarto preview` to verify it renders correctly
 
 ---
 
-### Module 10: Production, Scaling, and Interfaces (Week 11)
-**Topics:**
-- Rate limits  
-- Caching  
-- Async workflows  
-- Frontends (web/chat)  
-- Cost control  
+## Editing the Navbar
 
-**Project:** Deploy an agent with a real interface
+The navbar is defined in `_quarto.yml`. Each unit has its own dropdown menu with week dividers and day links. If you add, remove, or rename a page, update the corresponding entry in `_quarto.yml`.
 
 ---
 
-### Module 11: Retraining, Fine-Tuning, and Weight Adjustments (Week 12)
-**Topics:**
-- When to fine-tune vs RAG  
-- Data curation  
-- Eval-driven tuning  
-- Gemini fine-tuning workflows  
+## Deployment
 
-**Project:** Improve an agent via data-driven iteration
+The site deploys automatically to GitHub Pages from the `docs/` folder.
 
----
-
-### Modules 12: Capstone Agent System (Weeks 13–14)
-**Final Project:** Build a production-ready agent system with:  
-- Planning  
-- Tools  
-- Grounding  
-- Evaluations  
-- Safety  
-- UI  
-- Observability
-
----
-
-## Getting Started
-
-To render the Quarto website locally:
+**To deploy updates:**
+1. Run `quarto render` to rebuild the site
+2. Commit and push the changes including the updated `docs/` folder:
 
 ```bash
 quarto render
+git add .
+git commit -m "your message"
+git push
+```
+
+GitHub Pages will serve the updated site within a minute or two.
+
+**GitHub Pages setup** (one-time, already configured):
+- Go to repo Settings → Pages
+- Set source to `Deploy from a branch`
+- Set branch to `main`, folder to `/docs`
+
+---
+
+## Course Structure
+
+| Unit | Weeks | Days | Theme |
+|------|-------|------|-------|
+| Unit 1 | 1–4 | 1–12 | Build a "Bad" Agent |
+| Unit 2 | 5–8 | 1–12 | Diagnostics |
+| Unit 3 | 9–12 | 1–12 | Context Engineering + Battle of the Bots |
+
+Each unit has 4 weeks × 3 days = 12 lessons.
+
+---
+
+## Questions or Issues
+
+Post in the **ChatClass** Slack channel or open a GitHub issue in this repo.
