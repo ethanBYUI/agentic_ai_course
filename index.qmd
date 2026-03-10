@@ -14,7 +14,7 @@ title: "Welcome to the Agentic AI Course!"
 
 # Course Overview
 
-## Unit 1: Build a "Bad" Agent (Weeks 1–3)
+## Unit 1: Build a "Bad" Agent (Weeks 1–4)
 
   - [Unit 1](units/unit1.html)
 
@@ -26,7 +26,8 @@ title: "Welcome to the Agentic AI Course!"
 - Making API calls, defining and calling tools, and managing statefulness
 - Connecting tools: MCP, file system, browser use, internet search, custom functions
 - Sandboxing with LangChain / Daytona
-- Intro to subagents and multi-agent architectures
+- Subagents and multi-agent architectures
+- Writing effective prompts from scratch
 
 **Project:** Personal Assistant Agent
 
@@ -39,6 +40,8 @@ Build a personal assistant agent that connects to real tools — Canvas, Google 
 - Connect and invoke tools (MCP, file system, browser, web search, Canvas, Google Calendar, Slack)
 - Implement conversation history manually and with built-in methods
 - Introduce statefulness to an agent
+- Run agent code safely in a sandboxed environment
+- Build a simple two-agent pipeline
 - Demonstrate a working personal assistant agent and document where it breaks
 
 **Note on AI use:** AI assistance is not permitted this unit. Debugging help comes from class time and the Slack group (ChatClass). This is intentional — it builds class unity, surfaces your own assumptions, and gives you room to fail. Failure is a core part of this unit, not a grading penalty. Set a time limit on any problem; if you're stuck, post in Slack or bring it to class unfinished. That is OK.
@@ -53,13 +56,16 @@ Build a personal assistant agent that connects to real tools — Canvas, Google 
 | 4 | Statefulness & Conversation History — manual and built-in conversation history |
 | 5 | Data & Local Resources — local data, file system access, running code |
 | 6 | Connecting to the World — web search, browser use, MCP connections |
-| 7 | Sandboxing & Multi-Agent Intro — LangChain/Daytona sandboxing, subagent concepts |
-| 8 | Project Kickoff & Build Day — design the personal assistant, begin assembling tools |
-| 9 | Showcase & Stress-Test — demo agents, deliberately break them, document failures |
+| 7 | Sandboxing & Safety — LangChain/Daytona sandboxing, isolated code execution |
+| 8 | Subagents & Multi-Agent Intro — when to delegate, simple two-agent pipeline |
+| 9 | Prompting Without AI — writing effective system prompts from scratch, iterating on output |
+| 10 | Project Kickoff — design the personal assistant, plan tools and personality |
+| 11 | Build Day — assemble tools into a working agent |
+| 12 | Showcase & Stress-Test — demo agents, deliberately break them, document failures |
 
 ---
 
-## Unit 2: Diagnostics — Why Is It "Bad"? (Weeks 4–6)
+## Unit 2: Diagnostics — Why Is It "Bad"? (Weeks 5–8)
 
   - [Unit 2](units/unit2.html)
 
@@ -70,6 +76,8 @@ Build a personal assistant agent that connects to real tools — Canvas, Google 
 - Observability and tracing with LangSmith
 - Token and latency analysis
 - Debugging hallucinations and unexpected behavior
+- Prompt failure patterns
+- Cost and loop failure analysis
 - Identifying and fixing code bugs
 
 **Project:** Diagnostic Report — Fix a Broken Agent
@@ -82,6 +90,8 @@ You are given a pre-built broken agent to diagnose. Your job is to implement tra
 - Measure token usage and latency across tool calls and LLM responses
 - Identify categories of agent failure from trace data
 - Distinguish model errors from prompt errors from code bugs
+- Identify and rewrite failing prompts based on traced results
+- Implement basic loop guards and context limits
 - Fix identified bugs and verify with re-tracing
 - Produce and present a diagnostic report
 
@@ -97,13 +107,16 @@ You are given a pre-built broken agent to diagnose. Your job is to implement tra
 | 4 | Token & Latency Analysis — understand cost growth, measure slowness and expense |
 | 5 | Debugging Hallucinations & Unexpected Behavior — trace errors back to their source |
 | 6 | Finding & Fixing Code Bugs — systematic debugging workflow, fix and verify |
-| 7 | Analyze a Broken Agent — run, trace, and document every failure |
-| 8 | Build the Diagnostic Report — categorize failures, document root causes, implement a fix |
-| 9 | Present & Discuss — share reports, find class-wide patterns, bridge to context engineering |
+| 7 | Prompt Failure Patterns — identify common prompt failure modes, rewrite and compare |
+| 8 | Cost & Loop Failure Deep Dive — trace loops, implement loop guards and context limits |
+| 9 | Comparative Diagnosis — contrast two agents on the same task, synthesize design principles |
+| 10 | Analyze a Broken Agent — run, trace, and document every failure |
+| 11 | Build the Diagnostic Report — categorize failures, document root causes, implement a fix |
+| 12 | Present & Discuss — share reports, find class-wide patterns, bridge to context engineering |
 
 ---
 
-## Unit 3: Context Engineering — Make a "Good" Agent (Weeks 7–9)
+## Unit 3: Context Engineering — Make a "Good" Agent (Weeks 9–12)
 
   - [Unit 3](units/unit3.html)
 
@@ -116,6 +129,8 @@ You are given a pre-built broken agent to diagnose. Your job is to implement tra
 - Context offloading: semantic search, forgetting vector, graph memory
 - Subagent architecture: parallelization, serialization, concurrency
 - Checkpointing, human-in-the-loop, and context self-adaptation
+- Grounding and RAG
+- Long-horizon task planning
 - Cost-aware context design
 
 **Project:** Battle of the Bots
@@ -128,7 +143,9 @@ Apply everything from all three units to build a production-ready agent of your 
 - Apply context offloading using semantic search or graph memory
 - Implement parallelized and serialized subagent patterns
 - Add checkpointing and human-in-the-loop interrupts
-- Design an agent that handles cost, failure, and long-horizon tasks gracefully
+- Build a RAG pipeline and test retrieval quality
+- Design agents that maintain state across long multi-step tasks
+- Apply context engineering improvements to the Unit 1 personal assistant
 - Compete in Battle of the Bots and articulate design decisions made
 
 **Daily Schedule:**
@@ -141,21 +158,9 @@ Apply everything from all three units to build a production-ready agent of your 
 | 4 | Subagent Architecture — parallelization, serialization, Ralph Wiggum Loop, deep research agent |
 | 5 | Checkpointing, HITL & File Systems — messy file navigation, checkpoints, human-in-the-loop |
 | 6 | Context Self-Adaptation & Cost Saving — adaptive context, cost reduction, full toolkit review |
-| 7 | Final Agent Design — choose tools, context strategy, memory approach, and subagent structure |
-| 8 | Final Build Day — full build session, peer testing and stress-testing |
-| 9 | ⚡ Battle of the Bots! — structured challenges, audience voting, reflect on the full arc |
-
----
-
-## Capstone (Weeks 10–12)
-
-  - [Capstone](units/capstone.html)
-
-**Final Project:** A production-ready agent system of your own design, incorporating:
-
-- Planning and tool use
-- Grounding and memory
-- Evaluation and observability
-- Safety and guardrails
-- A real user interface
-- Documentation of design decisions and failure modes encountered
+| 7 | Grounding & RAG — connect to a real data source, build a RAG pipeline, tune retrieval |
+| 8 | Long-Horizon Task Planning — to-do list management, multi-step state, complex task execution |
+| 9 | Putting It All Together — revisit the Unit 1 agent, apply context strategies, document improvements |
+| 10 | Final Agent Design — choose tools, context strategy, memory approach, and subagent structure |
+| 11 | Final Build Day — full build session, peer testing and stress-testing |
+| 12 | ⚡ Battle of the Bots! — structured challenges, audience voting, reflect on the full arc |
