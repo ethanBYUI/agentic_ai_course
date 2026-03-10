@@ -14,183 +14,186 @@ title: "Agentic AI Course"
 
 # Course Overview
 
-## Module 1: Setup and Intro to LLM Programming (Weeks 1-2)
+## Unit 1: Build a "Bad" Agent (Weeks 1–3)
 
-  - [Module 1](modules/module1.html)
+  - [Unit 1](units/unit1.html)
+
+**Goal:** Learn the tools to create a powerful but uncontrollable agent.
 
 **Topics:**
-- Gemini APIs and SDKs
-- Prompting vs structured outputs
-- Determinism, temperature, schemas
-- Function calling basics
+- Intro to agent concepts and LLM programming
+- API keys, environment setup, and class materials
+- Making API calls, defining and calling tools, and managing statefulness
+- Connecting tools: MCP, file system, browser use, internet search, custom functions
+- Sandboxing with LangChain / Daytona
+- Intro to subagents and multi-agent architectures
 
-**Project:**
-- Build a single-task Gemini agent (e.g., document summarizer, code reviewer, tutor)
+**Project:** Personal Assistant Agent
+
+Build a personal assistant agent that connects to real tools — Canvas, Google Calendar, Slack, the file system, and the web — and carries on a coherent, stateful conversation. You will write your own prompts from scratch; no AI, peer, or internet-generated prompts are permitted. The agent will be stress-tested in class to deliberately surface its weaknesses, setting the stage for Unit 2.
+
+**Outcomes:**
+- Call an LLM and receive a response
+- Write original prompts for agent context
+- Define custom tools and turn existing code into tools
+- Connect and invoke tools (MCP, file system, browser, web search, Canvas, Google Calendar, Slack)
+- Implement conversation history manually and with built-in methods
+- Introduce statefulness to an agent
+- Demonstrate a working personal assistant agent and identify where it breaks
+
+**Note on AI use:** AI assistance is not permitted this unit. Debugging help comes from class time and the Slack group (ChatClass). This is intentional — it builds class unity, surfaces your own assumptions, and gives you room to fail. Failure is a core part of this unit, not a grading penalty. Set a time limit on any problem; if you're stuck, post in Slack or bring it to class unfinished. That is OK.
+
+**Daily Schedule:**
+
+| Day | Topic |
+|-----|-------|
+| 1 | Orientation — meet the professor, course objectives, demo of what you'll build, requirements and expectations |
+| 2 | APIs & Your First LLM Call — define an API, make a call, handle common challenges |
+| 3 | Tools: Building & Using Them — custom tools, the @ decorator, LangChain Community tools |
+| 4 | Statefulness & Conversation History — manual and built-in conversation history |
+| 5 | Data & Local Resources — local data, file system access, running code |
+| 6 | Connecting to the World — web search, browser use, MCP connections |
+| 7 | Sandboxing & Multi-Agent Intro — LangChain/Daytona sandboxing, subagent concepts |
+| 8 | Project Kickoff — design the personal assistant, plan tools and personality |
+| 9 | Build Day — assemble tools into a working agent |
 
 ---
 
-## Module 2: Prompt Engineering → Agent Design (Week 3)
+## Unit 2: Diagnostics — Why Is It "Bad"? (Weeks 4–5)
 
-  - [Module 2](modules/module2.html)
+  - [Unit 2](units/unit2.html)
 
-**Topics:**
-- System vs user vs tool prompts
-- Memory types (short-term vs long-term)
-- Instruction hierarchies
-- Role-based prompting
-
-**Project:**
-- Convert the single-task agent into a multi-step reasoning agent
-
----
-
-## Module 3: Structure, State, and Diagramming (Week 4)
-
-  - [Module 3](modules/module3.html)
+**Goal:** Develop diagnostic tools to peer into the black box of agentic AI, in preparation for building reliable agents.
 
 **Topics:**
-- Agent loops
-- State machines
-- DAGs vs planners
-- Mermaid / architecture diagrams
-
-**Project:**
-- Design and implement a stateful agent workflow with diagrams
-
----
-
-## Module 4: Agent Orchestration and Planning (Week 5)
-
-  - [Module 4](modules/module4.html)
-
-**Topics:**
-- ReAct, Plan-Execute, Reflection
-- Tool selection strategies
-- Multi-agent vs single-agent systems
-- Failure modes
-
-**Project:**
-- Build an agent that plans tasks before execution
-
----
-
-## Module 5: Connections: Tools, MCP, APIs, Web (Week 6)
-
-  - [Module 5](modules/module5.html)
-
-**Topics:**
-- Tool calling in Gemini
-- MCP concepts
-- REST APIs
-- Web search and scraping (ethically)
-
-**Project:**
-- Build an agent that queries live APIs and web data
-
----
-
-## Module 6: Grounding → Databases, SQL, Vector Stores (Week 7)
-
-  - [Module 6](modules/module6.html)
-
-**Topics:**
-- RAG vs fine-tuning
-- SQL generation
-- Embeddings and retrieval
-- Hybrid search
-
-**Project:**
-- Build a grounded agent over a database
-
----
-
-## Module 7: Diagnostics and Evaluation (LangSmith, etc.) (Week 8)
-
-  - [Module 7](modules/module7.html)
-
-**Topics:**
-- Tracing agent runs
-- Debugging hallucinations
+- Observability and tracing with LangSmith
+- Debugging hallucinations and unexpected behavior
 - Token and latency analysis
-- Regression testing agents
+- Identifying and fixing code bugs
 
-**Project:**
-- Add observability and evaluation to a prior agent
+**Project:** Diagnostic Report — Fix a Broken Agent
+
+You are given a broken agent to diagnose. Your job is to implement tracing, identify why it fails, and produce a structured diagnostic report documenting each failure and its root cause.
+
+**Outcomes:**
+- Set up LangSmith and capture screenshot traces
+- Implement tracing features and explain what each one does and why
+- Identify categories of agent failure (context, tool use, looping, cost, etc.)
+- Fix identified code bugs
+- Produce and present a diagnostic report
+
+**Note on AI use:** AI assistance may be permitted this unit — details TBD. If used, post in Slack what you discussed and any lessons learned.
+
+**Daily Schedule:**
+
+| Day | Topic |
+|-----|-------|
+| 1 | What Makes an Agent "Bad"? — review Unit 1 failures, introduce diagnostic framing |
+| 2 | Observability & Tracing — LangSmith setup, API key, navigating traces |
+| 3 | Scavenger Hunt — find specific traces and failure signatures in LangSmith |
+| 4 | Analyze a Broken Agent — trace behavior, document what goes wrong |
+| 5 | Build the Diagnostic Report — categorize failures, structure findings |
+| 6 | Present & Discuss — share reports, find patterns, introduce context engineering |
 
 ---
 
-## Module 8: Safety, Alignment, and Guardrails (Week 9)
+## Unit 3: Context Engineering — Make a "Good" Agent (Weeks 6–8)
 
-  - [Module 8](modules/module8.html)
+  - [Unit 3](units/unit3.html)
+
+**Goal:** Engineer context effectively to produce agents that are reliable, specialized, and capable of operating over long horizons.
 
 **Topics:**
-- Prompt injection
-- Data leakage
-- Tool abuse
-- Policy enforcement
-- Gemini safety tooling
+- Context engineering vs. prompt engineering
+- The 4 levels of intent: session, user, organization, world
+- Simple context management: truncation, summarization, selection, file write, database, isolation/delegation
+- Context offloading: semantic search, forgetting vector, graph memory
+- Subagent architecture: parallelization, serialization, concurrency
+- Checkpointing, human-in-the-loop, and context self-adaptation
+- Cost-aware context design
 
-**Project:**
-- Harden an agent against prompt injection and misuse
+**Project:** Rebuilt Personal Assistant
+
+Take the Unit 1 personal assistant and rebuild it with context engineering applied. Demonstrate measurable improvements in reliability, coherence, and cost efficiency compared to the original version.
+
+**Outcomes:**
+- Define context engineering and distinguish it from prompt engineering
+- Implement truncation and summarization-based context management
+- Apply context offloading using semantic search or graph memory
+- Implement parallelized and serialized subagent patterns
+- Add checkpointing and human-in-the-loop interrupts
+- Compare the rebuilt agent directly to the Unit 1 version
+
+**Daily Schedule:**
+
+| Day | Topic |
+|-----|-------|
+| 1 | What Is Context Engineering? — definition, levels of intent, why it matters |
+| 2 | Simple Context Management — truncate, summarize, select, offload; implement truncation and summarization |
+| 3 | Context Offloading — semantic search, forgetting vector, graph approaches |
+| 4 | Subagent Architecture — parallelization, serialization, Ralph Wiggum Loop, deep research agent |
+| 5 | Checkpointing, HITL & File Systems — messy file navigation, checkpoints, human-in-the-loop |
+| 6 | Context Self-Adaptation & Cost Saving — adaptive context, cost reduction review |
+| 7 | Project Kickoff — redesign the personal assistant with context engineering applied |
+| 8 | Build Day — hands-on build with instructor support |
+| 9 | Demo & Compare — showcase rebuilt agent, compare to Unit 1 version |
 
 ---
 
-## Module 9: Human in the Loop and UX (Week 10)
+## Unit 4: Productization and Scaling — Make a "Useful" Agent (Weeks 9–11)
 
-  - [Module 9](modules/module9.html)
+  - [Unit 4](units/unit4.html)
+
+**Goal:** Take a working agent and make it production-ready: scalable, safe, observable, and user-facing.
 
 **Topics:**
-- Approval flows
-- Editable plans
-- Feedback loops
-- UI vs CLI agents
+- Token economics and quadratic cost growth
+- Context caps, sliding window, and retrieval-based memory
+- Rate limiting, caching, async workflows, and budget controls
+- RAG pipelines and knowledge grounding at scale
+- Human-in-the-loop workflows and approval flows
+- Prompt injection, data leakage, and guardrails
+- Frontend interfaces (web/chat)
+- Organizational policy and AI governance
 
-**Project:**
-- Build an agent with human approval checkpoints
+**Project:** Battle of the Bots
 
----
+Design and deploy a production-ready agent of your choice. Agents will compete in a series of structured challenges testing usefulness, resilience, and cost efficiency. Categories include speed, cheapest correct answer, graceful failure, and most improved from Unit 1.
 
-## Module 10: Production, Scaling, and Interfaces (Week 11)
+**Outcomes:**
+- Explain why cost grows quadratically and how to prevent it
+- Implement a context cap and at least one cost reduction technique
+- Build and deploy an agent with a real frontend interface
+- Harden the agent against prompt injection and misuse
+- Apply rate limiting and budget controls
+- Implement human-in-the-loop approval flows
+- Articulate governance and ethical considerations for production AI
 
-  - [Module 10](modules/module10.html)
+**Daily Schedule:**
 
-**Topics:**
-- Rate limits
-- Caching
-- Async workflows
-- Frontends (web/chat)
-- Cost control
-
-**Project:**
-- Deploy an agent with a real interface
-
----
-
-## Module 11: Retraining, Fine Tuning, and Weight Adjustments (Week 12)
-
-  - [Module 11](modules/module11.html)
-
-**Topics:**
-- When to fine-tune vs RAG
-- Data curation
-- Eval-driven tuning
-- Gemini fine-tuning workflows
-
-**Project:**
-- Improve an agent via data-driven iteration
+| Day | Topic |
+|-----|-------|
+| 1 | Why Scale Breaks Things — token economics, quadratic cost growth, context windows |
+| 2 | Cost Reduction Techniques — sliding window, summary memory, retrieval, saving skills as code |
+| 3 | Who Is This Agent For? — defining users, use cases, RAG possibilities |
+| 4 | Production Safety & Budget Controls — rate limiting, budget alerts, preventing runaway loops |
+| 5 | RAG & Retrieval at Scale — build a RAG pipeline, tune retrieval quality |
+| 6 | Hardening the Agent — prompt injection, guardrails, stress testing at scale |
+| 7 | Final Agent Design — choose tools, context strategy, and scaling safeguards |
+| 8 | Final Build Day — full build session, peer testing and feedback |
+| 9 | Battle of the Bots! — structured challenges, audience voting, final showcase |
 
 ---
 
-## Modules 12: Capstone Agent System (Weeks 13-14)
+## Capstone (Weeks 12–14)
 
-  - [Module 12](modules/module12.html)
+  - [Capstone](units/capstone.html)
 
-**Final Project:**
-- A production-ready agent system with:
-  - Planning
-  - Tools
-  - Grounding
-  - Evaluations
-  - Safety
-  - UI
-  - Observability
+**Final Project:** A production-ready agent system of your own design, incorporating:
+
+- Planning and tool use
+- Grounding and memory
+- Evaluation and observability
+- Safety and guardrails
+- A real user interface
+- Documentation of design decisions and failure modes encountered
