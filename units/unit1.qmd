@@ -2,11 +2,10 @@
 title: "Unit 1: Build a \"Bad\" Agent"
 ---
 
-# Unit 1: Build a "Bad" Agent
-
 **Weeks 1–4 · 12 Days**
 
-> *"You can't fix what you don't understand. First, build something that breaks."*
+> *"If it's worth doing, it's worth doing a thousand times poorly first."*
+> *"- Brother Hayes"*
 
 ---
 

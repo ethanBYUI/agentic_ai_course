@@ -4,49 +4,49 @@
     "href": "units/unit1.html",
     "title": "Unit 1: Build a “Bad” Agent",
     "section": "",
-    "text": "Weeks 1–4 · 12 Days\n\n“You can’t fix what you don’t understand. First, build something that breaks.”\n\n\n\n\nLearn the tools to create a powerful but uncontrollable agent. By the end of this unit you will have a working personal assistant agent connected to real tools and you will have watched it fail in ways you didn’t expect. Those failures are not a problem. They are the point.\n\n\n\n\n\nIntro to agent concepts and LLM programming\nAPI keys, environment setup, and class materials\nMaking API calls, defining and calling tools, and managing statefulness\nConnecting tools: MCP, file system, browser use, internet search, custom functions\nSandboxing with LangChain / Daytona\nSubagents and multi-agent architectures\nWriting effective prompts from scratch\n\n\n\n\n\nBuild a personal assistant agent that connects to real tools, Canvas, Google Calendar, Slack, the file system, and the web, and carries on a coherent, stateful conversation.\nYou will write your own prompts from scratch. No AI (Ironically), peer, or internet-generated prompts are permitted. The agent will be stress-tested in class on Day 12 to deliberately surface its weaknesses. Those failures become the raw material for Unit 2.\n\n\n\n\nBy the end of this unit you will be able to:\n\nCall an LLM and receive a response\nWrite original prompts for agent context\nDefine custom tools and turn existing code into tools\nConnect and invoke tools (MCP, file system, browser, web search, Canvas, Google Calendar, Slack)\nImplement conversation history manually and with built-in methods\nIntroduce statefulness to an agent\nRun agent code safely in a sandboxed environment\nBuild a simple two-agent pipeline\nDemonstrate a working personal assistant agent and document where it breaks\n\n\n\n\n\nAI assistance is ironically not permitted this unit. Debugging help comes from class time and the Slack channel.\nThis is intentional. It builds class unity, surfaces your own assumptions, and gives you room to fail. Failure is a core part of this unit, not a grading penalty. Set a time limit on any problem. If you are stuck, post in Slack or bring it to class unfinished. That is OK.\n\n\n\n\n\n\n\nDay\nWeek\nTopic\n\n\n\n\nDay 1\nWeek 1\nOrientation\n\n\nDay 2\nWeek 1\nAPIs & Your First LLM Call\n\n\nDay 3\nWeek 1\nTools: Building & Using Them\n\n\nDay 4\nWeek 2\nStatefulness & Conversation History\n\n\nDay 5\nWeek 2\nData & Local Resources\n\n\nDay 6\nWeek 2\nConnecting to the World\n\n\nDay 7\nWeek 3\nSandboxing & Safety\n\n\nDay 8\nWeek 3\nSubagents & Multi-Agent Intro\n\n\nDay 9\nWeek 3\nPrompting\n\n\nDay 10\nWeek 4\nProject Kickoff\n\n\nDay 11\nWeek 4\nBuild Day\n\n\nDay 12\nWeek 4\nShowcase & Stress-Test"
+    "text": "Weeks 1–4 · 12 Days"
   },
   {
     "objectID": "units/unit1.html#goal",
     "href": "units/unit1.html#goal",
     "title": "Unit 1: Build a “Bad” Agent",
-    "section": "",
-    "text": "Learn the tools to create a powerful but uncontrollable agent. By the end of this unit you will have a working personal assistant agent connected to real tools and you will have watched it fail in ways you didn’t expect. Those failures are not a problem. They are the point."
+    "section": "Goal",
+    "text": "Goal\nLearn the tools to create a powerful but uncontrollable agent. By the end of this unit you will have a working personal assistant agent connected to real tools and you will have watched it fail in ways you didn’t expect. Those failures are not a problem. They are the point."
   },
   {
     "objectID": "units/unit1.html#topics",
     "href": "units/unit1.html#topics",
     "title": "Unit 1: Build a “Bad” Agent",
-    "section": "",
-    "text": "Intro to agent concepts and LLM programming\nAPI keys, environment setup, and class materials\nMaking API calls, defining and calling tools, and managing statefulness\nConnecting tools: MCP, file system, browser use, internet search, custom functions\nSandboxing with LangChain / Daytona\nSubagents and multi-agent architectures\nWriting effective prompts from scratch"
+    "section": "Topics",
+    "text": "Topics\n\nIntro to agent concepts and LLM programming\nAPI keys, environment setup, and class materials\nMaking API calls, defining and calling tools, and managing statefulness\nConnecting tools: MCP, file system, browser use, internet search, custom functions\nSandboxing with LangChain / Daytona\nSubagents and multi-agent architectures\nWriting effective prompts from scratch"
   },
   {
     "objectID": "units/unit1.html#project-personal-assistant-agent",
     "href": "units/unit1.html#project-personal-assistant-agent",
     "title": "Unit 1: Build a “Bad” Agent",
-    "section": "",
-    "text": "Build a personal assistant agent that connects to real tools, Canvas, Google Calendar, Slack, the file system, and the web, and carries on a coherent, stateful conversation.\nYou will write your own prompts from scratch. No AI (Ironically), peer, or internet-generated prompts are permitted. The agent will be stress-tested in class on Day 12 to deliberately surface its weaknesses. Those failures become the raw material for Unit 2."
+    "section": "Project: Personal Assistant Agent",
+    "text": "Project: Personal Assistant Agent\nBuild a personal assistant agent that connects to real tools, Canvas, Google Calendar, Slack, the file system, and the web, and carries on a coherent, stateful conversation.\nYou will write your own prompts from scratch. No AI (Ironically), peer, or internet-generated prompts are permitted. The agent will be stress-tested in class on Day 12 to deliberately surface its weaknesses. Those failures become the raw material for Unit 2."
   },
   {
     "objectID": "units/unit1.html#outcomes",
     "href": "units/unit1.html#outcomes",
     "title": "Unit 1: Build a “Bad” Agent",
-    "section": "",
-    "text": "By the end of this unit you will be able to:\n\nCall an LLM and receive a response\nWrite original prompts for agent context\nDefine custom tools and turn existing code into tools\nConnect and invoke tools (MCP, file system, browser, web search, Canvas, Google Calendar, Slack)\nImplement conversation history manually and with built-in methods\nIntroduce statefulness to an agent\nRun agent code safely in a sandboxed environment\nBuild a simple two-agent pipeline\nDemonstrate a working personal assistant agent and document where it breaks"
+    "section": "Outcomes",
+    "text": "Outcomes\nBy the end of this unit you will be able to:\n\nCall an LLM and receive a response\nWrite original prompts for agent context\nDefine custom tools and turn existing code into tools\nConnect and invoke tools (MCP, file system, browser, web search, Canvas, Google Calendar, Slack)\nImplement conversation history manually and with built-in methods\nIntroduce statefulness to an agent\nRun agent code safely in a sandboxed environment\nBuild a simple two-agent pipeline\nDemonstrate a working personal assistant agent and document where it breaks"
   },
   {
     "objectID": "units/unit1.html#a-note-on-ai-use",
     "href": "units/unit1.html#a-note-on-ai-use",
     "title": "Unit 1: Build a “Bad” Agent",
-    "section": "",
-    "text": "AI assistance is ironically not permitted this unit. Debugging help comes from class time and the Slack channel.\nThis is intentional. It builds class unity, surfaces your own assumptions, and gives you room to fail. Failure is a core part of this unit, not a grading penalty. Set a time limit on any problem. If you are stuck, post in Slack or bring it to class unfinished. That is OK."
+    "section": "A Note on AI Use",
+    "text": "A Note on AI Use\nAI assistance is ironically not permitted this unit. Debugging help comes from class time and the Slack channel.\nThis is intentional. It builds class unity, surfaces your own assumptions, and gives you room to fail. Failure is a core part of this unit, not a grading penalty. Set a time limit on any problem. If you are stuck, post in Slack or bring it to class unfinished. That is OK."
   },
   {
     "objectID": "units/unit1.html#daily-schedule",
     "href": "units/unit1.html#daily-schedule",
     "title": "Unit 1: Build a “Bad” Agent",
-    "section": "",
-    "text": "Day\nWeek\nTopic\n\n\n\n\nDay 1\nWeek 1\nOrientation\n\n\nDay 2\nWeek 1\nAPIs & Your First LLM Call\n\n\nDay 3\nWeek 1\nTools: Building & Using Them\n\n\nDay 4\nWeek 2\nStatefulness & Conversation History\n\n\nDay 5\nWeek 2\nData & Local Resources\n\n\nDay 6\nWeek 2\nConnecting to the World\n\n\nDay 7\nWeek 3\nSandboxing & Safety\n\n\nDay 8\nWeek 3\nSubagents & Multi-Agent Intro\n\n\nDay 9\nWeek 3\nPrompting\n\n\nDay 10\nWeek 4\nProject Kickoff\n\n\nDay 11\nWeek 4\nBuild Day\n\n\nDay 12\nWeek 4\nShowcase & Stress-Test"
+    "section": "Daily Schedule",
+    "text": "Daily Schedule\n\n\n\nDay\nWeek\nTopic\n\n\n\n\nDay 1\nWeek 1\nOrientation\n\n\nDay 2\nWeek 1\nAPIs & Your First LLM Call\n\n\nDay 3\nWeek 1\nTools: Building & Using Them\n\n\nDay 4\nWeek 2\nStatefulness & Conversation History\n\n\nDay 5\nWeek 2\nData & Local Resources\n\n\nDay 6\nWeek 2\nConnecting to the World\n\n\nDay 7\nWeek 3\nSandboxing & Safety\n\n\nDay 8\nWeek 3\nSubagents & Multi-Agent Intro\n\n\nDay 9\nWeek 3\nPrompting\n\n\nDay 10\nWeek 4\nProject Kickoff\n\n\nDay 11\nWeek 4\nBuild Day\n\n\nDay 12\nWeek 4\nShowcase & Stress-Test"
   },
   {
     "objectID": "dictionary.html",
