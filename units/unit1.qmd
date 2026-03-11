@@ -1,0 +1,78 @@
+---
+title: "Unit 1: Build a \"Bad\" Agent"
+---
+
+# Unit 1: Build a "Bad" Agent
+
+**Weeks 1–4 · 12 Days**
+
+> *"You can't fix what you don't understand. First, build something that breaks."*
+
+---
+
+## Goal
+
+Learn the tools to create a powerful but uncontrollable agent. By the end of this unit you will have a working personal assistant agent connected to real tools and you will have watched it fail in ways you didn't expect. Those failures are not a problem. They are the point.
+
+---
+
+## Topics
+
+- Intro to agent concepts and LLM programming
+- API keys, environment setup, and class materials
+- Making API calls, defining and calling tools, and managing statefulness
+- Connecting tools: MCP, file system, browser use, internet search, custom functions
+- Sandboxing with LangChain / Daytona
+- Subagents and multi-agent architectures
+- Writing effective prompts from scratch
+
+---
+
+## Project: Personal Assistant Agent
+
+Build a personal assistant agent that connects to real tools, Canvas, Google Calendar, Slack, the file system, and the web, and carries on a coherent, stateful conversation.
+
+You will write your own prompts from scratch. **No AI (Ironically), peer, or internet-generated prompts are permitted.** The agent will be stress-tested in class on Day 12 to deliberately surface its weaknesses. Those failures become the raw material for Unit 2.
+
+---
+
+## Outcomes
+
+By the end of this unit you will be able to:
+
+- Call an LLM and receive a response
+- Write original prompts for agent context
+- Define custom tools and turn existing code into tools
+- Connect and invoke tools (MCP, file system, browser, web search, Canvas, Google Calendar, Slack)
+- Implement conversation history manually and with built-in methods
+- Introduce statefulness to an agent
+- Run agent code safely in a sandboxed environment
+- Build a simple two-agent pipeline
+- Demonstrate a working personal assistant agent and document where it breaks
+
+---
+
+## A Note on AI Use
+
+AI assistance is ironically **not permitted** this unit. Debugging help comes from class time and the Slack channel.
+
+This is intentional. It builds class unity, surfaces your own assumptions, and gives you room to fail. Failure is a core part of this unit, not a grading penalty. Set a time limit on any problem. If you are stuck, post in Slack or bring it to class unfinished. That is OK.
+
+---
+
+## Daily Schedule
+
+| Day | Week | Topic |
+|-----|------|-------|
+| [Day 1](unit1_1.html) | Week 1 | Orientation |
+| [Day 2](unit1_2.html) | Week 1 | APIs & Your First LLM Call |
+| [Day 3](unit1_3.html) | Week 1 | Tools: Building & Using Them |
+| [Day 4](unit1_4.html) | Week 2 | Statefulness & Conversation History |
+| [Day 5](unit1_5.html) | Week 2 | Data & Local Resources |
+| [Day 6](unit1_6.html) | Week 2 | Connecting to the World |
+| [Day 7](unit1_7.html) | Week 3 | Sandboxing & Safety |
+| [Day 8](unit1_8.html) | Week 3 | Subagents & Multi-Agent Intro |
+| [Day 9](unit1_9.html) | Week 3 | Prompting |
+| [Day 10](unit1_10.html) | Week 4 | Project Kickoff |
+| [Day 11](unit1_11.html) | Week 4 | Build Day |
+| [Day 12](unit1_12.html) | Week 4 | Showcase & Stress-Test |

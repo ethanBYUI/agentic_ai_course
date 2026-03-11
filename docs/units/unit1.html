@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>unit1</title>
+<title>Unit 1: Build a “Bad” Agent</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -311,13 +311,157 @@ ul.task-list li input[type="checkbox"] {
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Unit 1: Build a “Bad” Agent</h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
 
 
+</header>
 
+
+<section id="unit-1-build-a-bad-agent" class="level1">
+<h1>Unit 1: Build a “Bad” Agent</h1>
+<p><strong>Weeks 1–4 · 12 Days</strong></p>
+<blockquote class="blockquote">
+<p><em>“You can’t fix what you don’t understand. First, build something that breaks.”</em></p>
+</blockquote>
+<hr>
+<section id="goal" class="level2">
+<h2 class="anchored" data-anchor-id="goal">Goal</h2>
+<p>Learn the tools to create a powerful but uncontrollable agent. By the end of this unit you will have a working personal assistant agent connected to real tools and you will have watched it fail in ways you didn’t expect. Those failures are not a problem. They are the point.</p>
+<hr>
+</section>
+<section id="topics" class="level2">
+<h2 class="anchored" data-anchor-id="topics">Topics</h2>
+<ul>
+<li>Intro to agent concepts and LLM programming</li>
+<li>API keys, environment setup, and class materials</li>
+<li>Making API calls, defining and calling tools, and managing statefulness</li>
+<li>Connecting tools: MCP, file system, browser use, internet search, custom functions</li>
+<li>Sandboxing with LangChain / Daytona</li>
+<li>Subagents and multi-agent architectures</li>
+<li>Writing effective prompts from scratch</li>
+</ul>
+<hr>
+</section>
+<section id="project-personal-assistant-agent" class="level2">
+<h2 class="anchored" data-anchor-id="project-personal-assistant-agent">Project: Personal Assistant Agent</h2>
+<p>Build a personal assistant agent that connects to real tools, Canvas, Google Calendar, Slack, the file system, and the web, and carries on a coherent, stateful conversation.</p>
+<p>You will write your own prompts from scratch. <strong>No AI (Ironically), peer, or internet-generated prompts are permitted.</strong> The agent will be stress-tested in class on Day 12 to deliberately surface its weaknesses. Those failures become the raw material for Unit 2.</p>
+<hr>
+</section>
+<section id="outcomes" class="level2">
+<h2 class="anchored" data-anchor-id="outcomes">Outcomes</h2>
+<p>By the end of this unit you will be able to:</p>
+<ul>
+<li>Call an LLM and receive a response</li>
+<li>Write original prompts for agent context</li>
+<li>Define custom tools and turn existing code into tools</li>
+<li>Connect and invoke tools (MCP, file system, browser, web search, Canvas, Google Calendar, Slack)</li>
+<li>Implement conversation history manually and with built-in methods</li>
+<li>Introduce statefulness to an agent</li>
+<li>Run agent code safely in a sandboxed environment</li>
+<li>Build a simple two-agent pipeline</li>
+<li>Demonstrate a working personal assistant agent and document where it breaks</li>
+</ul>
+<hr>
+</section>
+<section id="a-note-on-ai-use" class="level2">
+<h2 class="anchored" data-anchor-id="a-note-on-ai-use">A Note on AI Use</h2>
+<p>AI assistance is ironically <strong>not permitted</strong> this unit. Debugging help comes from class time and the Slack channel.</p>
+<p>This is intentional. It builds class unity, surfaces your own assumptions, and gives you room to fail. Failure is a core part of this unit, not a grading penalty. Set a time limit on any problem. If you are stuck, post in Slack or bring it to class unfinished. That is OK.</p>
+<hr>
+</section>
+<section id="daily-schedule" class="level2">
+<h2 class="anchored" data-anchor-id="daily-schedule">Daily Schedule</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Day</th>
+<th>Week</th>
+<th>Topic</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="unit1_1.html">Day 1</a></td>
+<td>Week 1</td>
+<td>Orientation</td>
+</tr>
+<tr class="even">
+<td><a href="unit1_2.html">Day 2</a></td>
+<td>Week 1</td>
+<td>APIs &amp; Your First LLM Call</td>
+</tr>
+<tr class="odd">
+<td><a href="unit1_3.html">Day 3</a></td>
+<td>Week 1</td>
+<td>Tools: Building &amp; Using Them</td>
+</tr>
+<tr class="even">
+<td><a href="unit1_4.html">Day 4</a></td>
+<td>Week 2</td>
+<td>Statefulness &amp; Conversation History</td>
+</tr>
+<tr class="odd">
+<td><a href="unit1_5.html">Day 5</a></td>
+<td>Week 2</td>
+<td>Data &amp; Local Resources</td>
+</tr>
+<tr class="even">
+<td><a href="unit1_6.html">Day 6</a></td>
+<td>Week 2</td>
+<td>Connecting to the World</td>
+</tr>
+<tr class="odd">
+<td><a href="unit1_7.html">Day 7</a></td>
+<td>Week 3</td>
+<td>Sandboxing &amp; Safety</td>
+</tr>
+<tr class="even">
+<td><a href="unit1_8.html">Day 8</a></td>
+<td>Week 3</td>
+<td>Subagents &amp; Multi-Agent Intro</td>
+</tr>
+<tr class="odd">
+<td><a href="unit1_9.html">Day 9</a></td>
+<td>Week 3</td>
+<td>Prompting</td>
+</tr>
+<tr class="even">
+<td><a href="unit1_10.html">Day 10</a></td>
+<td>Week 4</td>
+<td>Project Kickoff</td>
+</tr>
+<tr class="odd">
+<td><a href="unit1_11.html">Day 11</a></td>
+<td>Week 4</td>
+<td>Build Day</td>
+</tr>
+<tr class="even">
+<td><a href="unit1_12.html">Day 12</a></td>
+<td>Week 4</td>
+<td>Showcase &amp; Stress-Test</td>
+</tr>
+</tbody>
+</table>
+
+
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
