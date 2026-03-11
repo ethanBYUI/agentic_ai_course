@@ -5,7 +5,7 @@ title: "Unit 1: Build a \"Bad\" Agent"
 **Weeks 1–4 · 12 Days**
 
 > *"If it's worth doing, it's worth doing a thousand times poorly first."*
-> *"- Brother Hayes"*
+> *- Brother Hayes*
 
 ---
 
