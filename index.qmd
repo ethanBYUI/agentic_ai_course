@@ -2,6 +2,10 @@
 title: "Welcome to the Agentic AI Course!"
 ---
 
+<!-- Useful information to access every day -->
+
+<!-- Big Table with all the links -->
+
 # Course Objectives
 
 - Design, diagram, implement, evaluate, productize, and scale agentic AI systems using modern LLM frameworks and tooling.
@@ -16,7 +20,7 @@ title: "Welcome to the Agentic AI Course!"
 
 ## Unit 1: Build a "Bad" Agent (Weeks 1–4)
 
-  - [Unit 1](units/unit1.html)
+  - [Unit 1](lessons/lesson1.html)
 
 **Goal:** Learn the tools to create a powerful but uncontrollable agent.
 
@@ -67,7 +71,7 @@ Build a personal assistant agent that connects to real tools — Canvas, Google 
 
 ## Unit 2: Diagnostics — Why Is It "Bad"? (Weeks 5–8)
 
-  - [Unit 2](units/unit2.html)
+  - [Unit 2](lessons/lesson2.html)
 
 **Goal:** Develop diagnostic tools to peer into the black box of agentic AI, in preparation for building reliable agents.
 

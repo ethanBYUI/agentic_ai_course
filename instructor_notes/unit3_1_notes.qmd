@@ -1,0 +1,57 @@
+---
+title: "Unit 1.1 Instructor Notes"
+format: html
+---
+
+# Big
+
+Help students review the lessons they have learned and realize that they need to exercise humanity; AI should not decide how AI should behave.
+
+# Links
+
+| Powerpoint | Example | Primer | Practice | Lesson |
+|------------|---------|--------|----------|--------|
+| [🧑‍🏫](lecture_slides/slide1_1.pptx) | [📓](examples/example1_1.qmd) | [🌱](primers/primer1_1.qmd) | [🏃‍♂️‍➡️](practice/practice1_1.qmd) | 📋(units/unit1_1.qmd)
+
+# Outcomes
+
+# Slide Notes
+
+This day ends with a powerpoint instead of starting with one, just an overview of Unit 3
+
+# Notes
+
+Celebrate completion
+Lessons learned from unit 2 discussion
+Did you answer the question? Why was your first agent bad?
+After discussion: Because you didn’t define what it should do and had poor measures.
+
+
+Ask them to close their computers for a speech (with no slides) and inspire them.
+
+### True Agents: Exercising Humanity Example Speech
+
+Welcome to ... A space with only real people, your original thoughts, and the influence of the Spirit. A space where the best work happens.
+
+AI stands for Artificial Intelligence. AI agents are artificial. But you are a capital "I" agent - a divine being of pure intelligence given the power of choice from on high. The power of agency.
+
+You are influenced by the light of Christ and the Holy Spirit. AI is not. You have moral power. AI does not inherently. You, being true intelligence, will never cease to exist. Your AI agents will die and not be resurrected.
+
+AI does not have the "right" to decide what AI should do and be. You do have the right. You have choice. You are a steward. You must exercise humanity. And AI must never dictate your reality.
+
+This space that you are now in is where real creation happens, and if you don’t spend time here, you will be as artificial as the agents you use.
+
+### Define
+
+Take to the whiteboards with your group
+Together, create an agent that addresses the following problem:
+The problem/use case
+Define its overarching function, a rubric for success, a few prompts and their outcomes, tools needed
+Compare
+Next time and Unit 3 Outline
+Revising, testing, making safe
+
+
+
+
+

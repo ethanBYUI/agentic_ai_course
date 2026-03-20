@@ -1,0 +1,9 @@
+Prep: short reading from [LangChain](https://blog.langchain.com/the-rise-of-context-engineering/)
+Prep: case study on a "bad" agent - powerful but with poor intent. [Possibly](https://www.youtube.com/watch?v=QWzLPn164w0&list=PLeLWCe51zy99nmNpqdma3T_k3cPAXjtU0)
+
+Intent engineering vs. context engineering vs. prompt engineering
+
+The meat. When do you need each, and are any of them irrelevant?
+
+Practice: More definitions, giving examples of each type
+

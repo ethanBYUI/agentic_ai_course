@@ -82,5 +82,194 @@
     "title": "Welcome to the Agentic AI Course!",
     "section": "Unit 3: Context Engineering — Make a “Good” Agent (Weeks 9–12)",
     "text": "Unit 3: Context Engineering — Make a “Good” Agent (Weeks 9–12)\n\nUnit 3\n\nGoal: Engineer context effectively to produce agents that are reliable, specialized, and capable of operating over long horizons — then prove it in competition.\nTopics: - Context engineering vs. prompt engineering - The 4 levels of intent: session, user, organization, world - Simple context management: truncation, summarization, selection, file write, database, isolation/delegation - Context offloading: semantic search, forgetting vector, graph memory - Subagent architecture: parallelization, serialization, concurrency - Checkpointing, human-in-the-loop, and context self-adaptation - Grounding and RAG - Long-horizon task planning - Cost-aware context design\nProject: Battle of the Bots\nApply everything from all three units to build a production-ready agent of your own design. Agents compete in structured challenges testing usefulness, resilience, and cost efficiency. The best agent is not necessarily the most powerful — it is the most reliable, the most purposeful, and the most improved from where you started in Unit 1.\nOutcomes: - Define context engineering and distinguish it from prompt engineering - Implement truncation and summarization-based context management - Apply context offloading using semantic search or graph memory - Implement parallelized and serialized subagent patterns - Add checkpointing and human-in-the-loop interrupts - Build a RAG pipeline and test retrieval quality - Design agents that maintain state across long multi-step tasks - Apply context engineering improvements to the Unit 1 personal assistant - Compete in Battle of the Bots and articulate design decisions made\nDaily Schedule:\n\n\n\n\n\n\n\nDay\nTopic\n\n\n\n\n1\nWhat Is Context Engineering? — definition, levels of intent, why prompting alone isn’t enough\n\n\n2\nSimple Context Management — truncate, summarize, select, offload; implement truncation and summarization\n\n\n3\nContext Offloading — semantic search, forgetting vector, graph approaches\n\n\n4\nSubagent Architecture — parallelization, serialization, Ralph Wiggum Loop, deep research agent\n\n\n5\nCheckpointing, HITL & File Systems — messy file navigation, checkpoints, human-in-the-loop\n\n\n6\nContext Self-Adaptation & Cost Saving — adaptive context, cost reduction, full toolkit review\n\n\n7\nGrounding & RAG — connect to a real data source, build a RAG pipeline, tune retrieval\n\n\n8\nLong-Horizon Task Planning — to-do list management, multi-step state, complex task execution\n\n\n9\nPutting It All Together — revisit the Unit 1 agent, apply context strategies, document improvements\n\n\n10\nFinal Agent Design — choose tools, context strategy, memory approach, and subagent structure\n\n\n11\nFinal Build Day — full build session, peer testing and stress-testing\n\n\n12\nBattle of the Bots! — structured challenges, audience voting, reflect on the full arc"
+  },
+  {
+    "objectID": "units/unit1_1.html",
+    "href": "units/unit1_1.html",
+    "title": "Unit 1.2: Call and LLM",
+    "section": "",
+    "text": "Quick LinksBefore ClassAfter Class\n\n\n\n\n\nPractice\nPrimer\nSlides\nExamples\nLecture Notes\nNext Lesson\n\n\n\n\n🏃‍♂️‍➡️\n🌱\n🧑‍🏫\n📓\n📋\n➡️\n\n\n\n\n\n\n\n\nPractice\nPrimer\nPrevious Lesson\n\n\n\n\n🏃‍♂️‍➡️\n🌱\n⬅️\n\n\n\n\n\n\n\n\nPractice\nPrimer\nNext Lesson\n\n\n\n\n🏃‍♂️‍➡️\n🌱\n➡️\n\n\n\n\n\n\n\nOutcomes\n\n\n\nPreparation\n\n\n\n\nLecture\n\n\n\n\nActivity\n\n\n\nBefore next class\n\n\n\n\nPractice\nPrimer\nSlides\nNext Lesson\n\n\n\n\n🏃‍♂️‍➡️\n🌱\n🧑‍🏫\n➡️(link)\n\n\n\n\n\n\n\nOutcomes\nAPIs & Your First LLM Call\n\nDefine what an API is, broadly and practically\nMake an API call to an LLM — seamless environment setup\nBe aware of common challenges when working with APIs\n\n\n\nPreparation\nNone today (first day of class!)\n\n\nLinks\n\n\n\nPowerpoint\nExample\nPrimer\nPractice\nLecture Notes\n\n\n\n\n:teacher:\n:notebook:\n:seedling:\n🏃‍♂️‍➡️\n:clipboard:(instructor_notes/notes1_1.qmd)\n\n\n\n\n\n\nBefore next class\n\n\n\n\nPractice\nPrimer\nSlides\nNext Lesson\n\n\n\n\n🏃‍♂️‍➡️\n🌱\n🧑‍🏫\n➡️(link)"
+  },
+  {
+    "objectID": "lesson_template_prompt.html",
+    "href": "lesson_template_prompt.html",
+    "title": "First LLM Call",
+    "section": "",
+    "text": "Outcomes\nAPIs & Your First LLM Call\n\nDefine what an API is, broadly and practically\nMake an API call to an LLM — seamless environment setup\nBe aware of common challenges when working with APIs\n\n\n\nPreparation\nNone today (first day of class!)\n\n\nLinks\n\n\n\nPowerpoint\nExample\nPrimer\nPractice\nLecture Notes\n\n\n\n\n:teacher:\n:notebook:\n:seedling:\n🏃‍♂️‍➡️\n:clipboard:(instructor_notes/notes1_1.qmd)\n\n\n\n\n\n\nLesson Overview\n\n\n\nSegment\nDuration\n\n\n\n\nLecture: Why, What, and How?\n15 minutes\n\n\nActivity: API Key Setup\n10 minutes\n\n\nGuided Coding: LangChain Basics\n15 minutes\n\n\nExploration: Prompt & Context Engineering\n20+ minutes\n\n\n\n\n\nBefore next class\n\n\n\n\nPractice\nPrimer\nSlides\nNext Lesson\n\n\n\n\n🏃‍♂️‍➡️\n🌱\n🧑‍🏫\n➡️(link)"
+  },
+  {
+    "objectID": "instructor_notes/notes3_2.html",
+    "href": "instructor_notes/notes3_2.html",
+    "title": "",
+    "section": "",
+    "text": "Prep: short reading from LangChain Prep: case study on a “bad” agent - powerful but with poor intent. Possibly\nIntent engineering vs. context engineering vs. prompt engineering\nThe meat. When do you need each, and are any of them irrelevant?\nPractice: More definitions, giving examples of each type"
+  },
+  {
+    "objectID": "instructor_notes/notes1_4.html",
+    "href": "instructor_notes/notes1_4.html",
+    "title": "",
+    "section": "",
+    "text": "Group day!\nDo some activity to meet a few more people\nWork through the complicated group selection step by step"
+  },
+  {
+    "objectID": "instructor_notes/notes1_2.html",
+    "href": "instructor_notes/notes1_2.html",
+    "title": "Unit 1.1 Instructor Notes",
+    "section": "",
+    "text": "The Most Important Thing\nGive them the gratification of making an LLM call and getting a response\n\n\nOutcomes\nAPIs & Your First LLM Call\n\nDefine what an API is, broadly and practically\nMake an API call to an LLM — seamless environment setup\nBe aware of common challenges when working with APIs\n\n\n\nLinks\n\n\n\nPowerpoint\nExample\nPrimer\nPractice\nLesson\n\n\n\n\n🧑‍🏫\n📓\n🌱\n🏃‍♂️‍➡️\n📋(units/unit1_1.qmd)\n\n\n\n\n\nSlide notes\nWhat’s an LLM? Stateless text in, text out\nAn API is a password\nWhen you visit a website, it sends a message (HTTPS) to their server saying: “Give me an html!”\nIn some cases, it just gives it to you, but other times, it wants to verify your identity with a username and password.\nIn our case, the username is the service we are using, and an API key is the password.\nTo get a password, we have to go through the service’s UI. It is different for every provider, but often lives in settings.\n\n\nNotes\nStart by walking through the process once. If able, have a video or checklist that they can step through, or a video of the whole process playing on the project while you walk around and help.\nMake there is a clear and comprehensive guide for potential issues that is up to date (you could probably ask AI what issues are still relevant).\nEnsure that students who get theirs working walk around and help others. Especially if they encountered the same challenge.\nCheck in regularly to see how many have gotten a response, invite buddies to help\nWhen more that half the class has finished that step, invite them to move on to the self-directed play\nIf they can’t get the API working by the end of the day, you’ll have to authorize AI use for troubleshooting it or meet with them individually."
+  },
+  {
+    "objectID": "instructor_notes/notes1_1.html",
+    "href": "instructor_notes/notes1_1.html",
+    "title": "Unit 1.1 Instructor Notes",
+    "section": "",
+    "text": "The Most Important Thing\nThey walk away believing this course is important, useful, challenging, and they can do it.\n\n\nLinks\n\n\n\nPowerpoint\nNotebook\nPrimer\nPractice\n\n\n\n\n🧑‍🏫\n📓\n🌱\n🏃‍♂️‍➡️\n\n\n\n\n\nNotes\nOut of respect for you, I will start on time. If you are late, is it better for you to miss announcements or our prayer? You can ask your neighbor what announcements you missed, but you can’t ask them to repeat the prayer.\nToday is firehose day where you get death by powerpoint and I expect you to stay in the class after being bored to death.\nSome key points to hit: - Who you (the instructor) are - personally (family, mission, from) - your interest in the subject - your qualifications - your love for this university and the Lord - Why this class and why now - High quality learning - You can get information anywhere, but not connection, and not depth - Vint Cerf and Bob Kahn (fathers of the internet) - Taher Elgamal (often referred to as the “father of SSL”) and Kip Hickman (both HTTPS) - What Mark Zuckerberg and Elon Musk have in common 1. You know their name 2. They created connecting products, built off of an existing technology and enabling customers to get more value than their inherent product - Samuel Brannon - Richest man in the gold rush - Sold shovels - an ideal interface to get the thing they want - What he didn’t have was a church education - Latter-Day Saint, left the church - What would have happened if he learned and practiced in a believing community - About the class - Who developed it - “You may notice it is a DS class. A large part of agent engineering is diagnostics of that quantify a non-deterministic or probability-based system in a scientific way and iterating its development based on in-production real data insights. If that isn’t data science, I don’t know what is.” - Unit 1 very CS, unit 2 very DS, unit 3 very AI - What is taught - Things you are excited for - Show off actual examples - Policies - AI use - Grading - Their greatest enemy is perfectionism - It’s a fail first curriculum with very few clear measures of success - That’s a hard load, so you will have strong support systems - Unorganized\nHave a break in the middle for a social activity - maybe find two people you don’t know (groups of threes) and debate if three way rock paper scissors is best done as elimination or best 2 out of 3, or is there another way to play? Would that change if playing rock paper scissors lizard spock? What if you add a jellyfish?"
+  },
+  {
+    "objectID": "instructor_notes/notes1_3.html",
+    "href": "instructor_notes/notes1_3.html",
+    "title": "Most Important Thing",
+    "section": "",
+    "text": "Tools\n\nMost Important Thing\nTurn any function into a tool using @tool, and call it successfully\n\n\nNotes\nAfter class, they can play with assigning tools to other things like classes, or other code they are working on.\nMeet 2 new people, debate about the best AI model or best programming language"
+  },
+  {
+    "objectID": "instructor_notes/notes2_1.html",
+    "href": "instructor_notes/notes2_1.html",
+    "title": "Notes",
+    "section": "",
+    "text": "Notes\nWho submitted? Give them a round of applause This is a fail first curriculum - relish in your failure and just submit it Perfection is your enemy in this class I need you to be fully in this next unit without worrying about the last one. There will be time to catch up later. Review discussion What is the biggest lesson you learned? What didn’t work? What lessons did you learn from failures? What did work? What will you do in the future to keep those successes? Write it down? Big reveal You made a BAD agent! True course structure Overarching goals AI Use You can use AI now, but you probably won’t need to a whole lot for unit 2 Talk in your groups about what you learned from not using AI for programming This Unit We will answer the big question of “Why was your agent bad?” Diagnostics through LangSmith Give a light tour of LangSmith It gives a better way to peer into the black box"
+  },
+  {
+    "objectID": "instructor_notes/unit3_1_notes.html",
+    "href": "instructor_notes/unit3_1_notes.html",
+    "title": "Unit 1.1 Instructor Notes",
+    "section": "",
+    "text": "Big\nHelp students review the lessons they have learned and realize that they need to exercise humanity; AI should not decide how AI should behave.\n\n\nLinks\n\n\n\nPowerpoint\nExample\nPrimer\nPractice\nLesson\n\n\n\n\n🧑‍🏫\n📓\n🌱\n🏃‍♂️‍➡️\n📋(units/unit1_1.qmd)\n\n\n\n\n\nOutcomes\n\n\nSlide Notes\nThis day ends with a powerpoint instead of starting with one, just an overview of Unit 3\n\n\nNotes\nCelebrate completion Lessons learned from unit 2 discussion Did you answer the question? Why was your first agent bad? After discussion: Because you didn’t define what it should do and had poor measures.\nAsk them to close their computers for a speech (with no slides) and inspire them.\n\nTrue Agents: Exercising Humanity Example Speech\nWelcome to … A space with only real people, your original thoughts, and the influence of the Spirit. A space where the best work happens.\nAI stands for Artificial Intelligence. AI agents are artificial. But you are a capital “I” agent - a divine being of pure intelligence given the power of choice from on high. The power of agency.\nYou are influenced by the light of Christ and the Holy Spirit. AI is not. You have moral power. AI does not inherently. You, being true intelligence, will never cease to exist. Your AI agents will die and not be resurrected.\nAI does not have the “right” to decide what AI should do and be. You do have the right. You have choice. You are a steward. You must exercise humanity. And AI must never dictate your reality.\nThis space that you are now in is where real creation happens, and if you don’t spend time here, you will be as artificial as the agents you use.\n\n\nDefine\nTake to the whiteboards with your group Together, create an agent that addresses the following problem: The problem/use case Define its overarching function, a rubric for success, a few prompts and their outcomes, tools needed Compare Next time and Unit 3 Outline Revising, testing, making safe"
+  },
+  {
+    "objectID": "lessons/lesson1_1.html",
+    "href": "lessons/lesson1_1.html",
+    "title": "Unit 1.2: Call and LLM",
+    "section": "",
+    "text": "Quick LinksBefore ClassAfter Class\n\n\n\n\n\nPractice\nPrimer\nSlides\nExamples\nLecture Notes\nNext Lesson\n\n\n\n\n🏃‍♂️‍➡️\n🌱\n🧑‍🏫\n📓\n📋\n➡️\n\n\n\n\n\n\n\n\nPractice\nPrimer\nPrevious Lesson\n\n\n\n\n🏃‍♂️‍➡️\n🌱\n⬅️\n\n\n\n\n\n\n\n\nPractice\nPrimer\nNext Lesson\n\n\n\n\n🏃‍♂️‍➡️\n🌱\n➡️\n\n\n\n\n\n\n\nOutcomes\n\n\n\nPreparation\n\n\n\n\nLecture\n\n\n\n\nActivity\n\n\n\nBefore next class\n\n\n\n\nPractice\nPrimer\nSlides\nNext Lesson\n\n\n\n\n🏃‍♂️‍➡️\n🌱\n🧑‍🏫\n➡️\n\n\n\n\n\n\n\nOutcomes\nAPIs & Your First LLM Call\n\nDefine what an API is, broadly and practically\nMake an API call to an LLM — seamless environment setup\nBe aware of common challenges when working with APIs\n\n\n\nPreparation\nNone today (first day of class!)\n\n\nLinks\n\n\n\nPowerpoint\nExample\nPrimer\nPractice\nLecture Notes\n\n\n\n\n:teacher:\n:notebook:\n:seedling:\n🏃‍♂️‍➡️\n:clipboard:(instructor_notes/notes1_1.qmd)\n\n\n\n\n\n\nBefore next class\n\n\n\n\nPractice\nPrimer\nSlides\nNext Lesson\n\n\n\n\n🏃‍♂️‍➡️\n🌱\n🧑‍🏫\n➡️(link)"
+  },
+  {
+    "objectID": "lessons/lesson1.html",
+    "href": "lessons/lesson1.html",
+    "title": "Unit 1: Build a “Bad” Agent",
+    "section": "",
+    "text": "Weeks 1–4 · 12 Days"
+  },
+  {
+    "objectID": "lessons/lesson1.html#goal",
+    "href": "lessons/lesson1.html#goal",
+    "title": "Unit 1: Build a “Bad” Agent",
+    "section": "Goal",
+    "text": "Goal\nLearn the tools to create a powerful but uncontrollable agent. By the end of this unit you will have a working personal assistant agent connected to real tools and you will have watched it fail in ways you didn’t expect. Those failures are not a problem. They are the point."
+  },
+  {
+    "objectID": "lessons/lesson1.html#topics",
+    "href": "lessons/lesson1.html#topics",
+    "title": "Unit 1: Build a “Bad” Agent",
+    "section": "Topics",
+    "text": "Topics\n\nIntro to agent concepts and LLM programming\nAPI keys, environment setup, and class materials\nMaking API calls, defining and calling tools, and managing statefulness\nConnecting tools: MCP, file system, browser use, internet search, custom functions\nSandboxing with LangChain / Daytona\nSubagents and multi-agent architectures\nWriting effective prompts from scratch"
+  },
+  {
+    "objectID": "lessons/lesson1.html#project-personal-assistant-agent",
+    "href": "lessons/lesson1.html#project-personal-assistant-agent",
+    "title": "Unit 1: Build a “Bad” Agent",
+    "section": "Project: Personal Assistant Agent",
+    "text": "Project: Personal Assistant Agent\nBuild a personal assistant agent that connects to real tools, Canvas, Google Calendar, Slack, the file system, and the web, and carries on a coherent, stateful conversation.\nYou will write your own prompts from scratch. No AI (Ironically), peer, or internet-generated prompts are permitted. The agent will be stress-tested in class on Day 12 to deliberately surface its weaknesses. Those failures become the raw material for Unit 2."
+  },
+  {
+    "objectID": "lessons/lesson1.html#outcomes",
+    "href": "lessons/lesson1.html#outcomes",
+    "title": "Unit 1: Build a “Bad” Agent",
+    "section": "Outcomes",
+    "text": "Outcomes\nBy the end of this unit you will be able to:\n\nCall an LLM and receive a response\nWrite original prompts for agent context\nDefine custom tools and turn existing code into tools\nConnect and invoke tools (MCP, file system, browser, web search, Canvas, Google Calendar, Slack)\nImplement conversation history manually and with built-in methods\nIntroduce statefulness to an agent\nRun agent code safely in a sandboxed environment\nBuild a simple two-agent pipeline\nDemonstrate a working personal assistant agent and document where it breaks"
+  },
+  {
+    "objectID": "lessons/lesson1.html#a-note-on-ai-use",
+    "href": "lessons/lesson1.html#a-note-on-ai-use",
+    "title": "Unit 1: Build a “Bad” Agent",
+    "section": "A Note on AI Use",
+    "text": "A Note on AI Use\nAI assistance is ironically not permitted this unit. Debugging help comes from class time and the Slack channel.\nThis is intentional. It builds class unity, surfaces your own assumptions, and gives you room to fail. Failure is a core part of this unit, not a grading penalty. Set a time limit on any problem. If you are stuck, post in Slack or bring it to class unfinished. That is OK."
+  },
+  {
+    "objectID": "lessons/lesson1.html#daily-schedule",
+    "href": "lessons/lesson1.html#daily-schedule",
+    "title": "Unit 1: Build a “Bad” Agent",
+    "section": "Daily Schedule",
+    "text": "Daily Schedule\n\n\n\nDay\nWeek\nTopic\n\n\n\n\nDay 1\nWeek 1\nOrientation\n\n\nDay 2\nWeek 1\nAPIs & Your First LLM Call\n\n\nDay 3\nWeek 1\nTools: Building & Using Them\n\n\nDay 4\nWeek 2\nStatefulness & Conversation History\n\n\nDay 5\nWeek 2\nData & Local Resources\n\n\nDay 6\nWeek 2\nConnecting to the World\n\n\nDay 7\nWeek 3\nSandboxing & Safety\n\n\nDay 8\nWeek 3\nSubagents & Multi-Agent Intro\n\n\nDay 9\nWeek 3\nPrompting\n\n\nDay 10\nWeek 4\nProject Kickoff\n\n\nDay 11\nWeek 4\nBuild Day\n\n\nDay 12\nWeek 4\nShowcase & Stress-Test"
+  },
+  {
+    "objectID": "practice/practice1_1.html",
+    "href": "practice/practice1_1.html",
+    "title": "Your Title Here",
+    "section": "",
+    "text": "30 min\n\n\nMax Time Limit: 30 min\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\nDuis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\nPellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, mar blandit quis, lorem. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper.\nSed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.\nNemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt neque porro quisquam est, qui dolorem ipsum quia dolor sit amet."
+  },
+  {
+    "objectID": "practice/practice1_1.html#column-layout",
+    "href": "practice/practice1_1.html#column-layout",
+    "title": "Your Title Here",
+    "section": "",
+    "text": "Left column content here\n\nRight column content here"
+  },
+  {
+    "objectID": "templates/lesson_template_prompt.html",
+    "href": "templates/lesson_template_prompt.html",
+    "title": "What is Context Engineering?",
+    "section": "",
+    "text": "You are an expert curriculum designer for an Agent AI Engineering course using a Quarto website for course instruction, textbook, and assignments. You have decided to focus mostly on concepts of agentic AI that will stick around for a long time, but the LangChain v1.x+ ecosystem using Python with Gemini models (gemini-2.5-flash) is the current focus. \n Create a Quarto (.qmd) file for a single lesson using the provided"
+  },
+  {
+    "objectID": "lessons/unit1.html",
+    "href": "lessons/unit1.html",
+    "title": "Unit 1: Build a “Bad” Agent",
+    "section": "",
+    "text": "Weeks 1–4 · 12 Days"
+  },
+  {
+    "objectID": "lessons/unit1.html#goal",
+    "href": "lessons/unit1.html#goal",
+    "title": "Unit 1: Build a “Bad” Agent",
+    "section": "Goal",
+    "text": "Goal\nLearn the tools to create a powerful but uncontrollable agent. By the end of this unit you will have a working personal assistant agent connected to real tools and you will have watched it fail in ways you didn’t expect. Those failures are not a problem. They are the point."
+  },
+  {
+    "objectID": "lessons/unit1.html#topics",
+    "href": "lessons/unit1.html#topics",
+    "title": "Unit 1: Build a “Bad” Agent",
+    "section": "Topics",
+    "text": "Topics\n\nIntro to agent concepts and LLM programming\nAPI keys, environment setup, and class materials\nMaking API calls, defining and calling tools, and managing statefulness\nConnecting tools: MCP, file system, browser use, internet search, custom functions\nSandboxing with LangChain / Daytona\nSubagents and multi-agent architectures\nWriting effective prompts from scratch"
+  },
+  {
+    "objectID": "lessons/unit1.html#project-personal-assistant-agent",
+    "href": "lessons/unit1.html#project-personal-assistant-agent",
+    "title": "Unit 1: Build a “Bad” Agent",
+    "section": "Project: Personal Assistant Agent",
+    "text": "Project: Personal Assistant Agent\nBuild a personal assistant agent that connects to real tools, Canvas, Google Calendar, Slack, the file system, and the web, and carries on a coherent, stateful conversation.\nYou will write your own prompts from scratch. No AI (Ironically), peer, or internet-generated prompts are permitted. The agent will be stress-tested in class on Day 12 to deliberately surface its weaknesses. Those failures become the raw material for Unit 2."
+  },
+  {
+    "objectID": "lessons/unit1.html#outcomes",
+    "href": "lessons/unit1.html#outcomes",
+    "title": "Unit 1: Build a “Bad” Agent",
+    "section": "Outcomes",
+    "text": "Outcomes\nBy the end of this unit you will be able to:\n\nCall an LLM and receive a response\nWrite original prompts for agent context\nDefine custom tools and turn existing code into tools\nConnect and invoke tools (MCP, file system, browser, web search, Canvas, Google Calendar, Slack)\nImplement conversation history manually and with built-in methods\nIntroduce statefulness to an agent\nRun agent code safely in a sandboxed environment\nBuild a simple two-agent pipeline\nDemonstrate a working personal assistant agent and document where it breaks"
+  },
+  {
+    "objectID": "lessons/unit1.html#a-note-on-ai-use",
+    "href": "lessons/unit1.html#a-note-on-ai-use",
+    "title": "Unit 1: Build a “Bad” Agent",
+    "section": "A Note on AI Use",
+    "text": "A Note on AI Use\nAI assistance is ironically not permitted this unit. Debugging help comes from class time and the Slack channel.\nThis is intentional. It builds class unity, surfaces your own assumptions, and gives you room to fail. Failure is a core part of this unit, not a grading penalty. Set a time limit on any problem. If you are stuck, post in Slack or bring it to class unfinished. That is OK."
+  },
+  {
+    "objectID": "lessons/unit1.html#daily-schedule",
+    "href": "lessons/unit1.html#daily-schedule",
+    "title": "Unit 1: Build a “Bad” Agent",
+    "section": "Daily Schedule",
+    "text": "Daily Schedule\n\n\n\nDay\nWeek\nTopic\n\n\n\n\nDay 1\nWeek 1\nOrientation\n\n\nDay 2\nWeek 1\nAPIs & Your First LLM Call\n\n\nDay 3\nWeek 1\nTools: Building & Using Them\n\n\nDay 4\nWeek 2\nStatefulness & Conversation History\n\n\nDay 5\nWeek 2\nData & Local Resources\n\n\nDay 6\nWeek 2\nConnecting to the World\n\n\nDay 7\nWeek 3\nSandboxing & Safety\n\n\nDay 8\nWeek 3\nSubagents & Multi-Agent Intro\n\n\nDay 9\nWeek 3\nPrompting\n\n\nDay 10\nWeek 4\nProject Kickoff\n\n\nDay 11\nWeek 4\nBuild Day\n\n\nDay 12\nWeek 4\nShowcase & Stress-Test"
   }
 ]

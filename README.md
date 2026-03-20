@@ -43,32 +43,57 @@ This outputs all rendered HTML to the `docs/` folder, which GitHub Pages serves.
 ├── dictionary.qmd          # Agentic AI glossary
 ├── _quarto.yml             # Site config: navbar, theme, output settings
 ├── styles.css              # Custom CSS overrides
-├── docs/                   # Rendered output — do not edit directly
 ├── Assets/
 │   └── Images/             # Logo, images used across the site
-└── units/
-    ├── unit1.qmd           # Unit 1 overview page
-    ├── unit1_1.qmd         # Unit 1, Day 1
-    ├── unit1_2.qmd         # Unit 1, Day 2
+├── lessons/
+│   ├── unit1.qmd           # Unit 1 overview page
+│   ├── lesson1_1.qmd       # Unit 1, Day 1
+│   ├── lesson1_2.qmd       # Unit 1, Day 2
+│   │   ...
+│   ├── lesson1_12.qmd      # Unit 1, Day 12
+│   ├── unit2.qmd           # Unit 2 overview page
+│   ├── lesson2_1.qmd       # Unit 2, Day 1
+│   │   ...
+│   ├── lesson2_12.qmd      # Unit 2, Day 12
+│   ├── unit3.qmd           # Unit 3 overview page
+│   ├── lesson3_1.qmd       # Unit 3, Day 1
+│   │   ...
+│   └── lesson3_12.qmd      # Unit 3, Day 12
+├── instructor_notes/
+│   ├── notes1_1.qmd        # Instructor notes by class day
+│   ├── notes1_2.qmd
+│   └── ...
+├── lecture_slides/         # Slide decks and presentation assets
+├── practice/
+│   └── practice1_1.qmd     # Practice assignments
+├── primers/                # Primer materials
+├── preparation/            # Preparation content and resources
+├── templates/
+│   └── lesson_template_prompt.md
+└── docs/                   # Rendered output — do not edit directly
+    ├── lessons/
+    ├── instructor_notes/
     │   ...
-    ├── unit1_12.qmd        # Unit 1, Day 12
-    ├── unit2.qmd           # Unit 2 overview page
-    ├── unit2_1.qmd         # Unit 2, Day 1
-    │   ...
-    ├── unit2_12.qmd        # Unit 2, Day 12
-    ├── unit3.qmd           # Unit 3 overview page
-    ├── unit3_1.qmd         # Unit 3, Day 1
-    │   ...
-    └── unit3_12.qmd        # Unit 3, Day 12
+    └── practice/
 ```
 
 ### Naming Convention
 
 | File | Purpose |
 |------|---------|
-| `units/unit1.qmd` | Unit overview — goal, topics, project, outcomes |
-| `units/unit1_1.qmd` | Individual lesson — Unit 1, Day 1 |
-| `units/unit2_5.qmd` | Individual lesson — Unit 2, Day 5 |
+| `lessons/unit1.qmd` | Unit overview — goal, topics, project, outcomes |
+| `lessons/lesson1_1.qmd` | Individual lesson — Unit 1, Day 1 |
+| `lessons/lesson2_5.qmd` | Individual lesson — Unit 2, Day 5 |
+| `instructor_notes/notes1_1.qmd` | Instructor notes for a specific lesson |
+| `practice/practice1_1.qmd` | Practice assignment linked from lesson pages |
+| `primers/primer2_1.qmd` | Primer content for Unit 2, Day 1 |
+| `lecture_slides/slide2_1.pptx` | Slide deck for Unit 2, Day 1 |
+| `examples/example2_1.qmd` | In-class example page for Unit 2, Day 1 |
+
+Additional filename rules:
+- Use the same `unit_day` suffix across linked assets for one class meeting (for example: `lesson2_1.qmd`, `practice2_1.qmd`, `primer2_1.qmd`, `slide2_1.pptx`, `example2_1.qmd`).
+- Instructor notes follow `notes<unit>_<day>.qmd` (for example: `notes1_1.qmd`).
+- Lesson-to-lesson navigation links should target lesson files in `lessons/` (for example: `lesson2_2.qmd`).
 
 Days are numbered **within each unit** (1–12), not across the whole course.
 
@@ -76,7 +101,7 @@ Days are numbered **within each unit** (1–12), not across the whole course.
 
 ## Adding a New Lesson Page
 
-1. Create the file in `units/` following the naming convention (e.g., `units/unit2_7.qmd`)
+1. Create the file in `lessons/` following the naming convention (e.g., `lessons/lesson2_7.qmd`)
 2. Add a YAML header at the top:
 
 ```yaml

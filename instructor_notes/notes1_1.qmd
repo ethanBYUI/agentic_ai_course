@@ -1,0 +1,60 @@
+---
+title: "Unit 1.1 Instructor Notes"
+format: html
+---
+
+# The Most Important Thing
+
+They walk away believing this course is important, useful, challenging, and they can do it.
+
+# Links
+
+| Powerpoint | Notebook | Primer | Practice |
+|------------|----------|--------|----------|
+| [🧑‍🏫](link) | [📓](link) | [🌱](link) | [🏃‍♂️‍➡️](link) |
+
+# Notes
+
+Out of respect for you, I will start on time. If you are late, is it better for you to miss announcements or our prayer? You can ask your neighbor what announcements you missed, but you can't ask them to repeat the prayer.
+
+Today is firehose day where you get death by powerpoint and I expect you to stay in the class after being bored to death.
+
+Some key points to hit:
+- Who you (the instructor) are 
+    - personally (family, mission, from)
+    - your interest in the subject 
+    - your qualifications
+    - your love for this university and the Lord
+- Why this class and why now
+    - High quality learning
+    - You can get information anywhere, but not connection, and not depth
+    - Vint Cerf and Bob Kahn (fathers of the internet)
+    - Taher Elgamal (often referred to as the "father of SSL") and Kip Hickman (both HTTPS)
+    - What Mark Zuckerberg and Elon Musk have in common
+        1. You know their name
+        2. They created connecting products, built off of an existing technology and enabling customers to get more value than their inherent product
+    - Samuel Brannon
+        - Richest man in the gold rush
+        - Sold shovels - an ideal interface to get the thing they want
+        - What he didn't have was a church education
+        - Latter-Day Saint, left the church
+        - What would have happened if he learned and practiced in a believing community
+- About the class
+    - Who developed it
+    - "You may notice it is a DS class. A large part of agent engineering is diagnostics of that quantify a non-deterministic or probability-based system in a scientific way and iterating its development based on in-production real data insights. If that isn't data science, I don't know what is."
+    - Unit 1 very CS, unit 2 very DS, unit 3 very AI
+- What is taught
+- Things you are excited for
+- Show off actual examples
+- Policies
+    - AI use
+    - Grading
+- Their greatest enemy is perfectionism
+    - It's a fail first curriculum with very few clear measures of success
+    - That's a hard load, so you will have strong support systems
+- Unorganized
+
+
+
+
+Have a break in the middle for a social activity - maybe find two people you don't know (groups of threes) and debate if three way rock paper scissors is best done as elimination or best 2 out of 3, or is there another way to play? Would that change if playing rock paper scissors lizard spock? What if you add a jellyfish?

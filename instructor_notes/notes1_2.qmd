@@ -1,0 +1,50 @@
+---
+title: "Unit 1.1 Instructor Notes"
+format: html
+---
+
+# The Most Important Thing
+
+Give them the gratification of making an LLM call and getting a response
+
+# Outcomes
+
+APIs & Your First LLM Call
+
+- Define what an API is, broadly and practically
+- Make an API call to an LLM — seamless environment setup
+- Be aware of common challenges when working with APIs
+
+# Links
+
+| Powerpoint | Example | Primer | Practice | Lesson |
+|------------|---------|--------|----------|--------|
+| [🧑‍🏫](lecture_slides/slide1_1.pptx) | [📓](examples/example1_1.qmd) | [🌱](primers/primer1_1.qmd) | [🏃‍♂️‍➡️](practice/practice1_1.qmd) | 📋(units/unit1_1.qmd)
+
+# Slide notes
+
+What's an LLM? Stateless text in, text out
+
+An API is a password
+
+When you visit a website, it sends a message (HTTPS) to their server saying: "Give me an html!"
+
+In some cases, it just gives it to you, but other times, it wants to verify your identity with a username and password.
+
+In our case, the username is the service we are using, and an API key is the password.
+
+To get a password, we have to go through the service's UI. It is different for every provider, but often lives in settings.
+
+# Notes
+
+Start by walking through the process once. If able, have a video or checklist that they can step through, or a video of the whole process playing on the project while you walk around and help.
+
+Make there is a clear and comprehensive guide for potential issues that is up to date (you could probably ask AI what issues are still relevant).
+
+Ensure that students who get theirs working walk around and help others. Especially if they encountered the same challenge.
+
+Check in regularly to see how many have gotten a response, invite buddies to help
+
+When more that half the class has finished that step, invite them to move on to the self-directed play
+
+If they can't get the API working by the end of the day, you'll have to authorize AI use for troubleshooting it or meet with them individually.

@@ -1,0 +1,11 @@
+Tools
+
+# Most Important Thing
+
+Turn any function into a tool using `@tool`, and call it successfully
+
+# Notes
+
+After class, they can play with assigning tools to other things like classes, or other code they are working on.
+
+Meet 2 new people, debate about the best AI model or best programming language

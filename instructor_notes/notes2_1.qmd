@@ -1,0 +1,25 @@
+# Notes
+
+Who submitted?
+Give them a round of applause
+This is a fail first curriculum - relish in your failure and just submit it
+Perfection is your enemy in this class
+I need you to be fully in this next unit without worrying about the last one. There will be time to catch up later.
+Review discussion
+What is the biggest lesson you learned?
+What didn’t work?
+What lessons did you learn from failures?
+What did work?
+What will you do in the future to keep those successes? Write it down?
+Big reveal
+You made a BAD agent!
+True course structure
+Overarching goals
+AI Use
+You can use AI now, but you probably won’t need to a whole lot for unit 2
+Talk in your groups about what you learned from not using AI for programming
+This Unit
+We will answer the big question of “Why was your agent bad?”
+Diagnostics through LangSmith
+Give a light tour of LangSmith
+It gives a better way to peer into the black box
