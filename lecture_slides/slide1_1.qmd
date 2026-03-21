@@ -1,0 +1,22 @@
+---
+title: "Example Slide Deck"
+format: 
+    revealjs:
+        controls: true
+        controls-layout: edges
+        incremental: true
+        slide-number: true
+---
+
+# About
+
+## Slides
+
+- This is a slide deck
+- Really, it is
+
+## More
+
+- It has more bullet points
+
+# Thank You

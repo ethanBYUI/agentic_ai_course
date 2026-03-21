@@ -4,17 +4,24 @@ You are an expert curriculum designer for an Agent AI Engineering course using a
 
 <instruction>
 Create a Quarto (.qmd) file for a single lesson using the provided <template>. 
-
-Input Context:
-- Unit: {{UNIT_NUMBER}}
-- Lesson Topic: {{LESSON_TOPIC}}
-- Outcomes: {{OUTCOMES}}
+Use the details provided in the <lesson_context> block to flesh out the content.
 
 Rules:
-1. If {{OUTCOMES}} is empty, STOP. Ask me to provide the outcomes before you write any code.
+1. If any {{VARIABLE}} in <lesson_context> is empty, STOP. Ask me to provide the variable before you write any code.
 2. Follow all guidelines in <code_standards_to_follow> strictly.
 3. Output ONLY the raw Quarto markdown text. Do not include conversational filler.
 </instruction>
+
+<lesson_context>
+- Unit & Lesson: {{UNIT_AND_LESSON}}
+- Topic: {{TOPIC}}
+- Outcomes: {{OUTCOMES}}
+
+<teacher_notes>
+{{FREEFORM_DIRECTIONS_GO_HERE}}
+(e.g., Type whatever you need here in paragraphs. "Focus heavily on the transition from the lecture to the API activity. Use a cooking analogy to explain context windows. Ensure the practice problem has intentional bugs for them to fix.")
+</teacher_notes>
+</lesson_context>
 
 <code_standards_to_follow>
 Always default model instantiation to LangChain v1.x using `create_agent`, NOT `create_react_agent`. Consult documentation every time you write code to make sure it is up to date.
@@ -49,7 +56,11 @@ agent.invoke("Hello world!")
 title: <!-- Unit Name -->
 subtitle: <!-- Unit x, Lesson x -->
 format: html
+execute:
+  eval: false
 ---
+
+<!-- This is an unreviewed AI draft -->
 
 ::: {.panel-tabset}
 
@@ -57,7 +68,7 @@ format: html
 
 | Practice | Primer | Slides | Examples | Lecture Notes | Next Lesson |
 |----------|--------|--------|----------|---------------|-------------|
-| [🏃‍♂️‍➡️](../practice/practicex_x.qmd) | [🌱](../primers/primerx_x.qmd) | [🧑‍🏫](../lecture_slides/slidex_x.qmd) | [📓](../examples/examplex_x.qmd) | [📋](../lecture_notesx_x.qmd) | [➡️](lessonx_x.qmd) |
+| [🏃‍♂️‍➡️](../practice/practicex_x.qmd) | [🌱](../primers/primerx_x.qmd) | [🧑‍🏫](../lecture_slides/slidex_x.qmd) | [📓]({{< var example_base >}}x_x.ipynb "Opens in Google Colab - See README if broken") | [📋](../lecture_notesx_x.qmd) | [➡️](lessonx_x.qmd) |
 
 ## Before Class
 
@@ -91,6 +102,19 @@ Topic
 <!-- Add preparation materials, prerequisites, and resources here -->
 <!-- This includes reading links and homework downloads -->
 
+# Discussion
+
+1. Report on work accomplished
+2. Key takeaways
+3. Questions unaddressed
+4. Optional discussion questions
+<!-- Discussion questions related to the preparation material in sub bullet points such as:
+    - Question 1
+    - Question 2
+    - Question 3
+-->
+5. Log partner's contribution
+
 # Class
 
 <!-- Bulk of the content -->
@@ -117,6 +141,8 @@ Topic
 title: "API's & Your First LLM Call"
 subtitle: "Unit 1, Lesson 2"
 format: html
+execute:
+  eval: false
 ---
 </example_yaml_1>
 
@@ -125,6 +151,8 @@ format: html
 title: "What is Context Engineering?"
 subtitle: "Unit 3, Lesson 1"
 format: html
+execute:
+  eval: false
 ---
 </example_yaml_2>
 
@@ -135,7 +163,7 @@ format: html
 
 | Practice | Primer | Slides | Examples | Lecture Notes | Next Lesson |
 |----------|--------|--------|----------|---------------|-------------|
-| [🏃‍♂️‍➡️](../practice/practice2_1.qmd) | [🌱](../primers/primer2_1.qmd) | [🧑‍🏫](../lecture_slides/slide2_1.pptx) | [📓](../examples/example2_1.qmd) | [📋](../instructor_notes/notes1_1.qmd) | [➡️](lesson2_2.qmd) |
+| [🏃‍♂️‍➡️](../practice/practice2_1.qmd) | [🌱](../primers/primer2_1.qmd) | [🧑‍🏫](../lecture_slides/slide2_1.qmd) | [📓]({{< var example_base >}}2_1.ipynb "Opens in Google Colab - See README if broken") | [📋](../instructor_notes/notes1_1.qmd) | [➡️](lesson2_2.qmd) |
 
 
 ## Before Class
@@ -160,7 +188,7 @@ format: html
 
 | Practice | Primer | Slides | Examples | Lecture Notes | Next Lesson |
 |----------|--------|--------|----------|---------------|-------------|
-| [🏃‍♂️‍➡️](../practice/practice1_2.qmd) | [🌱](../primers/primer1_2.qmd) | [🧑‍🏫](../lecture_slides/slide1_2.pptx) | [📓](../examples/example1_2.qmd) | [📋](../instructor_notes/notes1_2.qmd) | [➡️](lesson1_3.qmd) |
+| [🏃‍♂️‍➡️](../practice/practice1_2.qmd) | [🌱](../primers/primer1_2.qmd) | [🧑‍🏫](../lecture_slides/slide1_2.qmd) | ({{< var example_base >}}1_2.ipynb "Opens in Google Colab - See README if broken") | [📋](../instructor_notes/notes1_2.qmd) | [➡️](lesson1_3.qmd) |
 
 
 ## Before Class
@@ -177,6 +205,32 @@ format: html
 
 :::
 </example_link_panel_for_unit1_lesson2>
+
+<example_discussion_1>
+1. Report on work accomplished
+2. Key takeaways
+3. Questions unaddressed
+4. Optional discussion questions
+    - What could Cisco have done to avoid their customer service catastrophe?
+    - Is prompt, context, or intent engineering more important? Why?
+5. Log partner's contribution
+</example_discussion_1>
+
+<example_discussion_2>
+1. Report on work accomplished
+2. Key takeaways
+3. Questions unaddressed
+4. Optional discussion questions
+    - How easy was it to read through the documentation? Did you get stuck? Bored?
+    - What did you find most helpful with your last programming assignment?
+    - What definitely did not work? 
+    - What issue should your group members avoid?
+5. Log partner's contribution
+</example_discussion_2>
+
+<example_discussion_3>
+No group discussion today
+</example_discussion_3>
 
 <example_activity_1>
 # Getting Started: Gemini API Setup

@@ -1,0 +1,3 @@
+repo: "https://github.com/ethanbyui/agentic_ai_course"
+example_base: "https://colab.research.google.com/github/ethanbyui/agentic_ai_course/blob/main/examples/example"
+example_hover: "Opens in Google Colab - See README if broken"

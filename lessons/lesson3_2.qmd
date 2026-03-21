@@ -1,0 +1,107 @@
+---
+title: "Prompt, Context, Intent Engineering"
+subtitle: "Unit 3, Lesson 2"
+format: html
+execute:
+  eval: false
+---
+
+<!-- This is an unreviewed AI draft -->
+
+::: {.panel-tabset}
+
+## Quick Links
+
+| Practice | Primer | Slides | Examples | Lecture Notes | Next Lesson |
+|----------|--------|--------|----------|---------------|-------------|
+| [🏃‍♂️‍➡️](../practice/practice3_2.qmd) | [🌱](../primers/primer3_2.qmd) | [🧑‍🏫](../lecture_slides/slide3_2.qmd) | [📓]({{< var example_base >}}3_2.ipynb "Opens in Google Colab - See README if broken") | [📋](../instructor_notes/notes3_2.qmd) | [➡️](lesson3_3.qmd) |
+
+## Before Class
+
+| Practice | Primer | Previous Lesson |
+|----------|--------|-------------|
+| [🏃‍♂️‍➡️](../practice/practice3_1.qmd) | [🌱](../primers/primer3_2.qmd) | [⬅️](lesson3_1.qmd) |
+
+## After Class
+
+| Practice | Primer | Next Lesson |
+|----------|--------|-------------|
+| [🏃‍♂️‍➡️](../practice/practice3_2.qmd) | [🌱](../primers/primer3_3.qmd) | [➡️](lesson3_3.qmd) |
+
+:::
+
+# Outcomes
+
+Prompt, Context, Intent Engineering
+
+- Define context engineering
+- Explain why context engineering is needed to make a "good" agent
+- Identify the difference between prompt, context, and intent engineering
+- Plan multiple agentic systems without the use of a computer
+- Implement the three types of engineering within the agent system plan
+
+# Preparation
+
+- Read: [The Rise of Context Engineering](https://blog.langchain.com/the-rise-of-context-engineering/)
+- Watch (Optional): [Case Study: A powerful agent with poor intent](https://www.youtube.com/watch?v=QWzLPn164w0&list=PLeLWCe51zy99nmNpqdma3T_k3cPAXjtU0)
+
+# Discussion
+
+1. Report on work accomplished
+2. Key takeaways
+3. Questions unaddressed
+4. Optional discussion questions
+    - What makes an agent "dangerous" or unhelpful even if it is powerful?
+    - When do you need context engineering vs prompt engineering? Which is harder?
+    - According to Andrej Karpathy, why is Context Engineering considered both an art and a science?
+5. Log partner's contribution
+
+# Class
+
+## The Three Pillars: Prompt vs. Context vs. Intent
+
+Today we put the computers away. We will focus entirely on system design, critical thinking, and mapping out agent behavior.
+
+### Definitions
+
+- **Intent Engineering**: Ensuring the *goal* or *purpose* of the agent aligns with user expectations and safety.
+- **Prompt Engineering**: Crafting the specific instructions or system message.
+- **Context Engineering**: Providing the right background information, state, history, and tools at the exact right moment. 
+
+> "In every industrial-strength LLM app, context engineering is the delicate art and science of filling the context window with just the right information for the next step. Science because doing this right involves task descriptions and explanations, few-shot examples, RAG, related (possibly multimodal) data, tools, state and history, compacting... Doing this well is highly non-trivial. And art because of the guiding intuition around LLM psychology of people spirits."
+> - [Andrej Karpathy, OpenAI June 2024](https://x.com/karpathy/status/1937902205765607626?lang=en)
+
+## Activity 1: The "Bad" Agent
+
+In groups, discuss the case study from your preparation. 
+
+1. Identify exactly what made the agent fail.
+2. Was it a failure of prompt, context, or intent?
+3. How would you fix it using principles of intent engineering?
+
+## Activity 2: Whiteboard System Design
+
+In groups of 3-4, design an agentic system on the whiteboard for the following scenarios. For each scenario:
+- Write out a brief **system prompt** (Prompt Engineering).
+- Detail the **RAG datastores, conversation history, and tool outputs** needed (Context Engineering).
+- Outline the **guardrails and behavioral boundaries** (Intent Engineering).
+
+### Scenario 1: Customer Support Triage Bot
+*Goal*: Read incoming emails, categorize them, and draft a response or forward to a human.
+
+### Scenario 2: Medical Diagnostician Assistant
+*Goal*: Help doctors review patient records and suggest potential diagnoses or further tests. 
+*Consider*: What context must it *never* see? What happens if it gives a definitive diagnosis directly to a patient?
+
+### Scenario 3: Automated Financial Advisor
+*Goal*: Review a user's bank statements and suggest budgeting tips.
+
+*After each scenario, we will pause and compare designs as a class.*
+
+# Before next class
+
+Review today's whiteboard designs and prepare to implement one of them in code next time.
+
+| Practice | Primer | Next Lesson |
+|----------|--------|-------------|
+| [🏃‍♂️‍➡️](../practice/practice3_2.qmd) | [🌱](../primers/primer3_3.qmd) | [➡️](lesson3_3.qmd) |

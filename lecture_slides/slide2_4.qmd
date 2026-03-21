@@ -1,0 +1,94 @@
+---
+title: "Evaluating AI Systems: Datasets, Judges, and Experiments"
+subtitle: "Building Intuition for Rigorous Testing"
+format: revealjs
+---
+
+## It Works
+
+System Prompt
+Input
+Output
+
+## But How Good Is It?
+
+- Probabilistic and non-deterministic (does it work every time?)
+- Wide range of prompts (It works for this prompt, but maybe not another)
+
+## Run It Again
+
+System Prompt
+Input
+Output
+
+## And Again
+
+System Prompt
+Input
+Output
+
+## Seems Right… How about different Input?
+
+System Prompt
+Different Input
+Output
+
+## Another Input
+
+System Prompt
+Different Input
+Output
+
+##
+
+Oh… now I have to run it a few times for each new prompt
+
+## It's Just a Vibe Check
+
+Wouldn’t it be nice to have a better measure?
+Rubric
+Score to compare
+
+##
+
+Now I have to grade and write the scores for every prompt every instance
+
+## That looks OK… But let’s improve it
+
+Now we have an idea to measure it. Let’s test a new system prompt.
+
+##
+
+New system prompt
+Input
+Output
+
+## Oh No
+
+Now we have to go through every prompt multiple times, judge by rubric, and evaluate. It would be nice if we automate that process.
+
+## Datasets Are Test Cases for LLM's 
+
+Graphic of collecting a sampling of prompts we would reasonably expect the user to make
+
+## 
+
+Add to the prompt collection ideal responses, how we want the model to respond. These are our test cases.
+
+##
+
+Now we can automate running multiple runs for multiple prompts for multiple models. But we have to judge and aggregate them still. What if we had an llm do the judgement and aggregate it? We could get a simple score for two different models and compare easily.
+
+## Judge Types
+
+Rubric
+Similarity
+Factual/Hallucination
+
+## Experiment
+
+Compare the two models using an experiment.
+
+##
+
+End to end concept in an easy graphic or a few

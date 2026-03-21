@@ -39,7 +39,7 @@ To get a password, we have to go through the service's UI. It is different for e
 
 Start by walking through the process once. If able, have a video or checklist that they can step through, or a video of the whole process playing on the project while you walk around and help.
 
-Make there is a clear and comprehensive guide for potential issues that is up to date (you could probably ask AI what issues are still relevant).
+Make sure there is a clear and comprehensive guide for potential issues that is up to date (you could probably ask AI what issues are still relevant).
 
 Ensure that students who get theirs working walk around and help others. Especially if they encountered the same challenge.
 

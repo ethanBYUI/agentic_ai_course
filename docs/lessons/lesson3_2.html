@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>lesson3_2</title>
+<title>Prompt, Context, Intent Engineering</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -306,10 +306,189 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Prompt, Context, Intent Engineering</h1>
+<p class="subtitle lead">Unit 3, Lesson 2</p>
+</div>
 
 
 
+<div class="quarto-title-meta">
 
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<!-- This is an unreviewed AI draft -->
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Quick Links</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Before Class</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">After Class</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<table class="table">
+<thead>
+<tr class="header">
+<th>Practice</th>
+<th>Primer</th>
+<th>Slides</th>
+<th>Examples</th>
+<th>Lecture Notes</th>
+<th>Next Lesson</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="../practice/practice3_2.qmd">🏃‍♂️‍➡️</a></td>
+<td><a href="../primers/primer3_2.qmd">🌱</a></td>
+<td><a href="../lecture_slides/slide3_2.qmd">🧑‍🏫</a></td>
+<td><a href="https://colab.research.google.com/github/ethanbyui/agentic_ai_course/blob/main/examples/example3_2.ipynb" title="Opens in Google Colab - See README if broken">📓</a></td>
+<td><a href="../instructor_notes/notes3_2.html">📋</a></td>
+<td><a href="../lessons/lesson3_3.html">➡️</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<table class="table">
+<thead>
+<tr class="header">
+<th>Practice</th>
+<th>Primer</th>
+<th>Previous Lesson</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="../practice/practice3_1.qmd">🏃‍♂️‍➡️</a></td>
+<td><a href="../primers/primer3_2.qmd">🌱</a></td>
+<td><a href="../lessons/lesson3_1.html">⬅️</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<table class="table">
+<thead>
+<tr class="header">
+<th>Practice</th>
+<th>Primer</th>
+<th>Next Lesson</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="../practice/practice3_2.qmd">🏃‍♂️‍➡️</a></td>
+<td><a href="../primers/primer3_3.qmd">🌱</a></td>
+<td><a href="../lessons/lesson3_3.html">➡️</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<section id="outcomes" class="level1">
+<h1>Outcomes</h1>
+<p>Prompt, Context, Intent Engineering</p>
+<ul>
+<li>Define context engineering</li>
+<li>Explain why context engineering is needed to make a “good” agent</li>
+<li>Identify the difference between prompt, context, and intent engineering</li>
+<li>Plan multiple agentic systems without the use of a computer</li>
+<li>Implement the three types of engineering within the agent system plan</li>
+</ul>
+</section>
+<section id="preparation" class="level1">
+<h1>Preparation</h1>
+<ul>
+<li>Read: <a href="https://blog.langchain.com/the-rise-of-context-engineering/">The Rise of Context Engineering</a></li>
+<li>Watch (Optional): <a href="https://www.youtube.com/watch?v=QWzLPn164w0&amp;list=PLeLWCe51zy99nmNpqdma3T_k3cPAXjtU0">Case Study: A powerful agent with poor intent</a></li>
+</ul>
+</section>
+<section id="discussion" class="level1">
+<h1>Discussion</h1>
+<ol type="1">
+<li>Report on work accomplished</li>
+<li>Key takeaways</li>
+<li>Questions unaddressed</li>
+<li>Optional discussion questions
+<ul>
+<li>What makes an agent “dangerous” or unhelpful even if it is powerful?</li>
+<li>When do you need context engineering vs prompt engineering? Which is harder?</li>
+<li>According to Andrej Karpathy, why is Context Engineering considered both an art and a science?</li>
+</ul></li>
+<li>Log partner’s contribution</li>
+</ol>
+</section>
+<section id="class" class="level1">
+<h1>Class</h1>
+<section id="the-three-pillars-prompt-vs.-context-vs.-intent" class="level2">
+<h2 class="anchored" data-anchor-id="the-three-pillars-prompt-vs.-context-vs.-intent">The Three Pillars: Prompt vs.&nbsp;Context vs.&nbsp;Intent</h2>
+<p>Today we put the computers away. We will focus entirely on system design, critical thinking, and mapping out agent behavior.</p>
+<section id="definitions" class="level3">
+<h3 class="anchored" data-anchor-id="definitions">Definitions</h3>
+<ul>
+<li><strong>Intent Engineering</strong>: Ensuring the <em>goal</em> or <em>purpose</em> of the agent aligns with user expectations and safety.</li>
+<li><strong>Prompt Engineering</strong>: Crafting the specific instructions or system message.</li>
+<li><strong>Context Engineering</strong>: Providing the right background information, state, history, and tools at the exact right moment.</li>
+</ul>
+<blockquote class="blockquote">
+<p>“In every industrial-strength LLM app, context engineering is the delicate art and science of filling the context window with just the right information for the next step. Science because doing this right involves task descriptions and explanations, few-shot examples, RAG, related (possibly multimodal) data, tools, state and history, compacting… Doing this well is highly non-trivial. And art because of the guiding intuition around LLM psychology of people spirits.” - <a href="https://x.com/karpathy/status/1937902205765607626?lang=en">Andrej Karpathy, OpenAI June 2024</a></p>
+</blockquote>
+</section>
+</section>
+<section id="activity-1-the-bad-agent" class="level2">
+<h2 class="anchored" data-anchor-id="activity-1-the-bad-agent">Activity 1: The “Bad” Agent</h2>
+<p>In groups, discuss the case study from your preparation.</p>
+<ol type="1">
+<li>Identify exactly what made the agent fail.</li>
+<li>Was it a failure of prompt, context, or intent?</li>
+<li>How would you fix it using principles of intent engineering?</li>
+</ol>
+</section>
+<section id="activity-2-whiteboard-system-design" class="level2">
+<h2 class="anchored" data-anchor-id="activity-2-whiteboard-system-design">Activity 2: Whiteboard System Design</h2>
+<p>In groups of 3-4, design an agentic system on the whiteboard for the following scenarios. For each scenario: - Write out a brief <strong>system prompt</strong> (Prompt Engineering). - Detail the <strong>RAG datastores, conversation history, and tool outputs</strong> needed (Context Engineering). - Outline the <strong>guardrails and behavioral boundaries</strong> (Intent Engineering).</p>
+<section id="scenario-1-customer-support-triage-bot" class="level3">
+<h3 class="anchored" data-anchor-id="scenario-1-customer-support-triage-bot">Scenario 1: Customer Support Triage Bot</h3>
+<p><em>Goal</em>: Read incoming emails, categorize them, and draft a response or forward to a human.</p>
+</section>
+<section id="scenario-2-medical-diagnostician-assistant" class="level3">
+<h3 class="anchored" data-anchor-id="scenario-2-medical-diagnostician-assistant">Scenario 2: Medical Diagnostician Assistant</h3>
+<p><em>Goal</em>: Help doctors review patient records and suggest potential diagnoses or further tests. <em>Consider</em>: What context must it <em>never</em> see? What happens if it gives a definitive diagnosis directly to a patient?</p>
+</section>
+<section id="scenario-3-automated-financial-advisor" class="level3">
+<h3 class="anchored" data-anchor-id="scenario-3-automated-financial-advisor">Scenario 3: Automated Financial Advisor</h3>
+<p><em>Goal</em>: Review a user’s bank statements and suggest budgeting tips.</p>
+<p><em>After each scenario, we will pause and compare designs as a class.</em></p>
+</section>
+</section>
+</section>
+<section id="before-next-class" class="level1">
+<h1>Before next class</h1>
+<p>Review today’s whiteboard designs and prepare to implement one of them in code next time.</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Practice</th>
+<th>Primer</th>
+<th>Next Lesson</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="../practice/practice3_2.qmd">🏃‍♂️‍➡️</a></td>
+<td><a href="../primers/primer3_3.qmd">🌱</a></td>
+<td><a href="../lessons/lesson3_3.html">➡️</a></td>
+</tr>
+</tbody>
+</table>
+
+
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

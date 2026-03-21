@@ -10,7 +10,7 @@ format: html
 
 | Practice | Primer | Slides | Examples | Lecture Notes | Next Lesson |
 |----------|--------|--------|----------|---------------|-------------|
-| [🏃‍♂️‍➡️](../practice/practice1_1.qmd) | [🌱](../primer/primerx_x.qmd) | [🧑‍🏫](../lecture_slides/lecture_slides1_1.qmd) | [📓](link) | [📋](link) | [➡️](lesson1_2.qmd) |
+| [🏃‍♂️‍➡️](../practice/practice1_1.qmd) | [🌱](../primer/primerx_x.qmd) | [🧑‍🏫](../lecture_slides/lecture_slides1_1.qmd) | [📓]({{< var example_base >}}1_1.ipynb "Opens in Google Colab - See README if broken") | [📋](link) | [➡️](lesson1_2.qmd) |
 
 
 ## Before Class
@@ -29,28 +29,31 @@ format: html
 
 # Outcomes
 
-<!-- List outcomes for this lesson in the form of:
+APIs & Your First LLM Call
 
-Topic
-
-- Outcome 1
-- Outcome 2
-- Outcome 3
-- etc.
-
--->
+- Define what an API is, broadly and practically
+- Make an API call to an LLM — seamless environment setup
+- Be aware of common challenges when working with APIs
 
 # Preparation
 
-<!-- Add preparation materials, prerequisites, and resources here -->
-<!-- This includes reading links and homework downloads -->
-
-
+None today (first day of class!)
 
 # Lecture
 
 <!-- Main lecture content goes here -->
 <!-- This includes slides, notebooks, and instructor notes -->
+
+::: {style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;"}
+<iframe 
+  src="../lecture_slides/slide1_1.html" 
+  style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" 
+  allowfullscreen>
+</iframe>
+:::
+
+<a href="../lecture_slides/slide1_1.html" target="_blank">Fullscreen Presentation</a>
+
 
 # Activity
 

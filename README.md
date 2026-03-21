@@ -42,7 +42,9 @@ This outputs all rendered HTML to the `docs/` folder, which GitHub Pages serves.
 ├── index.qmd               # Course homepage (student-facing)
 ├── dictionary.qmd          # Agentic AI glossary
 ├── _quarto.yml             # Site config: navbar, theme, output settings
+├── _variables.yml          # Variables used throughout qmd files (such as repo link)
 ├── styles.css              # Custom CSS overrides
+├── TODO.md                 # To do for devs and instructors
 ├── Assets/
 │   └── Images/             # Logo, images used across the site
 ├── lessons/
@@ -53,22 +55,23 @@ This outputs all rendered HTML to the `docs/` folder, which GitHub Pages serves.
 │   ├── lesson1_12.qmd      # Unit 1, Day 12
 │   ├── unit2.qmd           # Unit 2 overview page
 │   ├── lesson2_1.qmd       # Unit 2, Day 1
-│   │   ...
-│   ├── lesson2_12.qmd      # Unit 2, Day 12
-│   ├── unit3.qmd           # Unit 3 overview page
-│   ├── lesson3_1.qmd       # Unit 3, Day 1
-│   │   ...
-│   └── lesson3_12.qmd      # Unit 3, Day 12
-├── instructor_notes/
-│   ├── notes1_1.qmd        # Instructor notes by class day
-│   ├── notes1_2.qmd
+│   └── ...
+├── examples/               # Examples for in-class use
+│   ├── example1_1.qmd      # Unit 1, Day 1
+│   └── ...
+├── instructor_notes/       # Instructor notes by class day
+│   ├── notes1_1.qmd        # Unit 1, Day 1
 │   └── ...
 ├── lecture_slides/         # Slide decks and presentation assets
-├── practice/
-│   └── practice1_1.qmd     # Practice assignments
+│   ├── slide1_1.qmd        # Unit 1, Day 1
+│   └── ...
+├── practice/               # Practice assignments
+│   ├── practice1_1.qmd     # Unit 1, Day 1
+│   └── ...
 ├── primers/                # Primer materials
-├── preparation/            # Preparation content and resources
-├── templates/
+│   ├── slide1_1.qmd        # Unit 1, Day 1
+│   └── ...
+├── templates/              # Prompt templates
 │   └── lesson_template_prompt.md
 └── docs/                   # Rendered output — do not edit directly
     ├── lessons/
@@ -155,6 +158,14 @@ GitHub Pages will serve the updated site within a minute or two.
 | Unit 3 | 9–12 | 1–12 | Context Engineering + Battle of the Bots |
 
 Each unit has 4 weeks × 3 days = 12 lessons.
+
+---
+
+## Broken Links
+
+Some links are dependent on the location of the repo, such as links to examples that are meant to open in Google Colab. Some of those breaks were planned for, and can be edited easily in the _variables.yml file.
+
+If other links break, open a GitHub issue so the repo owner can go through and fix them.
 
 ---
 

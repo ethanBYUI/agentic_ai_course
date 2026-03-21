@@ -43,6 +43,8 @@ This space that you are now in is where real creation happens, and if you don’
 
 ### Define
 
+This unit is about what makes an agent a good agent; and part of that is being well-defined by you - not an AI. Please use AI to help you make agents. Please do not use it to define agents.
+
 Take to the whiteboards with your group
 Together, create an agent that addresses the following problem:
 The problem/use case

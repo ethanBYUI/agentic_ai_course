@@ -1,3 +1,14 @@
+# Outcomes
+
+Prompt, Context, Intent Engineering
+- Define context engineering
+- Explain why context engineering is needed to make a "good" agent
+- Identify the difference between prompt, context, and intent engineering
+- Plan multiple agentic systems without the use of a computer
+- Implement the three types of engineering within the agent system plan
+
+# Notes
+
 Prep: short reading from [LangChain](https://blog.langchain.com/the-rise-of-context-engineering/)
 Prep: case study on a "bad" agent - powerful but with poor intent. [Possibly](https://www.youtube.com/watch?v=QWzLPn164w0&list=PLeLWCe51zy99nmNpqdma3T_k3cPAXjtU0)
 
@@ -5,5 +16,9 @@ Intent engineering vs. context engineering vs. prompt engineering
 
 The meat. When do you need each, and are any of them irrelevant?
 
-Practice: More definitions, giving examples of each type
+This day is spent with computers put away. Activities are class and group discussion related. Students design a few Agentic AI systems on whiteboard and compare with the class after each one.
 
+Context engineering definition
+
+> "In every industrial-strength LLM app, context engineering is the delicate art and science of filling the context window with just the right information for the next step. Science because doing this right involves task descriptions and explanations, few-shot examples, RAG, related (possibly multimodal) data, tools, state and history, compacting... Doing this well is highly non-trivial. And art because of the guiding intuition around LLM psychology of people spirits."
+> - [Andrej Karpathy, OpenAI June 2024](https://x.com/karpathy/status/1937902205765607626?lang=en)
