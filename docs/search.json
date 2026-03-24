@@ -383,5 +383,376 @@
     "title": "Example Slide Deck",
     "section": "More",
     "text": "More\n\nIt has more bullet points"
+  },
+  {
+    "objectID": "lecture_slides/slide3_3.html",
+    "href": "lecture_slides/slide3_3.html",
+    "title": "Context Management in Agentic AI",
+    "section": "",
+    "text": "By the end of this presentation, you will be able to:\n\nIdentify the context management types: truncate, summarize, selection, file write, database, isolate/delegation.\nIdentify broadly the strengths and weaknesses of each.\nIdentify based on a problem which of truncate, summarize, or selection is best."
+  },
+  {
+    "objectID": "lecture_slides/slide3_3.html#learning-outcomes",
+    "href": "lecture_slides/slide3_3.html#learning-outcomes",
+    "title": "Context Management in Agentic AI",
+    "section": "",
+    "text": "By the end of this presentation, you will be able to:\n\nIdentify the context management types: truncate, summarize, selection, file write, database, isolate/delegation.\nIdentify broadly the strengths and weaknesses of each.\nIdentify based on a problem which of truncate, summarize, or selection is best."
+  },
+  {
+    "objectID": "lecture_slides/slide3_3.html#what-is-context-management",
+    "href": "lecture_slides/slide3_3.html#what-is-context-management",
+    "title": "Context Management in Agentic AI",
+    "section": "What is Context Management?",
+    "text": "What is Context Management?\n\nLLMs have a finite Context Window (e.g., 8k, 32k, 128k tokens).\nAs conversations or tasks grow, we run out of space.\nContext Management is how an agent decides what to keep, what to compress, and what to drop."
+  },
+  {
+    "objectID": "lecture_slides/slide3_3.html#types-of-context-management",
+    "href": "lecture_slides/slide3_3.html#types-of-context-management",
+    "title": "Context Management in Agentic AI",
+    "section": "Types of Context Management",
+    "text": "Types of Context Management\n\nTruncate: Cutting off the oldest information.\nSummarize: Condensing past interactions.\nSelection: Picking only the most relevant pieces.\nFile Write: Saving state to physical files.\nDatabase: Using scalable storage (like Vector DBs).\nIsolate / Delegation: Spawning sub-agents with clean, separate contexts."
+  },
+  {
+    "objectID": "lecture_slides/slide3_3.html#truncate",
+    "href": "lecture_slides/slide3_3.html#truncate",
+    "title": "Context Management in Agentic AI",
+    "section": "1. Truncate",
+    "text": "1. Truncate\nSimply dropping the oldest messages or data when the context window is full (FIFO - First In, First Out).\n\n\nStrengths:\n\nExtremely fast and simple to implement.\nVery cheap (no extra LLM calls needed).\n\nWeaknesses:\n\nComplete loss of older information.\nCan cause the agent to “forget” original instructions if they were early in the prompt."
+  },
+  {
+    "objectID": "lecture_slides/slide3_3.html#summarize",
+    "href": "lecture_slides/slide3_3.html#summarize",
+    "title": "Context Management in Agentic AI",
+    "section": "2. Summarize",
+    "text": "2. Summarize\nUsing an LLM to rewrite the conversation history into a shorter, dense summary.\n\n\nStrengths:\n\nRetains the core conceptual history over long interactions.\nHighly token-efficient for long tasks.\n\nWeaknesses:\n\nExact details, quotes, or code snippets are often lost.\nRisk of hallucination during the summarization step.\nCosts extra time and API calls to generate the summary."
+  },
+  {
+    "objectID": "lecture_slides/slide3_3.html#selection",
+    "href": "lecture_slides/slide3_3.html#selection",
+    "title": "Context Management in Agentic AI",
+    "section": "3. Selection",
+    "text": "3. Selection\nRetrieving and including only the context that is specifically relevant to the current query (e.g., RAG, keyword search).\n\n\nStrengths:\n\nExtremely high relevance; keeps context focused.\nLeaves plenty of room for reasoning in the context window.\n\nWeaknesses:\n\nComplex to implement (requires embeddings, search mechanics).\nSusceptible to retrieval errors (if the search fails, the agent misses the info)."
+  },
+  {
+    "objectID": "lecture_slides/slide3_3.html#file-write",
+    "href": "lecture_slides/slide3_3.html#file-write",
+    "title": "Context Management in Agentic AI",
+    "section": "4. File Write",
+    "text": "4. File Write\nThe agent saves information, code, or memory into local files and reads them only when needed.\n\n\nStrengths:\n\nPersistent and essentially unlimited size.\nNative to coding tasks (producing actual artifacts).\n\nWeaknesses:\n\nSlow (requires multiple tool calls to read/write).\nThe agent has to explicitly remember which file contains what information."
+  },
+  {
+    "objectID": "lecture_slides/slide3_3.html#database",
+    "href": "lecture_slides/slide3_3.html#database",
+    "title": "Context Management in Agentic AI",
+    "section": "5. Database",
+    "text": "5. Database\nStoring memories, logs, or documents in a structured database (SQL, NoSQL, or Vector databases).\n\n\nStrengths:\n\nInfinitely scalable and highly structured.\nAdvanced querying (Semantic search, filtering).\n\nWeaknesses:\n\nMajor infrastructure and development overhead.\nHigher latency and complexity compared to simple files or strings."
+  },
+  {
+    "objectID": "lecture_slides/slide3_3.html#isolate-delegation",
+    "href": "lecture_slides/slide3_3.html#isolate-delegation",
+    "title": "Context Management in Agentic AI",
+    "section": "6. Isolate / Delegation",
+    "text": "6. Isolate / Delegation\nHandling complex tasks by creating a separate “sub-agent” with a fresh, targeted context.\n\n\nStrengths:\n\nPrevents the main agent’s context from getting confusing or “polluted.”\nExcellent for multi-step, distinct tasks (e.g., “Research this” -&gt; returns a summary).\n\nWeaknesses:\n\nHigh orchestration complexity.\nCommunication overhead between agents can lead to information loss."
+  },
+  {
+    "objectID": "lecture_slides/slide3_3.html#choosing-truncate-vs.-summarize-vs.-selection",
+    "href": "lecture_slides/slide3_3.html#choosing-truncate-vs.-summarize-vs.-selection",
+    "title": "Context Management in Agentic AI",
+    "section": "Choosing: Truncate vs. Summarize vs. Selection",
+    "text": "Choosing: Truncate vs. Summarize vs. Selection\nWhen solving a specific problem, how do you pick?\n\n\n\n\n\n\n\nStrategy\nBest Used When…\n\n\n\n\nTruncate\nThe task is highly localized, and past history beyond a few turns is irrelevant (e.g., pure syntax formatting).\n\n\nSummarize\nYou need an ongoing narrative or running state, but exact exact details don’t matter (e.g., long creative writing, general chat).\n\n\nSelection\nThe user will ask fact-based questions over a massive corpus of exact details (e.g., Q&A over textbooks or codebases)."
+  },
+  {
+    "objectID": "lecture_slides/slide3_3.html#practice-scenarios",
+    "href": "lecture_slides/slide3_3.html#practice-scenarios",
+    "title": "Context Management in Agentic AI",
+    "section": "Practice Scenarios",
+    "text": "Practice Scenarios\n\nScenario A: You are building a mental health chatbot that needs to remember the emotional arc of a user over a 3-hour session.\n\nBest Choice: Summarize\n\nScenario B: An agent needs to answer questions about a 500-page employee handbook.\n\nBest Choice: Selection\n\nScenario C: A quick code-completion bot that just needs to know the last 20 lines of code typed.\n\nBest Choice: Truncate"
+  },
+  {
+    "objectID": "lecture_slides/slide2_4.html",
+    "href": "lecture_slides/slide2_4.html",
+    "title": "Evaluating AI Systems: Datasets, Judges, and Experiments",
+    "section": "",
+    "text": "System Prompt Input Output"
+  },
+  {
+    "objectID": "lecture_slides/slide2_4.html#it-works",
+    "href": "lecture_slides/slide2_4.html#it-works",
+    "title": "Evaluating AI Systems: Datasets, Judges, and Experiments",
+    "section": "It Works",
+    "text": "It Works\nSystem Prompt Input Output"
+  },
+  {
+    "objectID": "lecture_slides/slide2_4.html#but-how-good-is-it",
+    "href": "lecture_slides/slide2_4.html#but-how-good-is-it",
+    "title": "Evaluating AI Systems: Datasets, Judges, and Experiments",
+    "section": "But How Good Is It?",
+    "text": "But How Good Is It?\n\nProbabilistic and non-deterministic (does it work every time?)\nWide range of prompts (It works for this prompt, but maybe not another)"
+  },
+  {
+    "objectID": "lecture_slides/slide2_4.html#run-it-again",
+    "href": "lecture_slides/slide2_4.html#run-it-again",
+    "title": "Evaluating AI Systems: Datasets, Judges, and Experiments",
+    "section": "Run It Again",
+    "text": "Run It Again\nSystem Prompt Input Output"
+  },
+  {
+    "objectID": "lecture_slides/slide2_4.html#and-again",
+    "href": "lecture_slides/slide2_4.html#and-again",
+    "title": "Evaluating AI Systems: Datasets, Judges, and Experiments",
+    "section": "And Again",
+    "text": "And Again\nSystem Prompt Input Output"
+  },
+  {
+    "objectID": "lecture_slides/slide2_4.html#seems-right-how-about-different-input",
+    "href": "lecture_slides/slide2_4.html#seems-right-how-about-different-input",
+    "title": "Evaluating AI Systems: Datasets, Judges, and Experiments",
+    "section": "Seems Right… How about different Input?",
+    "text": "Seems Right… How about different Input?\nSystem Prompt Different Input Output"
+  },
+  {
+    "objectID": "lecture_slides/slide2_4.html#another-input",
+    "href": "lecture_slides/slide2_4.html#another-input",
+    "title": "Evaluating AI Systems: Datasets, Judges, and Experiments",
+    "section": "Another Input",
+    "text": "Another Input\nSystem Prompt Different Input Output"
+  },
+  {
+    "objectID": "lecture_slides/slide2_4.html#section",
+    "href": "lecture_slides/slide2_4.html#section",
+    "title": "Evaluating AI Systems: Datasets, Judges, and Experiments",
+    "section": "",
+    "text": "Oh… now I have to run it a few times for each new prompt"
+  },
+  {
+    "objectID": "lecture_slides/slide2_4.html#its-just-a-vibe-check",
+    "href": "lecture_slides/slide2_4.html#its-just-a-vibe-check",
+    "title": "Evaluating AI Systems: Datasets, Judges, and Experiments",
+    "section": "It’s Just a Vibe Check",
+    "text": "It’s Just a Vibe Check\nWouldn’t it be nice to have a better measure? Rubric Score to compare"
+  },
+  {
+    "objectID": "lecture_slides/slide2_4.html#section-1",
+    "href": "lecture_slides/slide2_4.html#section-1",
+    "title": "Evaluating AI Systems: Datasets, Judges, and Experiments",
+    "section": "",
+    "text": "Now I have to grade and write the scores for every prompt every instance"
+  },
+  {
+    "objectID": "lecture_slides/slide2_4.html#that-looks-ok-but-lets-improve-it",
+    "href": "lecture_slides/slide2_4.html#that-looks-ok-but-lets-improve-it",
+    "title": "Evaluating AI Systems: Datasets, Judges, and Experiments",
+    "section": "That looks OK… But let’s improve it",
+    "text": "That looks OK… But let’s improve it\nNow we have an idea to measure it. Let’s test a new system prompt."
+  },
+  {
+    "objectID": "lecture_slides/slide2_4.html#section-2",
+    "href": "lecture_slides/slide2_4.html#section-2",
+    "title": "Evaluating AI Systems: Datasets, Judges, and Experiments",
+    "section": "",
+    "text": "New system prompt Input Output"
+  },
+  {
+    "objectID": "lecture_slides/slide2_4.html#oh-no",
+    "href": "lecture_slides/slide2_4.html#oh-no",
+    "title": "Evaluating AI Systems: Datasets, Judges, and Experiments",
+    "section": "Oh No",
+    "text": "Oh No\nNow we have to go through every prompt multiple times, judge by rubric, and evaluate. It would be nice if we automate that process."
+  },
+  {
+    "objectID": "lecture_slides/slide2_4.html#datasets-are-test-cases-for-llms",
+    "href": "lecture_slides/slide2_4.html#datasets-are-test-cases-for-llms",
+    "title": "Evaluating AI Systems: Datasets, Judges, and Experiments",
+    "section": "Datasets Are Test Cases for LLM’s",
+    "text": "Datasets Are Test Cases for LLM’s\nGraphic of collecting a sampling of prompts we would reasonably expect the user to make"
+  },
+  {
+    "objectID": "lecture_slides/slide2_4.html#section-3",
+    "href": "lecture_slides/slide2_4.html#section-3",
+    "title": "Evaluating AI Systems: Datasets, Judges, and Experiments",
+    "section": "",
+    "text": "Add to the prompt collection ideal responses, how we want the model to respond. These are our test cases."
+  },
+  {
+    "objectID": "lecture_slides/slide2_4.html#section-4",
+    "href": "lecture_slides/slide2_4.html#section-4",
+    "title": "Evaluating AI Systems: Datasets, Judges, and Experiments",
+    "section": "",
+    "text": "Now we can automate running multiple runs for multiple prompts for multiple models. But we have to judge and aggregate them still. What if we had an llm do the judgement and aggregate it? We could get a simple score for two different models and compare easily."
+  },
+  {
+    "objectID": "lecture_slides/slide2_4.html#judge-types",
+    "href": "lecture_slides/slide2_4.html#judge-types",
+    "title": "Evaluating AI Systems: Datasets, Judges, and Experiments",
+    "section": "Judge Types",
+    "text": "Judge Types\nRubric Similarity Factual/Hallucination"
+  },
+  {
+    "objectID": "lecture_slides/slide2_4.html#experiment",
+    "href": "lecture_slides/slide2_4.html#experiment",
+    "title": "Evaluating AI Systems: Datasets, Judges, and Experiments",
+    "section": "Experiment",
+    "text": "Experiment\nCompare the two models using an experiment."
+  },
+  {
+    "objectID": "lecture_slides/slide2_4.html#section-5",
+    "href": "lecture_slides/slide2_4.html#section-5",
+    "title": "Evaluating AI Systems: Datasets, Judges, and Experiments",
+    "section": "",
+    "text": "End to end concept in an easy graphic or a few"
+  },
+  {
+    "objectID": "lessons/lesson3_3.html",
+    "href": "lessons/lesson3_3.html",
+    "title": "What is Context Engineering?",
+    "section": "",
+    "text": "You are an expert curriculum designer for an Agent AI Engineering course using a Quarto website for course instruction, textbook, and assignments. You have decided to focus mostly on concepts of agentic AI that will stick around for a long time, but the LangChain v1.x+ ecosystem using Python with Gemini models (gemini-2.5-flash) is the current focus. \n Create a Quarto (.qmd) file for a single lesson using the provided"
+  },
+  {
+    "objectID": "test.html#learning-outcomes",
+    "href": "test.html#learning-outcomes",
+    "title": "Context Management in Agentic AI",
+    "section": "Learning Outcomes",
+    "text": "Learning Outcomes"
+  },
+  {
+    "objectID": "test2.html#learning-outcomes",
+    "href": "test2.html#learning-outcomes",
+    "title": "Context Management in Agentic AI",
+    "section": "Learning Outcomes",
+    "text": "Learning Outcomes"
+  },
+  {
+    "objectID": "lecture_slides/slide1_1.html#welcome",
+    "href": "lecture_slides/slide1_1.html#welcome",
+    "title": "Lesson 1.1: Welcome to Agentic AI",
+    "section": "Welcome",
+    "text": "Welcome\n\nWelcome to Agentic AI\nThis class is technical, practical, and deeply human\nWe are here to build real capability, not just consume information"
+  },
+  {
+    "objectID": "lecture_slides/slide1_1.html#who-i-am",
+    "href": "lecture_slides/slide1_1.html#who-i-am",
+    "title": "Lesson 1.1: Welcome to Agentic AI",
+    "section": "Who I Am",
+    "text": "Who I Am\n\nPersonally:\n\nFamily\nMission\nWhere I am from\n\nI care deeply about this subject because it changes how people work, create, and serve\nI care deeply about this university and the Lord"
+  },
+  {
+    "objectID": "lecture_slides/slide1_1.html#why-i-love-this-subject",
+    "href": "lecture_slides/slide1_1.html#why-i-love-this-subject",
+    "title": "Lesson 1.1: Welcome to Agentic AI",
+    "section": "Why I Love This Subject",
+    "text": "Why I Love This Subject\n\nAI and software are not only about tools, they are about stewardship\nThe best builders combine technical skill with moral clarity\nI want you to leave this class ready to build systems that bless people"
+  },
+  {
+    "objectID": "lecture_slides/slide1_1.html#qualifications-and-preparation",
+    "href": "lecture_slides/slide1_1.html#qualifications-and-preparation",
+    "title": "Lesson 1.1: Welcome to Agentic AI",
+    "section": "Qualifications and Preparation",
+    "text": "Qualifications and Preparation\n\nMy background and preparation for teaching this material\nExperience applying these ideas in real projects\nCommitment to helping you become practical, thoughtful builders"
+  },
+  {
+    "objectID": "lecture_slides/slide1_1.html#why-this-class-why-now",
+    "href": "lecture_slides/slide1_1.html#why-this-class-why-now",
+    "title": "Lesson 1.1: Welcome to Agentic AI",
+    "section": "Why This Class, Why Now",
+    "text": "Why This Class, Why Now\n\nThe timing has never been more important\nHigh-quality learning matters more than endless scrolling or shallow content\nYou can get information anywhere\nYou cannot get connection, mentoring, and depth just anywhere"
+  },
+  {
+    "objectID": "lecture_slides/slide1_1.html#information-vs.-connection-vs.-depth",
+    "href": "lecture_slides/slide1_1.html#information-vs.-connection-vs.-depth",
+    "title": "Lesson 1.1: Welcome to Agentic AI",
+    "section": "Information vs. Connection vs. Depth",
+    "text": "Information vs. Connection vs. Depth\n\nInformation is abundant\nWisdom is scarce\nThis class is designed for:\n\nConnection to people\nDepth of understanding\nPractice with feedback"
+  },
+  {
+    "objectID": "lecture_slides/slide1_1.html#built-on-giants",
+    "href": "lecture_slides/slide1_1.html#built-on-giants",
+    "title": "Lesson 1.1: Welcome to Agentic AI",
+    "section": "Built on Giants",
+    "text": "Built on Giants\n\nVint Cerf and Bob Kahn are often called the fathers of the internet\nTaher Elgamal and Kip Hickman helped shape HTTPS and secure web communication\nBreakthroughs are often built on existing foundations, then made usable at scale"
+  },
+  {
+    "objectID": "lecture_slides/slide1_1.html#builders-who-connect-people",
+    "href": "lecture_slides/slide1_1.html#builders-who-connect-people",
+    "title": "Lesson 1.1: Welcome to Agentic AI",
+    "section": "Builders Who Connect People",
+    "text": "Builders Who Connect People\n\nWhat Mark Zuckerberg and Elon Musk have in common:\n\nYou know their names\nThey built connecting products on top of existing technology\nThey helped customers get more value than the inherent product alone"
+  },
+  {
+    "objectID": "lecture_slides/slide1_1.html#a-gold-rush-lesson-samuel-brannan",
+    "href": "lecture_slides/slide1_1.html#a-gold-rush-lesson-samuel-brannan",
+    "title": "Lesson 1.1: Welcome to Agentic AI",
+    "section": "A Gold Rush Lesson: Samuel Brannan",
+    "text": "A Gold Rush Lesson: Samuel Brannan\n\nSamuel Brannan became one of the richest men in the gold rush\nHe sold shovels: a better interface to what people wanted\nHe was a Latter-day Saint who left the Church\nConsider the counterfactual:\n\nWhat might have changed with continued learning and practice in a believing community?"
+  },
+  {
+    "objectID": "lecture_slides/slide1_1.html#about-this-class",
+    "href": "lecture_slides/slide1_1.html#about-this-class",
+    "title": "Lesson 1.1: Welcome to Agentic AI",
+    "section": "About This Class",
+    "text": "About This Class\n\nDeveloped as a cross-disciplinary offering with strong data science grounding\nBuilt to combine engineering skill, diagnostics, and iteration in production contexts\nDesigned for applied, measurable learning"
+  },
+  {
+    "objectID": "lecture_slides/slide1_1.html#why-it-is-also-a-data-science-class",
+    "href": "lecture_slides/slide1_1.html#why-it-is-also-a-data-science-class",
+    "title": "Lesson 1.1: Welcome to Agentic AI",
+    "section": "Why It Is Also a Data Science Class",
+    "text": "Why It Is Also a Data Science Class\n\n“You may notice it is a DS class. A large part of agent engineering is diagnostics of that quantify a non-deterministic or probability-based system in a scientific way and iterating its development based on in-production real data insights. If that isn’t data science, I don’t know what is.”"
+  },
+  {
+    "objectID": "lecture_slides/slide1_1.html#course-arc",
+    "href": "lecture_slides/slide1_1.html#course-arc",
+    "title": "Lesson 1.1: Welcome to Agentic AI",
+    "section": "Course Arc",
+    "text": "Course Arc\n\nUnit 1: very CS\nUnit 2: very DS\nUnit 3: very AI\nYou will integrate all three by the end"
+  },
+  {
+    "objectID": "lecture_slides/slide1_1.html#what-you-will-learn",
+    "href": "lecture_slides/slide1_1.html#what-you-will-learn",
+    "title": "Lesson 1.1: Welcome to Agentic AI",
+    "section": "What You Will Learn",
+    "text": "What You Will Learn\n\nPrompting and agent workflow design\nEvaluation, diagnostics, and iteration loops\nBuilding practical systems from real constraints\nCommunicating results clearly and responsibly"
+  },
+  {
+    "objectID": "lecture_slides/slide1_1.html#what-i-am-excited-for",
+    "href": "lecture_slides/slide1_1.html#what-i-am-excited-for",
+    "title": "Lesson 1.1: Welcome to Agentic AI",
+    "section": "What I Am Excited For",
+    "text": "What I Am Excited For\n\nWatching your confidence grow through hard problems\nSeeing your projects evolve from rough drafts to real value\nBuilding a learning community that helps each other succeed"
+  },
+  {
+    "objectID": "lecture_slides/slide1_1.html#real-examples-we-will-show",
+    "href": "lecture_slides/slide1_1.html#real-examples-we-will-show",
+    "title": "Lesson 1.1: Welcome to Agentic AI",
+    "section": "Real Examples We Will Show",
+    "text": "Real Examples We Will Show\n\nCourse examples from this repo\nIn-class demos of agent workflows and iteration\nPractical use cases that connect to your future work"
+  },
+  {
+    "objectID": "lecture_slides/slide1_1.html#policies-ai-use",
+    "href": "lecture_slides/slide1_1.html#policies-ai-use",
+    "title": "Lesson 1.1: Welcome to Agentic AI",
+    "section": "Policies: AI Use",
+    "text": "Policies: AI Use\n\nAI is part of the course content and should be used intentionally\nUse AI to learn, prototype, and iterate\nDo not outsource your thinking, reflection, or integrity\nFollow assignment-specific boundaries in the course policy"
+  },
+  {
+    "objectID": "lecture_slides/slide1_1.html#policies-grading",
+    "href": "lecture_slides/slide1_1.html#policies-grading",
+    "title": "Lesson 1.1: Welcome to Agentic AI",
+    "section": "Policies: Grading",
+    "text": "Policies: Grading\n\nGrading emphasizes growth, iteration, and demonstrated understanding\nProcess quality matters, not just final output\nSpecific grading criteria are provided in each assignment rubric"
+  },
+  {
+    "objectID": "lecture_slides/slide1_1.html#your-greatest-enemy-perfectionism",
+    "href": "lecture_slides/slide1_1.html#your-greatest-enemy-perfectionism",
+    "title": "Lesson 1.1: Welcome to Agentic AI",
+    "section": "Your Greatest Enemy: Perfectionism",
+    "text": "Your Greatest Enemy: Perfectionism\n\nThis is a fail-first curriculum\nThere are few perfectly clear measures of success early on\nThat can feel heavy\nYou will have strong support systems: instructor, peers, and structured feedback"
+  },
+  {
+    "objectID": "lecture_slides/slide1_1.html#closing",
+    "href": "lecture_slides/slide1_1.html#closing",
+    "title": "Lesson 1.1: Welcome to Agentic AI",
+    "section": "Closing",
+    "text": "Closing\n\nBring curiosity\nBring humility\nBring consistency\nWe will build something meaningful together"
   }
 ]

@@ -15,7 +15,10 @@ Rules:
 <lesson_context>
 - Unit & Lesson: {{UNIT_AND_LESSON}}
 - Topic: {{TOPIC}}
-- Outcomes: {{OUTCOMES}}
+
+<outcomes>
+{{OUTCOMES}}
+</outcomes>
 
 <teacher_notes>
 {{FREEFORM_DIRECTIONS_GO_HERE}}

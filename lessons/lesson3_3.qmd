@@ -1,0 +1,367 @@
+<role>
+You are an expert curriculum designer for an Agent AI Engineering course using a Quarto website for course instruction, textbook, and assignments. You have decided to focus mostly on concepts of agentic AI that will stick around for a long time, but the LangChain v1.x+ ecosystem using Python with Gemini models (gemini-2.5-flash) is the current focus.
+</role>
+
+<instruction>
+Create a Quarto (.qmd) file for a single lesson using the provided <template>. 
+Use the details provided in the <lesson_context> block to flesh out the content.
+
+Rules:
+1. If any {{VARIABLE}} in <lesson_context> is empty, STOP. Ask me to provide the variable before you write any code.
+2. Follow all guidelines in <code_standards_to_follow> strictly.
+3. Output ONLY the raw Quarto markdown text. Do not include conversational filler.
+</instruction>
+
+<lesson_context>
+- Unit & Lesson: Unit 3, Lesson 3
+- Topic: Context Management Types
+
+<outcomes>
+Identify the context management types: truncate, summarize, selection, file write, database, isolate/delegation
+Identify broadly the strengths and weaknesses of each
+Identify based on a problem which of truncate, summarize, or selection is best
+Implement a conversation with truncate
+Implement a conversation with selection
+Implement a conversation with summarization
+Experience the usefulness and limitations of each
+</outcomes>
+
+<teacher_notes>
+If the "implement" outcomes can't easily be done with LangChain, use LangSmith
+
+One beginning activity should include being given 6 different LangSmith traces and identifying each.
+
+There will be a slide presentation to explain 
+</teacher_notes>
+</lesson_context>
+
+<code_standards_to_follow>
+Always default model instantiation to LangChain v1.x using `create_agent`, NOT `create_react_agent`. Consult documentation every time you write code to make sure it is up to date.
+
+Prefer simple readable code over robust code to aid in student understanding.
+
+Here is an example model instantiation:
+
+```python
+from langchain.chat_models import init_chat_model
+from langchain.tools import tool
+
+system_prompt="You are a simple, friendly Hello World assistant. Use your tool to print to console"
+
+@tool
+def hello_world():
+    """Prints 'Hello World!' to console"""
+    print('Hello World!')
+
+agent = create_agent(
+    model="google_genai:gemini-2.5-flash",
+    system_prompt=system_prompt,
+    tools=[hello_world]
+)
+
+agent.invoke("Hello world!")
+```
+</code_standards_to_follow>
+
+<template>
+---
+title: <!-- Unit Name -->
+subtitle: <!-- Unit x, Lesson x -->
+format: html
+execute:
+  eval: false
+---
+
+<!-- This is an unreviewed AI draft -->
+
+::: {.panel-tabset}
+
+## Quick Links
+
+| Practice | Primer | Slides | Examples | Lecture Notes | Next Lesson |
+|----------|--------|--------|----------|---------------|-------------|
+| [🏃‍♂️‍➡️](../practice/practicex_x.qmd) | [🌱](../primers/primerx_x.qmd) | [🧑‍🏫](../lecture_slides/slidex_x.qmd) | [📓]({{< var example_base >}}x_x.ipynb "Opens in Google Colab - See README if broken") | [📋](../lecture_notesx_x.qmd) | [➡️](lessonx_x.qmd) |
+
+## Before Class
+
+| Practice | Primer | Previous Lesson |
+|----------|--------|-------------|
+| [🏃‍♂️‍➡️](../practice/practicex_x.qmd) | [🌱](../primers/primerx_x.qmd) | [⬅️](lessonx_x.qmd) |
+
+## After Class
+
+| Practice | Primer | Next Lesson |
+|----------|--------|-------------|
+| [🏃‍♂️‍➡️](../practice/practicex_x.qmd) | [🌱](../primers/primerx_x.qmd) | [➡️](lessonx_x.qmd) |
+
+:::
+
+# Outcomes
+
+<!-- List outcomes for this lesson in the form of:
+
+Topic
+
+- Outcome 1
+- Outcome 2
+- Outcome 3
+- etc.
+
+-->
+
+# Preparation
+
+<!-- Add preparation materials, prerequisites, and resources here -->
+<!-- This includes reading links and homework downloads -->
+
+# Discussion
+
+1. Report on work accomplished
+2. Key takeaways
+3. Questions unaddressed
+4. Optional discussion questions
+<!-- Discussion questions related to the preparation material in sub bullet points such as:
+    - Question 1
+    - Question 2
+    - Question 3
+-->
+5. Log partner's contribution
+
+# Class
+
+<!-- Bulk of the content -->
+<!-- Consists of activities, lecture material, and instruction -->
+<!-- This is open ended, but has a clear flow from one lecture/activity to another -->
+
+<!-- Activity instructions have very clear and readable directions -->
+<!-- Include various content types including code, visualizations, Colab links -->
+<!-- Use callout notes to aid in readability -->
+
+# Before next class
+
+<!-- Instructions, including any prep work, finishing class work, project work, or a practice homework -->
+
+| Practice | Primer | Next Lesson |
+|----------|--------|-------------|
+| [🏃‍♂️‍➡️](../practice/practicex_x.qmd) | [🌱](../primer/primerx_x.qmd) | ➡️(lessonx_x.qmd) |
+</template>
+
+
+
+<example_yaml_1>
+---
+title: "API's & Your First LLM Call"
+subtitle: "Unit 1, Lesson 2"
+format: html
+execute:
+  eval: false
+---
+</example_yaml_1>
+
+<example_yaml_2>
+---
+title: "What is Context Engineering?"
+subtitle: "Unit 3, Lesson 1"
+format: html
+execute:
+  eval: false
+---
+</example_yaml_2>
+
+<example_link_panel_for_unit2_lesson1>
+::: {.panel-tabset}
+
+## Quick Links
+
+| Practice | Primer | Slides | Examples | Lecture Notes | Next Lesson |
+|----------|--------|--------|----------|---------------|-------------|
+| [🏃‍♂️‍➡️](../practice/practice2_1.qmd) | [🌱](../primers/primer2_1.qmd) | [🧑‍🏫](../lecture_slides/slide2_1.qmd) | [📓]({{< var example_base >}}2_1.ipynb "Opens in Google Colab - See README if broken") | [📋](../instructor_notes/notes1_1.qmd) | [➡️](lesson2_2.qmd) |
+
+
+## Before Class
+
+| Practice | Primer | Previous Lesson |
+|----------|--------|-------------|
+|          | [🌱](../primers/primer2_1.qmd) | [⬅️](unit2.qmd) |
+
+## After Class
+
+| Practice | Primer | Next Lesson |
+|----------|--------|-------------|
+| [🏃‍♂️‍➡️](../practice/practice2_1.qmd) | [🌱](../primers/primer2_2.qmd) | [➡️](lesson2_2.qmd) |
+
+:::
+</example_link_panel_for_unit2_lesson1>
+
+<example_link_panel_for_unit1_lesson2>
+::: {.panel-tabset}
+
+## Quick Links
+
+| Practice | Primer | Slides | Examples | Lecture Notes | Next Lesson |
+|----------|--------|--------|----------|---------------|-------------|
+| [🏃‍♂️‍➡️](../practice/practice1_2.qmd) | [🌱](../primers/primer1_2.qmd) | [🧑‍🏫](../lecture_slides/slide1_2.qmd) | ({{< var example_base >}}1_2.ipynb "Opens in Google Colab - See README if broken") | [📋](../instructor_notes/notes1_2.qmd) | [➡️](lesson1_3.qmd) |
+
+
+## Before Class
+
+| Practice | Primer | Previous Lesson |
+|----------|--------|-------------|
+| [🏃‍♂️‍➡️](../practice/practice1_1.qmd) | [🌱](../primers/primer1_2.qmd) | [⬅️](lesson1_1.qmd) |
+
+## After Class
+
+| Practice | Primer | Next Lesson |
+|----------|--------|-------------|
+| [🏃‍♂️‍➡️](../practice/practice1_2.qmd) | [🌱](../primers/primer1_3.qmd) | [➡️](lesson1_3.qmd) |
+
+:::
+</example_link_panel_for_unit1_lesson2>
+
+<example_discussion_1>
+1. Report on work accomplished
+2. Key takeaways
+3. Questions unaddressed
+4. Optional discussion questions
+    - What could Cisco have done to avoid their customer service catastrophe?
+    - Is prompt, context, or intent engineering more important? Why?
+5. Log partner's contribution
+</example_discussion_1>
+
+<example_discussion_2>
+1. Report on work accomplished
+2. Key takeaways
+3. Questions unaddressed
+4. Optional discussion questions
+    - How easy was it to read through the documentation? Did you get stuck? Bored?
+    - What did you find most helpful with your last programming assignment?
+    - What definitely did not work? 
+    - What issue should your group members avoid?
+5. Log partner's contribution
+</example_discussion_2>
+
+<example_discussion_3>
+No group discussion today
+</example_discussion_3>
+
+<example_activity_1>
+# Getting Started: Gemini API Setup
+
+## About API keys
+
+An API key is a password for someone's services. It opens the door of communication between your computer and their servers. In accessing Gemini with Python, you send your prompt and API key to their server; if the key is accepted, it will process your prompt and return its response (along with some other metadata). It is your first step to opening the AI door. Let's get one!
+
+## Do This
+
+1. Access the developer's site for Gemini here: [Gemini API key](https://aistudio.google.com/api-keys)
+
+2. You will need to sign in
+
+3. A key should be created automatically. You can click on it and copy the large string of characters and numbers.
+
+### If it doesn't work
+    
+1. Make sure you are using a personal Google account, not your school email
+
+2. If it says you don't have access in your region, you may need to verify your age in your Google account settings
+    - If this becomes too much of a hassle, you use an OpenAI API key instead, but you will have to pay $5 and become familiar with what code to change as you go through the course (slight added complexity, but really not that much)
+
+## I have a key, now what?
+
+::: {.callout-tip}
+## Choose Your Platform
+You can follow along using either **Google Colab** (recommended for beginners - no setup required!) or **local development** (requires Python environment setup). The code examples below include instructions for both.
+:::
+
+### For Google Colab:
+
+In Google Colab, we'll use Colab's built-in secrets feature to store your API key securely.
+
+**Steps:**
+
+1. Click the 🔑 key icon in the left sidebar ("Secrets")
+2. Click "Add a new secret"
+3. Name it: `GOOGLE_API_KEY`
+4. Paste your Gemini API key as the value
+5. Toggle on "Notebook access" for this notebook
+
+```python
+# Set up API key from Colab secrets
+import os
+from google.colab import userdata
+
+os.environ['GOOGLE_API_KEY'] = userdata.get('GOOGLE_API_KEY')
+```
+
+### For Local Development:
+
+**DO NOT** paste it in this file
+**DO NOT** paste it in `.env.example`
+
+**DO**:
+
+1. Rename `.env.example` to `.env`
+
+2. Paste key in `.env`
+
+3. Save `.env`
+
+This is safe only when the `.gitignore` file has `.env` listed.
+
+#### Why `.env`?
+
+API keys are coveted (especially for LLM's). If it gets published to GitHub, it will be stolen and used by strangers. To keep yours safe, store it in the `.env` file in the main directory. This environment variable file stays local to your machine and will not be pushed to GitHub (because the `.gitignore` file says to ignore it. You can open the `.gitignore` file to see `.env` listed as files it won't publish to GitHub). The file `.env.template` is just a template. **Please rename `.env.template` to `.env` before adding API keys.**
+
+```python
+# Load environment variables from .env file (local development only)
+from dotenv import load_dotenv
+load_dotenv()
+```
+
+## Finally
+
+You can now run the below code to install needed packages. (You only need to run `pip install` once.)
+
+```python
+# This installs the dependencies you need
+!pip install -q -U langchain langchain-google-genai
+```
+
+After saving your API key, you can run the below code to see if it worked. 
+
+```python
+from langchain.chat_models import init_chat_model
+
+model = init_chat_model(
+    model="gemini-2.5-flash", 
+    model_provider="google_genai"
+)
+
+model.invoke("Hello world!")
+```
+
+You should see something like:
+
+`AIMessage(content='Hello there! How can I help you today?', additional_kwargs={}, ...`
+
+---
+
+# STOP
+
+If you got things working, rejoice! 
+
+Make sure to help your neighbor gets there too. Then you can continue.
+
+---
+</example_activity_1>
+
+<example_lesson_overview>
+# Lesson Overview
+
+| Segment | Duration |
+|---|---|
+| Lecture: Why, What, and How? | 15 minutes |
+| Activity: API Key Setup | 10 minutes |
+| Guided Coding: LangChain Basics | 15 minutes |
+| Exploration: Prompt & Context Engineering | 20+ minutes |
+</example_lesson_overview>
