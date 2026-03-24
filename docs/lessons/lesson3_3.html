@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.6.40">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -22,7 +22,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -33,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -70,17 +70,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-f8dc6eab18fde03278982b0b35885446.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-63f71799a4eb70afbda60adaa4658050.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -89,266 +95,219 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
 }</script>
+<style>html{ scroll-behavior: smooth; }</style>
 
 
 <link rel="stylesheet" href="../styles.css">
 </head>
 
-<body class="nav-fixed fullcontent">
+<body class="floating nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a href="../index.html" class="navbar-brand navbar-brand-logo">
     <img src="../Assets/Images/byui_logo.png" alt="" class="navbar-logo">
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../index.html" rel="" target="">
- <span class="menu-text">Home</span></a>
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-unit-1" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-unit-1" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Unit 1</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-unit-1">    
         <li>
-    <a class="dropdown-item" href="../lessons/lesson1.html" rel="" target="">
+    <a class="dropdown-item" href="../lessons/lesson1.html">
  <span class="dropdown-text">Unit 1 Overview</span></a>
   </li>  
         <li><hr class="dropdown-divider"></li>
-        <li class="dropdown-header">
- Week 1</li>
         <li>
-    <a class="dropdown-item" href="../lessons/lesson1_1.html" rel="" target="">
- <span class="dropdown-text">Day 1 : Orientation</span></a>
+    <a class="dropdown-item" href="../lessons/lesson1_1.html">
+ <span class="dropdown-text">Day 1 : APIs &amp; Your First LLM Call</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../lessons/lesson1_2.html" rel="" target="">
- <span class="dropdown-text">Day 2 : APIs &amp; Your First LLM Call</span></a>
+    <a class="dropdown-item" href="../lessons/lesson1_2.html">
+ <span class="dropdown-text">Day 2 : Tools - Structure &amp; Uses</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../lessons/lesson1_3.html" rel="" target="">
- <span class="dropdown-text">Day 3 : Tools :  Building &amp; Using Them</span></a>
-  </li>  
-        <li><hr class="dropdown-divider"></li>
-        <li class="dropdown-header">
- Week 2</li>
-        <li>
-    <a class="dropdown-item" href="../lessons/lesson1_4.html" rel="" target="">
- <span class="dropdown-text">Day 4 : Statefulness &amp; Conversation History</span></a>
+    <a class="dropdown-item" href="../lessons/lesson1_3.html">
+ <span class="dropdown-text">Day 3 : Tool Wrappers &amp; Local Data</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../lessons/lesson1_5.html" rel="" target="">
- <span class="dropdown-text">Day 5 : Data &amp; Local Resources</span></a>
+    <a class="dropdown-item" href="../lessons/lesson1_4.html">
+ <span class="dropdown-text">Day 4 : Response Formats &amp; Datatypes</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../lessons/lesson1_6.html" rel="" target="">
- <span class="dropdown-text">Day 6 : Connecting to the World</span></a>
-  </li>  
-        <li><hr class="dropdown-divider"></li>
-        <li class="dropdown-header">
- Week 3</li>
-        <li>
-    <a class="dropdown-item" href="../lessons/lesson1_7.html" rel="" target="">
- <span class="dropdown-text">Day 7 : Sandboxing &amp; Safety</span></a>
+    <a class="dropdown-item" href="../lessons/lesson1_5.html">
+ <span class="dropdown-text">Day 5 : Statefulness &amp; Conversation History</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../lessons/lesson1_8.html" rel="" target="">
+    <a class="dropdown-item" href="../lessons/lesson1_6.html">
+ <span class="dropdown-text">Day 6 : Connecting to the World via MCP</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../lessons/lesson1_7.html">
+ <span class="dropdown-text">Day 7 : MCP from GitHub</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../lessons/lesson1_8.html">
  <span class="dropdown-text">Day 8 : Subagents &amp; Multi-Agent Intro</span></a>
   </li>  
-        <li>
-    <a class="dropdown-item" href="../lessons/lesson1_9.html" rel="" target="">
- <span class="dropdown-text">Day 9 : Prompting Without AI</span></a>
-  </li>  
         <li><hr class="dropdown-divider"></li>
-        <li class="dropdown-header">
- Week 4</li>
         <li>
-    <a class="dropdown-item" href="../lessons/lesson1_10.html" rel="" target="">
- <span class="dropdown-text">Day 10 : Project Kickoff</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../lessons/lesson1_11.html" rel="" target="">
- <span class="dropdown-text">Day 11 : Build Day</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../lessons/lesson1_12.html" rel="" target="">
- <span class="dropdown-text">Day 12 : Showcase &amp; Stress-Test</span></a>
+    <a class="dropdown-item" href="../lessons/lesson1_9.html">
+ <span class="dropdown-text">Unit 1 Project : Build a Powerful Bot</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-unit-2" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-unit-2" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Unit 2</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-unit-2">    
         <li>
-    <a class="dropdown-item" href="../lessons/lesson2.html" rel="" target="">
+    <a class="dropdown-item" href="../lessons/lesson2.html">
  <span class="dropdown-text">Unit 2 Overview</span></a>
   </li>  
         <li><hr class="dropdown-divider"></li>
-        <li class="dropdown-header">
- Week 1</li>
         <li>
-    <a class="dropdown-item" href="../lessons/lesson2_1.html" rel="" target="">
+    <a class="dropdown-item" href="../lessons/lesson2_1.html">
  <span class="dropdown-text">Day 1 : What Makes an Agent Bad?</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../lessons/lesson2_2.html" rel="" target="">
- <span class="dropdown-text">Day 2 : Observability &amp; Tracing</span></a>
+    <a class="dropdown-item" href="../lessons/lesson2_2.html">
+ <span class="dropdown-text">Day 2 : Defining Main Failures</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../lessons/lesson2_3.html" rel="" target="">
- <span class="dropdown-text">Day 3 : Scavenger Hunt</span></a>
+    <a class="dropdown-item" href="../lessons/lesson2_3.html">
+ <span class="dropdown-text">Day 3 : LangSmith Setup &amp; Trace Reading</span></a>
   </li>  
-        <li><hr class="dropdown-divider"></li>
-        <li class="dropdown-header">
- Week 2</li>
         <li>
-    <a class="dropdown-item" href="../lessons/lesson2_4.html" rel="" target="">
+    <a class="dropdown-item" href="../lessons/lesson2_4.html">
  <span class="dropdown-text">Day 4 : Token &amp; Latency Analysis</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../lessons/lesson2_5.html" rel="" target="">
- <span class="dropdown-text">Day 5 : Debugging Hallucinations</span></a>
+    <a class="dropdown-item" href="../lessons/lesson2_5.html">
+ <span class="dropdown-text">Day 5 : Evals &amp; Golden Test Sets</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../lessons/lesson2_6.html" rel="" target="">
- <span class="dropdown-text">Day 6 : Finding &amp; Fixing Code Bugs</span></a>
-  </li>  
-        <li><hr class="dropdown-divider"></li>
-        <li class="dropdown-header">
- Week 3</li>
-        <li>
-    <a class="dropdown-item" href="../lessons/lesson2_7.html" rel="" target="">
- <span class="dropdown-text">Day 7 : Prompt Failure Patterns</span></a>
+    <a class="dropdown-item" href="../lessons/lesson2_6.html">
+ <span class="dropdown-text">Day 6 : Debugging Failure Patterns</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../lessons/lesson2_8.html" rel="" target="">
- <span class="dropdown-text">Day 8 : Cost &amp; Loop Failure Deep Dive</span></a>
+    <a class="dropdown-item" href="../lessons/lesson2_7.html">
+ <span class="dropdown-text">Day 7 : Automation Rules &amp; Alerts</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../lessons/lesson2_9.html" rel="" target="">
- <span class="dropdown-text">Day 9 : Comparative Diagnosis</span></a>
+    <a class="dropdown-item" href="../lessons/lesson2_8.html">
+ <span class="dropdown-text">Day 8 : Diagnosing a Broken Agent</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../lessons/lesson2_9.html">
+ <span class="dropdown-text">Day 9 : Unit Review &amp; Assessment</span></a>
   </li>  
         <li><hr class="dropdown-divider"></li>
-        <li class="dropdown-header">
- Week 4</li>
         <li>
-    <a class="dropdown-item" href="../lessons/lesson2_10.html" rel="" target="">
- <span class="dropdown-text">Day 10 : Analyze a Broken Agent</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../lessons/lesson2_11.html" rel="" target="">
- <span class="dropdown-text">Day 11 : Build the Diagnostic Report</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../lessons/lesson2_12.html" rel="" target="">
- <span class="dropdown-text">Day 12 : Present &amp; Discuss</span></a>
+    <a class="dropdown-item" href="../lessons/lesson2_10.html">
+ <span class="dropdown-text">Unit 2 Project : Build a Good Bot</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-unit-3" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-unit-3" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Unit 3</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-unit-3">    
         <li>
-    <a class="dropdown-item" href="../lessons/lesson3.html" rel="" target="">
+    <a class="dropdown-item" href="../lessons/lesson3.html">
  <span class="dropdown-text">Unit 3 Overview</span></a>
   </li>  
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">
- Week 1</li>
+ ⚠️ Unit 3 is currently in production</li>
+        <li><hr class="dropdown-divider"></li>
         <li>
-    <a class="dropdown-item" href="../lessons/lesson3_1.html" rel="" target="">
+    <a class="dropdown-item" href="../lessons/lesson3_1.html">
  <span class="dropdown-text">Day 1 : What Is Context Engineering?</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../lessons/lesson3_2.html" rel="" target="">
- <span class="dropdown-text">Day 2 : Simple Context Management</span></a>
+    <a class="dropdown-item" href="../lessons/lesson3_2.html">
+ <span class="dropdown-text">Day 2 : Planning Agentic Systems</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../lessons/lesson3_3.html" rel="" target="">
- <span class="dropdown-text">Day 3 : Context Offloading</span></a>
-  </li>  
-        <li><hr class="dropdown-divider"></li>
-        <li class="dropdown-header">
- Week 2</li>
-        <li>
-    <a class="dropdown-item" href="../lessons/lesson3_4.html" rel="" target="">
- <span class="dropdown-text">Day 4 : Subagent Architecture</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../lessons/lesson3_5.html" rel="" target="">
- <span class="dropdown-text">Day 5 : Checkpointing, HITL &amp; File Systems</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../lessons/lesson3_6.html" rel="" target="">
- <span class="dropdown-text">Day 6 : Context Self-Adaptation &amp; Cost Saving</span></a>
-  </li>  
-        <li><hr class="dropdown-divider"></li>
-        <li class="dropdown-header">
- Week 3</li>
-        <li>
-    <a class="dropdown-item" href="../lessons/lesson3_7.html" rel="" target="">
- <span class="dropdown-text">Day 7 : Grounding &amp; RAG</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../lessons/lesson3_8.html" rel="" target="">
- <span class="dropdown-text">Day 8 : Long-Horizon Task Planning</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../lessons/lesson3_9.html" rel="" target="">
- <span class="dropdown-text">Day 9 : Putting It All Together</span></a>
-  </li>  
-        <li><hr class="dropdown-divider"></li>
-        <li class="dropdown-header">
- Week 4</li>
-        <li>
-    <a class="dropdown-item" href="../lessons/lesson3_10.html" rel="" target="">
- <span class="dropdown-text">Day 10 : Final Agent Design</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../lessons/lesson3_11.html" rel="" target="">
- <span class="dropdown-text">Day 11 : Final Build Day</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../lessons/lesson3_12.html" rel="" target="">
- <span class="dropdown-text">Day 12 : Battle of the Bots!</span></a>
+    <a class="dropdown-item" href="../lessons/lesson3_3.html">
+ <span class="dropdown-text">Day 3 : Context Management Strategies</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="../dictionary.html" rel="" target="">
- <span class="menu-text">Dictionary</span></a>
+    <a class="nav-link" href="../dictionary.html"> 
+<span class="menu-text">Dictionary</span></a>
   </li>  
 </ul>
-            <div class="quarto-navbar-tools ms-auto">
-</div>
           </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
       </div> <!-- /container-fluid -->
     </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#outcomes" id="toc-outcomes" class="nav-link active" data-scroll-target="#outcomes">Outcomes</a></li>
+  <li><a href="#preparation" id="toc-preparation" class="nav-link" data-scroll-target="#preparation">Preparation</a></li>
+  <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion">Discussion</a></li>
+  <li><a href="#class" id="toc-class" class="nav-link" data-scroll-target="#class">Class</a></li>
+  <li><a href="#before-next-class" id="toc-before-next-class" class="nav-link" data-scroll-target="#before-next-class">Before next class</a>
+  <ul class="collapse">
+  <li><a href="#quick-links-1" id="toc-quick-links-1" class="nav-link" data-scroll-target="#quick-links-1">Quick Links</a></li>
+  <li><a href="#before-class-1" id="toc-before-class-1" class="nav-link" data-scroll-target="#before-class-1">Before Class</a></li>
+  <li><a href="#after-class-1" id="toc-after-class-1" class="nav-link" data-scroll-target="#after-class-1">After Class</a></li>
+  <li><a href="#quick-links-2" id="toc-quick-links-2" class="nav-link" data-scroll-target="#quick-links-2">Quick Links</a></li>
+  <li><a href="#before-class-2" id="toc-before-class-2" class="nav-link" data-scroll-target="#before-class-2">Before Class</a></li>
+  <li><a href="#after-class-2" id="toc-after-class-2" class="nav-link" data-scroll-target="#after-class-2">After Class</a></li>
+  <li><a href="#about-api-keys" id="toc-about-api-keys" class="nav-link" data-scroll-target="#about-api-keys">About API keys</a></li>
+  <li><a href="#do-this" id="toc-do-this" class="nav-link" data-scroll-target="#do-this">Do This</a>
+  <ul class="collapse">
+  <li><a href="#if-it-doesnt-work" id="toc-if-it-doesnt-work" class="nav-link" data-scroll-target="#if-it-doesnt-work">If it doesn’t work</a></li>
+  </ul></li>
+  <li><a href="#i-have-a-key-now-what" id="toc-i-have-a-key-now-what" class="nav-link" data-scroll-target="#i-have-a-key-now-what">I have a key, now what?</a>
+  <ul class="collapse">
+  <li><a href="#for-google-colab" id="toc-for-google-colab" class="nav-link" data-scroll-target="#for-google-colab">For Google Colab:</a></li>
+  <li><a href="#for-local-development" id="toc-for-local-development" class="nav-link" data-scroll-target="#for-local-development">For Local Development:</a></li>
+  </ul></li>
+  <li><a href="#finally" id="toc-finally" class="nav-link" data-scroll-target="#finally">Finally</a></li>
+  </ul></li>
+  <li><a href="#stop" id="toc-stop" class="nav-link" data-scroll-target="#stop">STOP</a></li>
+  </ul>
+</nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -368,14 +327,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
+
 </header>
+
 
 <p><role> You are an expert curriculum designer for an Agent AI Engineering course using a Quarto website for course instruction, textbook, and assignments. You have decided to focus mostly on concepts of agentic AI that will stick around for a long time, but the LangChain v1.x+ ecosystem using Python with Gemini models (gemini-2.5-flash) is the current focus. </role></p>
 <p><instruction> Create a Quarto (.qmd) file for a single lesson using the provided <template>. Use the details provided in the <lesson_context> block to flesh out the content.<p></p>
 <p>Rules: 1. If any {{VARIABLE}} in <lesson_context> is empty, STOP. Ask me to provide the variable before you write any code. 2. Follow all guidelines in <code_standards_to_follow> strictly. 3. Output ONLY the raw Quarto markdown text. Do not include conversational filler. </code_standards_to_follow></lesson_context></p>
 <p><lesson_context> - Unit &amp; Lesson: Unit 3, Lesson 3 - Topic: Context Management Types</lesson_context></p>
-<p><outcomes> {{OUTCOMES}} </outcomes></p>
-<p><teacher_notes> {{FREEFORM_DIRECTIONS_GO_HERE}} (e.g., Type whatever you need here in paragraphs. “Focus heavily on the transition from the lecture to the API activity. Use a cooking analogy to explain context windows. Ensure the practice problem has intentional bugs for them to fix.”) </teacher_notes> </p>
+<p><outcomes> Identify the context management types: truncate, summarize, selection, file write, database, isolate/delegation Identify broadly the strengths and weaknesses of each Identify based on a problem which of truncate, summarize, or selection is best Implement a conversation with truncate Implement a conversation with selection Implement a conversation with summarization Experience the usefulness and limitations of each </outcomes></p>
+<p><teacher_notes> If the “implement” outcomes can’t easily be done with LangChain, use LangSmith</teacher_notes></p>
+<p>One beginning activity should include being given 6 different LangSmith traces and identifying each.</p>
+<p>There will be a slide presentation to explain  </p>
 <p><code_standards_to_follow> Always default model instantiation to LangChain v1.x using <code>create_agent</code>, NOT <code>create_react_agent</code>. Consult documentation every time you write code to make sure it is up to date.</code_standards_to_follow></p>
 <p>Prefer simple readable code over robust code to aid in student understanding.</p>
 <p>Here is an example model instantiation:</p>
@@ -403,7 +366,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Quick Links</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Before Class</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">After Class</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<table>
+<table class="caption-top">
 <thead>
 <tr class="header">
 <th>Practice</th>
@@ -427,7 +390,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </table>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<table>
+<table class="caption-top">
 <thead>
 <tr class="header">
 <th>Practice</th>
@@ -445,7 +408,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </table>
 </div>
 <div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
-<table>
+<table class="caption-top">
 <thead>
 <tr class="header">
 <th>Practice</th>
@@ -508,7 +471,7 @@ Topic
 <section id="before-next-class" class="level1">
 <h1>Before next class</h1>
 <!-- Instructions, including any prep work, finishing class work, project work, or a practice homework -->
-<table>
+<table class="caption-top">
 <thead>
 <tr class="header">
 <th>Practice</th>
@@ -532,7 +495,7 @@ Topic
 <p><example_link_panel_for_unit2_lesson1> ::: {.panel-tabset}</example_link_panel_for_unit2_lesson1></p>
 <section id="quick-links-1" class="level2">
 <h2>Quick Links</h2>
-<table>
+<table class="caption-top">
 <thead>
 <tr class="header">
 <th>Practice</th>
@@ -557,7 +520,7 @@ Topic
 </section>
 <section id="before-class-1" class="level2">
 <h2>Before Class</h2>
-<table>
+<table class="caption-top">
 <thead>
 <tr class="header">
 <th>Practice</th>
@@ -576,7 +539,7 @@ Topic
 </section>
 <section id="after-class-1" class="level2">
 <h2>After Class</h2>
-<table>
+<table class="caption-top">
 <thead>
 <tr class="header">
 <th>Practice</th>
@@ -597,7 +560,7 @@ Topic
 </section>
 <section id="quick-links-2" class="level2">
 <h2>Quick Links</h2>
-<table>
+<table class="caption-top">
 <thead>
 <tr class="header">
 <th>Practice</th>
@@ -622,7 +585,7 @@ Topic
 </section>
 <section id="before-class-2" class="level2">
 <h2>Before Class</h2>
-<table>
+<table class="caption-top">
 <thead>
 <tr class="header">
 <th>Practice</th>
@@ -641,7 +604,7 @@ Topic
 </section>
 <section id="after-class-2" class="level2">
 <h2>After Class</h2>
-<table>
+<table class="caption-top">
 <thead>
 <tr class="header">
 <th>Practice</th>
@@ -762,7 +725,7 @@ Choose Your Platform
 <hr>
 <p></p>
 <p><example_lesson_overview> # Lesson Overview</example_lesson_overview></p>
-<table>
+<table class="caption-top">
 <thead>
 <tr class="header">
 <th>Segment</th>
@@ -790,10 +753,16 @@ Choose Your Platform
 </table>
 <p></p>
 <div id="quarto-navigation-envelope" class="hidden">
-<p><span class="hidden" data-render-id="quarto-int-sidebar-title">What is Context Engineering?</span> <span class="hidden" data-render-id="quarto-int-navbar-title">What is Context Engineering?</span> <span class="hidden" data-render-id="quarto-int-navbar:Home">Home</span> <span class="hidden" data-render-id="quarto-int-navbar:/index.html">/index.html</span> <span class="hidden" data-render-id="quarto-int-navbar:Unit 1">Unit 1</span> <span class="hidden" data-render-id="quarto-int-navbar:Unit 1 Overview">Unit 1 Overview</span> <span class="hidden" data-render-id="quarto-int-navbar:/lessons/lesson1.html">/lessons/lesson1.html</span> <span class="hidden" data-render-id="quarto-int-navbar:---">—</span> <span class="hidden" data-render-id="quarto-int-navbar:Week 1">Week 1</span> <span class="hidden" data-render-id="quarto-int-navbar:Day 1 : Orientation">Day 1 : Orientation</span> <span class="hidden" data-render-id="quarto-int-navbar:/lessons/lesson1_1.html">/lessons/lesson1_1.html</span> <span class="hidden" data-render-id="quarto-int-navbar:Day 2 : APIs &amp; Your First LLM Call">Day 2 : APIs &amp; Your First LLM Call</span> <span class="hidden" data-render-id="quarto-int-navbar:/lessons/lesson1_2.html">/lessons/lesson1_2.html</span> <span class="hidden" data-render-id="quarto-int-navbar:Day 3 : Tools :  Building &amp; Using Them">Day 3 : Tools : Building &amp; Using Them</span> <span class="hidden" data-render-id="quarto-int-navbar:/lessons/lesson1_3.html">/lessons/lesson1_3.html</span> <span class="hidden" data-render-id="quarto-int-navbar:Week 2">Week 2</span> <span class="hidden" data-render-id="quarto-int-navbar:Day 4 : Statefulness &amp; Conversation History">Day 4 : Statefulness &amp; Conversation History</span> <span class="hidden" data-render-id="quarto-int-navbar:/lessons/lesson1_4.html">/lessons/lesson1_4.html</span> <span class="hidden" data-render-id="quarto-int-navbar:Day 5 : Data &amp; Local Resources">Day 5 : Data &amp; Local Resources</span> <span class="hidden" data-render-id="quarto-int-navbar:/lessons/lesson1_5.html">/lessons/lesson1_5.html</span> <span class="hidden" data-render-id="quarto-int-navbar:Day 6 : Connecting to the World">Day 6 : Connecting to the World</span> <span class="hidden" data-render-id="quarto-int-navbar:/lessons/lesson1_6.html">/lessons/lesson1_6.html</span> <span class="hidden" data-render-id="quarto-int-navbar:Week 3">Week 3</span> <span class="hidden" data-render-id="quarto-int-navbar:Day 7 : Sandboxing &amp; Safety">Day 7 : Sandboxing &amp; Safety</span> <span class="hidden" data-render-id="quarto-int-navbar:/lessons/lesson1_7.html">/lessons/lesson1_7.html</span> <span class="hidden" data-render-id="quarto-int-navbar:Day 8 : Subagents &amp; Multi-Agent Intro">Day 8 : Subagents &amp; Multi-Agent Intro</span> <span class="hidden" data-render-id="quarto-int-navbar:/lessons/lesson1_8.html">/lessons/lesson1_8.html</span> <span class="hidden" data-render-id="quarto-int-navbar:Day 9 : Prompting Without AI">Day 9 : Prompting Without AI</span> <span class="hidden" data-render-id="quarto-int-navbar:/lessons/lesson1_9.html">/lessons/lesson1_9.html</span> <span class="hidden" data-render-id="quarto-int-navbar:Week 4">Week 4</span> <span class="hidden" data-render-id="quarto-int-navbar:Day 10 : Project Kickoff">Day 10 : Project Kickoff</span> <span class="hidden" data-render-id="quarto-int-navbar:/lessons/lesson1_10.html">/lessons/lesson1_10.html</span> <span class="hidden" data-render-id="quarto-int-navbar:Day 11 : Build Day">Day 11 : Build Day</span> <span class="hidden" data-render-id="quarto-int-navbar:/lessons/lesson1_11.html">/lessons/lesson1_11.html</span> <span class="hidden" data-render-id="quarto-int-navbar:Day 12 : Showcase &amp; Stress-Test">Day 12 : Showcase &amp; Stress-Test</span> <span class="hidden" data-render-id="quarto-int-navbar:/lessons/lesson1_12.html">/lessons/lesson1_12.html</span> <span class="hidden" data-render-id="quarto-int-navbar:Unit 2">Unit 2</span> <span class="hidden" data-render-id="quarto-int-navbar:Unit 2 Overview">Unit 2 Overview</span> <span class="hidden" data-render-id="quarto-int-navbar:/lessons/lesson2.html">/lessons/lesson2.html</span> <span class="hidden" data-render-id="quarto-int-navbar:Day 1 : What Makes an Agent Bad?">Day 1 : What Makes an Agent Bad?</span> <span class="hidden" data-render-id="quarto-int-navbar:/lessons/lesson2_1.html">/lessons/lesson2_1.html</span> <span class="hidden" data-render-id="quarto-int-navbar:Day 2 : Observability &amp; Tracing">Day 2 : Observability &amp; Tracing</span> <span class="hidden" data-render-id="quarto-int-navbar:/lessons/lesson2_2.html">/lessons/lesson2_2.html</span> <span class="hidden" data-render-id="quarto-int-navbar:Day 3 : Scavenger Hunt">Day 3 : Scavenger Hunt</span> <span class="hidden" data-render-id="quarto-int-navbar:/lessons/lesson2_3.html">/lessons/lesson2_3.html</span> <span class="hidden" data-render-id="quarto-int-navbar:Day 4 : Token &amp; Latency Analysis">Day 4 : Token &amp; Latency Analysis</span> <span class="hidden" data-render-id="quarto-int-navbar:/lessons/lesson2_4.html">/lessons/lesson2_4.html</span> <span class="hidden" data-render-id="quarto-int-navbar:Day 5 : Debugging Hallucinations">Day 5 : Debugging Hallucinations</span> <span class="hidden" data-render-id="quarto-int-navbar:/lessons/lesson2_5.html">/lessons/lesson2_5.html</span> <span class="hidden" data-render-id="quarto-int-navbar:Day 6 : Finding &amp; Fixing Code Bugs">Day 6 : Finding &amp; Fixing Code Bugs</span> <span class="hidden" data-render-id="quarto-int-navbar:/lessons/lesson2_6.html">/lessons/lesson2_6.html</span> <span class="hidden" data-render-id="quarto-int-navbar:Day 7 : Prompt Failure Patterns">Day 7 : Prompt Failure Patterns</span> <span class="hidden" data-render-id="quarto-int-navbar:/lessons/lesson2_7.html">/lessons/lesson2_7.html</span> <span class="hidden" data-render-id="quarto-int-navbar:Day 8 : Cost &amp; Loop Failure Deep Dive">Day 8 : Cost &amp; Loop Failure Deep Dive</span> <span class="hidden" data-render-id="quarto-int-navbar:/lessons/lesson2_8.html">/lessons/lesson2_8.html</span> <span class="hidden" data-render-id="quarto-int-navbar:Day 9 : Comparative Diagnosis">Day 9 : Comparative Diagnosis</span> <span class="hidden" data-render-id="quarto-int-navbar:/lessons/lesson2_9.html">/lessons/lesson2_9.html</span> <span class="hidden" data-render-id="quarto-int-navbar:Day 10 : Analyze a Broken Agent">Day 10 : Analyze a Broken Agent</span> <span class="hidden" data-render-id="quarto-int-navbar:/lessons/lesson2_10.html">/lessons/lesson2_10.html</span> <span class="hidden" data-render-id="quarto-int-navbar:Day 11 : Build the Diagnostic Report">Day 11 : Build the Diagnostic Report</span> <span class="hidden" data-render-id="quarto-int-navbar:/lessons/lesson2_11.html">/lessons/lesson2_11.html</span> <span class="hidden" data-render-id="quarto-int-navbar:Day 12 : Present &amp; Discuss">Day 12 : Present &amp; Discuss</span> <span class="hidden" data-render-id="quarto-int-navbar:/lessons/lesson2_12.html">/lessons/lesson2_12.html</span> <span class="hidden" data-render-id="quarto-int-navbar:Unit 3">Unit 3</span> <span class="hidden" data-render-id="quarto-int-navbar:Unit 3 Overview">Unit 3 Overview</span> <span class="hidden" data-render-id="quarto-int-navbar:/lessons/lesson3.html">/lessons/lesson3.html</span> <span class="hidden" data-render-id="quarto-int-navbar:Day 1 : What Is Context Engineering?">Day 1 : What Is Context Engineering?</span> <span class="hidden" data-render-id="quarto-int-navbar:/lessons/lesson3_1.html">/lessons/lesson3_1.html</span> <span class="hidden" data-render-id="quarto-int-navbar:Day 2 : Simple Context Management">Day 2 : Simple Context Management</span> <span class="hidden" data-render-id="quarto-int-navbar:/lessons/lesson3_2.html">/lessons/lesson3_2.html</span> <span class="hidden" data-render-id="quarto-int-navbar:Day 3 : Context Offloading">Day 3 : Context Offloading</span> <span class="hidden" data-render-id="quarto-int-navbar:/lessons/lesson3_3.html">/lessons/lesson3_3.html</span> <span class="hidden" data-render-id="quarto-int-navbar:Day 4 : Subagent Architecture">Day 4 : Subagent Architecture</span> <span class="hidden" data-render-id="quarto-int-navbar:/lessons/lesson3_4.html">/lessons/lesson3_4.html</span> <span class="hidden" data-render-id="quarto-int-navbar:Day 5 : Checkpointing, HITL &amp; File Systems">Day 5 : Checkpointing, HITL &amp; File Systems</span> <span class="hidden" data-render-id="quarto-int-navbar:/lessons/lesson3_5.html">/lessons/lesson3_5.html</span> <span class="hidden" data-render-id="quarto-int-navbar:Day 6 : Context Self-Adaptation &amp; Cost Saving">Day 6 : Context Self-Adaptation &amp; Cost Saving</span> <span class="hidden" data-render-id="quarto-int-navbar:/lessons/lesson3_6.html">/lessons/lesson3_6.html</span> <span class="hidden" data-render-id="quarto-int-navbar:Day 7 : Grounding &amp; RAG">Day 7 : Grounding &amp; RAG</span> <span class="hidden" data-render-id="quarto-int-navbar:/lessons/lesson3_7.html">/lessons/lesson3_7.html</span> <span class="hidden" data-render-id="quarto-int-navbar:Day 8 : Long-Horizon Task Planning">Day 8 : Long-Horizon Task Planning</span> <span class="hidden" data-render-id="quarto-int-navbar:/lessons/lesson3_8.html">/lessons/lesson3_8.html</span> <span class="hidden" data-render-id="quarto-int-navbar:Day 9 : Putting It All Together">Day 9 : Putting It All Together</span> <span class="hidden" data-render-id="quarto-int-navbar:/lessons/lesson3_9.html">/lessons/lesson3_9.html</span> <span class="hidden" data-render-id="quarto-int-navbar:Day 10 : Final Agent Design">Day 10 : Final Agent Design</span> <span class="hidden" data-render-id="quarto-int-navbar:/lessons/lesson3_10.html">/lessons/lesson3_10.html</span> <span class="hidden" data-render-id="quarto-int-navbar:Day 11 : Final Build Day">Day 11 : Final Build Day</span> <span class="hidden" data-render-id="quarto-int-navbar:/lessons/lesson3_11.html">/lessons/lesson3_11.html</span> <span class="hidden" data-render-id="quarto-int-navbar:Day 12 : Battle of the Bots!">Day 12 : Battle of the Bots!</span> <span class="hidden" data-render-id="quarto-int-navbar:/lessons/lesson3_12.html">/lessons/lesson3_12.html</span> <span class="hidden" data-render-id="quarto-int-navbar:Dictionary">Dictionary</span> <span class="hidden" data-render-id="quarto-int-navbar:/dictionary.html">/dictionary.html</span></p>
+<p><span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyLXRpdGxl">What is Context Engineering?</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXItdGl0bGU=">What is Context Engineering?</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6SG9tZQ==">Home</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2luZGV4Lmh0bWw=">/index.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6VW5pdCAx">Unit 1</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6VW5pdCAxIE92ZXJ2aWV3">Unit 1 Overview</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2xlc3NvbnMvbGVzc29uMS5odG1s">/lessons/lesson1.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6LS0t">—</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6RGF5IDEgOiBBUElzICYgWW91ciBGaXJzdCBMTE0gQ2FsbA==">Day 1 : APIs &amp; Your First LLM Call</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2xlc3NvbnMvbGVzc29uMV8xLmh0bWw=">/lessons/lesson1_1.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6RGF5IDIgOiBUb29scyAtIFN0cnVjdHVyZSAmIFVzZXM=">Day 2 : Tools - Structure &amp; Uses</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2xlc3NvbnMvbGVzc29uMV8yLmh0bWw=">/lessons/lesson1_2.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6RGF5IDMgOiBUb29sIFdyYXBwZXJzICYgTG9jYWwgRGF0YQ==">Day 3 : Tool Wrappers &amp; Local Data</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2xlc3NvbnMvbGVzc29uMV8zLmh0bWw=">/lessons/lesson1_3.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6RGF5IDQgOiBSZXNwb25zZSBGb3JtYXRzICYgRGF0YXR5cGVz">Day 4 : Response Formats &amp; Datatypes</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2xlc3NvbnMvbGVzc29uMV80Lmh0bWw=">/lessons/lesson1_4.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6RGF5IDUgOiBTdGF0ZWZ1bG5lc3MgJiBDb252ZXJzYXRpb24gSGlzdG9yeQ==">Day 5 : Statefulness &amp; Conversation History</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2xlc3NvbnMvbGVzc29uMV81Lmh0bWw=">/lessons/lesson1_5.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6RGF5IDYgOiBDb25uZWN0aW5nIHRvIHRoZSBXb3JsZCB2aWEgTUNQ">Day 6 : Connecting to the World via MCP</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2xlc3NvbnMvbGVzc29uMV82Lmh0bWw=">/lessons/lesson1_6.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6RGF5IDcgOiBNQ1AgZnJvbSBHaXRIdWI=">Day 7 : MCP from GitHub</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2xlc3NvbnMvbGVzc29uMV83Lmh0bWw=">/lessons/lesson1_7.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6RGF5IDggOiBTdWJhZ2VudHMgJiBNdWx0aS1BZ2VudCBJbnRybw==">Day 8 : Subagents &amp; Multi-Agent Intro</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2xlc3NvbnMvbGVzc29uMV84Lmh0bWw=">/lessons/lesson1_8.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6VW5pdCAxIFByb2plY3QgOiBCdWlsZCBhIFBvd2VyZnVsIEJvdA==">Unit 1 Project : Build a Powerful Bot</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2xlc3NvbnMvbGVzc29uMV85Lmh0bWw=">/lessons/lesson1_9.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6VW5pdCAy">Unit 2</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6VW5pdCAyIE92ZXJ2aWV3">Unit 2 Overview</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2xlc3NvbnMvbGVzc29uMi5odG1s">/lessons/lesson2.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6RGF5IDEgOiBXaGF0IE1ha2VzIGFuIEFnZW50IEJhZD8=">Day 1 : What Makes an Agent Bad?</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2xlc3NvbnMvbGVzc29uMl8xLmh0bWw=">/lessons/lesson2_1.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6RGF5IDIgOiBEZWZpbmluZyBNYWluIEZhaWx1cmVz">Day 2 : Defining Main Failures</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2xlc3NvbnMvbGVzc29uMl8yLmh0bWw=">/lessons/lesson2_2.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6RGF5IDMgOiBMYW5nU21pdGggU2V0dXAgJiBUcmFjZSBSZWFkaW5n">Day 3 : LangSmith Setup &amp; Trace Reading</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2xlc3NvbnMvbGVzc29uMl8zLmh0bWw=">/lessons/lesson2_3.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6RGF5IDQgOiBUb2tlbiAmIExhdGVuY3kgQW5hbHlzaXM=">Day 4 : Token &amp; Latency Analysis</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2xlc3NvbnMvbGVzc29uMl80Lmh0bWw=">/lessons/lesson2_4.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6RGF5IDUgOiBFdmFscyAmIEdvbGRlbiBUZXN0IFNldHM=">Day 5 : Evals &amp; Golden Test Sets</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2xlc3NvbnMvbGVzc29uMl81Lmh0bWw=">/lessons/lesson2_5.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6RGF5IDYgOiBEZWJ1Z2dpbmcgRmFpbHVyZSBQYXR0ZXJucw==">Day 6 : Debugging Failure Patterns</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2xlc3NvbnMvbGVzc29uMl82Lmh0bWw=">/lessons/lesson2_6.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6RGF5IDcgOiBBdXRvbWF0aW9uIFJ1bGVzICYgQWxlcnRz">Day 7 : Automation Rules &amp; Alerts</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2xlc3NvbnMvbGVzc29uMl83Lmh0bWw=">/lessons/lesson2_7.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6RGF5IDggOiBEaWFnbm9zaW5nIGEgQnJva2VuIEFnZW50">Day 8 : Diagnosing a Broken Agent</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2xlc3NvbnMvbGVzc29uMl84Lmh0bWw=">/lessons/lesson2_8.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6RGF5IDkgOiBVbml0IFJldmlldyAmIEFzc2Vzc21lbnQ=">Day 9 : Unit Review &amp; Assessment</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2xlc3NvbnMvbGVzc29uMl85Lmh0bWw=">/lessons/lesson2_9.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6VW5pdCAyIFByb2plY3QgOiBCdWlsZCBhIEdvb2QgQm90">Unit 2 Project : Build a Good Bot</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2xlc3NvbnMvbGVzc29uMl8xMC5odG1s">/lessons/lesson2_10.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6VW5pdCAz">Unit 3</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6VW5pdCAzIE92ZXJ2aWV3">Unit 3 Overview</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2xlc3NvbnMvbGVzc29uMy5odG1s">/lessons/lesson3.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI64pqg77iPIFVuaXQgMyBpcyBjdXJyZW50bHkgaW4gcHJvZHVjdGlvbg==">⚠️ Unit 3 is currently in production</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6RGF5IDEgOiBXaGF0IElzIENvbnRleHQgRW5naW5lZXJpbmc/">Day 1 : What Is Context Engineering?</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2xlc3NvbnMvbGVzc29uM18xLmh0bWw=">/lessons/lesson3_1.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6RGF5IDIgOiBQbGFubmluZyBBZ2VudGljIFN5c3RlbXM=">Day 2 : Planning Agentic Systems</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2xlc3NvbnMvbGVzc29uM18yLmh0bWw=">/lessons/lesson3_2.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6RGF5IDMgOiBDb250ZXh0IE1hbmFnZW1lbnQgU3RyYXRlZ2llcw==">Day 3 : Context Management Strategies</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2xlc3NvbnMvbGVzc29uM18zLmh0bWw=">/lessons/lesson3_3.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6RGljdGlvbmFyeQ==">Dictionary</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RpY3Rpb25hcnkuaHRtbA==">/dictionary.html</span></p>
+<div class="hidden quarto-markdown-envelope-contents" data-render-id="Zm9vdGVyLWxlZnQ=">
+<p>Agentic AI Course — BYU-Idaho</p>
+</div>
+<div class="hidden quarto-markdown-envelope-contents" data-render-id="Zm9vdGVyLXJpZ2h0">
+<p>Built with <a href="https://quarto.org">Quarto</a></p>
+</div>
 </div>
 <div id="quarto-meta-markdown" class="hidden">
-<p><span class="hidden" data-render-id="quarto-metatitle">What is Context Engineering?</span> <span class="hidden" data-render-id="quarto-twittercardtitle">What is Context Engineering?</span> <span class="hidden" data-render-id="quarto-ogcardtitle">What is Context Engineering?</span> <span class="hidden" data-render-id="quarto-twittercarddesc">Unit 3, Lesson 1</span> <span class="hidden" data-render-id="quarto-ogcardddesc">Unit 3, Lesson 1</span></p>
+<p><span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLW1ldGF0aXRsZQ==">What is Context Engineering?</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLXR3aXR0ZXJjYXJkdGl0bGU=">What is Context Engineering?</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLW9nY2FyZHRpdGxl">What is Context Engineering?</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLXR3aXR0ZXJjYXJkZGVzYw==">Unit 3, Lesson 1</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLW9nY2FyZGRkZXNj">Unit 3, Lesson 1</span></p>
 </div>
 </section>
 
@@ -833,18 +802,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -876,11 +834,48 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -890,8 +885,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -903,7 +907,129 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -947,6 +1073,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -972,6 +1099,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -1032,7 +1185,22 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
  <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      <div class="footer-contents">Agentic AI Course — BYU-Idaho</div>  
+    </div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      <div class="footer-contents">Built with [Quarto](https://quarto.org)</div>  
+    </div>
+  </div>
+</footer>
 
 
 
-</lesson_context></template></instruction></p></main></div></body></html>
+
+</lesson_context></template></instruction></p></main></div><script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

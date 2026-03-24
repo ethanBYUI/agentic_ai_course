@@ -36,7 +36,7 @@ website :
           - text :  "Day 8 : Subagents & Multi-Agent Intro"
             href :  lessons/lesson1_8.html
           - text :  "---"
-          - text :  "Unit 1 Project"
+          - text :  "Unit 1 Project : Build a Powerful Bot"
             href :  lessons/lesson1_9.html
 
       - text :  "Unit 2"
@@ -63,7 +63,7 @@ website :
           - text :  "Day 9 : Unit Review & Assessment"
             href :  lessons/lesson2_9.html
           - text :  "---"
-          - text :  "Unit 2 Project"
+          - text :  "Unit 2 Project : Build a Good Bot"
             href :  lessons/lesson2_10.html
 
       - text :  "Unit 3"
@@ -83,8 +83,19 @@ website :
       - text :  "Dictionary"
         href :  dictionary.html
 
+  page-footer :
+    left :  "Agentic AI Course — BYU-Idaho"
+    right :  "Built with [Quarto](https://quarto.org)"
+
 format : 
   html : 
     theme :  cosmo
     css :  styles.css
-    toc-depth :  2
+    toc : true
+    toc-depth : 3
+    toc-location : left
+    toc-title : "On this page"
+    code-copy : true
+    code-fold : false
+    highlight-style : github-dark
+    smooth-scroll : true
