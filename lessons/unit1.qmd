@@ -63,15 +63,12 @@ This is intentional. It builds class unity, surfaces your own assumptions, and g
 
 | Day | Week | Topic |
 |-----|------|-------|
-| [Day 1](unit1_1.html) | Week 1 | Orientation |
-| [Day 2](unit1_2.html) | Week 1 | APIs & Your First LLM Call |
-| [Day 3](unit1_3.html) | Week 1 | Tools: Building & Using Them |
-| [Day 4](unit1_4.html) | Week 2 | Statefulness & Conversation History |
-| [Day 5](unit1_5.html) | Week 2 | Data & Local Resources |
-| [Day 6](unit1_6.html) | Week 2 | Connecting to the World |
-| [Day 7](unit1_7.html) | Week 3 | Sandboxing & Safety |
-| [Day 8](unit1_8.html) | Week 3 | Subagents & Multi-Agent Intro |
-| [Day 9](unit1_9.html) | Week 3 | Prompting |
-| [Day 10](unit1_10.html) | Week 4 | Project Kickoff |
-| [Day 11](unit1_11.html) | Week 4 | Build Day |
-| [Day 12](unit1_12.html) | Week 4 | Showcase & Stress-Test |
+| [Day 1](lesson1_1.html) | Week 1 | APIs & Your First LLM Call |
+| [Day 2](lesson1_2.html) | Week 1 | Tools - Structure & Uses |
+| [Day 3](lesson1_3.html) | Week 1 | Tool Wrappers & Local Data |
+| [Day 4](lesson1_4.html) | Week 2 | Response Formats & Datatypes |
+| [Day 5](lesson1_5.html) | Week 2 | Statefulness & Conversation History |
+| [Day 6](lesson1_6.html) | Week 2 | Connecting to the World via MCP |
+| [Day 7](lesson1_7.html) | Week 3 | MCP from GitHub |
+| [Day 8](lesson1_8.html) | Week 3 | Subagents & Multi-Agent Intro |
+| [Project](lesson1_project.html) | Week 3–4 | Build a Powerful Bot |

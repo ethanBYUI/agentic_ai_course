@@ -2,6 +2,9 @@ project :
   type : website
   output-dir :  docs
 
+execute:
+  eval: false
+
 website : 
   favicon :  Assets/Images/byui_logo.png
   navbar : 
@@ -16,111 +19,66 @@ website :
           - text :  "Unit 1 Overview"
             href :  lessons/lesson1.html
           - text :  "---"
-          - text :  "Week 1"
-          - text :  "Day 1 : Orientation"
+          - text :  "Day 1 : APIs & Your First LLM Call"
             href :  lessons/lesson1_1.html
-          - text :  "Day 2 : APIs & Your First LLM Call"
+          - text :  "Day 2 : Tools - Structure & Uses"
             href :  lessons/lesson1_2.html
-          - text :  "Day 3 : Tools :  Building & Using Them"
+          - text :  "Day 3 : Tool Wrappers & Local Data"
             href :  lessons/lesson1_3.html
-          - text :  "---"
-          - text :  "Week 2"
-          - text :  "Day 4 : Statefulness & Conversation History"
+          - text :  "Day 4 : Response Formats & Datatypes"
             href :  lessons/lesson1_4.html
-          - text :  "Day 5 : Data & Local Resources"
+          - text :  "Day 5 : Statefulness & Conversation History"
             href :  lessons/lesson1_5.html
-          - text :  "Day 6 : Connecting to the World"
+          - text :  "Day 6 : Connecting to the World via MCP"
             href :  lessons/lesson1_6.html
-          - text :  "---"
-          - text :  "Week 3"
-          - text :  "Day 7 : Sandboxing & Safety"
+          - text :  "Day 7 : MCP from GitHub"
             href :  lessons/lesson1_7.html
           - text :  "Day 8 : Subagents & Multi-Agent Intro"
             href :  lessons/lesson1_8.html
-          - text :  "Day 9 : Prompting Without AI"
-            href :  lessons/lesson1_9.html
           - text :  "---"
-          - text :  "Week 4"
-          - text :  "Day 10 : Project Kickoff"
-            href :  lessons/lesson1_10.html
-          - text :  "Day 11 : Build Day"
-            href :  lessons/lesson1_11.html
-          - text :  "Day 12 : Showcase & Stress-Test"
-            href :  lessons/lesson1_12.html
+          - text :  "Unit 1 Project"
+            href :  lessons/lesson1_9.html
 
       - text :  "Unit 2"
         menu : 
           - text :  "Unit 2 Overview"
             href :  lessons/lesson2.html
           - text :  "---"
-          - text :  "Week 1"
           - text :  "Day 1 : What Makes an Agent Bad?"
             href :  lessons/lesson2_1.html
-          - text :  "Day 2 : Observability & Tracing"
+          - text :  "Day 2 : Defining Main Failures"
             href :  lessons/lesson2_2.html
-          - text :  "Day 3 : Scavenger Hunt"
+          - text :  "Day 3 : LangSmith Setup & Trace Reading"
             href :  lessons/lesson2_3.html
-          - text :  "---"
-          - text :  "Week 2"
           - text :  "Day 4 : Token & Latency Analysis"
             href :  lessons/lesson2_4.html
-          - text :  "Day 5 : Debugging Hallucinations"
+          - text :  "Day 5 : Evals & Golden Test Sets"
             href :  lessons/lesson2_5.html
-          - text :  "Day 6 : Finding & Fixing Code Bugs"
+          - text :  "Day 6 : Debugging Failure Patterns"
             href :  lessons/lesson2_6.html
-          - text :  "---"
-          - text :  "Week 3"
-          - text :  "Day 7 : Prompt Failure Patterns"
+          - text :  "Day 7 : Automation Rules & Alerts"
             href :  lessons/lesson2_7.html
-          - text :  "Day 8 : Cost & Loop Failure Deep Dive"
+          - text :  "Day 8 : Diagnosing a Broken Agent"
             href :  lessons/lesson2_8.html
-          - text :  "Day 9 : Comparative Diagnosis"
+          - text :  "Day 9 : Unit Review & Assessment"
             href :  lessons/lesson2_9.html
           - text :  "---"
-          - text :  "Week 4"
-          - text :  "Day 10 : Analyze a Broken Agent"
+          - text :  "Unit 2 Project"
             href :  lessons/lesson2_10.html
-          - text :  "Day 11 : Build the Diagnostic Report"
-            href :  lessons/lesson2_11.html
-          - text :  "Day 12 : Present & Discuss"
-            href :  lessons/lesson2_12.html
 
       - text :  "Unit 3"
         menu : 
           - text :  "Unit 3 Overview"
             href :  lessons/lesson3.html
           - text :  "---"
-          - text :  "Week 1"
+          - text :  "⚠️ Unit 3 is currently in production"
+          - text :  "---"
           - text :  "Day 1 : What Is Context Engineering?"
             href :  lessons/lesson3_1.html
-          - text :  "Day 2 : Simple Context Management"
+          - text :  "Day 2 : Planning Agentic Systems"
             href :  lessons/lesson3_2.html
-          - text :  "Day 3 : Context Offloading"
+          - text :  "Day 3 : Context Management Strategies"
             href :  lessons/lesson3_3.html
-          - text :  "---"
-          - text :  "Week 2"
-          - text :  "Day 4 : Subagent Architecture"
-            href :  lessons/lesson3_4.html
-          - text :  "Day 5 : Checkpointing, HITL & File Systems"
-            href :  lessons/lesson3_5.html
-          - text :  "Day 6 : Context Self-Adaptation & Cost Saving"
-            href :  lessons/lesson3_6.html
-          - text :  "---"
-          - text :  "Week 3"
-          - text :  "Day 7 : Grounding & RAG"
-            href :  lessons/lesson3_7.html
-          - text :  "Day 8 : Long-Horizon Task Planning"
-            href :  lessons/lesson3_8.html
-          - text :  "Day 9 : Putting It All Together"
-            href :  lessons/lesson3_9.html
-          - text :  "---"
-          - text :  "Week 4"
-          - text :  "Day 10 : Final Agent Design"
-            href :  lessons/lesson3_10.html
-          - text :  "Day 11 : Final Build Day"
-            href :  lessons/lesson3_11.html
-          - text :  "Day 12 : Battle of the Bots!"
-            href :  lessons/lesson3_12.html
 
       - text :  "Dictionary"
         href :  dictionary.html

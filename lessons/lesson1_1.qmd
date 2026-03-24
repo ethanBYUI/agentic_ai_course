@@ -1,7 +1,6 @@
 ---
 title: <!-- title of the lesson starting with with "Lesson x.x" -->
 subtitle: <!-- Unit x, Lesson x -->
-format: html
 ---
 
 ::: {.panel-tabset}
@@ -32,7 +31,7 @@ format: html
 APIs & Your First LLM Call
 
 - Define what an API is, broadly and practically
-- Make an API call to an LLM — seamless environment setup
+- Make an API call to an LLM, seamless environment setup
 - Be aware of common challenges when working with APIs
 
 # Preparation
@@ -81,7 +80,7 @@ format: html
 APIs & Your First LLM Call
 
 - Define what an API is, broadly and practically
-- Make an API call to an LLM — seamless environment setup
+- Make an API call to an LLM , seamless environment setup
 - Be aware of common challenges when working with APIs
 
 # Preparation
