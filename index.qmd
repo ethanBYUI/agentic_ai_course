@@ -22,7 +22,7 @@ toc-depth: 1
 ## Unit 1
 ### Build a "Bad" Agent (Weeks 1–4)
 
-  - [Unit 1](lessons/lesson1.html)
+  - [Unit 1](lessons/unit1.html)
 
 **Goal:** Learn the tools to create a powerful but uncontrollable agent.
 
@@ -71,7 +71,7 @@ Build a personal assistant agent that connects to real tools — Canvas, Google 
 ## Unit 2
 ### Diagnostics — Why Is It "Bad"? (Weeks 5–8)
 
-  - [Unit 2](lessons/lesson2.html)
+  - [Unit 2](lessons/unit2.html)
 
 **Goal:** Develop diagnostic tools to peer into the black box of agentic AI, in preparation for building reliable agents.
 
@@ -121,7 +121,7 @@ You are given a pre-built broken agent to diagnose. Your job is to implement tra
 ## Unit 3
 ### Context Engineering — Make a "Good" Agent (Weeks 9–12)
 
-  - [Unit 3](lessons/lesson3.html)
+  - [Unit 3](lessons/unit3.html)
 
 > **⚠️ Unit 3 is currently in production.** Days will be added as they are finalized.
 
