@@ -73,7 +73,7 @@ ul.task-list li input[type="checkbox"] {
 <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="floating nav-fixed fullcontent">
+<body class="floating nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -237,11 +237,19 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#course-objectives" id="toc-course-objectives" class="nav-link active" data-scroll-target="#course-objectives">Course Objectives</a></li>
+  <li><a href="#course-overview" id="toc-course-overview" class="nav-link" data-scroll-target="#course-overview">Course Overview</a></li>
+  </ul>
+</nav>
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -294,10 +302,6 @@ ul.task-list li input[type="checkbox"] {
 <p><strong>Note on AI use:</strong> AI assistance is not permitted this unit. Debugging help comes from class time and the Slack group (ChatClass). This is intentional — it builds class unity, surfaces your own assumptions, and gives you room to fail. Failure is a core part of this unit, not a grading penalty. Set a time limit on any problem; if you’re stuck, post in Slack or bring it to class unfinished. That is OK.</p>
 <p><strong>Daily Schedule:</strong></p>
 <table class="caption-top table">
-<colgroup>
-<col style="width: 41%">
-<col style="width: 58%">
-</colgroup>
 <thead>
 <tr class="header">
 <th>Day</th>
@@ -306,52 +310,40 @@ ul.task-list li input[type="checkbox"] {
 </thead>
 <tbody>
 <tr class="odd">
-<td>1</td>
-<td>Orientation — meet the professor, course objectives, demo of what you’ll build, requirements and expectations, hype Battle of the Bots</td>
+<td><a href="lessons/lesson1_1.html">1</a></td>
+<td>APIs &amp; Your First LLM Call — define an API, make a call, hide your key, configure the model</td>
 </tr>
 <tr class="even">
-<td>2</td>
-<td>APIs &amp; Your First LLM Call — define an API, make a call, handle common challenges</td>
+<td><a href="lessons/lesson1_2.html">2</a></td>
+<td>Tools: Structure &amp; Uses — what a tool is, how the agent decides to call it, the <code>@tool</code> decorator, community tools</td>
 </tr>
 <tr class="odd">
-<td>3</td>
-<td>Tools: Building &amp; Using Them — custom tools, the @ decorator, LangChain Community tools</td>
+<td><a href="lessons/lesson1_3.html">3</a></td>
+<td>Tool Wrappers &amp; Local Data — tool wrapper structure, local data access, combining web search with local files</td>
 </tr>
 <tr class="even">
-<td>4</td>
-<td>Statefulness &amp; Conversation History — manual and built-in conversation history</td>
+<td><a href="lessons/lesson1_4.html">4</a></td>
+<td>Response Formats &amp; Datatypes — define response format, pass photos, PDFs, and other datatypes</td>
 </tr>
 <tr class="odd">
-<td>5</td>
-<td>Data &amp; Local Resources — local data, file system access, running code</td>
+<td><a href="lessons/lesson1_5.html">5</a></td>
+<td>Statefulness &amp; Conversation History — stateless vs stateful agents, LangGraph, manual and built-in memory</td>
 </tr>
 <tr class="even">
-<td>6</td>
-<td>Connecting to the World — web search, browser use, MCP connections</td>
+<td><a href="lessons/lesson1_6.html">6</a></td>
+<td>Connecting to the World via MCP — what MCP is, launch MCP stdio locally, MCP logging</td>
 </tr>
 <tr class="odd">
-<td>7</td>
-<td>Sandboxing &amp; Safety — LangChain/Daytona sandboxing, isolated code execution</td>
+<td><a href="lessons/lesson1_7.html">7</a></td>
+<td>MCP from GitHub — get a real MCP off GitHub (Canvas MCP), evaluate it in depth</td>
 </tr>
 <tr class="even">
-<td>8</td>
-<td>Subagents &amp; Multi-Agent Intro — when to delegate, simple two-agent pipeline</td>
+<td><a href="lessons/lesson1_8.html">8</a></td>
+<td>Subagents &amp; Multi-Agent Intro — multiagent overview, subagents vs skills vs handoffs vs routers</td>
 </tr>
 <tr class="odd">
-<td>9</td>
-<td>Prompting Without AI — writing effective system prompts from scratch, iterating on output</td>
-</tr>
-<tr class="even">
-<td>10</td>
-<td>Project Kickoff — design the personal assistant, plan tools and personality</td>
-</tr>
-<tr class="odd">
-<td>11</td>
-<td>Build Day — assemble tools into a working agent</td>
-</tr>
-<tr class="even">
-<td>12</td>
-<td>Showcase &amp; Stress-Test — demo agents, deliberately break them, document failures</td>
+<td><a href="lessons/lesson1_project.html">Project</a></td>
+<td>Build a Powerful Bot — personal assistant using all unit tools: Canvas, Google Calendar, Slack, file system, web</td>
 </tr>
 </tbody>
 </table>
@@ -373,10 +365,6 @@ ul.task-list li input[type="checkbox"] {
 <p><strong>Note on AI use:</strong> AI assistance may be permitted this unit — details TBD. If used, post in Slack what you discussed and any lessons learned.</p>
 <p><strong>Daily Schedule:</strong></p>
 <table class="caption-top table">
-<colgroup>
-<col style="width: 41%">
-<col style="width: 58%">
-</colgroup>
 <thead>
 <tr class="header">
 <th>Day</th>
@@ -385,52 +373,44 @@ ul.task-list li input[type="checkbox"] {
 </thead>
 <tbody>
 <tr class="odd">
-<td>1</td>
-<td>What Makes an Agent “Bad”? — review Unit 1 failures, define failure categories, introduce the diagnostic mindset</td>
+<td><a href="lessons/lesson2_1.html">1</a></td>
+<td>What Makes an Agent “Bad”? — review Unit 1 failures, intro observability, define runs/traces, navigate LangSmith</td>
 </tr>
 <tr class="even">
-<td>2</td>
-<td>Observability &amp; Tracing — LangSmith setup, API key, navigating the interface</td>
+<td><a href="lessons/lesson2_2.html">2</a></td>
+<td>Defining Main Failures — define failure types, compare good vs bad traces</td>
 </tr>
 <tr class="odd">
-<td>3</td>
-<td>Scavenger Hunt — find specific traces and failure signatures in LangSmith</td>
+<td><a href="lessons/lesson2_3.html">3</a></td>
+<td>LangSmith Setup &amp; Trace Reading — get API key, set up tracing, interpret each step of a trace</td>
 </tr>
 <tr class="even">
-<td>4</td>
-<td>Token &amp; Latency Analysis — understand cost growth, measure slowness and expense</td>
+<td><a href="lessons/lesson2_4.html">4</a></td>
+<td>Token &amp; Latency Analysis — monitor performance, choose evaluation metrics, understand cost growth</td>
 </tr>
 <tr class="odd">
-<td>5</td>
-<td>Debugging Hallucinations &amp; Unexpected Behavior — trace errors back to their source</td>
+<td><a href="lessons/lesson2_5.html">5</a></td>
+<td>Evals &amp; Golden Test Sets — build a test set, write success criteria, judge outputs</td>
 </tr>
 <tr class="even">
-<td>6</td>
-<td>Finding &amp; Fixing Code Bugs — systematic debugging workflow, fix and verify</td>
+<td><a href="lessons/lesson2_6.html">6</a></td>
+<td>Debugging Failure Patterns — repeatable diagnostic process, categorize and prioritize failures</td>
 </tr>
 <tr class="odd">
-<td>7</td>
-<td>Prompt Failure Patterns — identify common prompt failure modes, rewrite and compare</td>
+<td><a href="lessons/lesson2_7.html">7</a></td>
+<td>Automation Rules &amp; Alerts — sampling, filters, and alerts to catch bad runs; connect user feedback to trace evidence</td>
 </tr>
 <tr class="even">
-<td>8</td>
-<td>Cost &amp; Loop Failure Deep Dive — trace loops, implement loop guards and context limits</td>
+<td><a href="lessons/lesson2_8.html">8</a></td>
+<td>Diagnosing a Broken Agent — provide a diagnostic report, apply a fix, retest and compare</td>
 </tr>
 <tr class="odd">
-<td>9</td>
-<td>Comparative Diagnosis — contrast two agents on the same task, synthesize design principles</td>
+<td><a href="lessons/lesson2_9.html">9</a></td>
+<td>Unit Review &amp; Assessment — unit review and decided testing method</td>
 </tr>
 <tr class="even">
-<td>10</td>
-<td>Analyze a Broken Agent — run, trace, and document every failure</td>
-</tr>
-<tr class="odd">
-<td>11</td>
-<td>Build the Diagnostic Report — categorize failures, document root causes, implement a fix</td>
-</tr>
-<tr class="even">
-<td>12</td>
-<td>Present &amp; Discuss — share reports, find class-wide patterns, bridge to context engineering</td>
+<td><a href="lessons/lesson2_project.html">Project</a></td>
+<td>Diagnostic Report — trace, document, and fix a pre-built broken agent; present findings to the class</td>
 </tr>
 </tbody>
 </table>
@@ -442,19 +422,19 @@ ul.task-list li input[type="checkbox"] {
 <section id="context-engineering-make-a-good-agent-weeks-912" class="level3">
 <h3 class="anchored" data-anchor-id="context-engineering-make-a-good-agent-weeks-912">Context Engineering — Make a “Good” Agent (Weeks 9–12)</h3>
 <ul>
-<li><a href="units/unit3.html">Unit 3</a></li>
+<li><a href="lessons/lesson3.html">Unit 3</a></li>
 </ul>
+<blockquote class="blockquote">
+<p><strong>⚠️ Unit 3 is currently in production.</strong> Days will be added as they are finalized.</p>
+</blockquote>
 <p><strong>Goal:</strong> Engineer context effectively to produce agents that are reliable, specialized, and capable of operating over long horizons — then prove it in competition.</p>
 <p><strong>Topics:</strong> - Context engineering vs.&nbsp;prompt engineering - The 4 levels of intent: session, user, organization, world - Simple context management: truncation, summarization, selection, file write, database, isolation/delegation - Context offloading: semantic search, forgetting vector, graph memory - Subagent architecture: parallelization, serialization, concurrency - Checkpointing, human-in-the-loop, and context self-adaptation - Grounding and RAG - Long-horizon task planning - Cost-aware context design</p>
 <p><strong>Project:</strong> Battle of the Bots</p>
 <p>Apply everything from all three units to build a production-ready agent of your own design. Agents compete in structured challenges testing usefulness, resilience, and cost efficiency. The best agent is not necessarily the most powerful — it is the most reliable, the most purposeful, and the most improved from where you started in Unit 1.</p>
 <p><strong>Outcomes:</strong> - Define context engineering and distinguish it from prompt engineering - Implement truncation and summarization-based context management - Apply context offloading using semantic search or graph memory - Implement parallelized and serialized subagent patterns - Add checkpointing and human-in-the-loop interrupts - Build a RAG pipeline and test retrieval quality - Design agents that maintain state across long multi-step tasks - Apply context engineering improvements to the Unit 1 personal assistant - Compete in Battle of the Bots and articulate design decisions made</p>
+<p><strong>Note on AI use:</strong> AI assistance may be permitted this unit — details TBD. If used, post in Slack what you discussed and any lessons learned.</p>
 <p><strong>Daily Schedule:</strong></p>
 <table class="caption-top table">
-<colgroup>
-<col style="width: 41%">
-<col style="width: 58%">
-</colgroup>
 <thead>
 <tr class="header">
 <th>Day</th>
@@ -463,52 +443,20 @@ ul.task-list li input[type="checkbox"] {
 </thead>
 <tbody>
 <tr class="odd">
-<td>1</td>
+<td><a href="lessons/lesson3_1.html">1</a></td>
 <td>What Is Context Engineering? — definition, levels of intent, why prompting alone isn’t enough</td>
 </tr>
 <tr class="even">
-<td>2</td>
-<td>Simple Context Management — truncate, summarize, select, offload; implement truncation and summarization</td>
+<td><a href="lessons/lesson3_2.html">2</a></td>
+<td>Planning Agentic Systems — distinguish prompt, context, and intent engineering; plan systems on a whiteboard</td>
 </tr>
 <tr class="odd">
-<td>3</td>
-<td>Context Offloading — semantic search, forgetting vector, graph approaches</td>
+<td><a href="lessons/lesson3_3.html">3</a></td>
+<td>Context Management Strategies — truncate, summarize, select, file write, database, isolate/delegate; implement all three core types</td>
 </tr>
 <tr class="even">
-<td>4</td>
-<td>Subagent Architecture — parallelization, serialization, Ralph Wiggum Loop, deep research agent</td>
-</tr>
-<tr class="odd">
-<td>5</td>
-<td>Checkpointing, HITL &amp; File Systems — messy file navigation, checkpoints, human-in-the-loop</td>
-</tr>
-<tr class="even">
-<td>6</td>
-<td>Context Self-Adaptation &amp; Cost Saving — adaptive context, cost reduction, full toolkit review</td>
-</tr>
-<tr class="odd">
-<td>7</td>
-<td>Grounding &amp; RAG — connect to a real data source, build a RAG pipeline, tune retrieval</td>
-</tr>
-<tr class="even">
-<td>8</td>
-<td>Long-Horizon Task Planning — to-do list management, multi-step state, complex task execution</td>
-</tr>
-<tr class="odd">
-<td>9</td>
-<td>Putting It All Together — revisit the Unit 1 agent, apply context strategies, document improvements</td>
-</tr>
-<tr class="even">
-<td>10</td>
-<td>Final Agent Design — choose tools, context strategy, memory approach, and subagent structure</td>
-</tr>
-<tr class="odd">
-<td>11</td>
-<td>Final Build Day — full build session, peer testing and stress-testing</td>
-</tr>
-<tr class="even">
-<td>12</td>
-<td>Battle of the Bots! — structured challenges, audience voting, reflect on the full arc</td>
+<td><em>More days coming</em></td>
+<td><em>Check back as Unit 3 is finalized</em></td>
 </tr>
 </tbody>
 </table>

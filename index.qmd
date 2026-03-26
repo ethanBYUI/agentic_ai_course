@@ -22,7 +22,7 @@ toc-depth: 1
 ## Unit 1
 ### Build a "Bad" Agent (Weeks 1–4)
 
-  - [Unit 1](lessons/unit1.html)
+  - [Unit 1](lessons/lesson1.html)
 
 **Goal:** Learn the tools to create a powerful but uncontrollable agent.
 
@@ -56,25 +56,22 @@ Build a personal assistant agent that connects to real tools — Canvas, Google 
 
 | Day | Topic |
 |-----|-------|
-| 1 | Orientation — meet the professor, course objectives, demo of what you'll build, requirements and expectations, hype Battle of the Bots |
-| 2 | APIs & Your First LLM Call — define an API, make a call, handle common challenges |
-| 3 | Tools: Building & Using Them — custom tools, the @ decorator, LangChain Community tools |
-| 4 | Statefulness & Conversation History — manual and built-in conversation history |
-| 5 | Data & Local Resources — local data, file system access, running code |
-| 6 | Connecting to the World — web search, browser use, MCP connections |
-| 7 | Sandboxing & Safety — LangChain/Daytona sandboxing, isolated code execution |
-| 8 | Subagents & Multi-Agent Intro — when to delegate, simple two-agent pipeline |
-| 9 | Prompting Without AI — writing effective system prompts from scratch, iterating on output |
-| 10 | Project Kickoff — design the personal assistant, plan tools and personality |
-| 11 | Build Day — assemble tools into a working agent |
-| 12 | Showcase & Stress-Test — demo agents, deliberately break them, document failures |
+| [1](lessons/lesson1_1.html) | APIs & Your First LLM Call — define an API, make a call, hide your key, configure the model |
+| [2](lessons/lesson1_2.html) | Tools: Structure & Uses — what a tool is, how the agent decides to call it, the `@tool` decorator, community tools |
+| [3](lessons/lesson1_3.html) | Tool Wrappers & Local Data — tool wrapper structure, local data access, combining web search with local files |
+| [4](lessons/lesson1_4.html) | Response Formats & Datatypes — define response format, pass photos, PDFs, and other datatypes |
+| [5](lessons/lesson1_5.html) | Statefulness & Conversation History — stateless vs stateful agents, LangGraph, manual and built-in memory |
+| [6](lessons/lesson1_6.html) | Connecting to the World via MCP — what MCP is, launch MCP stdio locally, MCP logging |
+| [7](lessons/lesson1_7.html) | MCP from GitHub — get a real MCP off GitHub (Canvas MCP), evaluate it in depth |
+| [8](lessons/lesson1_8.html) | Subagents & Multi-Agent Intro — multiagent overview, subagents vs skills vs handoffs vs routers |
+| [Project](lessons/lesson1_project.html) | Build a Powerful Bot — personal assistant using all unit tools: Canvas, Google Calendar, Slack, file system, web |
 
 ---
 
 ## Unit 2
 ### Diagnostics — Why Is It "Bad"? (Weeks 5–8)
 
-  - [Unit 2](lessons/unit2.html)
+  - [Unit 2](lessons/lesson2.html)
 
 **Goal:** Develop diagnostic tools to peer into the black box of agentic AI, in preparation for building reliable agents.
 
@@ -108,25 +105,25 @@ You are given a pre-built broken agent to diagnose. Your job is to implement tra
 
 | Day | Topic |
 |-----|-------|
-| 1 | What Makes an Agent "Bad"? — review Unit 1 failures, define failure categories, introduce the diagnostic mindset |
-| 2 | Observability & Tracing — LangSmith setup, API key, navigating the interface |
-| 3 | Scavenger Hunt — find specific traces and failure signatures in LangSmith |
-| 4 | Token & Latency Analysis — understand cost growth, measure slowness and expense |
-| 5 | Debugging Hallucinations & Unexpected Behavior — trace errors back to their source |
-| 6 | Finding & Fixing Code Bugs — systematic debugging workflow, fix and verify |
-| 7 | Prompt Failure Patterns — identify common prompt failure modes, rewrite and compare |
-| 8 | Cost & Loop Failure Deep Dive — trace loops, implement loop guards and context limits |
-| 9 | Comparative Diagnosis — contrast two agents on the same task, synthesize design principles |
-| 10 | Analyze a Broken Agent — run, trace, and document every failure |
-| 11 | Build the Diagnostic Report — categorize failures, document root causes, implement a fix |
-| 12 | Present & Discuss — share reports, find class-wide patterns, bridge to context engineering |
+| [1](lessons/lesson2_1.html) | What Makes an Agent "Bad"? — review Unit 1 failures, intro observability, define runs/traces, navigate LangSmith |
+| [2](lessons/lesson2_2.html) | Defining Main Failures — define failure types, compare good vs bad traces |
+| [3](lessons/lesson2_3.html) | LangSmith Setup & Trace Reading — get API key, set up tracing, interpret each step of a trace |
+| [4](lessons/lesson2_4.html) | Token & Latency Analysis — monitor performance, choose evaluation metrics, understand cost growth |
+| [5](lessons/lesson2_5.html) | Evals & Golden Test Sets — build a test set, write success criteria, judge outputs |
+| [6](lessons/lesson2_6.html) | Debugging Failure Patterns — repeatable diagnostic process, categorize and prioritize failures |
+| [7](lessons/lesson2_7.html) | Automation Rules & Alerts — sampling, filters, and alerts to catch bad runs; connect user feedback to trace evidence |
+| [8](lessons/lesson2_8.html) | Diagnosing a Broken Agent — provide a diagnostic report, apply a fix, retest and compare |
+| [9](lessons/lesson2_9.html) | Unit Review & Assessment — unit review and decided testing method |
+| [Project](lessons/lesson2_project.html) | Diagnostic Report — trace, document, and fix a pre-built broken agent; present findings to the class |
 
 ---
 
 ## Unit 3
 ### Context Engineering — Make a "Good" Agent (Weeks 9–12)
 
-  - [Unit 3](units/unit3.html)
+  - [Unit 3](lessons/lesson3.html)
+
+> **⚠️ Unit 3 is currently in production.** Days will be added as they are finalized.
 
 **Goal:** Engineer context effectively to produce agents that are reliable, specialized, and capable of operating over long horizons — then prove it in competition.
 
@@ -156,19 +153,13 @@ Apply everything from all three units to build a production-ready agent of your 
 - Apply context engineering improvements to the Unit 1 personal assistant
 - Compete in Battle of the Bots and articulate design decisions made
 
+**Note on AI use:** AI assistance may be permitted this unit — details TBD. If used, post in Slack what you discussed and any lessons learned.
+
 **Daily Schedule:**
 
 | Day | Topic |
 |-----|-------|
-| 1 | What Is Context Engineering? — definition, levels of intent, why prompting alone isn't enough |
-| 2 | Simple Context Management — truncate, summarize, select, offload; implement truncation and summarization |
-| 3 | Context Offloading — semantic search, forgetting vector, graph approaches |
-| 4 | Subagent Architecture — parallelization, serialization, Ralph Wiggum Loop, deep research agent |
-| 5 | Checkpointing, HITL & File Systems — messy file navigation, checkpoints, human-in-the-loop |
-| 6 | Context Self-Adaptation & Cost Saving — adaptive context, cost reduction, full toolkit review |
-| 7 | Grounding & RAG — connect to a real data source, build a RAG pipeline, tune retrieval |
-| 8 | Long-Horizon Task Planning — to-do list management, multi-step state, complex task execution |
-| 9 | Putting It All Together — revisit the Unit 1 agent, apply context strategies, document improvements |
-| 10 | Final Agent Design — choose tools, context strategy, memory approach, and subagent structure |
-| 11 | Final Build Day — full build session, peer testing and stress-testing |
-| 12 | Battle of the Bots! — structured challenges, audience voting, reflect on the full arc |
+| [1](lessons/lesson3_1.html) | What Is Context Engineering? — definition, levels of intent, why prompting alone isn't enough |
+| [2](lessons/lesson3_2.html) | Planning Agentic Systems — distinguish prompt, context, and intent engineering; plan systems on a whiteboard |
+| [3](lessons/lesson3_3.html) | Context Management Strategies — truncate, summarize, select, file write, database, isolate/delegate; implement all three core types |
+| *More days coming* | *Check back as Unit 3 is finalized* |
