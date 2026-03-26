@@ -1,6 +1,6 @@
 ---
 title: "Welcome to the Agentic AI Course!"
-toc: false
+toc-depth: 1
 ---
 
 <!-- Useful information to access every day -->
