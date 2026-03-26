@@ -17,7 +17,7 @@ website :
       - text :  "Unit 1"
         menu : 
           - text :  "Unit 1 Overview"
-            href :  lessons/lesson1.html
+            href :  lessons/unit1.html
           - text :  "---"
           - text :  "Day 1 : APIs & Your First LLM Call"
             href :  lessons/lesson1_1.html
@@ -42,7 +42,7 @@ website :
       - text :  "Unit 2"
         menu : 
           - text :  "Unit 2 Overview"
-            href :  lessons/lesson2.html
+            href :  lessons/unit2.html
           - text :  "---"
           - text :  "Day 1 : What Makes an Agent Bad?"
             href :  lessons/lesson2_1.html
@@ -69,7 +69,7 @@ website :
       - text :  "Unit 3"
         menu : 
           - text :  "Unit 3 Overview"
-            href :  lessons/lesson3.html
+            href :  lessons/unit3.html
           - text :  "---"
           - text :  "⚠️ Unit 3 is currently in production"
           - text :  "---"
