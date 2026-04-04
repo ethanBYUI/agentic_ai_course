@@ -172,3 +172,15 @@ If other links break, open a GitHub issue so the repo owner can go through and f
 ## Questions or Issues
 
 Post in the **ChatClass** Slack channel or open a GitHub issue in this repo.
+
+---
+
+## Credits
+
+This course was created by:
+[James Beeson](https://www.linkedin.com/in/james-m-beeson/)
+[Ethan Saline](https://www.linkedin.com/in/ethan-saline/)
+[Wil Jones](https://www.linkedin.com/in/wilkin-jones/)
+[Ian Blad](https://www.linkedin.com/in/ianblad/)
+[Camilla Ramirez](https://www.linkedin.com/in/camila-ramirez-suarez/)
+[Kimberly Juarez](https://www.linkedin.com/in/kimberly-juarez-palomino/)

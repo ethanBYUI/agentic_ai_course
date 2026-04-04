@@ -163,3 +163,15 @@ Apply everything from all three units to build a production-ready agent of your 
 | [2](lessons/lesson3_2.html) | Planning Agentic Systems — distinguish prompt, context, and intent engineering; plan systems on a whiteboard |
 | [3](lessons/lesson3_3.html) | Context Management Strategies — truncate, summarize, select, file write, database, isolate/delegate; implement all three core types |
 | *More days coming* | *Check back as Unit 3 is finalized* |
+
+---
+
+# Credits
+
+This course was created by:
+[James Beeson](https://www.linkedin.com/in/james-m-beeson/)
+[Ethan Saline](https://www.linkedin.com/in/ethan-saline/)
+[Wil Jones](https://www.linkedin.com/in/wilkin-jones/)
+[Ian Blad](https://www.linkedin.com/in/ianblad/)
+[Camilla Ramirez](https://www.linkedin.com/in/camila-ramirez-suarez/)
+[Kimberly Juarez](https://www.linkedin.com/in/kimberly-juarez-palomino/)
