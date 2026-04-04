@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>What is an API?</title>
+<title>What is a Tool?</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -275,12 +275,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul class="collapse">
-  <li><a href="#what-is-an-api" id="toc-what-is-an-api" class="nav-link active" data-scroll-target="#what-is-an-api">What is an API?</a></li>
-  <li><a href="#a-simple-analogy" id="toc-a-simple-analogy" class="nav-link" data-scroll-target="#a-simple-analogy">A Simple Analogy</a></li>
-  <li><a href="#why-do-apis-exist" id="toc-why-do-apis-exist" class="nav-link" data-scroll-target="#why-do-apis-exist">Why Do APIs Exist?</a></li>
-  <li><a href="#an-api-key-is-your-password" id="toc-an-api-key-is-your-password" class="nav-link" data-scroll-target="#an-api-key-is-your-password">An API Key is Your Password</a></li>
-  <li><a href="#apis-and-ai" id="toc-apis-and-ai" class="nav-link" data-scroll-target="#apis-and-ai">APIs and AI</a></li>
-  <li><a href="#what-to-think-about-before-class" id="toc-what-to-think-about-before-class" class="nav-link" data-scroll-target="#what-to-think-about-before-class">What to Think About Before Class</a></li>
+  <li><a href="#what-is-a-tool" id="toc-what-is-a-tool" class="nav-link active" data-scroll-target="#what-is-a-tool">What is a Tool?</a></li>
+  <li><a href="#the-limitation-of-a-plain-llm" id="toc-the-limitation-of-a-plain-llm" class="nav-link" data-scroll-target="#the-limitation-of-a-plain-llm">The Limitation of a Plain LLM</a></li>
+  <li><a href="#what-a-tool-actually-is" id="toc-what-a-tool-actually-is" class="nav-link" data-scroll-target="#what-a-tool-actually-is">What a Tool Actually Is</a></li>
+  <li><a href="#how-the-agent-decides-to-use-a-tool" id="toc-how-the-agent-decides-to-use-a-tool" class="nav-link" data-scroll-target="#how-the-agent-decides-to-use-a-tool">How the Agent Decides to Use a Tool</a></li>
+  <li><a href="#before-class" id="toc-before-class" class="nav-link" data-scroll-target="#before-class">Before Class</a></li>
   </ul>
 </nav>
 </nav>
@@ -293,8 +292,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">What is an API?</h1>
-<p class="subtitle lead">Primer 1.1 — Read before Lesson 1</p>
+<h1 class="title">What is a Tool?</h1>
+<p class="subtitle lead">Primer 1.2 — Read before Lesson 2</p>
 </div>
 
 
@@ -311,66 +310,81 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="what-is-an-api" class="level1">
-<h1>What is an API?</h1>
-<p>You have used APIs your entire life without knowing it.</p>
-<p>When you open a weather app and it shows you today’s forecast, the app did not generate that data itself. It sent a request to a weather company’s server, which sent back the data. That invisible conversation between two programs is an <strong>API</strong> — an <strong>Application Programming Interface</strong>.</p>
-<p>An API is simply an agreed-upon way for two pieces of software to talk to each other.</p>
+<section id="what-is-a-tool" class="level1">
+<h1>What is a Tool?</h1>
+<p>Last lesson you made your first LLM call. The model answered questions from memory — it thought, and it responded. That’s it.</p>
+<p>But what if you wanted the AI to actually <strong>do</strong> something? Look up today’s weather. Read a file. Run a calculation. Search the web.</p>
+<p>For that, you need <strong>tools</strong>.</p>
 <hr>
 </section>
-<section id="a-simple-analogy" class="level1">
-<h1>A Simple Analogy</h1>
-<p>Think of a restaurant.</p>
-<ul>
-<li>You are the <strong>customer</strong> (your program)</li>
-<li>The kitchen is the <strong>server</strong> (the service you want to use)</li>
-<li>The waiter is the <strong>API</strong></li>
-</ul>
-<p>You do not walk into the kitchen and cook your own food. You tell the waiter what you want using the menu’s format — <em>“I’ll have the pasta, please.”</em> The waiter takes that to the kitchen, and brings back a response — <em>the pasta.</em></p>
-<p>The menu is the API. It defines exactly what you are allowed to ask for and what format to ask in.</p>
+<section id="the-limitation-of-a-plain-llm" class="level1">
+<h1>The Limitation of a Plain LLM</h1>
+<p>A plain LLM is frozen in time. It was trained on data up to a certain date, and it has no ability to reach outside that training to interact with the real world.</p>
+<p>Ask it what the weather is today and it will guess or make something up. Ask it to read your CSV file and it will stare blankly. It simply cannot do those things on its own.</p>
+<p><strong>Tools are how we fix that.</strong></p>
 <hr>
 </section>
-<section id="why-do-apis-exist" class="level1">
-<h1>Why Do APIs Exist?</h1>
-<p>Imagine if every app had to build its own maps, its own payment system, its own weather data from scratch. That would be insane.</p>
-<p>Instead, companies like Google, Stripe, and OpenAI build powerful services and expose them through APIs so that any developer in the world can use them in their own app — without knowing anything about how the service works internally.</p>
-<p>You just follow the menu.</p>
-<hr>
-</section>
-<section id="an-api-key-is-your-password" class="level1">
-<h1>An API Key is Your Password</h1>
-<p>Most APIs require an <strong>API key</strong> — a long string of letters and numbers that proves you have an account.</p>
-<pre><code>AIzaSyB3xKttE9J6Pn93T3Dmo... (yours will look something like this)</code></pre>
+<section id="what-a-tool-actually-is" class="level1">
+<h1>What a Tool Actually Is</h1>
+<p>In LangChain, a tool is just a <strong>Python function with a description</strong>.</p>
+<p>That’s it. The function does the work. The description tells the AI what the function does and when to use it.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="at">@tool</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_weather(city: <span class="bu">str</span>) <span class="op">-&gt;</span> <span class="bu">str</span>:</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Returns the current weather for a given city."""</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ... code that fetches real weather data</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="ss">f"It is 72°F and sunny in </span><span class="sc">{</span>city<span class="sc">}</span><span class="ss">."</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Two things matter here:</p>
+<ol type="1">
+<li><strong>The function</strong> — does the actual work</li>
+<li><strong>The docstring</strong> — the text in triple quotes that the AI reads to decide whether to call this tool</li>
+</ol>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Treat your API key like a password
+The docstring is not for you — it’s for the AI
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>If someone gets your API key, they can use the service <strong>on your account</strong> and on <strong>your bill</strong>. Never paste it directly in your code. Never upload it to GitHub. We will cover exactly how to store it safely in class.</p>
+<p>The AI never sees your code. It only reads the description. Write it clearly, or the agent will not know when to use the tool.</p>
 </div>
 </div>
 <hr>
 </section>
-<section id="apis-and-ai" class="level1">
-<h1>APIs and AI</h1>
-<p>LLMs like Gemini and GPT are not apps you download. They live on powerful servers owned by Google and OpenAI. To use them in your own program, you send your prompt to their server through an API, and they send back the response.</p>
-<p>That is the whole trick. When we write:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>model.invoke(<span class="st">"Tell me about the ocean."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Under the hood, Python is: 1. Packaging your message 2. Sending it to Google’s servers with your API key 3. Waiting for the response 4. Handing it back to you</p>
+<section id="how-the-agent-decides-to-use-a-tool" class="level1">
+<h1>How the Agent Decides to Use a Tool</h1>
+<p>When you ask the agent a question, it does not immediately answer. It first reads the list of available tools and their descriptions. Then it thinks:</p>
+<blockquote class="blockquote">
+<p><em>“Does any of my tools help me answer this question?”</em></p>
+</blockquote>
+<p>If yes, it calls the tool, reads the result, and uses that to form its answer.</p>
+<p>If no tool is relevant, it answers from memory like a regular LLM.</p>
+<pre><code>User:   "What is 247 times 83?"
+
+Agent thinks: "I have a calculator tool. This is a math question. I should use it."
+Agent calls:  calculator(247, 83)
+Tool returns: 20501
+Agent says:   "247 times 83 is 20,501."</code></pre>
+<p>Without the tool, the agent might get the math wrong. With it, the answer is guaranteed accurate.</p>
 <hr>
 </section>
-<section id="what-to-think-about-before-class" class="level1">
-<h1>What to Think About Before Class</h1>
-<p>Come to class ready to answer these in your head:</p>
+<section id="before-class" class="level1">
+<h1>Before Class</h1>
+<p>Read the LangChain tools documentation:</p>
+<p>👉 <a href="https://docs.langchain.com/oss/python/langchain/tools">LangChain Tools Docs</a></p>
+<p>You do not need to understand everything. Focus on:</p>
 <ul>
-<li>In your own words, what is an API?</li>
-<li>Why would a company expose their service through an API instead of just building an app?</li>
-<li>What do you think would happen if your API key got posted publicly on GitHub?</li>
+<li>What does a tool look like in code?</li>
+<li>What is the <code>@tool</code> decorator?</li>
+<li>What goes in the docstring?</li>
+</ul>
+<p>Come to class ready to answer:</p>
+<ul>
+<li>In your own words, what is the difference between an LLM with no tools and an LLM with tools?</li>
+<li>Why does the docstring matter so much?</li>
+<li>What is one thing you would want your agent to be able to do that it couldn’t do without a tool?</li>
 </ul>
 <hr>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -379,11 +393,11 @@ Treat your API key like a password
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-You do not need to memorize anything
+Don’t stress the docs
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>This primer is just to get the concept in your head before we build with it. Everything will make more sense once you see it live in class.</p>
+<p>Documentation can be dense. Read for the big picture, not memorization. Class will fill in the gaps.</p>
 </div>
 </div>
 

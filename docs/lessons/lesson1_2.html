@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>lesson1_2</title>
+<title>Tools: Giving Your Agent Hands</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -237,20 +271,634 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#outcomes" id="toc-outcomes" class="nav-link active" data-scroll-target="#outcomes">Outcomes</a></li>
+  <li><a href="#preparation" id="toc-preparation" class="nav-link" data-scroll-target="#preparation">Preparation</a></li>
+  <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion">Discussion</a></li>
+  <li><a href="#class" id="toc-class" class="nav-link" data-scroll-target="#class">Class</a>
+  <ul class="collapse">
+  <li><a href="#lesson-overview" id="toc-lesson-overview" class="nav-link" data-scroll-target="#lesson-overview">Lesson Overview</a></li>
+  <li><a href="#part-1-what-is-a-tool" id="toc-part-1-what-is-a-tool" class="nav-link" data-scroll-target="#part-1-what-is-a-tool">Part 1 — What is a Tool?</a></li>
+  <li><a href="#activity-1-reverse-engineer-a-tool" id="toc-activity-1-reverse-engineer-a-tool" class="nav-link" data-scroll-target="#activity-1-reverse-engineer-a-tool">Activity 1 — Reverse Engineer a Tool</a></li>
+  <li><a href="#part-2-how-the-agent-decides-which-tool-to-call" id="toc-part-2-how-the-agent-decides-which-tool-to-call" class="nav-link" data-scroll-target="#part-2-how-the-agent-decides-which-tool-to-call">Part 2 — How the Agent Decides Which Tool to Call</a></li>
+  <li><a href="#activity-2-build-your-first-tool-from-scratch" id="toc-activity-2-build-your-first-tool-from-scratch" class="nav-link" data-scroll-target="#activity-2-build-your-first-tool-from-scratch">Activity 2 — Build Your First Tool From Scratch</a></li>
+  <li><a href="#activity-3-turn-existing-code-into-a-tool" id="toc-activity-3-turn-existing-code-into-a-tool" class="nav-link" data-scroll-target="#activity-3-turn-existing-code-into-a-tool">Activity 3 — Turn Existing Code into a Tool</a></li>
+  <li><a href="#part-3-community-tools" id="toc-part-3-community-tools" class="nav-link" data-scroll-target="#part-3-community-tools">Part 3 — Community Tools</a></li>
+  </ul></li>
+  <li><a href="#before-next-class" id="toc-before-next-class" class="nav-link" data-scroll-target="#before-next-class">Before Next Class</a></li>
+  </ul>
+</nav>
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Tools: Giving Your Agent Hands</h1>
+<p class="subtitle lead">Unit 1, Lesson 2</p>
+</div>
 
 
 
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
 
 
+</header>
 
+
+<!-- This is an unreviewed AI draft -->
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Quick Links</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Before Class</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">After Class</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Practice</th>
+<th>Primer</th>
+<th>Slides</th>
+<th>Examples</th>
+<th>Lecture Notes</th>
+<th>Next Lesson</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="../practice/practice1_2.qmd">🏃‍♂️‍➡️</a></td>
+<td><a href="../primers/primer1_2.html">🌱</a></td>
+<td><a href="../lecture_slides/slide1_2.qmd">🧑‍🏫</a></td>
+<td><a href="https://colab.research.google.com/github/ethanbyui/agentic_ai_course/blob/main/examples/example1_2.ipynb" title="Opens in Google Colab - See README if broken">📓</a></td>
+<td><a href="../instructor_notes/notes1_2.html">📋</a></td>
+<td><a href="../lessons/lesson1_3.html">➡️</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Practice</th>
+<th>Primer</th>
+<th>Previous Lesson</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+<td><a href="../primers/primer1_2.html">🌱</a></td>
+<td><a href="../lessons/lesson1_1.html">⬅️</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Practice</th>
+<th>Primer</th>
+<th>Next Lesson</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="../practice/practice1_2.qmd">🏃‍♂️‍➡️</a></td>
+<td><a href="../primers/primer1_3.html">🌱</a></td>
+<td><a href="../lessons/lesson1_3.html">➡️</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<hr>
+<section id="outcomes" class="level1">
+<h1>Outcomes</h1>
+<p>Tools</p>
+<ul>
+<li>By the end of this lesson, you will be able to explain what a tool is and describe its two essential parts.</li>
+<li>By the end of this lesson, you will be able to read an existing tool and explain what it does and when the agent would call it.</li>
+<li>By the end of this lesson, you will be able to explain how an agent decides which tool to call based on the tool’s description.</li>
+<li>By the end of this lesson, you will be able to create a custom tool from scratch using the <code>@tool</code> decorator.</li>
+<li>By the end of this lesson, you will be able to convert existing Python code into a tool an agent can use.</li>
+<li>By the end of this lesson, you will be aware of community tools available in LangChain and know where to find them.</li>
+</ul>
+<hr>
+</section>
+<section id="preparation" class="level1">
+<h1>Preparation</h1>
+<p>Before this lesson, you should have:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Resource</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="../primers/primer1_2.html">🌱 Primer 1.2</a></td>
+<td>What is a Tool? Read before class.</td>
+</tr>
+<tr class="even">
+<td><a href="https://docs.langchain.com/oss/python/langchain/tools">📖 LangChain Tools Docs</a></td>
+<td>Skim the official docs — focus on <code>@tool</code></td>
+</tr>
+</tbody>
+</table>
+<p>Make sure your Google Colab is working from last lesson. You will need it today.</p>
+<hr>
+</section>
+<section id="discussion" class="level1">
+<h1>Discussion</h1>
+<ol type="1">
+<li>Report on work accomplished</li>
+<li>Key takeaways from the primer and docs</li>
+<li>Questions unaddressed</li>
+<li>Optional discussion questions
+<ul>
+<li>What did you find confusing in the LangChain docs? What made sense?</li>
+<li>What is one thing you would want your agent to be able to do with a tool?</li>
+<li>Why do you think the docstring matters more than the function name?</li>
+<li>What could go wrong if you wrote a vague tool description?</li>
+</ul></li>
+<li>Log partner’s contribution</li>
+</ol>
+<hr>
+</section>
+<section id="class" class="level1">
+<h1>Class</h1>
+<section id="lesson-overview" class="level2">
+<h2 class="anchored" data-anchor-id="lesson-overview">Lesson Overview</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Segment</th>
+<th>Duration</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Lecture: What is a Tool?</td>
+<td>10 minutes</td>
+</tr>
+<tr class="even">
+<td>Activity 1: Reverse Engineer a Tool</td>
+<td>15 minutes</td>
+</tr>
+<tr class="odd">
+<td>Lecture: How the Agent Decides</td>
+<td>10 minutes</td>
+</tr>
+<tr class="even">
+<td>Activity 2: Build Your First Tool</td>
+<td>15 minutes</td>
+</tr>
+<tr class="odd">
+<td>Activity 3: Turn Existing Code into a Tool</td>
+<td>10 minutes</td>
+</tr>
+<tr class="even">
+<td>Wrap-up: Community Tools</td>
+<td>5 minutes</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="part-1-what-is-a-tool" class="level2">
+<h2 class="anchored" data-anchor-id="part-1-what-is-a-tool">Part 1 — What is a Tool?</h2>
+<p>A plain LLM is powerful but limited. It can only use what it already knows from training. It cannot:</p>
+<ul>
+<li>Look up today’s information</li>
+<li>Read your files</li>
+<li>Run calculations reliably</li>
+<li>Take any action in the real world</li>
+</ul>
+<p><strong>Tools give the agent hands.</strong> A tool is simply a Python function that the agent can call when it needs to do something it cannot do on its own.</p>
+<p>Every tool has exactly two parts:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 19%">
+<col style="width: 35%">
+<col style="width: 45%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Part</th>
+<th>What it is</th>
+<th>Who reads it</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>The function</td>
+<td>The code that does the work</td>
+<td>Python</td>
+</tr>
+<tr class="even">
+<td>The docstring</td>
+<td>A plain-English description of what the tool does</td>
+<td>The AI</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+The docstring is the agent’s instruction manual
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The agent never sees your code. It only reads the docstring to decide whether to use the tool. If the description is vague or wrong, the agent will misuse the tool — or never use it at all.</p>
+</div>
+</div>
+<hr>
+<section id="the-tool-decorator" class="level3">
+<h3 class="anchored" data-anchor-id="the-tool-decorator">The <code>@tool</code> Decorator</h3>
+<p>LangChain gives us a simple way to turn any Python function into a tool: the <code>@tool</code> decorator.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langchain_core.tools <span class="im">import</span> tool</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="at">@tool</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> my_tool(<span class="bu">input</span>: <span class="bu">str</span>) <span class="op">-&gt;</span> <span class="bu">str</span>:</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""A clear description of what this tool does and when to use it."""</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># your code here</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> result</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Put <code>@tool</code> directly above any function and LangChain will:</p>
+<ol type="1">
+<li>Register it as a tool the agent can call</li>
+<li>Use the docstring as the tool’s description</li>
+<li>Handle the input/output formatting automatically</li>
+</ol>
+<p>That’s the whole pattern. Everything else is just filling in the function.</p>
+<hr>
+</section>
+</section>
+<section id="activity-1-reverse-engineer-a-tool" class="level2">
+<h2 class="anchored" data-anchor-id="activity-1-reverse-engineer-a-tool">Activity 1 — Reverse Engineer a Tool</h2>
+<p>Before building your own tool, let’s read one carefully and understand every part.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Goal
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Read the tool below and answer the questions. Do not run it yet — just read.</p>
+</div>
+</div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langchain_core.tools <span class="im">import</span> tool</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="at">@tool</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calculator(expression: <span class="bu">str</span>) <span class="op">-&gt;</span> <span class="bu">str</span>:</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co">    Evaluates a mathematical expression and returns the result as a string.</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">    Use this tool whenever the user asks you to perform any calculation,</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co">    including addition, subtraction, multiplication, division, or exponents.</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co">    Do not try to calculate in your head — always use this tool for math.</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co">    Args:</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co">        expression: A mathematical expression as a string, e.g. '247 * 83' or '(10 + 5) / 3'</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>        result <span class="op">=</span> <span class="bu">eval</span>(expression)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="bu">str</span>(result)</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="ss">f"Error: could not evaluate '</span><span class="sc">{</span>expression<span class="sc">}</span><span class="ss">'. Reason: </span><span class="sc">{</span>e<span class="sc">}</span><span class="ss">"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Answer these questions with your partner before moving on:</strong></p>
+<ol type="1">
+<li>What does this tool do?</li>
+<li>When would the agent decide to call it?</li>
+<li>What does the agent pass in as input?</li>
+<li>What does the agent get back?</li>
+<li>What happens if the expression is invalid?</li>
+<li>Find the part of the code that actually does the math. What Python built-in is it using?</li>
+<li>Why does the docstring say <em>“Do not try to calculate in your head”</em>? Why would you need to tell an AI that?</li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Answers
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>It evaluates a math expression and returns the result</li>
+<li>When the user asks any math question</li>
+<li>A string like <code>"247 * 83"</code></li>
+<li>The result as a string, e.g.&nbsp;<code>"20501"</code></li>
+<li>It returns a readable error message instead of crashing</li>
+<li>Python’s built-in <code>eval()</code> function — it runs a string as code</li>
+<li>Because LLMs are notoriously bad at arithmetic — they guess instead of calculate. The instruction forces the agent to always use the tool.</li>
+</ol>
+</div>
+</div>
+</div>
+<hr>
+<section id="now-run-it" class="level3">
+<h3 class="anchored" data-anchor-id="now-run-it">Now run it</h3>
+<p>Copy this into a Colab cell and run it. Notice we are calling the tool directly, not through an agent yet.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langchain_core.tools <span class="im">import</span> tool</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="at">@tool</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calculator(expression: <span class="bu">str</span>) <span class="op">-&gt;</span> <span class="bu">str</span>:</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">    Evaluates a mathematical expression and returns the result as a string.</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co">    Use this tool whenever the user asks you to perform any calculation,</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">    including addition, subtraction, multiplication, division, or exponents.</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co">    Do not try to calculate in your head — always use this tool for math.</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co">    Args:</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co">        expression: A mathematical expression as a string, e.g. '247 * 83'</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>        result <span class="op">=</span> <span class="bu">eval</span>(expression)</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="bu">str</span>(result)</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="ss">f"Error: could not evaluate '</span><span class="sc">{</span>expression<span class="sc">}</span><span class="ss">'. Reason: </span><span class="sc">{</span>e<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Call the tool directly — no agent needed</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(calculator.invoke({<span class="st">"expression"</span>: <span class="st">"247 * 83"</span>}))</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(calculator.invoke({<span class="st">"expression"</span>: <span class="st">"(100 + 50) / 3"</span>}))</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(calculator.invoke({<span class="st">"expression"</span>: <span class="st">"this is not math"</span>}))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>What do you notice about <code>.invoke()</code>?</strong> It takes a dictionary, not just a plain value. That’s LangChain’s standard way of calling tools — always a dictionary with the argument name as the key.</p>
+<hr>
+</section>
+</section>
+<section id="part-2-how-the-agent-decides-which-tool-to-call" class="level2">
+<h2 class="anchored" data-anchor-id="part-2-how-the-agent-decides-which-tool-to-call">Part 2 — How the Agent Decides Which Tool to Call</h2>
+<p>When you give an agent a list of tools, it does not call them randomly. It reads every tool’s description and makes a decision.</p>
+<p>Here is what happens inside the agent when you ask it something:</p>
+<pre><code>1. User asks: "What is 99 times 47?"
+
+2. Agent reads its tool list:
+   - calculator: "Evaluates a mathematical expression..."
+   - get_weather: "Returns current weather for a city..."
+
+3. Agent thinks: "This is a math question. The calculator tool 
+   says to use it for calculations. I should use that."
+
+4. Agent calls: calculator("99 * 47")
+
+5. Tool returns: "4653"
+
+6. Agent responds: "99 times 47 is 4,653."</code></pre>
+<p>This decision-making process is driven entirely by the docstrings. The agent is essentially doing a matching game between your question and the tool descriptions.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+What happens with a bad description?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="at">@tool</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calculator(expression: <span class="bu">str</span>) <span class="op">-&gt;</span> <span class="bu">str</span>:</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Does stuff with numbers."""</span>  <span class="co"># ← too vague!</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    ...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The agent sees “does stuff with numbers” and thinks — <em>maybe? I’m not sure.</em> It might call it, might not. Clear descriptions = reliable agents.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="activity-2-build-your-first-tool-from-scratch" class="level2">
+<h2 class="anchored" data-anchor-id="activity-2-build-your-first-tool-from-scratch">Activity 2 — Build Your First Tool From Scratch</h2>
+<p>Now it’s your turn. You are going to build a tool completely from scratch.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Setup first
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Make sure you have run these in Colab:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>pip install <span class="op">-</span>q <span class="op">-</span>U langchain langchain<span class="op">-</span>google<span class="op">-</span>genai langgraph langchain<span class="op">-</span>core</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> google.colab <span class="im">import</span> userdata</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>os.environ[<span class="st">'GOOGLE_API_KEY'</span>] <span class="op">=</span> userdata.get(<span class="st">'GOOGLE_API_KEY'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<hr>
+<section id="step-1-build-the-simplest-possible-tool" class="level3">
+<h3 class="anchored" data-anchor-id="step-1-build-the-simplest-possible-tool">Step 1 — Build the simplest possible tool</h3>
+<p>Start here. Build a tool that returns your name.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langchain_core.tools <span class="im">import</span> tool</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="at">@tool</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_my_name() <span class="op">-&gt;</span> <span class="bu">str</span>:</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Returns the name of the assistant's owner. </span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co">    Use this when the user asks who owns this assistant or what your name is."""</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"My name is Camila."</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Call it directly to confirm it works:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(get_my_name.invoke({}))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+</section>
+<section id="step-2-give-it-to-an-agent" class="level3">
+<h3 class="anchored" data-anchor-id="step-2-give-it-to-an-agent">Step 2 — Give it to an agent</h3>
+<p>Now wire it into an agent and ask it a question that triggers the tool.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langchain.chat_models <span class="im">import</span> init_chat_model</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langchain.agents <span class="im">import</span> create_react_agent</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> init_chat_model(</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    model<span class="op">=</span><span class="st">"google_genai:gemini-2.5-flash"</span>,</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    temperature<span class="op">=</span><span class="dv">0</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>system_prompt <span class="op">=</span> <span class="st">"You are a helpful assistant. Use your tools when relevant."</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>agent <span class="op">=</span> create_react_agent(</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    model<span class="op">=</span>model,</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    tools<span class="op">=</span>[get_my_name],</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    prompt<span class="op">=</span>system_prompt</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> agent.invoke({<span class="st">"messages"</span>: [{<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: <span class="st">"What is your owner's name?"</span>}]})</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(response[<span class="st">"messages"</span>][<span class="op">-</span><span class="dv">1</span>].content)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Watch the agent think
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Try setting <code>verbose=True</code> in the agent if you want to see step by step what it does — which tool it calls, what it gets back, and how it forms the final answer.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="step-3-make-it-your-own" class="level3">
+<h3 class="anchored" data-anchor-id="step-3-make-it-your-own">Step 3 — Make it your own</h3>
+<p>Now build <strong>your own</strong> tool. It can return anything — your favorite food, your grandma’s name, your hometown, anything. The goal is to practice the pattern.</p>
+<p>Requirements: - Use the <code>@tool</code> decorator - Write a clear docstring that tells the agent exactly when to use it - Test it directly with <code>.invoke()</code> first - Then wire it into the agent and ask a question that triggers it</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langchain_core.tools <span class="im">import</span> tool</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="at">@tool</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> your_tool_name() <span class="op">-&gt;</span> <span class="bu">str</span>:</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Write your description here."""</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"Your value here"</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Test it</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(your_tool_name.invoke({}))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+🛑 STOP HERE
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Make sure your custom tool works before moving on. Show your neighbor. Can they guess what your tool does just by reading the docstring?</p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="activity-3-turn-existing-code-into-a-tool" class="level2">
+<h2 class="anchored" data-anchor-id="activity-3-turn-existing-code-into-a-tool">Activity 3 — Turn Existing Code into a Tool</h2>
+<p>In the real world, you will often have existing Python code that you want to make available to an agent. The pattern is simple: wrap it in a function and add <code>@tool</code>.</p>
+<p>Here is some existing code that checks whether a number is even or odd:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Existing code — not a tool yet</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> check_even_odd(number):</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> number <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="ss">f"</span><span class="sc">{</span>number<span class="sc">}</span><span class="ss"> is even."</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="ss">f"</span><span class="sc">{</span>number<span class="sc">}</span><span class="ss"> is odd."</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Test it like regular Python</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(check_even_odd(<span class="dv">7</span>))</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(check_even_odd(<span class="dv">42</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Your job:</strong> Turn this into a tool the agent can use.</p>
+<p>You need to: 1. Add <code>@tool</code> above the function 2. Add type hints to the parameters and return value 3. Write a docstring that tells the agent when to use it 4. Test it with <code>.invoke()</code> 5. Add it to an agent and ask a question that triggers it</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langchain_core.tools <span class="im">import</span> tool</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="at">@tool</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> check_even_odd(number: <span class="bu">int</span>) <span class="op">-&gt;</span> <span class="bu">str</span>:</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="co">    Checks whether a given number is even or odd and returns the result.</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co">    Use this tool when the user asks whether any number is even or odd.</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="co">    Args:</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="co">        number: The integer to check</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> number <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="ss">f"</span><span class="sc">{</span>number<span class="sc">}</span><span class="ss"> is even."</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="ss">f"</span><span class="sc">{</span>number<span class="sc">}</span><span class="ss"> is odd."</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Test directly</span></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(check_even_odd.invoke({<span class="st">"number"</span>: <span class="dv">7</span>}))</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(check_even_odd.invoke({<span class="st">"number"</span>: <span class="dv">42</span>}))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="part-3-community-tools" class="level2">
+<h2 class="anchored" data-anchor-id="part-3-community-tools">Part 3 — Community Tools</h2>
+<p>You do not always have to build tools from scratch. LangChain has a large library of pre-built tools made by the community covering things like:</p>
+<ul>
+<li>Web search</li>
+<li>Wikipedia lookup</li>
+<li>Reading files</li>
+<li>Running Python code</li>
+<li>Sending emails</li>
+<li>Database queries</li>
+</ul>
+<p>You can browse them here: <a href="https://python.langchain.com/docs/integrations/tools/">LangChain Community Tools</a></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+We will go deeper on community tools next lesson
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Today, just know they exist and where to find them. Next lesson we will evaluate specific tools and use them in real scenarios.</p>
+</div>
+</div>
+<p>The important thing to know now: <strong>community tools follow the exact same pattern you just learned.</strong> They are just functions with descriptions. The only difference is someone else wrote the function for you.</p>
+<hr>
+</section>
+</section>
+<section id="before-next-class" class="level1">
+<h1>Before Next Class</h1>
+<p>Next lesson we evaluate real community tools and use them with actual data. Before class:</p>
+<ol type="1">
+<li>Finish any activities from today you did not complete</li>
+<li>Read the primer for Lesson 1.3</li>
+<li>Read this article about popular LangChain tools: 👉 <a href="https://medium.com/@vamshiginna1606/langchain-tools-5-langchain-tools-every-llm-developer-should-know-ad698f06dcb5">5 LangChain Tools Every LLM Developer Should Know</a></li>
+</ol>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Practice</th>
+<th>Primer</th>
+<th>Next Lesson</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="../practice/practice1_2.qmd">🏃‍♂️‍➡️</a></td>
+<td><a href="../primers/primer1_3.html">🌱</a></td>
+<td><a href="../lessons/lesson1_3.html">➡️</a></td>
+</tr>
+</tbody>
+</table>
+
+
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

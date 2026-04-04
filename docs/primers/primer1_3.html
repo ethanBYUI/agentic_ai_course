@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>What is an API?</title>
+<title>Community Tools &amp; Real Data</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,40 +19,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -275,12 +241,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul class="collapse">
-  <li><a href="#what-is-an-api" id="toc-what-is-an-api" class="nav-link active" data-scroll-target="#what-is-an-api">What is an API?</a></li>
-  <li><a href="#a-simple-analogy" id="toc-a-simple-analogy" class="nav-link" data-scroll-target="#a-simple-analogy">A Simple Analogy</a></li>
-  <li><a href="#why-do-apis-exist" id="toc-why-do-apis-exist" class="nav-link" data-scroll-target="#why-do-apis-exist">Why Do APIs Exist?</a></li>
-  <li><a href="#an-api-key-is-your-password" id="toc-an-api-key-is-your-password" class="nav-link" data-scroll-target="#an-api-key-is-your-password">An API Key is Your Password</a></li>
-  <li><a href="#apis-and-ai" id="toc-apis-and-ai" class="nav-link" data-scroll-target="#apis-and-ai">APIs and AI</a></li>
-  <li><a href="#what-to-think-about-before-class" id="toc-what-to-think-about-before-class" class="nav-link" data-scroll-target="#what-to-think-about-before-class">What to Think About Before Class</a></li>
+  <li><a href="#community-tools" id="toc-community-tools" class="nav-link active" data-scroll-target="#community-tools">Community Tools</a></li>
+  <li><a href="#read-this-before-class" id="toc-read-this-before-class" class="nav-link" data-scroll-target="#read-this-before-class">Read This Before Class</a></li>
+  <li><a href="#the-three-you-will-focus-on" id="toc-the-three-you-will-focus-on" class="nav-link" data-scroll-target="#the-three-you-will-focus-on">The Three You Will Focus On</a></li>
+  <li><a href="#a-new-challenge-local-data" id="toc-a-new-challenge-local-data" class="nav-link" data-scroll-target="#a-new-challenge-local-data">A New Challenge: Local Data</a></li>
+  <li><a href="#come-ready-to-answer" id="toc-come-ready-to-answer" class="nav-link" data-scroll-target="#come-ready-to-answer">Come Ready to Answer</a></li>
   </ul>
 </nav>
 </nav>
@@ -293,8 +258,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">What is an API?</h1>
-<p class="subtitle lead">Primer 1.1 — Read before Lesson 1</p>
+<h1 class="title">Community Tools &amp; Real Data</h1>
+<p class="subtitle lead">Primer 1.3 — Read before Lesson 3</p>
 </div>
 
 
@@ -311,66 +276,69 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="what-is-an-api" class="level1">
-<h1>What is an API?</h1>
-<p>You have used APIs your entire life without knowing it.</p>
-<p>When you open a weather app and it shows you today’s forecast, the app did not generate that data itself. It sent a request to a weather company’s server, which sent back the data. That invisible conversation between two programs is an <strong>API</strong> — an <strong>Application Programming Interface</strong>.</p>
-<p>An API is simply an agreed-upon way for two pieces of software to talk to each other.</p>
+<section id="community-tools" class="level1">
+<h1>Community Tools</h1>
+<p>Last lesson you built tools from scratch. That is an important skill — but you do not always have to start from zero.</p>
+<p>LangChain has a large library of <strong>community tools</strong> — pre-built tools made by LangChain and the open source community that cover the most common things agents need to do.</p>
 <hr>
 </section>
-<section id="a-simple-analogy" class="level1">
-<h1>A Simple Analogy</h1>
-<p>Think of a restaurant.</p>
+<section id="read-this-before-class" class="level1">
+<h1>Read This Before Class</h1>
+<p>Read this article in full before class. It covers 5 tools that show up constantly in real agentic AI projects:</p>
+<p>👉 <a href="https://medium.com/@vamshiginna1606/langchain-tools-5-langchain-tools-every-llm-developer-should-know-ad698f06dcb5">5 LangChain Tools Every LLM Developer Should Know</a></p>
+<p>As you read, for each tool ask yourself:</p>
 <ul>
-<li>You are the <strong>customer</strong> (your program)</li>
-<li>The kitchen is the <strong>server</strong> (the service you want to use)</li>
-<li>The waiter is the <strong>API</strong></li>
+<li>What does this tool do?</li>
+<li>What kind of question would make an agent want to use it?</li>
+<li>What would break or go wrong if you used it in the wrong situation?</li>
 </ul>
-<p>You do not walk into the kitchen and cook your own food. You tell the waiter what you want using the menu’s format — <em>“I’ll have the pasta, please.”</em> The waiter takes that to the kitchen, and brings back a response — <em>the pasta.</em></p>
-<p>The menu is the API. It defines exactly what you are allowed to ask for and what format to ask in.</p>
 <hr>
 </section>
-<section id="why-do-apis-exist" class="level1">
-<h1>Why Do APIs Exist?</h1>
-<p>Imagine if every app had to build its own maps, its own payment system, its own weather data from scratch. That would be insane.</p>
-<p>Instead, companies like Google, Stripe, and OpenAI build powerful services and expose them through APIs so that any developer in the world can use them in their own app — without knowing anything about how the service works internally.</p>
-<p>You just follow the menu.</p>
+<section id="the-three-you-will-focus-on" class="level1">
+<h1>The Three You Will Focus On</h1>
+<p>In class we will evaluate three of the five tools from the article in depth:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Tool</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>DuckDuckGo Search</strong></td>
+<td>Searches the web without needing an API key</td>
+</tr>
+<tr class="even">
+<td><strong>Wikipedia</strong></td>
+<td>Looks up factual information from Wikipedia</td>
+</tr>
+<tr class="odd">
+<td><strong>Python REPL</strong></td>
+<td>Runs Python code directly inside the agent</td>
+</tr>
+</tbody>
+</table>
+<p>Come ready to discuss: when would you use each one, and when would you NOT?</p>
 <hr>
 </section>
-<section id="an-api-key-is-your-password" class="level1">
-<h1>An API Key is Your Password</h1>
-<p>Most APIs require an <strong>API key</strong> — a long string of letters and numbers that proves you have an account.</p>
-<pre><code>AIzaSyB3xKttE9J6Pn93T3Dmo... (yours will look something like this)</code></pre>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Treat your API key like a password
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>If someone gets your API key, they can use the service <strong>on your account</strong> and on <strong>your bill</strong>. Never paste it directly in your code. Never upload it to GitHub. We will cover exactly how to store it safely in class.</p>
-</div>
-</div>
+<section id="a-new-challenge-local-data" class="level1">
+<h1>A New Challenge: Local Data</h1>
+<p>So far your agents have only worked with information from the internet or from their training. But in the real world, most of the data that matters lives in <strong>local files</strong> — spreadsheets, CSVs, text documents, databases.</p>
+<p>Getting an agent to work with local data requires a tool. Just like web search gives the agent access to the internet, a file-reading tool gives it access to your files.</p>
+<p>Think about what that means: an agent that can search the web <strong>and</strong> read your internal files could answer questions like:</p>
+<blockquote class="blockquote">
+<p><em>“Based on our sales data from last quarter, what does current market research say about our biggest product category?”</em></p>
+</blockquote>
+<p>That is the kind of thing we will build toward in class.</p>
 <hr>
 </section>
-<section id="apis-and-ai" class="level1">
-<h1>APIs and AI</h1>
-<p>LLMs like Gemini and GPT are not apps you download. They live on powerful servers owned by Google and OpenAI. To use them in your own program, you send your prompt to their server through an API, and they send back the response.</p>
-<p>That is the whole trick. When we write:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>model.invoke(<span class="st">"Tell me about the ocean."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Under the hood, Python is: 1. Packaging your message 2. Sending it to Google’s servers with your API key 3. Waiting for the response 4. Handing it back to you</p>
-<hr>
-</section>
-<section id="what-to-think-about-before-class" class="level1">
-<h1>What to Think About Before Class</h1>
-<p>Come to class ready to answer these in your head:</p>
+<section id="come-ready-to-answer" class="level1">
+<h1>Come Ready to Answer</h1>
 <ul>
-<li>In your own words, what is an API?</li>
-<li>Why would a company expose their service through an API instead of just building an app?</li>
-<li>What do you think would happen if your API key got posted publicly on GitHub?</li>
+<li>Which of the three tools from the article do you think is the most dangerous to give an agent? Why?</li>
+<li>What could go wrong if an agent had access to your local files with no restrictions?</li>
+<li>In your own words, why does a vague tool description cause problems when you have multiple tools?</li>
 </ul>
 <hr>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -379,11 +347,11 @@ Treat your API key like a password
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-You do not need to memorize anything
+Focus on the concepts, not the syntax
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>This primer is just to get the concept in your head before we build with it. Everything will make more sense once you see it live in class.</p>
+<p>The article may show code that looks different from what we use in class. That is fine — focus on understanding what each tool does, not memorizing the exact code.</p>
 </div>
 </div>
 

@@ -1,0 +1,465 @@
+---
+title: "Community Tools & Real Data"
+subtitle: "Unit 1, Lesson 3"
+format: html
+execute:
+  eval: false
+---
+
+<!-- This is an unreviewed AI draft -->
+
+::: {.panel-tabset}
+
+## Quick Links
+
+| Practice | Primer | Slides | Examples | Lecture Notes | Next Lesson |
+|----------|--------|--------|----------|---------------|-------------|
+| [🏃‍♂️‍➡️](../practice/practice1_3.qmd) | [🌱](../primers/primer1_3.qmd) | [🧑‍🏫](../lecture_slides/slide1_3.qmd) | [📓]({{< var example_base >}}1_3.ipynb "Opens in Google Colab - See README if broken") | [📋](../instructor_notes/notes1_3.qmd) | [➡️](lesson2_1.qmd) |
+
+## Before Class
+
+| Practice | Primer | Previous Lesson |
+|----------|--------|-----------------|
+|          | [🌱](../primers/primer1_3.qmd) | [⬅️](lesson1_2.qmd) |
+
+## After Class
+
+| Practice | Primer | Next Lesson |
+|----------|--------|-------------|
+| [🏃‍♂️‍➡️](../practice/practice1_3.qmd) | [🌱](../primers/primer2_1.qmd) | [➡️](lesson2_1.qmd) |
+
+:::
+
+---
+
+# Outcomes
+
+Community Tools & Real Data
+
+- By the end of this lesson, you will be able to evaluate at least 3 common LangChain community tools and explain when to use each.
+- By the end of this lesson, you will be able to install and use a community tool in an agent.
+- By the end of this lesson, you will be able to explain why tool descriptions become more critical when an agent has multiple tools.
+- By the end of this lesson, you will be able to build a tool that reads local data and makes it accessible to an agent.
+- By the end of this lesson, you will be able to wire a web search tool and a local file tool together in the same agent.
+
+---
+
+# Preparation
+
+Before this lesson, you should have:
+
+| Resource | Description |
+|----------|-------------|
+| [🌱 Primer 1.3](../primers/primer1_3.qmd) | Community Tools & Real Data — read before class |
+| [📖 5 LangChain Tools Every LLM Developer Should Know](https://medium.com/@vamshiginna1606/langchain-tools-5-langchain-tools-every-llm-developer-should-know-ad698f06dcb5) | Read the full article |
+
+---
+
+# Discussion
+
+1. Report on work accomplished
+2. Key takeaways from the article
+3. Questions unaddressed
+4. Optional discussion questions
+    - Which of the three tools — DuckDuckGo, Wikipedia, or Python REPL — do you think is the most risky to give an agent? Why?
+    - What would happen if you gave an agent two tools with very similar descriptions?
+    - What could go wrong if an agent had unrestricted access to your local files?
+    - From the article, which tool surprised you most? Why?
+5. Log partner's contribution
+
+---
+
+# Class
+
+## Lesson Overview
+
+| Segment | Duration |
+|---------|----------|
+| Lecture: Evaluating Community Tools | 15 minutes |
+| Activity 1: Use a Community Tool | 10 minutes |
+| Lecture: Tool Descriptions Under Pressure | 10 minutes |
+| Activity 2: Local File Tool | 15 minutes |
+| Activity 3: Combine Web Search + Local Data | 10 minutes |
+
+---
+
+## Part 1 — Evaluating Community Tools
+
+You read about 5 tools before class. Let's evaluate three of them in depth — not just what they do, but **when to use them and when not to.**
+
+---
+
+### Tool 1: DuckDuckGo Search
+
+Lets the agent search the web in real time without needing an API key.
+
+```python
+from langchain_community.tools import DuckDuckGoSearchRun
+
+search = DuckDuckGoSearchRun()
+print(search.invoke("What is LangChain?"))
+```
+
+| ✅ Use when | ❌ Do not use when |
+|------------|-------------------|
+| The user needs current information | The question can be answered from a local file |
+| Facts change over time | You need precise, structured data |
+| You need broad web results | Privacy is a concern — searches go to DuckDuckGo's servers |
+
+::: {.callout-note}
+## No API key needed
+DuckDuckGo is one of the few search tools that works without signing up for anything. Great for getting started fast.
+:::
+
+---
+
+### Tool 2: Wikipedia
+
+Looks up factual information from Wikipedia articles.
+
+```python
+from langchain_community.tools import WikipediaQueryRun
+from langchain_community.utilities import WikipediaAPIWrapper
+
+wikipedia = WikipediaQueryRun(api_wrapper=WikipediaAPIWrapper())
+print(wikipedia.invoke("Large language model"))
+```
+
+| ✅ Use when | ❌ Do not use when |
+|------------|-------------------|
+| The user asks about well-known facts or concepts | The topic is niche or not on Wikipedia |
+| You need a reliable, structured summary | You need the very latest information |
+| Educational or research questions | The question is about a private company or person |
+
+---
+
+### Tool 3: Python REPL
+
+Lets the agent write and execute Python code directly.
+
+```python
+from langchain_experimental.tools import PythonREPLTool
+
+repl = PythonREPLTool()
+print(repl.invoke("print(sum([1, 2, 3, 4, 5]))"))
+```
+
+| ✅ Use when | ❌ Do not use when |
+|------------|-------------------|
+| The agent needs to do complex calculations | You are in a production environment |
+| Data manipulation or analysis is needed | You cannot review the code before it runs |
+| The agent needs to generate and test code | Security is a concern — this runs real code |
+
+::: {.callout-warning}
+## Python REPL runs real code
+This tool executes whatever Python the agent writes — on your machine, right now. It is powerful but use it carefully in any shared or production environment.
+:::
+
+---
+
+## Activity 1 — Use a Community Tool
+
+Let's install and use DuckDuckGo search inside an agent.
+
+### Step 1 — Install
+
+```python
+%pip install -q -U langchain langchain-community langchain-google-genai langgraph duckduckgo-search
+```
+
+### Step 2 — Set up your API key
+
+```python
+import os
+from google.colab import userdata
+os.environ['GOOGLE_API_KEY'] = userdata.get('GOOGLE_API_KEY')
+```
+
+### Step 3 — Wire DuckDuckGo into an agent
+
+```python
+from langchain.chat_models import init_chat_model
+from langchain.agents import create_react_agent
+from langchain_community.tools import DuckDuckGoSearchRun
+
+# Load the community tool — no setup needed
+search_tool = DuckDuckGoSearchRun()
+
+model = init_chat_model(
+    model="google_genai:gemini-2.5-flash",
+    temperature=0
+)
+
+system_prompt = """You are a helpful research assistant. 
+Use the search tool to find current information when needed.
+Always search before answering questions about recent events or current facts."""
+
+agent = create_react_agent(
+    model=model,
+    tools=[search_tool],
+    prompt=system_prompt
+)
+
+response = agent.invoke({"messages": [{"role": "user", "content": "What is the latest version of Python?"}]})
+print(response["messages"][-1].content)
+```
+
+**Try a few different questions and observe:**
+
+- Which questions trigger a search?
+- Which ones does the agent answer from memory without searching?
+- Does the system prompt affect when it searches?
+
+---
+
+## Part 2 — Tool Descriptions Under Pressure
+
+Last lesson you learned that the docstring is the agent's instruction manual. That mattered when you had one tool. Now imagine you have **four tools** — all available at once.
+
+The agent has to read all four descriptions and pick the right one. If any description is vague, it will pick the wrong tool — or get confused and pick none.
+
+---
+
+### The Problem: Overlapping Tools
+
+Here is a scenario with two tools that have bad descriptions:
+
+```python
+@tool
+def search_web(query: str) -> str:
+    """Gets information."""  # ← too vague
+    ...
+
+@tool
+def read_file(filename: str) -> str:
+    """Gets information from a file."""  # ← still too vague
+    ...
+```
+
+When the agent has both, it cannot tell which to use. "Gets information" describes almost everything.
+
+---
+
+### The Fix: Specific, Mutually Exclusive Descriptions
+
+```python
+@tool
+def search_web(query: str) -> str:
+    """
+    Searches the internet for current information using DuckDuckGo.
+    Use this tool when the user asks about recent events, current facts,
+    or anything that may have changed recently.
+    Do NOT use this for questions about our internal company data.
+    """
+    ...
+
+@tool
+def read_sales_data(query: str) -> str:
+    """
+    Reads and searches our internal sales CSV file.
+    Use this tool when the user asks about our company's sales figures,
+    customer counts, revenue, or product performance.
+    Do NOT use this for general web searches or current events.
+    """
+    ...
+```
+
+Now the agent can make a clear decision. Each description tells it:
+- What the tool does
+- When to use it
+- When **not** to use it
+
+::: {.callout-important}
+## The "Do NOT use" line is powerful
+Explicitly telling the agent when NOT to use a tool is just as important as telling it when to use it. It prevents the agent from defaulting to the wrong tool when it is unsure.
+:::
+
+---
+
+## Activity 2 — Build a Local File Tool
+
+Now you will build a tool that reads a local CSV file and makes that data accessible to the agent.
+
+### Step 1 — Create the sample data file
+
+Run this cell to create a small sales CSV file in your Colab environment:
+
+```python
+# Create a sample sales data file
+sample_data = """month,product,units_sold,revenue
+January,Widget A,120,2400
+January,Widget B,85,3400
+February,Widget A,140,2800
+February,Widget B,90,3600
+March,Widget A,95,1900
+March,Widget B,110,4400
+April,Widget A,160,3200
+April,Widget B,75,3000
+"""
+
+with open("sales_data.csv", "w") as f:
+    f.write(sample_data)
+
+print("sales_data.csv created!")
+```
+
+---
+
+### Step 2 — Build the file reading tool
+
+```python
+import csv
+from langchain_core.tools import tool
+
+@tool
+def read_sales_data(query: str) -> str:
+    """
+    Reads our internal sales data CSV file and returns relevant information.
+    Use this tool when the user asks about sales figures, revenue, units sold,
+    product performance, or any question about our company's internal sales data.
+    Do NOT use this for general questions or current events — use web search for those.
+
+    Args:
+        query: A plain English description of what information you need from the sales data
+    """
+    try:
+        with open("sales_data.csv", "r") as f:
+            reader = csv.DictReader(f)
+            rows = list(reader)
+
+        # Return all the data as a readable string
+        result = "Sales Data:\n"
+        result += "month | product | units_sold | revenue\n"
+        result += "-" * 45 + "\n"
+        for row in rows:
+            result += f"{row['month']} | {row['product']} | {row['units_sold']} | ${row['revenue']}\n"
+        return result
+
+    except FileNotFoundError:
+        return "Error: sales_data.csv not found. Make sure the file exists."
+```
+
+Test it directly first:
+
+```python
+print(read_sales_data.invoke({"query": "show me all sales data"}))
+```
+
+---
+
+### Step 3 — Wire it into an agent
+
+```python
+from langchain.chat_models import init_chat_model
+from langchain.agents import create_react_agent
+
+model = init_chat_model(
+    model="google_genai:gemini-2.5-flash",
+    temperature=0
+)
+
+system_prompt = """You are a sales data analyst assistant.
+You have access to our internal sales data through your tool.
+Use the read_sales_data tool whenever the user asks about sales, revenue, or product performance.
+Answer in clear, plain English with specific numbers from the data."""
+
+agent = create_react_agent(
+    model=model,
+    tools=[read_sales_data],
+    prompt=system_prompt
+)
+
+response = agent.invoke({"messages": [{"role": "user", "content": "Which product made the most revenue overall?"}]})
+print(response["messages"][-1].content)
+```
+
+**Try these questions and observe:**
+
+- `"What month had the highest total revenue?"`
+- `"How many units of Widget A were sold in total?"`
+- `"Which product performed better on average?"`
+
+---
+
+::: {.callout-important}
+## 🛑 STOP HERE
+Make sure your agent is reading from the file and answering correctly before moving to the next activity. If the answers look wrong, check that `sales_data.csv` was created in Step 1.
+:::
+
+---
+
+## Activity 3 — Combine Web Search + Local Data
+
+Now the real challenge: give the agent **both tools at once** and make sure it picks the right one.
+
+This is where your tool descriptions do the heavy lifting.
+
+```python
+from langchain_community.tools import DuckDuckGoSearchRun
+
+# Both tools available
+search_tool = DuckDuckGoSearchRun()
+
+# Give the agent both tools
+agent = create_react_agent(
+    model=model,
+    tools=[search_tool, read_sales_data],
+    prompt="""You are a business analyst assistant with two tools available:
+1. A web search tool for current information from the internet
+2. A sales data tool for our company's internal sales figures
+
+Always choose the most appropriate tool for each question.
+Use web search for general or current information.
+Use the sales data tool for questions about our company's performance."""
+)
+
+# This should use the FILE tool
+response = agent.invoke({"messages": [{"role": "user", "content": "What was our best selling month?"}]})
+print("File question:", response["messages"][-1].content)
+
+# This should use the SEARCH tool  
+response = agent.invoke({"messages": [{"role": "user", "content": "What are current trends in widget manufacturing?"}]})
+print("Search question:", response["messages"][-1].content)
+```
+
+---
+
+### The Pressure Test
+
+Now deliberately try to break it. Ask questions that could go either way and see what the agent does:
+
+```python
+# Ambiguous — which tool will it pick?
+response = agent.invoke({"messages": [{"role": "user", "content": "How are widgets selling?"}]})
+print(response["messages"][-1].content)
+```
+
+::: {.callout-note}
+## Discuss with your partner
+- Did the agent pick the right tool for the ambiguous question?
+- What would you change in the tool descriptions to make it more reliable?
+- What does this tell you about how much the description matters when tools compete?
+:::
+
+### Improve the descriptions
+
+Based on what you observed, try rewriting one or both tool descriptions to make the agent's decision more reliable. Test again with the same ambiguous question.
+
+::: {.callout-tip}
+## There is no perfect answer
+Tool description writing is a skill — like writing good instructions for a person. The goal is to iterate until the agent behaves the way you expect.
+:::
+
+---
+
+# Before Next Class
+
+In the next unit we go deeper into how agents think and make decisions. Before class:
+
+1. Finish any activities from today
+2. Reflect: what surprised you about how the agent chose between tools?
+3. Read the primer for the next lesson
+
+| Practice | Primer | Next Lesson |
+|----------|--------|-------------|
+| [🏃‍♂️‍➡️](../practice/practice1_3.qmd) | [🌱](../primers/primer2_1.qmd) | [➡️](lesson2_1.qmd) |

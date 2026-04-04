@@ -1,0 +1,461 @@
+---
+title: "Tools: Giving Your Agent Hands"
+subtitle: "Unit 1, Lesson 2"
+format: html
+execute:
+  eval: false
+---
+
+<!-- This is an unreviewed AI draft -->
+
+::: {.panel-tabset}
+
+## Quick Links
+
+| Practice | Primer | Slides | Examples | Lecture Notes | Next Lesson |
+|----------|--------|--------|----------|---------------|-------------|
+| [🏃‍♂️‍➡️](../practice/practice1_2.qmd) | [🌱](../primers/primer1_2.qmd) | [🧑‍🏫](../lecture_slides/slide1_2.qmd) | [📓]({{< var example_base >}}1_2.ipynb "Opens in Google Colab - See README if broken") | [📋](../instructor_notes/notes1_2.qmd) | [➡️](lesson1_3.qmd) |
+
+## Before Class
+
+| Practice | Primer | Previous Lesson |
+|----------|--------|-----------------|
+|          | [🌱](../primers/primer1_2.qmd) | [⬅️](lesson1_1.qmd) |
+
+## After Class
+
+| Practice | Primer | Next Lesson |
+|----------|--------|-------------|
+| [🏃‍♂️‍➡️](../practice/practice1_2.qmd) | [🌱](../primers/primer1_3.qmd) | [➡️](lesson1_3.qmd) |
+
+:::
+
+---
+
+# Outcomes
+
+Tools
+
+- By the end of this lesson, you will be able to explain what a tool is and describe its two essential parts.
+- By the end of this lesson, you will be able to read an existing tool and explain what it does and when the agent would call it.
+- By the end of this lesson, you will be able to explain how an agent decides which tool to call based on the tool's description.
+- By the end of this lesson, you will be able to create a custom tool from scratch using the `@tool` decorator.
+- By the end of this lesson, you will be able to convert existing Python code into a tool an agent can use.
+- By the end of this lesson, you will be aware of community tools available in LangChain and know where to find them.
+
+---
+
+# Preparation
+
+Before this lesson, you should have:
+
+| Resource | Description |
+|----------|-------------|
+| [🌱 Primer 1.2](../primers/primer1_2.qmd) | What is a Tool? Read before class. |
+| [📖 LangChain Tools Docs](https://docs.langchain.com/oss/python/langchain/tools) | Skim the official docs — focus on `@tool` |
+
+Make sure your Google Colab is working from last lesson. You will need it today.
+
+---
+
+# Discussion
+
+1. Report on work accomplished
+2. Key takeaways from the primer and docs
+3. Questions unaddressed
+4. Optional discussion questions
+    - What did you find confusing in the LangChain docs? What made sense?
+    - What is one thing you would want your agent to be able to do with a tool?
+    - Why do you think the docstring matters more than the function name?
+    - What could go wrong if you wrote a vague tool description?
+5. Log partner's contribution
+
+---
+
+# Class
+
+## Lesson Overview
+
+| Segment | Duration |
+|---------|----------|
+| Lecture: What is a Tool? | 10 minutes |
+| Activity 1: Reverse Engineer a Tool | 15 minutes |
+| Lecture: How the Agent Decides | 10 minutes |
+| Activity 2: Build Your First Tool | 15 minutes |
+| Activity 3: Turn Existing Code into a Tool | 10 minutes |
+| Wrap-up: Community Tools | 5 minutes |
+
+---
+
+## Part 1 — What is a Tool?
+
+A plain LLM is powerful but limited. It can only use what it already knows from training. It cannot:
+
+- Look up today's information
+- Read your files
+- Run calculations reliably
+- Take any action in the real world
+
+**Tools give the agent hands.** A tool is simply a Python function that the agent can call when it needs to do something it cannot do on its own.
+
+Every tool has exactly two parts:
+
+| Part | What it is | Who reads it |
+|------|-----------|--------------|
+| The function | The code that does the work | Python |
+| The docstring | A plain-English description of what the tool does | The AI |
+
+::: {.callout-important}
+## The docstring is the agent's instruction manual
+The agent never sees your code. It only reads the docstring to decide whether to use the tool. If the description is vague or wrong, the agent will misuse the tool — or never use it at all.
+:::
+
+---
+
+### The `@tool` Decorator
+
+LangChain gives us a simple way to turn any Python function into a tool: the `@tool` decorator.
+
+```python
+from langchain_core.tools import tool
+
+@tool
+def my_tool(input: str) -> str:
+    """A clear description of what this tool does and when to use it."""
+    # your code here
+    return result
+```
+
+Put `@tool` directly above any function and LangChain will:
+
+1. Register it as a tool the agent can call
+2. Use the docstring as the tool's description
+3. Handle the input/output formatting automatically
+
+That's the whole pattern. Everything else is just filling in the function.
+
+---
+
+## Activity 1 — Reverse Engineer a Tool
+
+Before building your own tool, let's read one carefully and understand every part.
+
+::: {.callout-note}
+## Goal
+Read the tool below and answer the questions. Do not run it yet — just read.
+:::
+
+```python
+from langchain_core.tools import tool
+
+@tool
+def calculator(expression: str) -> str:
+    """
+    Evaluates a mathematical expression and returns the result as a string.
+    Use this tool whenever the user asks you to perform any calculation,
+    including addition, subtraction, multiplication, division, or exponents.
+    Do not try to calculate in your head — always use this tool for math.
+
+    Args:
+        expression: A mathematical expression as a string, e.g. '247 * 83' or '(10 + 5) / 3'
+    """
+    try:
+        result = eval(expression)
+        return str(result)
+    except Exception as e:
+        return f"Error: could not evaluate '{expression}'. Reason: {e}"
+```
+
+**Answer these questions with your partner before moving on:**
+
+1. What does this tool do?
+2. When would the agent decide to call it?
+3. What does the agent pass in as input?
+4. What does the agent get back?
+5. What happens if the expression is invalid?
+6. Find the part of the code that actually does the math. What Python built-in is it using?
+7. Why does the docstring say *"Do not try to calculate in your head"*? Why would you need to tell an AI that?
+
+::: {.callout-tip collapse="true"}
+## Answers
+1. It evaluates a math expression and returns the result
+2. When the user asks any math question
+3. A string like `"247 * 83"`
+4. The result as a string, e.g. `"20501"`
+5. It returns a readable error message instead of crashing
+6. Python's built-in `eval()` function — it runs a string as code
+7. Because LLMs are notoriously bad at arithmetic — they guess instead of calculate. The instruction forces the agent to always use the tool.
+:::
+
+---
+
+### Now run it
+
+Copy this into a Colab cell and run it. Notice we are calling the tool directly, not through an agent yet.
+
+```python
+from langchain_core.tools import tool
+
+@tool
+def calculator(expression: str) -> str:
+    """
+    Evaluates a mathematical expression and returns the result as a string.
+    Use this tool whenever the user asks you to perform any calculation,
+    including addition, subtraction, multiplication, division, or exponents.
+    Do not try to calculate in your head — always use this tool for math.
+
+    Args:
+        expression: A mathematical expression as a string, e.g. '247 * 83'
+    """
+    try:
+        result = eval(expression)
+        return str(result)
+    except Exception as e:
+        return f"Error: could not evaluate '{expression}'. Reason: {e}"
+
+
+# Call the tool directly — no agent needed
+print(calculator.invoke({"expression": "247 * 83"}))
+print(calculator.invoke({"expression": "(100 + 50) / 3"}))
+print(calculator.invoke({"expression": "this is not math"}))
+```
+
+**What do you notice about `.invoke()`?** It takes a dictionary, not just a plain value. That's LangChain's standard way of calling tools — always a dictionary with the argument name as the key.
+
+---
+
+## Part 2 — How the Agent Decides Which Tool to Call
+
+When you give an agent a list of tools, it does not call them randomly. It reads every tool's description and makes a decision.
+
+Here is what happens inside the agent when you ask it something:
+
+```
+1. User asks: "What is 99 times 47?"
+
+2. Agent reads its tool list:
+   - calculator: "Evaluates a mathematical expression..."
+   - get_weather: "Returns current weather for a city..."
+
+3. Agent thinks: "This is a math question. The calculator tool 
+   says to use it for calculations. I should use that."
+
+4. Agent calls: calculator("99 * 47")
+
+5. Tool returns: "4653"
+
+6. Agent responds: "99 times 47 is 4,653."
+```
+
+This decision-making process is driven entirely by the docstrings. The agent is essentially doing a matching game between your question and the tool descriptions.
+
+::: {.callout-warning}
+## What happens with a bad description?
+
+```python
+@tool
+def calculator(expression: str) -> str:
+    """Does stuff with numbers."""  # ← too vague!
+    ...
+```
+
+The agent sees "does stuff with numbers" and thinks — *maybe? I'm not sure.* It might call it, might not. Clear descriptions = reliable agents.
+:::
+
+---
+
+## Activity 2 — Build Your First Tool From Scratch
+
+Now it's your turn. You are going to build a tool completely from scratch.
+
+::: {.callout-note}
+## Setup first
+
+Make sure you have run these in Colab:
+
+```python
+%pip install -q -U langchain langchain-google-genai langgraph langchain-core
+
+import os
+from google.colab import userdata
+os.environ['GOOGLE_API_KEY'] = userdata.get('GOOGLE_API_KEY')
+```
+:::
+
+---
+
+### Step 1 — Build the simplest possible tool
+
+Start here. Build a tool that returns your name.
+
+```python
+from langchain_core.tools import tool
+
+@tool
+def get_my_name() -> str:
+    """Returns the name of the assistant's owner. 
+    Use this when the user asks who owns this assistant or what your name is."""
+    return "My name is Camila."
+```
+
+Call it directly to confirm it works:
+
+```python
+print(get_my_name.invoke({}))
+```
+
+---
+
+### Step 2 — Give it to an agent
+
+Now wire it into an agent and ask it a question that triggers the tool.
+
+```python
+from langchain.chat_models import init_chat_model
+from langchain.agents import create_react_agent
+
+model = init_chat_model(
+    model="google_genai:gemini-2.5-flash",
+    temperature=0
+)
+
+system_prompt = "You are a helpful assistant. Use your tools when relevant."
+
+agent = create_react_agent(
+    model=model,
+    tools=[get_my_name],
+    prompt=system_prompt
+)
+
+response = agent.invoke({"messages": [{"role": "user", "content": "What is your owner's name?"}]})
+print(response["messages"][-1].content)
+```
+
+::: {.callout-tip}
+## Watch the agent think
+Try setting `verbose=True` in the agent if you want to see step by step what it does — which tool it calls, what it gets back, and how it forms the final answer.
+:::
+
+---
+
+### Step 3 — Make it your own
+
+Now build **your own** tool. It can return anything — your favorite food, your grandma's name, your hometown, anything. The goal is to practice the pattern.
+
+Requirements:
+- Use the `@tool` decorator
+- Write a clear docstring that tells the agent exactly when to use it
+- Test it directly with `.invoke()` first
+- Then wire it into the agent and ask a question that triggers it
+
+```python
+from langchain_core.tools import tool
+
+@tool
+def your_tool_name() -> str:
+    """Write your description here."""
+    return "Your value here"
+
+# Test it
+print(your_tool_name.invoke({}))
+```
+
+---
+
+::: {.callout-important}
+## 🛑 STOP HERE
+Make sure your custom tool works before moving on. Show your neighbor. Can they guess what your tool does just by reading the docstring?
+:::
+
+---
+
+## Activity 3 — Turn Existing Code into a Tool
+
+In the real world, you will often have existing Python code that you want to make available to an agent. The pattern is simple: wrap it in a function and add `@tool`.
+
+Here is some existing code that checks whether a number is even or odd:
+
+```python
+# Existing code — not a tool yet
+def check_even_odd(number):
+    if number % 2 == 0:
+        return f"{number} is even."
+    else:
+        return f"{number} is odd."
+
+# Test it like regular Python
+print(check_even_odd(7))
+print(check_even_odd(42))
+```
+
+**Your job:** Turn this into a tool the agent can use.
+
+You need to:
+1. Add `@tool` above the function
+2. Add type hints to the parameters and return value
+3. Write a docstring that tells the agent when to use it
+4. Test it with `.invoke()`
+5. Add it to an agent and ask a question that triggers it
+
+::: {.callout-tip collapse="true"}
+## Solution
+
+```python
+from langchain_core.tools import tool
+
+@tool
+def check_even_odd(number: int) -> str:
+    """
+    Checks whether a given number is even or odd and returns the result.
+    Use this tool when the user asks whether any number is even or odd.
+
+    Args:
+        number: The integer to check
+    """
+    if number % 2 == 0:
+        return f"{number} is even."
+    else:
+        return f"{number} is odd."
+
+# Test directly
+print(check_even_odd.invoke({"number": 7}))
+print(check_even_odd.invoke({"number": 42}))
+```
+:::
+
+---
+
+## Part 3 — Community Tools
+
+You do not always have to build tools from scratch. LangChain has a large library of pre-built tools made by the community covering things like:
+
+- Web search
+- Wikipedia lookup
+- Reading files
+- Running Python code
+- Sending emails
+- Database queries
+
+You can browse them here: [LangChain Community Tools](https://python.langchain.com/docs/integrations/tools/)
+
+::: {.callout-note}
+## We will go deeper on community tools next lesson
+Today, just know they exist and where to find them. Next lesson we will evaluate specific tools and use them in real scenarios.
+:::
+
+The important thing to know now: **community tools follow the exact same pattern you just learned.** They are just functions with descriptions. The only difference is someone else wrote the function for you.
+
+---
+
+# Before Next Class
+
+Next lesson we evaluate real community tools and use them with actual data. Before class:
+
+1. Finish any activities from today you did not complete
+2. Read the primer for Lesson 1.3
+3. Read this article about popular LangChain tools:
+   👉 [5 LangChain Tools Every LLM Developer Should Know](https://medium.com/@vamshiginna1606/langchain-tools-5-langchain-tools-every-llm-developer-should-know-ad698f06dcb5)
+
+| Practice | Primer | Next Lesson |
+|----------|--------|-------------|
+| [🏃‍♂️‍➡️](../practice/practice1_2.qmd) | [🌱](../primers/primer1_3.qmd) | [➡️](lesson1_3.qmd) |

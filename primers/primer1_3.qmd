@@ -1,0 +1,68 @@
+---
+title: "Community Tools & Real Data"
+subtitle: "Primer 1.3 — Read before Lesson 3"
+format: html
+---
+
+# Community Tools
+
+Last lesson you built tools from scratch. That is an important skill — but you do not always have to start from zero.
+
+LangChain has a large library of **community tools** — pre-built tools made by LangChain and the open source community that cover the most common things agents need to do.
+
+---
+
+# Read This Before Class
+
+Read this article in full before class. It covers 5 tools that show up constantly in real agentic AI projects:
+
+👉 [5 LangChain Tools Every LLM Developer Should Know](https://medium.com/@vamshiginna1606/langchain-tools-5-langchain-tools-every-llm-developer-should-know-ad698f06dcb5)
+
+As you read, for each tool ask yourself:
+
+- What does this tool do?
+- What kind of question would make an agent want to use it?
+- What would break or go wrong if you used it in the wrong situation?
+
+---
+
+# The Three You Will Focus On
+
+In class we will evaluate three of the five tools from the article in depth:
+
+| Tool | What it does |
+|------|-------------|
+| **DuckDuckGo Search** | Searches the web without needing an API key |
+| **Wikipedia** | Looks up factual information from Wikipedia |
+| **Python REPL** | Runs Python code directly inside the agent |
+
+Come ready to discuss: when would you use each one, and when would you NOT?
+
+---
+
+# A New Challenge: Local Data
+
+So far your agents have only worked with information from the internet or from their training. But in the real world, most of the data that matters lives in **local files** — spreadsheets, CSVs, text documents, databases.
+
+Getting an agent to work with local data requires a tool. Just like web search gives the agent access to the internet, a file-reading tool gives it access to your files.
+
+Think about what that means: an agent that can search the web **and** read your internal files could answer questions like:
+
+> *"Based on our sales data from last quarter, what does current market research say about our biggest product category?"*
+
+That is the kind of thing we will build toward in class.
+
+---
+
+# Come Ready to Answer
+
+- Which of the three tools from the article do you think is the most dangerous to give an agent? Why?
+- What could go wrong if an agent had access to your local files with no restrictions?
+- In your own words, why does a vague tool description cause problems when you have multiple tools?
+
+---
+
+::: {.callout-tip}
+## Focus on the concepts, not the syntax
+The article may show code that looks different from what we use in class. That is fine — focus on understanding what each tool does, not memorizing the exact code.
+:::

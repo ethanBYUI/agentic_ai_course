@@ -1,0 +1,99 @@
+---
+title: "What is a Tool?"
+subtitle: "Primer 1.2 — Read before Lesson 2"
+format: html
+---
+
+# What is a Tool?
+
+Last lesson you made your first LLM call. The model answered questions from memory — it thought, and it responded. That's it.
+
+But what if you wanted the AI to actually **do** something? Look up today's weather. Read a file. Run a calculation. Search the web.
+
+For that, you need **tools**.
+
+---
+
+# The Limitation of a Plain LLM
+
+A plain LLM is frozen in time. It was trained on data up to a certain date, and it has no ability to reach outside that training to interact with the real world.
+
+Ask it what the weather is today and it will guess or make something up. Ask it to read your CSV file and it will stare blankly. It simply cannot do those things on its own.
+
+**Tools are how we fix that.**
+
+---
+
+# What a Tool Actually Is
+
+In LangChain, a tool is just a **Python function with a description**.
+
+That's it. The function does the work. The description tells the AI what the function does and when to use it.
+
+```python
+@tool
+def get_weather(city: str) -> str:
+    """Returns the current weather for a given city."""
+    # ... code that fetches real weather data
+    return f"It is 72°F and sunny in {city}."
+```
+
+Two things matter here:
+
+1. **The function** — does the actual work
+2. **The docstring** — the text in triple quotes that the AI reads to decide whether to call this tool
+
+::: {.callout-warning}
+## The docstring is not for you — it's for the AI
+The AI never sees your code. It only reads the description. Write it clearly, or the agent will not know when to use the tool.
+:::
+
+---
+
+# How the Agent Decides to Use a Tool
+
+When you ask the agent a question, it does not immediately answer. It first reads the list of available tools and their descriptions. Then it thinks:
+
+> *"Does any of my tools help me answer this question?"*
+
+If yes, it calls the tool, reads the result, and uses that to form its answer.
+
+If no tool is relevant, it answers from memory like a regular LLM.
+
+```
+User:   "What is 247 times 83?"
+
+Agent thinks: "I have a calculator tool. This is a math question. I should use it."
+Agent calls:  calculator(247, 83)
+Tool returns: 20501
+Agent says:   "247 times 83 is 20,501."
+```
+
+Without the tool, the agent might get the math wrong. With it, the answer is guaranteed accurate.
+
+---
+
+# Before Class
+
+Read the LangChain tools documentation:
+
+👉 [LangChain Tools Docs](https://docs.langchain.com/oss/python/langchain/tools)
+
+You do not need to understand everything. Focus on:
+
+- What does a tool look like in code?
+- What is the `@tool` decorator?
+- What goes in the docstring?
+
+Come to class ready to answer:
+
+- In your own words, what is the difference between an LLM with no tools and an LLM with tools?
+- Why does the docstring matter so much?
+- What is one thing you would want your agent to be able to do that it couldn't do without a tool?
+
+---
+
+::: {.callout-tip}
+## Don't stress the docs
+Documentation can be dense. Read for the big picture, not memorization. Class will fill in the gaps.
+:::
