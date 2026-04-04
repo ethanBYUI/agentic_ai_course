@@ -306,6 +306,46 @@ table.schedule tbody td:last-child {
 .callout-warning{ border-left-color: var(--week-3) !important; }
 .callout-important { border-left-color: var(--project-color) !important; }
 
+/* Ensure callout body text is always readable regardless of theme */
+.callout .callout-body,
+.callout .callout-body p,
+.callout .callout-body li,
+.callout .callout-body ul,
+.callout .callout-body ol,
+.callout .callout-body code {
+  color: var(--text-primary) !important;
+}
+
+/* Callout title/header text */
+.callout .callout-title,
+.callout .callout-title p,
+.callout-header .callout-title-container {
+  color: var(--text-primary) !important;
+  font-weight: 700;
+}
+
+/* Force readable backgrounds on all callout types —
+   Quarto's Cosmo theme sometimes uses a tinted bg that
+   blends with the text colour in dark mode */
+.callout-note {
+  background-color: color-mix(in srgb, var(--byui-blue) 8%, var(--bg-card)) !important;
+}
+.callout-tip {
+  background-color: color-mix(in srgb, var(--week-2) 8%, var(--bg-card)) !important;
+}
+.callout-warning {
+  background-color: color-mix(in srgb, var(--week-3) 8%, var(--bg-card)) !important;
+}
+.callout-important {
+  background-color: color-mix(in srgb, var(--project-color) 8%, var(--bg-card)) !important;
+}
+
+/* Icon colours to match each callout type */
+.callout-note    .callout-icon::before { color: var(--byui-blue)      !important; }
+.callout-tip     .callout-icon::before { color: var(--week-2)         !important; }
+.callout-warning .callout-icon::before { color: var(--week-3)         !important; }
+.callout-important .callout-icon::before { color: var(--project-color)!important; }
+
 
 /* ============================================================
    CODE BLOCKS

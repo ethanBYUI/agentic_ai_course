@@ -1,9 +1,6 @@
 ---
 title: "Tools: Giving Your Agent Hands"
 subtitle: "Unit 1, Lesson 2"
-format: html
-execute:
-  eval: false
 ---
 
 <!-- This is an unreviewed AI draft -->
@@ -52,7 +49,7 @@ Before this lesson, you should have:
 | Resource | Description |
 |----------|-------------|
 | [🌱 Primer 1.2](../primers/primer1_2.qmd) | What is a Tool? Read before class. |
-| [📖 LangChain Tools Docs](https://docs.langchain.com/oss/python/langchain/tools) | Skim the official docs — focus on `@tool` |
+| [📖 LangChain Tools Docs](https://docs.langchain.com/oss/python/langchain/tools) | Skim the official docs   focus on `@tool` |
 
 Make sure your Google Colab is working from last lesson. You will need it today.
 
@@ -87,7 +84,7 @@ Make sure your Google Colab is working from last lesson. You will need it today.
 
 ---
 
-## Part 1 — What is a Tool?
+## Part 1   What is a Tool?
 
 A plain LLM is powerful but limited. It can only use what it already knows from training. It cannot:
 
@@ -107,7 +104,7 @@ Every tool has exactly two parts:
 
 ::: {.callout-important}
 ## The docstring is the agent's instruction manual
-The agent never sees your code. It only reads the docstring to decide whether to use the tool. If the description is vague or wrong, the agent will misuse the tool — or never use it at all.
+The agent never sees your code. It only reads the docstring to decide whether to use the tool. If the description is vague or wrong, the agent will misuse the tool   or never use it at all.
 :::
 
 ---
@@ -136,13 +133,13 @@ That's the whole pattern. Everything else is just filling in the function.
 
 ---
 
-## Activity 1 — Reverse Engineer a Tool
+## Activity 1   Reverse Engineer a Tool
 
 Before building your own tool, let's read one carefully and understand every part.
 
 ::: {.callout-note}
 ## Goal
-Read the tool below and answer the questions. Do not run it yet — just read.
+Read the tool below and answer the questions. Do not run it yet   just read.
 :::
 
 ```python
@@ -154,7 +151,7 @@ def calculator(expression: str) -> str:
     Evaluates a mathematical expression and returns the result as a string.
     Use this tool whenever the user asks you to perform any calculation,
     including addition, subtraction, multiplication, division, or exponents.
-    Do not try to calculate in your head — always use this tool for math.
+    Do not try to calculate in your head   always use this tool for math.
 
     Args:
         expression: A mathematical expression as a string, e.g. '247 * 83' or '(10 + 5) / 3'
@@ -183,8 +180,8 @@ def calculator(expression: str) -> str:
 3. A string like `"247 * 83"`
 4. The result as a string, e.g. `"20501"`
 5. It returns a readable error message instead of crashing
-6. Python's built-in `eval()` function — it runs a string as code
-7. Because LLMs are notoriously bad at arithmetic — they guess instead of calculate. The instruction forces the agent to always use the tool.
+6. Python's built-in `eval()` function   it runs a string as code
+7. Because LLMs are notoriously bad at arithmetic   they guess instead of calculate. The instruction forces the agent to always use the tool.
 :::
 
 ---
@@ -202,7 +199,7 @@ def calculator(expression: str) -> str:
     Evaluates a mathematical expression and returns the result as a string.
     Use this tool whenever the user asks you to perform any calculation,
     including addition, subtraction, multiplication, division, or exponents.
-    Do not try to calculate in your head — always use this tool for math.
+    Do not try to calculate in your head   always use this tool for math.
 
     Args:
         expression: A mathematical expression as a string, e.g. '247 * 83'
@@ -214,17 +211,17 @@ def calculator(expression: str) -> str:
         return f"Error: could not evaluate '{expression}'. Reason: {e}"
 
 
-# Call the tool directly — no agent needed
+# Call the tool directly   no agent needed
 print(calculator.invoke({"expression": "247 * 83"}))
 print(calculator.invoke({"expression": "(100 + 50) / 3"}))
 print(calculator.invoke({"expression": "this is not math"}))
 ```
 
-**What do you notice about `.invoke()`?** It takes a dictionary, not just a plain value. That's LangChain's standard way of calling tools — always a dictionary with the argument name as the key.
+**What do you notice about `.invoke()`?** It takes a dictionary, not just a plain value. That's LangChain's standard way of calling tools   always a dictionary with the argument name as the key.
 
 ---
 
-## Part 2 — How the Agent Decides Which Tool to Call
+## Part 2   How the Agent Decides Which Tool to Call
 
 When you give an agent a list of tools, it does not call them randomly. It reads every tool's description and makes a decision.
 
@@ -259,12 +256,12 @@ def calculator(expression: str) -> str:
     ...
 ```
 
-The agent sees "does stuff with numbers" and thinks — *maybe? I'm not sure.* It might call it, might not. Clear descriptions = reliable agents.
+The agent sees "does stuff with numbers" and thinks   *maybe? I'm not sure.* It might call it, might not. Clear descriptions = reliable agents.
 :::
 
 ---
 
-## Activity 2 — Build Your First Tool From Scratch
+## Activity 2   Build Your First Tool From Scratch
 
 Now it's your turn. You are going to build a tool completely from scratch.
 
@@ -284,7 +281,7 @@ os.environ['GOOGLE_API_KEY'] = userdata.get('GOOGLE_API_KEY')
 
 ---
 
-### Step 1 — Build the simplest possible tool
+### Step 1   Build the simplest possible tool
 
 Start here. Build a tool that returns your name.
 
@@ -306,7 +303,7 @@ print(get_my_name.invoke({}))
 
 ---
 
-### Step 2 — Give it to an agent
+### Step 2   Give it to an agent
 
 Now wire it into an agent and ask it a question that triggers the tool.
 
@@ -333,14 +330,14 @@ print(response["messages"][-1].content)
 
 ::: {.callout-tip}
 ## Watch the agent think
-Try setting `verbose=True` in the agent if you want to see step by step what it does — which tool it calls, what it gets back, and how it forms the final answer.
+Try setting `verbose=True` in the agent if you want to see step by step what it does   which tool it calls, what it gets back, and how it forms the final answer.
 :::
 
 ---
 
-### Step 3 — Make it your own
+### Step 3   Make it your own
 
-Now build **your own** tool. It can return anything — your favorite food, your grandma's name, your hometown, anything. The goal is to practice the pattern.
+Now build **your own** tool. It can return anything   your favorite food, your grandma's name, your hometown, anything. The goal is to practice the pattern.
 
 Requirements:
 - Use the `@tool` decorator
@@ -369,14 +366,14 @@ Make sure your custom tool works before moving on. Show your neighbor. Can they 
 
 ---
 
-## Activity 3 — Turn Existing Code into a Tool
+## Activity 3   Turn Existing Code into a Tool
 
 In the real world, you will often have existing Python code that you want to make available to an agent. The pattern is simple: wrap it in a function and add `@tool`.
 
 Here is some existing code that checks whether a number is even or odd:
 
 ```python
-# Existing code — not a tool yet
+# Existing code   not a tool yet
 def check_even_odd(number):
     if number % 2 == 0:
         return f"{number} is even."
@@ -425,7 +422,7 @@ print(check_even_odd.invoke({"number": 42}))
 
 ---
 
-## Part 3 — Community Tools
+## Part 3   Community Tools
 
 You do not always have to build tools from scratch. LangChain has a large library of pre-built tools made by the community covering things like:
 

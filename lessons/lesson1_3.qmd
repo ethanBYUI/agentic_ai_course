@@ -1,9 +1,6 @@
 ---
 title: "Community Tools & Real Data"
 subtitle: "Unit 1, Lesson 3"
-format: html
-execute:
-  eval: false
 ---
 
 <!-- This is an unreviewed AI draft -->
@@ -50,7 +47,7 @@ Before this lesson, you should have:
 
 | Resource | Description |
 |----------|-------------|
-| [🌱 Primer 1.3](../primers/primer1_3.qmd) | Community Tools & Real Data — read before class |
+| [🌱 Primer 1.3](../primers/primer1_3.qmd) | Community Tools & Real Data   read before class |
 | [📖 5 LangChain Tools Every LLM Developer Should Know](https://medium.com/@vamshiginna1606/langchain-tools-5-langchain-tools-every-llm-developer-should-know-ad698f06dcb5) | Read the full article |
 
 ---
@@ -61,7 +58,7 @@ Before this lesson, you should have:
 2. Key takeaways from the article
 3. Questions unaddressed
 4. Optional discussion questions
-    - Which of the three tools — DuckDuckGo, Wikipedia, or Python REPL — do you think is the most risky to give an agent? Why?
+    - Which of the three tools   DuckDuckGo, Wikipedia, or Python REPL   do you think is the most risky to give an agent? Why?
     - What would happen if you gave an agent two tools with very similar descriptions?
     - What could go wrong if an agent had unrestricted access to your local files?
     - From the article, which tool surprised you most? Why?
@@ -83,9 +80,9 @@ Before this lesson, you should have:
 
 ---
 
-## Part 1 — Evaluating Community Tools
+## Part 1   Evaluating Community Tools
 
-You read about 5 tools before class. Let's evaluate three of them in depth — not just what they do, but **when to use them and when not to.**
+You read about 5 tools before class. Let's evaluate three of them in depth   not just what they do, but **when to use them and when not to.**
 
 ---
 
@@ -104,7 +101,7 @@ print(search.invoke("What is LangChain?"))
 |------------|-------------------|
 | The user needs current information | The question can be answered from a local file |
 | Facts change over time | You need precise, structured data |
-| You need broad web results | Privacy is a concern — searches go to DuckDuckGo's servers |
+| You need broad web results | Privacy is a concern   searches go to DuckDuckGo's servers |
 
 ::: {.callout-note}
 ## No API key needed
@@ -148,26 +145,26 @@ print(repl.invoke("print(sum([1, 2, 3, 4, 5]))"))
 |------------|-------------------|
 | The agent needs to do complex calculations | You are in a production environment |
 | Data manipulation or analysis is needed | You cannot review the code before it runs |
-| The agent needs to generate and test code | Security is a concern — this runs real code |
+| The agent needs to generate and test code | Security is a concern   this runs real code |
 
 ::: {.callout-warning}
 ## Python REPL runs real code
-This tool executes whatever Python the agent writes — on your machine, right now. It is powerful but use it carefully in any shared or production environment.
+This tool executes whatever Python the agent writes   on your machine, right now. It is powerful but use it carefully in any shared or production environment.
 :::
 
 ---
 
-## Activity 1 — Use a Community Tool
+## Activity 1   Use a Community Tool
 
 Let's install and use DuckDuckGo search inside an agent.
 
-### Step 1 — Install
+### Step 1   Install
 
 ```python
 %pip install -q -U langchain langchain-community langchain-google-genai langgraph duckduckgo-search
 ```
 
-### Step 2 — Set up your API key
+### Step 2   Set up your API key
 
 ```python
 import os
@@ -175,14 +172,14 @@ from google.colab import userdata
 os.environ['GOOGLE_API_KEY'] = userdata.get('GOOGLE_API_KEY')
 ```
 
-### Step 3 — Wire DuckDuckGo into an agent
+### Step 3   Wire DuckDuckGo into an agent
 
 ```python
 from langchain.chat_models import init_chat_model
 from langchain.agents import create_react_agent
 from langchain_community.tools import DuckDuckGoSearchRun
 
-# Load the community tool — no setup needed
+# Load the community tool   no setup needed
 search_tool = DuckDuckGoSearchRun()
 
 model = init_chat_model(
@@ -212,11 +209,11 @@ print(response["messages"][-1].content)
 
 ---
 
-## Part 2 — Tool Descriptions Under Pressure
+## Part 2   Tool Descriptions Under Pressure
 
-Last lesson you learned that the docstring is the agent's instruction manual. That mattered when you had one tool. Now imagine you have **four tools** — all available at once.
+Last lesson you learned that the docstring is the agent's instruction manual. That mattered when you had one tool. Now imagine you have **four tools**   all available at once.
 
-The agent has to read all four descriptions and pick the right one. If any description is vague, it will pick the wrong tool — or get confused and pick none.
+The agent has to read all four descriptions and pick the right one. If any description is vague, it will pick the wrong tool   or get confused and pick none.
 
 ---
 
@@ -276,11 +273,11 @@ Explicitly telling the agent when NOT to use a tool is just as important as tell
 
 ---
 
-## Activity 2 — Build a Local File Tool
+## Activity 2   Build a Local File Tool
 
 Now you will build a tool that reads a local CSV file and makes that data accessible to the agent.
 
-### Step 1 — Create the sample data file
+### Step 1   Create the sample data file
 
 Run this cell to create a small sales CSV file in your Colab environment:
 
@@ -305,7 +302,7 @@ print("sales_data.csv created!")
 
 ---
 
-### Step 2 — Build the file reading tool
+### Step 2   Build the file reading tool
 
 ```python
 import csv
@@ -317,7 +314,7 @@ def read_sales_data(query: str) -> str:
     Reads our internal sales data CSV file and returns relevant information.
     Use this tool when the user asks about sales figures, revenue, units sold,
     product performance, or any question about our company's internal sales data.
-    Do NOT use this for general questions or current events — use web search for those.
+    Do NOT use this for general questions or current events   use web search for those.
 
     Args:
         query: A plain English description of what information you need from the sales data
@@ -347,7 +344,7 @@ print(read_sales_data.invoke({"query": "show me all sales data"}))
 
 ---
 
-### Step 3 — Wire it into an agent
+### Step 3   Wire it into an agent
 
 ```python
 from langchain.chat_models import init_chat_model
@@ -388,7 +385,7 @@ Make sure your agent is reading from the file and answering correctly before mov
 
 ---
 
-## Activity 3 — Combine Web Search + Local Data
+## Activity 3   Combine Web Search + Local Data
 
 Now the real challenge: give the agent **both tools at once** and make sure it picks the right one.
 
@@ -429,7 +426,7 @@ print("Search question:", response["messages"][-1].content)
 Now deliberately try to break it. Ask questions that could go either way and see what the agent does:
 
 ```python
-# Ambiguous — which tool will it pick?
+# Ambiguous   which tool will it pick?
 response = agent.invoke({"messages": [{"role": "user", "content": "How are widgets selling?"}]})
 print(response["messages"][-1].content)
 ```
@@ -447,7 +444,7 @@ Based on what you observed, try rewriting one or both tool descriptions to make 
 
 ::: {.callout-tip}
 ## There is no perfect answer
-Tool description writing is a skill — like writing good instructions for a person. The goal is to iterate until the agent behaves the way you expect.
+Tool description writing is a skill   like writing good instructions for a person. The goal is to iterate until the agent behaves the way you expect.
 :::
 
 ---
