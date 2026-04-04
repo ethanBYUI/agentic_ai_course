@@ -47,7 +47,7 @@ Before this lesson, read the primer:
 
 | Resource | Description |
 |----------|-------------|
-| [🌱 Primer 1.1](../primers/primer1_1.qmd) | What is an API? Read this before class. |
+| [🌱 Primer 1.1](../primers/primer1_1.html) | What is an API? Read this before class. |
 
 Come ready to answer:
 

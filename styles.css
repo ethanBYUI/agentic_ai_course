@@ -316,12 +316,37 @@ table.schedule tbody td:last-child {
   color: var(--text-primary) !important;
 }
 
-/* Callout title/header text */
+/* Callout header row — Quarto gives it a tinted background;
+   force the title text and icon to always be readable on it */
+.callout .callout-header,
+.callout-header {
+  background-color: transparent !important;
+}
+
 .callout .callout-title,
 .callout .callout-title p,
-.callout-header .callout-title-container {
+.callout-header .callout-title-container,
+.callout-header .callout-title-container p {
   color: var(--text-primary) !important;
   font-weight: 700;
+}
+
+/* The coloured header strip Quarto injects via .callout-style-default */
+div.callout-note.callout > .callout-header,
+div.callout-tip.callout > .callout-header,
+div.callout-warning.callout > .callout-header,
+div.callout-important.callout > .callout-header,
+div.callout-caution.callout > .callout-header {
+  background-color: transparent !important;
+  color: var(--text-primary) !important;
+}
+
+div.callout-note.callout > .callout-header .callout-title-container,
+div.callout-tip.callout > .callout-header .callout-title-container,
+div.callout-warning.callout > .callout-header .callout-title-container,
+div.callout-important.callout > .callout-header .callout-title-container,
+div.callout-caution.callout > .callout-header .callout-title-container {
+  color: var(--text-primary) !important;
 }
 
 /* Force readable backgrounds on all callout types —

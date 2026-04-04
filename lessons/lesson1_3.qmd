@@ -11,19 +11,19 @@ subtitle: "Unit 1, Lesson 3"
 
 | Practice | Primer | Slides | Examples | Lecture Notes | Next Lesson |
 |----------|--------|--------|----------|---------------|-------------|
-| [🏃‍♂️‍➡️](../practice/practice1_3.qmd) | [🌱](../primers/primer1_3.qmd) | [🧑‍🏫](../lecture_slides/slide1_3.qmd) | [📓]({{< var example_base >}}1_3.ipynb "Opens in Google Colab - See README if broken") | [📋](../instructor_notes/notes1_3.qmd) | [➡️](lesson2_1.qmd) |
+| [🏃‍♂️‍➡️](../practice/practice1_3 ,html) | [🌱](../primers/primer1_3 ,html) | [🧑‍🏫](../lecture_slides/slide1_3 ,html) | [📓]({{< var example_base >}}1_3.ipynb "Opens in Google Colab - See README if broken") | [📋](../instructor_notes/notes1_3 ,html) | [➡️](lesson2_1 ,html) |
 
 ## Before Class
 
 | Practice | Primer | Previous Lesson |
 |----------|--------|-----------------|
-|          | [🌱](../primers/primer1_3.qmd) | [⬅️](lesson1_2.qmd) |
+|          | [🌱](../primers/primer1_3 ,html) | [⬅️](lesson1_2 ,html) |
 
 ## After Class
 
 | Practice | Primer | Next Lesson |
 |----------|--------|-------------|
-| [🏃‍♂️‍➡️](../practice/practice1_3.qmd) | [🌱](../primers/primer2_1.qmd) | [➡️](lesson2_1.qmd) |
+| [🏃‍♂️‍➡️](../practice/practice1_3 ,html) | [🌱](../primers/primer2_1 ,html) | [➡️](lesson2_1 ,html) |
 
 :::
 
@@ -47,7 +47,7 @@ Before this lesson, you should have:
 
 | Resource | Description |
 |----------|-------------|
-| [🌱 Primer 1.3](../primers/primer1_3.qmd) | Community Tools & Real Data   read before class |
+| [🌱 Primer 1.3](../primers/primer1_3 ,html) | Community Tools & Real Data   read before class |
 | [📖 5 LangChain Tools Every LLM Developer Should Know](https://medium.com/@vamshiginna1606/langchain-tools-5-langchain-tools-every-llm-developer-should-know-ad698f06dcb5) | Read the full article |
 
 ---
@@ -459,4 +459,4 @@ In the next unit we go deeper into how agents think and make decisions. Before c
 
 | Practice | Primer | Next Lesson |
 |----------|--------|-------------|
-| [🏃‍♂️‍➡️](../practice/practice1_3.qmd) | [🌱](../primers/primer2_1.qmd) | [➡️](lesson2_1.qmd) |
+| [🏃‍♂️‍➡️](../practice/practice1_3 ,html) | [🌱](../primers/primer2_1 ,html) | [➡️](lesson2_1 ,html) |

@@ -11,19 +11,19 @@ subtitle: "Unit 1, Lesson 2"
 
 | Practice | Primer | Slides | Examples | Lecture Notes | Next Lesson |
 |----------|--------|--------|----------|---------------|-------------|
-| [🏃‍♂️‍➡️](../practice/practice1_2.qmd) | [🌱](../primers/primer1_2.qmd) | [🧑‍🏫](../lecture_slides/slide1_2.qmd) | [📓]({{< var example_base >}}1_2.ipynb "Opens in Google Colab - See README if broken") | [📋](../instructor_notes/notes1_2.qmd) | [➡️](lesson1_3.qmd) |
+| [🏃‍♂️‍➡️](../practice/practice1_2 ,html) | [🌱](../primers/primer1_2 ,html) | [🧑‍🏫](../lecture_slides/slide1_2 ,html) | [📓]({{< var example_base >}}1_2.ipynb "Opens in Google Colab - See README if broken") | [📋](../instructor_notes/notes1_2 ,html) | [➡️](lesson1_3 ,html) |
 
 ## Before Class
 
 | Practice | Primer | Previous Lesson |
 |----------|--------|-----------------|
-|          | [🌱](../primers/primer1_2.qmd) | [⬅️](lesson1_1.qmd) |
+|          | [🌱](../primers/primer1_2 ,html) | [⬅️](lesson1_1 ,html) |
 
 ## After Class
 
 | Practice | Primer | Next Lesson |
 |----------|--------|-------------|
-| [🏃‍♂️‍➡️](../practice/practice1_2.qmd) | [🌱](../primers/primer1_3.qmd) | [➡️](lesson1_3.qmd) |
+| [🏃‍♂️‍➡️](../practice/practice1_2 ,html) | [🌱](../primers/primer1_3 ,html) | [➡️](lesson1_3 ,html) |
 
 :::
 
@@ -48,7 +48,7 @@ Before this lesson, you should have:
 
 | Resource | Description |
 |----------|-------------|
-| [🌱 Primer 1.2](../primers/primer1_2.qmd) | What is a Tool? Read before class. |
+| [🌱 Primer 1.2](../primers/primer1_2 ,html) | What is a Tool? Read before class. |
 | [📖 LangChain Tools Docs](https://docs.langchain.com/oss/python/langchain/tools) | Skim the official docs   focus on `@tool` |
 
 Make sure your Google Colab is working from last lesson. You will need it today.
@@ -455,4 +455,4 @@ Next lesson we evaluate real community tools and use them with actual data. Befo
 
 | Practice | Primer | Next Lesson |
 |----------|--------|-------------|
-| [🏃‍♂️‍➡️](../practice/practice1_2.qmd) | [🌱](../primers/primer1_3.qmd) | [➡️](lesson1_3.qmd) |
+| [🏃‍♂️‍➡️](../practice/practice1_2 ,html) | [🌱](../primers/primer1_3 ,html) | [➡️](lesson1_3 ,html) |
