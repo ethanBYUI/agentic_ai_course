@@ -1,14 +1,14 @@
 ---
 title: "Community Tools & Real Data"
-subtitle: "Primer 1.3 — Read before Lesson 3"
+subtitle: "Primer 1.3   Read before Lesson 3"
 format: html
 ---
 
 # Community Tools
 
-Last lesson you built tools from scratch. That is an important skill — but you do not always have to start from zero.
+Last lesson you built tools from scratch. That is an important skill   but you do not always have to start from zero.
 
-LangChain has a large library of **community tools** — pre-built tools made by LangChain and the open source community that cover the most common things agents need to do.
+LangChain has a large library of **community tools**   pre-built tools made by LangChain and the open source community that cover the most common things agents need to do.
 
 ---
 
@@ -42,7 +42,7 @@ Come ready to discuss: when would you use each one, and when would you NOT?
 
 # A New Challenge: Local Data
 
-So far your agents have only worked with information from the internet or from their training. But in the real world, most of the data that matters lives in **local files** — spreadsheets, CSVs, text documents, databases.
+So far your agents have only worked with information from the internet or from their training. But in the real world, most of the data that matters lives in **local files**   spreadsheets, CSVs, text documents, databases.
 
 Getting an agent to work with local data requires a tool. Just like web search gives the agent access to the internet, a file-reading tool gives it access to your files.
 
@@ -64,5 +64,5 @@ That is the kind of thing we will build toward in class.
 
 ::: {.callout-tip}
 ## Focus on the concepts, not the syntax
-The article may show code that looks different from what we use in class. That is fine — focus on understanding what each tool does, not memorizing the exact code.
+The article may show code that looks different from what we use in class. That is fine   focus on understanding what each tool does, not memorizing the exact code.
 :::

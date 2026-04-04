@@ -1,14 +1,13 @@
 ---
 title: "What is an API?"
-subtitle: "Primer 1.1 — Read before Lesson 1"
-format: html
+subtitle: "Primer 1.1   Read before Lesson 1"
 ---
 
 # What is an API?
 
 You have used APIs your entire life without knowing it.
 
-When you open a weather app and it shows you today's forecast, the app did not generate that data itself. It sent a request to a weather company's server, which sent back the data. That invisible conversation between two programs is an **API** — an **Application Programming Interface**.
+When you open a weather app and it shows you today's forecast, the app did not generate that data itself. It sent a request to a weather company's server, which sent back the data. That invisible conversation between two programs is an **API**   an **Application Programming Interface**.
 
 An API is simply an agreed-upon way for two pieces of software to talk to each other.
 
@@ -22,7 +21,7 @@ Think of a restaurant.
 - The kitchen is the **server** (the service you want to use)
 - The waiter is the **API**
 
-You do not walk into the kitchen and cook your own food. You tell the waiter what you want using the menu's format — *"I'll have the pasta, please."* The waiter takes that to the kitchen, and brings back a response — *the pasta.*
+You do not walk into the kitchen and cook your own food. You tell the waiter what you want using the menu's format   *"I'll have the pasta, please."* The waiter takes that to the kitchen, and brings back a response   *the pasta.*
 
 The menu is the API. It defines exactly what you are allowed to ask for and what format to ask in.
 
@@ -32,7 +31,7 @@ The menu is the API. It defines exactly what you are allowed to ask for and what
 
 Imagine if every app had to build its own maps, its own payment system, its own weather data from scratch. That would be insane.
 
-Instead, companies like Google, Stripe, and OpenAI build powerful services and expose them through APIs so that any developer in the world can use them in their own app — without knowing anything about how the service works internally.
+Instead, companies like Google, Stripe, and OpenAI build powerful services and expose them through APIs so that any developer in the world can use them in their own app   without knowing anything about how the service works internally.
 
 You just follow the menu.
 
@@ -40,7 +39,7 @@ You just follow the menu.
 
 # An API Key is Your Password
 
-Most APIs require an **API key** — a long string of letters and numbers that proves you have an account.
+Most APIs require an **API key**   a long string of letters and numbers that proves you have an account.
 
 ```
 AIzaSyB3xKttE9J6Pn93T3Dmo... (yours will look something like this)

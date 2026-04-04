@@ -1,12 +1,12 @@
 ---
 title: "What is a Tool?"
-subtitle: "Primer 1.2 — Read before Lesson 2"
+subtitle: "Primer 1.2   Read before Lesson 2"
 format: html
 ---
 
 # What is a Tool?
 
-Last lesson you made your first LLM call. The model answered questions from memory — it thought, and it responded. That's it.
+Last lesson you made your first LLM call. The model answered questions from memory   it thought, and it responded. That's it.
 
 But what if you wanted the AI to actually **do** something? Look up today's weather. Read a file. Run a calculation. Search the web.
 
@@ -40,11 +40,11 @@ def get_weather(city: str) -> str:
 
 Two things matter here:
 
-1. **The function** — does the actual work
-2. **The docstring** — the text in triple quotes that the AI reads to decide whether to call this tool
+1. **The function**   does the actual work
+2. **The docstring**   the text in triple quotes that the AI reads to decide whether to call this tool
 
 ::: {.callout-warning}
-## The docstring is not for you — it's for the AI
+## The docstring is not for you   it's for the AI
 The AI never sees your code. It only reads the description. Write it clearly, or the agent will not know when to use the tool.
 :::
 
