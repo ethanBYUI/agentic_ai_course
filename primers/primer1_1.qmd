@@ -1,0 +1,89 @@
+---
+title: "What is an API?"
+subtitle: "Primer 1.1 — Read before Lesson 1"
+format: html
+---
+
+# What is an API?
+
+You have used APIs your entire life without knowing it.
+
+When you open a weather app and it shows you today's forecast, the app did not generate that data itself. It sent a request to a weather company's server, which sent back the data. That invisible conversation between two programs is an **API** — an **Application Programming Interface**.
+
+An API is simply an agreed-upon way for two pieces of software to talk to each other.
+
+---
+
+# A Simple Analogy
+
+Think of a restaurant.
+
+- You are the **customer** (your program)
+- The kitchen is the **server** (the service you want to use)
+- The waiter is the **API**
+
+You do not walk into the kitchen and cook your own food. You tell the waiter what you want using the menu's format — *"I'll have the pasta, please."* The waiter takes that to the kitchen, and brings back a response — *the pasta.*
+
+The menu is the API. It defines exactly what you are allowed to ask for and what format to ask in.
+
+---
+
+# Why Do APIs Exist?
+
+Imagine if every app had to build its own maps, its own payment system, its own weather data from scratch. That would be insane.
+
+Instead, companies like Google, Stripe, and OpenAI build powerful services and expose them through APIs so that any developer in the world can use them in their own app — without knowing anything about how the service works internally.
+
+You just follow the menu.
+
+---
+
+# An API Key is Your Password
+
+Most APIs require an **API key** — a long string of letters and numbers that proves you have an account.
+
+```
+AIzaSyB3xKttE9J6Pn93T3Dmo... (yours will look something like this)
+```
+
+::: {.callout-warning}
+## Treat your API key like a password
+
+If someone gets your API key, they can use the service **on your account** and on **your bill**. Never paste it directly in your code. Never upload it to GitHub. We will cover exactly how to store it safely in class.
+:::
+
+---
+
+# APIs and AI
+
+LLMs like Gemini and GPT are not apps you download. They live on powerful servers owned by Google and OpenAI. To use them in your own program, you send your prompt to their server through an API, and they send back the response.
+
+That is the whole trick. When we write:
+
+```python
+model.invoke("Tell me about the ocean.")
+```
+
+Under the hood, Python is:
+1. Packaging your message
+2. Sending it to Google's servers with your API key
+3. Waiting for the response
+4. Handing it back to you
+
+---
+
+# What to Think About Before Class
+
+Come to class ready to answer these in your head:
+
+- In your own words, what is an API?
+- Why would a company expose their service through an API instead of just building an app?
+- What do you think would happen if your API key got posted publicly on GitHub?
+
+---
+
+::: {.callout-tip}
+## You do not need to memorize anything
+
+This primer is just to get the concept in your head before we build with it. Everything will make more sense once you see it live in class.
+:::

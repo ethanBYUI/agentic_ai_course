@@ -1,7 +1,9 @@
 ---
-title: <!-- title of the lesson starting with with "Lesson x.x" -->
-subtitle: <!-- Unit x, Lesson x -->
+title: "APIs & Agentic AI: Your First LLM Call"
+subtitle: "Unit 1, Lesson 1"
 ---
+
+<!-- This is an unreviewed AI draft -->
 
 ::: {.panel-tabset}
 
@@ -9,99 +11,390 @@ subtitle: <!-- Unit x, Lesson x -->
 
 | Practice | Primer | Slides | Examples | Lecture Notes | Next Lesson |
 |----------|--------|--------|----------|---------------|-------------|
-| [🏃‍♂️‍➡️](../practice/practice1_1.qmd) | [🌱](../primer/primerx_x.qmd) | [🧑‍🏫](../lecture_slides/lecture_slides1_1.qmd) | [📓]({{< var example_base >}}1_1.ipynb "Opens in Google Colab - See README if broken") | [📋](link) | [➡️](lesson1_2.qmd) |
-
+| [🏃‍♂️‍➡️](../practice/practice1_1.qmd) | [🌱](../primers/primer1_1.qmd) | [🧑‍🏫](../lecture_slides/slide1_1.qmd) | [📓]({{< var example_base >}}1_1.ipynb "Opens in Google Colab - See README if broken") | [📋](../instructor_notes/notes1_1.qmd) | [➡️](lesson1_2.qmd) |
 
 ## Before Class
 
 | Practice | Primer | Previous Lesson |
-|----------|--------|-------------|
-| [🏃‍♂️‍➡️](link) | [🌱](link) | [⬅️](link) |
+|----------|--------|-----------------|
+|          | [🌱](../primers/primer1_1.qmd) | |
 
 ## After Class
 
 | Practice | Primer | Next Lesson |
 |----------|--------|-------------|
-| [🏃‍♂️‍➡️](../practice/practice1_1.qmd) | [🌱](../primer/primer1_1.qmd) | [➡️](lesson1_2.qmd) |
+| [🏃‍♂️‍➡️](../practice/practice1_1.qmd) | [🌱](../primers/primer1_2.qmd) | [➡️](lesson1_2.qmd) |
 
 :::
 
-# Outcomes
-
-APIs & Your First LLM Call
-
-- Define what an API is, broadly and practically
-- Make an API call to an LLM, seamless environment setup
-- Be aware of common challenges when working with APIs
-
-# Preparation
-
-None today (first day of class!)
-
-# Lecture
-
-<!-- Main lecture content goes here -->
-<!-- This includes slides, notebooks, and instructor notes -->
-
-::: {style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;"}
-<iframe 
-  src="../lecture_slides/slide2_4.html" 
-  style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" 
-  allowfullscreen>
-</iframe>
-:::
-
-<a href="../lecture_slides/slide2_4.html" target="_blank">Fullscreen Presentation</a>
-
-
-# Activity
-
-<!-- Activity instructions, code, visualizations, and downloads -->
-
-# Before next class
-
-<!-- Instructions, including any prep work, finishing class work, project work, or a practice homework -->
-
-| Practice | Primer | Slides | Next Lesson |
-|----------|--------|--------|-------------|
-| [🏃‍♂️‍➡️](link) | [🌱](link) | [🧑‍🏫](link) | [➡️](link) |
-</template>
-
-
-
-<example>
----
-title: "Unit 1.2: Call and LLM"
-format: html
 ---
 
 # Outcomes
 
-APIs & Your First LLM Call
+APIs & Agentic AI
 
-- Define what an API is, broadly and practically
-- Make an API call to an LLM , seamless environment setup
-- Be aware of common challenges when working with APIs
+- By the end of this lesson, you will be able to define what an API is in plain language and give a real-world example.
+- By the end of this lesson, you will be able to explain what agentic AI is and how it differs from a regular LLM call.
+- By the end of this lesson, you will be able to set up Google Colab with a secure API key and make your first LLM call.
+- By the end of this lesson, you will be able to identify risks of mishandling API keys and explain how to store them safely.
+- By the end of this lesson, you will be able to configure a model with a system prompt, temperature, and token limit.
+
+---
 
 # Preparation
 
-None today (first day of class!)
+Before this lesson, read the primer:
 
-# Links
+| Resource | Description |
+|----------|-------------|
+| [🌱 Primer 1.1](../primers/primer1_1.qmd) | What is an API? Read this before class. |
 
-| Powerpoint | Example | Primer | Practice | Lecture Notes |
-|------------|---------|--------|----------|---------------|
-| [:teacher:](lecture_slides/slide1_1.pptx) | [:notebook:](examples/example1_1.qmd) | [:seedling:](primers/primer1_1.qmd) | [🏃‍♂️‍➡️](practice/practice1_1.qmd) | :clipboard:(instructor_notes/notes1_1.qmd)
+Come ready to answer:
 
-<!-- More stuff -->
+- In your own words, what is an API?
+- What do you think would happen if your API key was posted publicly on GitHub?
 
+---
 
+# Discussion
 
-# Before next class
+1. Report on work accomplished
+2. Key takeaways
+3. Questions unaddressed
+4. Optional discussion questions
+    - In your own words, how would you explain an API to someone who has never programmed?
+    - What is the difference between using an AI app like ChatGPT and calling an LLM through an API?
+    - Why do you think companies charge per API call instead of a flat fee?
+5. Log partner's contribution
 
-<!-- Instructions, including any prep work, finishing class work, project work, or a practice homework -->
+---
 
-| Practice | Primer | Slides | Next Lesson |
-|----------|--------|--------|-------------|
-| [🏃‍♂️‍➡️](link) | [🌱](link) | [🧑‍🏫](link) | ➡️(link) |
+# Class
 
+## Lesson Overview
+
+| Segment | Duration |
+|---------|----------|
+| Lecture: APIs & Agentic AI | 15 minutes |
+| Activity: Colab Setup & First LLM Call | 15 minutes |
+| Lecture: System Prompts & Model Configuration | 10 minutes |
+| Activity: Configure Your Own Model | 15 minutes |
+| Wrap-up & Preview | 5 minutes |
+
+---
+
+## Part 1 — APIs & Agentic AI
+
+### What is an API? (Reiterate from primer)
+
+You read about APIs before class. Let's make it concrete with what we're actually doing today.
+
+When you write this line of Python:
+
+```python
+model.invoke("Tell me about the ocean.")
+```
+
+Your computer is not doing the thinking. It is sending your message to Google's servers through an **API**, waiting for a response, and handing it back to you. The API is the agreed-upon way your code talks to their AI.
+
+::: {.callout-note}
+## API = a menu for software
+
+Just like a restaurant menu tells you exactly what you can order and in what format, an API tells your program exactly what requests it can make and what to expect back.
+:::
+
+---
+
+### Regular AI vs. Agentic AI
+
+So far, everything you have heard about AI probably looks like this:
+
+```
+You type something → AI thinks → AI responds. Done.
+```
+
+That is a **regular LLM call**. One message in, one message out. The AI has no memory, no tools, and no ability to take action in the world.
+
+**Agentic AI** is different. An agent can:
+
+- **Think in a loop** — reason about what to do next
+- **Use tools** — search the web, read files, run code, call APIs
+- **Observe results** — read the output of a tool and decide what to do next
+- **Keep going** — repeat until the job is done
+
+```
+You ask
+  → Agent thinks: "what do I need?"
+  → Agent uses a tool
+  → Agent reads the result
+  → Agent thinks again
+  → Agent answers ✅
+```
+
+::: {.callout-tip}
+## A useful analogy
+A regular LLM is like texting a smart friend — they answer from memory. An AI agent is like hiring an intern — they go look things up, take actions, and come back with a real answer.
+:::
+
+This course is about building agents. But first, we need to learn how to talk to the AI at all. That starts today.
+
+---
+
+### Why API Keys Need to Stay Secret
+
+An API key is like a credit card number combined with a password. It proves to Google's servers that the request is coming from your account.
+
+If someone gets your API key they can:
+
+- Make thousands of API calls **billed to your account**
+- Use your quota, locking you out of the service
+- Potentially access other services linked to your account
+
+::: {.callout-warning}
+## The three rules of API keys
+
+1. **Never** paste your key directly in your code
+2. **Never** upload it to GitHub — bots scan public repos for keys within seconds
+3. **Always** store it in a secrets manager or `.env` file
+:::
+
+In this course we use **Google Colab Secrets** to store keys safely. You will set this up in the next activity.
+
+---
+
+## Activity 1 — Colab Setup & Your First LLM Call
+
+::: {.callout-important}
+## Do this together
+Work through every step below. Do not move on until you see a response from the model at the bottom. Help your neighbor if they get stuck before moving ahead.
+:::
+
+### Step 1 — Get your API key
+
+1. Go to [aistudio.google.com/apikey](https://aistudio.google.com/apikey)
+2. Sign in with a **personal** Google account (not a school email)
+3. A key should be created automatically — click to copy it
+
+::: {.callout-note collapse="true"}
+## Troubleshooting: key not working?
+- Make sure you are using a personal Google account, not a school or work email
+- If it says your region is not supported, check your Google account age verification settings
+- As a last resort, an OpenAI key will also work — ask your instructor for the code differences
+:::
+
+---
+
+### Step 2 — Store your key in Colab Secrets
+
+::: {.callout-warning}
+## Do NOT paste your key into the code cell
+Store it in Secrets instead. Here is how:
+:::
+
+1. Click the **🔑 key icon** in the left sidebar of Colab
+2. Click **"Add a new secret"**
+3. Name it exactly: `GOOGLE_API_KEY`
+4. Paste your key as the value
+5. Toggle **"Notebook access"** ON
+
+Then run this cell to load it:
+
+```python
+import os
+from google.colab import userdata
+
+os.environ['GOOGLE_API_KEY'] = userdata.get('GOOGLE_API_KEY')
+print("API key loaded!")
+```
+
+---
+
+### Step 3 — Install packages
+
+```python
+%pip install -q -U langchain langchain-google-genai
+```
+
+::: {.callout-note}
+## You only need to run this once per Colab session
+If you close and reopen the notebook, run it again.
+:::
+
+---
+
+### Step 4 — Make your first LLM call
+
+```python
+from langchain.chat_models import init_chat_model
+
+model = init_chat_model(
+    model="google_genai:gemini-2.5-flash"
+)
+
+response = model.invoke("Hello! What are you?")
+print(response.content)
+```
+
+You should see something like:
+
+```
+I'm Gemini, a large language model made by Google...
+```
+
+---
+
+::: {.callout-tip}
+## 🛑 STOP HERE
+
+If it worked — great! Help your neighbor get to the same point before moving on.
+
+If it did not work — raise your hand. Do not skip ahead.
+:::
+
+---
+
+## Part 2 — System Prompts & Model Configuration
+
+You just made a raw LLM call. The model answered as itself with no instructions. But in real applications, we almost always want to shape how the model behaves. That is what **system prompts** and **model configuration** are for.
+
+---
+
+### System Prompts
+
+A **system prompt** is a set of instructions you give the model before the conversation starts. Think of it as the job description you hand a new employee on day one.
+
+The user never sees the system prompt — it runs silently in the background and shapes every response the model gives.
+
+```
+System prompt:  "You are a grumpy pirate who answers every question 
+                 with nautical metaphors and mild complaints."
+
+User:           "What is 2 + 2?"
+
+Model:          "Arrr, that be 4, ye landlubber. Though why ye bother 
+                 me with such trivial arithmetic when there be treasure 
+                 to find, I'll never know..."
+```
+
+System prompts are one of the most powerful tools in agentic AI. They control:
+
+- The agent's **persona** and tone
+- Its **rules** and constraints
+- What **tools** it should use and when
+- What it should **never** do
+
+---
+
+### Temperature
+
+**Temperature** controls how creative or predictable the model's responses are.
+
+| Temperature | Behavior | Good for |
+|-------------|----------|----------|
+| `0.0` | Very predictable, consistent | Facts, SQL, code |
+| `0.5` | Balanced | General assistant |
+| `1.0` | Creative, varied | Brainstorming, writing |
+| `>1.0` | Wild, unpredictable | Rarely useful |
+
+::: {.callout-note}
+## Think of it like a creativity dial
+0 = the model always picks the most likely next word. 1 = it takes more risks. Higher = chaos.
+:::
+
+---
+
+### Max Tokens
+
+A **token** is roughly ¾ of a word. `max_tokens` limits how long the model's response can be.
+
+- `max_tokens=50` → a sentence or two
+- `max_tokens=500` → a paragraph
+- `max_tokens=2000` → a long essay
+
+This matters because:
+
+1. **Cost** — you are billed per token
+2. **Speed** — shorter responses come back faster
+3. **Control** — stops the model from rambling
+
+---
+
+## Activity 2 — Configure Your Own Model
+
+Now you will build a configured agent using everything from Part 2. Follow the steps below and then experiment on your own.
+
+### Step 1 — Install the agent package
+
+```python
+%pip install -q -U langchain langgraph langchain-google-genai
+```
+
+### Step 2 — Build a configured agent
+
+```python
+from langchain.chat_models import init_chat_model
+from langchain.agents import create_react_agent
+
+# Configure the model
+model = init_chat_model(
+    model="google_genai:gemini-2.5-flash",
+    temperature=0.7,
+    max_tokens=300
+)
+
+# Give it a system prompt
+system_prompt = "You are a helpful assistant who explains everything using food analogies."
+
+# Create the agent
+agent = create_react_agent(
+    model=model,
+    tools=[],
+    prompt=system_prompt
+)
+
+# Invoke it
+response = agent.invoke({"messages": [{"role": "user", "content": "What is an API?"}]})
+print(response["messages"][-1].content)
+```
+
+---
+
+### Step 3 — Experiment
+
+Try changing each of these one at a time and observe what happens:
+
+| What to change | Try this |
+|----------------|----------|
+| `system_prompt` | Make the assistant explain things like a sports commentator |
+| `temperature` | Change it to `0.0` then `1.0` — notice the difference? |
+| `max_tokens` | Set it to `50` — what happens to the response? |
+| The question | Ask something completely different |
+
+::: {.callout-tip}
+## There is no right answer here
+The goal is to build intuition for how each setting changes the model's behavior. Play around!
+:::
+
+---
+
+### Step 4 — Reflection
+
+Before moving on, answer these in your notebook or out loud to a partner:
+
+1. What did changing the system prompt do to the response?
+2. What happened at very low vs. very high temperature?
+3. Why would you want to limit `max_tokens` in a real application?
+
+---
+
+# Before Next Class
+
+Next lesson we go deeper into **tools** — the hands of an AI agent. Before class:
+
+1. Finish any part of today's activities you did not complete
+2. Make sure your Colab setup is working — you will need it next class
+3. Read the primer for Lesson 1.2 before you arrive
+
+| Practice | Primer | Next Lesson |
+|----------|--------|-------------|
+| [🏃‍♂️‍➡️](../practice/practice1_1.qmd) | [🌱](../primers/primer1_2.qmd) | [➡️](lesson1_2.qmd) |

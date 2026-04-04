@@ -1,0 +1,107 @@
+---
+title: <!-- title of the lesson starting with with "Lesson x.x" -->
+subtitle: <!-- Unit x, Lesson x -->
+---
+
+::: {.panel-tabset}
+
+## Quick Links
+
+| Practice | Primer | Slides | Examples | Lecture Notes | Next Lesson |
+|----------|--------|--------|----------|---------------|-------------|
+| [🏃‍♂️‍➡️](../practice/practice1_1.qmd) | [🌱](../primer/primerx_x.qmd) | [🧑‍🏫](../lecture_slides/lecture_slides1_1.qmd) | [📓]({{< var example_base >}}1_1.ipynb "Opens in Google Colab - See README if broken") | [📋](link) | [➡️](lesson1_2.qmd) |
+
+
+## Before Class
+
+| Practice | Primer | Previous Lesson |
+|----------|--------|-------------|
+| [🏃‍♂️‍➡️](link) | [🌱](link) | [⬅️](link) |
+
+## After Class
+
+| Practice | Primer | Next Lesson |
+|----------|--------|-------------|
+| [🏃‍♂️‍➡️](../practice/practice1_1.qmd) | [🌱](../primer/primer1_1.qmd) | [➡️](lesson1_2.qmd) |
+
+:::
+
+# Outcomes
+
+APIs & Your First LLM Call
+
+- Define what an API is, broadly and practically
+- Make an API call to an LLM, seamless environment setup
+- Be aware of common challenges when working with APIs
+
+# Preparation
+
+None today (first day of class!)
+
+# Lecture
+
+<!-- Main lecture content goes here -->
+<!-- This includes slides, notebooks, and instructor notes -->
+
+::: {style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;"}
+<iframe 
+  src="../lecture_slides/slide2_4.html" 
+  style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" 
+  allowfullscreen>
+</iframe>
+:::
+
+<a href="../lecture_slides/slide2_4.html" target="_blank">Fullscreen Presentation</a>
+
+
+# Activity
+
+<!-- Activity instructions, code, visualizations, and downloads -->
+
+# Before next class
+
+<!-- Instructions, including any prep work, finishing class work, project work, or a practice homework -->
+
+| Practice | Primer | Slides | Next Lesson |
+|----------|--------|--------|-------------|
+| [🏃‍♂️‍➡️](link) | [🌱](link) | [🧑‍🏫](link) | [➡️](link) |
+</template>
+
+
+
+<example>
+---
+title: "Unit 1.2: Call and LLM"
+format: html
+---
+
+# Outcomes
+
+APIs & Your First LLM Call
+
+- Define what an API is, broadly and practically
+- Make an API call to an LLM , seamless environment setup
+- Be aware of common challenges when working with APIs
+
+# Preparation
+
+None today (first day of class!)
+
+# Links
+
+| Powerpoint | Example | Primer | Practice | Lecture Notes |
+|------------|---------|--------|----------|---------------|
+| [:teacher:](lecture_slides/slide1_1.pptx) | [:notebook:](examples/example1_1.qmd) | [:seedling:](primers/primer1_1.qmd) | [🏃‍♂️‍➡️](practice/practice1_1.qmd) | :clipboard:(instructor_notes/notes1_1.qmd)
+
+<!-- More stuff -->
+
+
+
+# Before next class
+
+<!-- Instructions, including any prep work, finishing class work, project work, or a practice homework -->
+
+| Practice | Primer | Slides | Next Lesson |
+|----------|--------|--------|-------------|
+| [🏃‍♂️‍➡️](link) | [🌱](link) | [🧑‍🏫](link) | ➡️(link) |
+
