@@ -10,7 +10,7 @@ subtitle: "Unit 1, Lesson 1"
 
 | Practice | Primer | Slides | Examples | Lecture Notes | Next Lesson |
 |----------|--------|--------|----------|---------------|-------------|
-| [🏃‍♂️‍➡️](../practice/practice1_1.html) | [🌱](../primers/primer1_1.html) | [🧑‍🏫](../lecture_slides/slide1_1.html) | [📓]({{< var example_base >}}1_1.ipynb "Opens in Google Colab - See README if broken") | [📋](../instructor_notes/notes1_1.html) | [➡️](lesson1_2.html) |
+| [🏃‍♂️‍➡️](../practice/practice1_1.ipynb) | [🌱](../primers/primer1_1.html) | [🧑‍🏫](../lecture_slides/slide1_1.html) | [📓]({{< var example_base >}}1_1.ipynb "Opens in Google Colab - See README if broken") | [📋](../instructor_notes/notes1_1.html) | [➡️](lesson1_2.html) |
 
 ## Before Class
 
@@ -22,7 +22,7 @@ subtitle: "Unit 1, Lesson 1"
 
 | Practice | Primer | Next Lesson |
 |----------|--------|-------------|
-| [🏃‍♂️‍➡️](../practice/practice1_1.html) | [🌱](../primers/primer1_2.html) | [➡️](lesson1_2.html) |
+| [🏃‍♂️‍➡️](../practice/practice1_1.ipynb) | [🌱](../primers/primer1_2.html) | [➡️](lesson1_2.html) |
 
 :::
 
@@ -396,4 +396,4 @@ Next lesson we go deeper into **tools**   the hands of an AI agent. Before class
 
 | Practice | Primer | Next Lesson |
 |----------|--------|-------------|
-| [🏃‍♂️‍➡️](../practice/practice1_1.html) | [🌱](../primers/primer1_2.html) | [➡️](lesson1_2.html) |
+| [🏃‍♂️‍➡️](../practice/practice1_1.ipynb) | [🌱](../primers/primer1_2.html) | [➡️](lesson1_2.html) |
