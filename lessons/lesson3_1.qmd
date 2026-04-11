@@ -1,0 +1,73 @@
+---
+title: Welcome to Unit 3
+subtitle: Unit 3, Lesson 1
+format: html
+execute:
+  eval: false
+---
+
+<!-- This is an unreviewed AI draft -->
+
+::: {.panel-tabset}
+
+## Quick Links
+
+| Practice | Primer | Slides | Examples | Lecture Notes | Next Lesson |
+|----------|--------|--------|----------|---------------|-------------|
+|   |   | [🧑‍🏫](../lecture_slides/slidex_x.qmd) | [📓]({{< var example_base >}}x_x.ipynb "Opens in Google Colab - See README if broken") | [📋](../lecture_notesx_x.qmd) | [➡️](lessonx_x.qmd) |
+
+## Before Class
+
+| Practice | Primer | Previous Lesson |
+|----------|--------|-------------|
+|   |   | [⬅️](lessonx_x.qmd) |
+
+## After Class
+
+| Practice | Primer | Next Lesson |
+|----------|--------|-------------|
+| [🏃‍♂️‍➡️](../practice/practicex_x.qmd) | [🌱](../primers/primerx_x.qmd) | [➡️](lessonx_x.qmd) |
+
+:::
+
+# Outcomes
+
+- Review lessons learned from diagnostics unit
+- Inspire students to exercise their agency in the development of agents
+- Articulate clearly what makes an agent "good"
+- Overview of Unit 3
+
+# Preparation
+
+Finish [Unit 2 project](project 2 link)
+
+# Discussion
+
+1. Report on work accomplished
+2. Key takeaways
+3. Questions unaddressed
+4. Optional discussion questions
+<!-- Discussion questions related to the preparation material in sub bullet points such as:
+    - Question 1
+    - Question 2
+    - Question 3
+-->
+5. Log partner's contribution
+
+# Class
+
+<!-- Bulk of the content -->
+<!-- Consists of activities, lecture material, and instruction -->
+<!-- This is open ended, but has a clear flow from one lecture/activity to another -->
+
+<!-- Activity instructions have very clear and readable directions -->
+<!-- Include various content types including code, visualizations, Colab links -->
+<!-- Use callout notes to aid in readability -->
+
+# Before next class
+
+<!-- Instructions, including any prep work, finishing class work, project work, or a practice homework -->
+
+| Practice | Primer | Next Lesson |
+|----------|--------|-------------|
+| [🏃‍♂️‍➡️](../practice/practicex_x.qmd) | [🌱](../primer/primerx_x.qmd) | ➡️(lessonx_x.qmd) |

@@ -2,6 +2,8 @@
 
 This repo contains the source files for the Agentic AI course website, built with [Quarto](https://quarto.org). The site renders to the `docs/` folder and is served via GitHub Pages.
 
+Professor? Start [here](./instructor_notes/start_here.qmd)
+
 ---
 
 ## Prerequisites

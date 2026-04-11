@@ -9,11 +9,11 @@ toc-depth: 1
 
 # Course Objectives
 
-- Design, diagram, implement, evaluate, productize, and scale agentic AI systems using modern LLM frameworks and tooling.
-- Identify and evaluate problems that are appropriate for agentic AI solutions, and distinguish them from problems better solved by traditional software or non-agentic LLM approaches.
-- Clearly define Agentic AI and related concepts, including agents, tools, planning, grounding, orchestration, evaluation, and human-in-the-loop workflows.
-- Develop and articulate ethical guidelines for the use of LLMs and agentic AI, including responsible data usage, AI governance principles, safety, privacy, and organizational policy considerations.
-- Build the capability to independently learn, evaluate, and adapt to new AI models, tools, and paradigms in a rapidly evolving AI ecosystem.
+- Be able to plan, program, measure, test, and iteratively refine Agentic AI solutions.
+- Know which problems are best solved with agentic AI as opposed to other methods.
+- Develop personal guidelines for ethical use of LLMs and agentic AI.
+- Communicate AI competence using current industry language to both technical and non-technical audiences.
+- Grow an ability to self-learn in an ever-changing AI landscape.
 
 ---
 

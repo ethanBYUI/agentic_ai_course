@@ -1,0 +1,9 @@
+---
+title: Welcome Professor!
+---
+
+This is an exciting course, and we are glad you are teaching it. 
+
+If you are wondering where to start, this is a good place. Aside from looking through the `README.md` and clicking around in the website, visiting the `teaching_philosophy.md` provides the background for how to deliver this course and teach it effectively. `instructor_notes` give practical advice for each day, what is most important, and what other professors have learned.
+
+The `Milestones` document contains a full list of the milestones or objectives for each day, and can be found [here](https://docs.google.com/spreadsheets/d/18tI28Nzx1L9BSgob2lNv-1Flxj8oA_M03VQP1ON75XA/edit?gid=0#gid=0).
