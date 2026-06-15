@@ -38,6 +38,15 @@ APIs & Agentic AI
 - By the end of this lesson, you will be able to identify risks of mishandling API keys and explain how to store them safely.
 - By the end of this lesson, you will be able to configure a model with a system prompt, temperature, and token limit.
 
+
+- Make an API call to an LLM
+- Explain what an AI Agent is and how it differs from regular AI/LLM
+- Define an API broadly and practically
+- Be aware of common issues working with APIs
+relevant potential challenges working with API's, Why you need to hide your API key
+
+System Prompts
+Configure model (temp, token limit, system prompt)
 ---
 
 # Preparation

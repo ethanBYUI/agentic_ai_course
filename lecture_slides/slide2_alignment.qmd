@@ -1,0 +1,70 @@
+
+
+# Defining Alignment
+
+In a lot of ways
+
+## My Definition
+
+Adherance to written & unwritten rules
+
+## IBM
+
+Artificial intelligence (AI) alignment is the process of encoding human values and goals into AI models to make them as helpful, safe and reliable as possible.
+
+## Anthropic
+
+- Helpful
+- Honest
+- Harmless
+
+::: notes
+Helpful: The model should actively assist the user in achieving their goals and solving tasks efficiently.
+
+Honest: The model must provide accurate information, correctly calibrate and express its own uncertainty, and avoid deception or fabrication.
+
+Harmless: The model must not act as a force multiplier for harm, actively avoiding the generation of toxic, dangerous, or illegal content.
+
+https://www.anthropic.com/research/team/alignment
+https://www.anthropic.com/news/claude-new-constitution
+https://alignment.anthropic.com/
+:::
+
+## OpenAI
+
+..aligned with human values and follow[s] human intent
+
+::: notes
+https://openai.com/index/our-approach-to-alignment-research/
+:::
+
+## xAI
+
+Loosly ingrained with Elon Musk's moral compass
+
+## Harvard
+
+AI Alignment means making sure an **AI system’s goals and behavior match what people actually want—our values, rules, and intentions.** It’s about getting the AI to do the “right thing” even in new situations, not just follow instructions literally in ways that cause harm. In practice, it includes preventing unwanted outcomes like deception, unsafe shortcuts, or optimizing a metric that misses the real objective.
+
+::: notes
+https://hai.stanford.edu/ai-definitions/what-is-ai-alignment
+:::
+
+# Whose' Morality?
+
+# Obedient
+
+::: notes
+Does obedience alone make an agent "good"
+
+We say "good dog" when it does our trick
+
+But we also say it when it surprises us
+:::
+
+# Knowing & Obedient
+
+
+::: notes
+You as a human have unwritten laws that govern your behavior. You have the light of Christ (and in most of your cases, the gift of the Holy Ghost), and a lifetime of experience. You have eyes, ears, a nose, a tongue, and fingertips that inform your experience. AI does not. You need to inform it.
+:::

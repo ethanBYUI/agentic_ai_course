@@ -1,0 +1,48 @@
+---
+title: "LLMs: Let's Talk"
+format: 
+    revealjs:
+        controls: true
+        controls-layout: edges
+        incremental: true
+        slide-number: true
+---
+
+## {background-image="../Assets/Images/Agent-Loop.png" background-size="contain"}
+
+```{mermaid}
+#| eval: true
+flowchart TD
+    Request(["Request"]) --> Model(["Model"])
+    Model -.-> Tools(["Tools"])
+    Tools --> Model
+    Model -.-> Result(["Result"])
+
+    style Request fill:#29b6f6,stroke:#0288d1,color:#fff
+    style Model fill:#ce93d8,stroke:#8e24aa,color:#fff
+    style Tools fill:#ef5350,stroke:#c62828,color:#fff
+    style Result fill:#616161,stroke:#212121,color:#fff
+```
+
+
+
+## Fun Facts
+
+- LLMs are stateless
+- Text in, text out
+- "AI" is a lot of things
+
+## {background-image="../Assets/Images/AI-ML-LLM-Diagram.webp" background-size="contain"}
+
+## {background-image="../Assets/Images/Big-Venn.jpg" background-size="contain"}
+
+
+
+
+
+
+
+
+## {background-image="../Assets/Images/Context-Harness-Engineering.png" background-size="contain"}
+
+## {background-image="../Assets/Images/context_engineering_venn_diagram.png" background-size="contain"}

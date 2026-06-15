@@ -1,0 +1,38 @@
+## Overview
+
+Create a powerful personal assistant from scratch
+
+## Requirements
+
+1. Build and run the agent using at least __ tools from a list
+2. Submit the codebase with a nice README.md
+3. Successfully submit a Canvas assignment using their agent
+4. Attempt to run several other prompts that will test their agent's abilities
+5. Write a self-reflection of what their agent does well, and what it does poorly
+
+### Canvas Assignment Prompts (Unfinished)
+
+"See instructions in Canvas for assignment ___"
+
+### Attempt Prompts (Unfinished)
+
+
+
+
+## Notes
+
+They will start building this pretty early on in the first unit, adding things as they go along
+
+Tell them early on in the course they are building a personal assistant
+
+Upfront, tell them to explore and create something that would be useful to them
+
+Let them know there will be leaderboards
+
+As it nears closer, you can let them know that there are a few test prompts and a Canvas assignment, with completion standards based on "does it run", not "how well it runs" (Tell them later so it doesn't guide them at the start)
+
+Leaderboards could include:
+- Most MCP's connected
+- Most tools used in a single run (limited by the free tier tokens)
+- Most methods used
+- Funniest Canvas submission

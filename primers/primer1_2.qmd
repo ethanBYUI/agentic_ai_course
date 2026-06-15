@@ -4,6 +4,12 @@ subtitle: "Primer 1.2   Read before Lesson 2"
 format: html
 ---
 
+# Takeaway
+
+1. A tool is a function adapted for AI use
+2. Big LLM providers natively provide the ability for their LLM's to use tools
+3. Spend some time in the docs
+
 # What is a Tool?
 
 Last lesson you made your first LLM call. The model answered questions from memory   it thought, and it responded. That's it.

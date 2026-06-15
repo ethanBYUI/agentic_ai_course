@@ -1,6 +1,61 @@
 Group day!
 
+# The Most Important Thing
+
+Organize groups and work together on an activity
+
+# Notes
+
 Do some activity to meet a few more people
 
-Work through the complicated group selection step by step
+### Group Selection
 
+Students choose groups of either 4 or 3. You can calculate the number of groups but subtracting 3 until there is a multiple of 4.
+
+40 students: 10 groups
+18 students: 5 groups
+21 students: 6 groups
+
+The goal of having a structured selection is to ensure there is a roughly equal mix of coding experience and teams that will actually communicate with and help each other. 
+
+Teacher draws a plot titled "Prior Ability" with "Coding" on the x-axis and "Communication" on the y-axis
+
+    Prior Ability
+  |
+C.|
+  |
+  |_______________
+       Coding
+
+1. Students each plot a dot with their name on the whiteboard
+2. Teacher draws lines separating dots and labels them
+    - A: The leftmost n dots (with n being number of groups in the class)
+    - B: The rightmost n dots
+    - C: The middle area
+    - Draw a dotted horizonal line in the C group with n dots on the top or bottom
+3. Students line up in order of A, B, C
+    - A picks a B
+    - B picks a C 
+    - C picks another C (preferrably on the other side of the line)
+4. As students pick, they erase their own dot and write on the board the names in their group so far
+
+   Prior Ability
+    A    C    B
+  |  .|.  . | ..|
+C.|.  |_._ _|   |
+  | . |.. . | . |
+  |___|_____|___|
+      Coding
+
+Alternatively, you can require each group has an A, B, C, and D. Students line up in order of who cares the most and each picks one person from any letter group other than their own.
+
+Alternate y-axis options are 
+- Prompting
+- Comfort with Ambiguity
+
+
+### After Selection
+
+Students solve a problem using only one computer (finding a community tool in the docs)
+
+They then share contact info

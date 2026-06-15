@@ -1,5 +1,12 @@
 ## Now
 
+[ ] Simplify milestones
+    [ ] Visualize outcomes vs assessments
+[ ] Enter learning outcomes and milestones into repository
+[ ] Visit every lesson and create instructor notes and revisions notes
+
+## ASAP
+
 [ ] Upload remaining Unit 1 and 2 lessons
 [ ] Upload materials for unit projects 1 and 2
 [ ] Upload Google Drive materials to repo (daily outcomes, teaching philosophy, syllabus)
@@ -13,6 +20,7 @@
 [ ] Create instructor notes for every day
 [ ] Format instructor notes cleanly and consistently
 [ ] Create Canvas assignments (as explained in teaching philosophy doc)
+[ ] Create base broken agent for Unit 2
 
 ## Summer 2026
 

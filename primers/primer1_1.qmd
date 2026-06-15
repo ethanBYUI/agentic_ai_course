@@ -3,6 +3,12 @@ title: "What is an API?"
 subtitle: "Primer 1.1   Read before Lesson 1"
 ---
 
+# Takeaways
+
+1. An API is a backend connection to an online service.
+2. An API key is the password (also termed a "secret")
+3. We will access big LLM providers via API (ie Gemini, GPT)
+
 # What is an API?
 
 You have used APIs your entire life without knowing it.
@@ -11,9 +17,13 @@ When you open a weather app and it shows you today's forecast, the app did not g
 
 An API is simply an agreed-upon way for two pieces of software to talk to each other.
 
+Optional short video diving into API's:
+
+{{< video https://www.youtube.com/watch?v=ByGJQzlzxQg >}}
+
 ---
 
-# A Simple Analogy
+## A Simple Analogy
 
 Think of a restaurant.
 
@@ -27,7 +37,7 @@ The menu is the API. It defines exactly what you are allowed to ask for and what
 
 ---
 
-# Why Do APIs Exist?
+## Why Do APIs Exist?
 
 Imagine if every app had to build its own maps, its own payment system, its own weather data from scratch. That would be insane.
 

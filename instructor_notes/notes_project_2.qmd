@@ -1,0 +1,22 @@
+## Overview
+
+Given an agent, they assess its usefulness, draft a report, and present a better one.
+
+This is in two parts:
+
+1. Assessment and communication of given agent
+2. Revision, experimentation, and assessment of new agent
+
+## Requirements
+
+1. The work of analysis, revision, and testing
+2. A written report and summary
+3. Codebase for revised agent
+4. Video communicating results to client
+5. Meeting with employer (the professor)
+
+## Notes
+
+AI is allowed to help them write the report and summary, but it better not sound like AI wrote it
+
+You could have them share tips with each other on how to make AI output quality

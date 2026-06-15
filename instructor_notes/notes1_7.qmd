@@ -1,0 +1,7 @@
+Dissect an MCP
+
+## Notes
+
+Explain the parts of an MCP - what can go in it
+
+Then hunt for those parts in the Canvas MCP

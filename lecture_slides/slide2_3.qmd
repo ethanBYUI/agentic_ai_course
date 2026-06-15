@@ -1,0 +1,151 @@
+# Agentic AI Failure Modes
+
+::: notes
+When an agentic AI system fails, the common reaction is "the model hallucinated." But today, with much stronger and more consistent LLMs, failures are less likely due to model quality — and more likely due to flaws in system design. Because agents are complex systems that observe, plan, and act in iterative loops, they introduce more failure modes than simple chatbots.
+
+This lesson covers three of the most common failure modes and how to mitigate them.
+:::
+
+## Agents fail differently than chatbots
+
+::: notes
+Agentic AI is not just an LLM with tools. It's a system that observes, plans, acts, and evaluates — cyclically. That complexity introduces new categories of failure. Modern failures are usually architectural, not model-level.
+:::
+
+# Failure Mode 1: Infinite Loop
+
+## The agent retries without progress
+
+- Search → Evaluate → Plan → (repeat)
+
+::: notes
+Example: You ask an agent to find a document. The agent searches, evaluates the results, and if unsatisfied, replans and retries. If the document doesn't exist, the agent doesn't know that — so it keeps cycling indefinitely. It's stuck in an infinite loop of search → evaluate → replan.
+:::
+
+## Why it happens
+
+- No termination condition
+- Actions not tracked
+- Progress not tracked
+
+::: notes
+**No termination condition:** The agent doesn't know when to stop trying.
+
+**Actions not tracked:** We don't know if the agent is actually changing its approach between retries, or running the same search over and over.
+
+**Progress not tracked:** With no progress measurement, there's no signal that retries are getting worse (or going nowhere), so the agent continues indefinitely.
+:::
+
+## How to mitigate
+
+- Set max retries / steps / runtime
+- Track and compare actions across retries
+- Track result quality per retry
+
+::: notes
+**Max retries / steps / runtime:** The simplest fix. Give the agent a hard limit so it fails gracefully rather than burning compute and API budget.
+
+**Action tracking:** Compare each action to previous ones. If the search query is essentially the same across retries, cut it off — there's no point repeating the same call.
+
+**Progress tracking:** Measure whether results are improving. If quality is flat or declining, stop and surface the failure.
+
+Not a catastrophic failure mode, but it wastes resources and increases cost.
+:::
+
+# Failure Mode 2: Hallucinated Planning
+
+## The agent makes a plausible but impossible plan
+
+::: notes
+Example: You ask an agent to book flights to Milan under $500. The agent plans: search via travel booking API → filter by price → book → send confirmation email. Looks great — but the agent was never given access to a travel API or an email tool. It assumed capabilities it doesn't have.
+
+"Plausible vs. possible" — the plan looks reasonable on paper but fails at execution.
+:::
+
+## Why it happens
+
+- Tool capabilities not well-defined
+- No validation between planning and executing
+- Agent assumes instead of checking constraints
+
+::: notes
+**Undefined tool capabilities:** If the agent doesn't have a clear description of what its tools can and cannot do, it fills in the gaps with assumptions.
+
+**No validation step:** Planning and execution happen without a check in between. Errors only surface at runtime.
+
+**Assuming over constraining:** Instead of asking "do I have a travel API?", the agent just assumes it does and proceeds.
+:::
+
+## How to mitigate
+
+- Clearly define tool schemas and limitations
+- Add a validation step (verifier agent or human-in-the-loop)
+- Specify constraints; instruct agent to ask before assuming
+
+::: notes
+**Clear tool schemas:** Tell the agent exactly what each tool can and cannot do. Leave no room for assumption.
+
+**Multi-agent validation:** Insert a verifier agent between planning and execution that checks the plan for feasibility. For high-risk plans, use a human in the loop.
+
+**Constraint specification:** Explicitly state what the agent is and isn't allowed to do. Prompt it to ask for clarification rather than guess — e.g., "Should I use a travel API?" instead of inventing one.
+:::
+
+# Failure Mode 3: Unsafe Tool Use
+
+## The agent takes a valid but harmful action
+
+::: notes
+Example 1: An agent tasked with deleting outdated database records deletes active records instead.
+
+Example 2: An agent sends automated emails to recipients with unreviewed content.
+
+The actions are technically executable — no error is thrown. But the consequences are destructive or unintended.
+:::
+
+## Why it happens
+
+- Tools are overprivileged
+- No approval workflow
+- No separation of read vs. write access
+
+::: notes
+**Overprivileged tools:** If a tool has permission to delete, it can delete — even things it shouldn't.
+
+**No approval workflow:** High-risk actions execute immediately without any human review gate.
+
+**No read/write separation:** When tools aren't tiered by access level, a "lookup" tool and a "delete" tool may be treated identically by the agent.
+:::
+
+## How to mitigate
+
+- Principle of least agency
+- Approval workflow for high-risk actions
+- Separate tools by access tier (read / write / delete)
+
+::: notes
+**Least agency:** Only grant the permissions a tool actually needs. Mitigation starts at permission design.
+
+**Approval workflow:** For consequential or irreversible actions, require explicit human approval before execution.
+
+**Access tiers:** Categorize tools by what they can do. A read-only tool should never be able to write or delete. Enforcing tiers prevents agents from accidentally (or autonomously) committing destructive actions.
+
+This failure mode is the most damaging — it can directly harm data, users, or a company's reputation.
+:::
+
+# Summary
+
+## Failures are predictable
+
+- Too much autonomy
+- Too little constraint
+- Lack of monitoring
+
+::: notes
+Agentic AI failures aren't random — they're the result of predictable design gaps.
+
+- **Too much autonomy:** The agent acts without enough guardrails.
+- **Too little constraint:** No limits on retries, permissions, or assumptions.
+- **Lack of monitoring:** No tracking of actions, progress, or plan validity.
+
+Engineering discipline — not just model quality — is what makes agents reliable.
+:::

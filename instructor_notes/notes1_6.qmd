@@ -1,0 +1,28 @@
+## Most Important Thing
+
+Use an MCP (Slack/Canvas)
+
+## Notes
+
+Relate MCP to what they have learned recently
+- Contains functions or tools, like a package but for AI, but it's other things too
+- Plugs in like a USB; you don't think about how USB communicates, it just works
+- Talks like an API with HTTP to give connection to services
+
+#### I like this conceptual analogy on local vs remote:
+
+**stdio**: friendly neighborhood Spiderman
+- local
+- swoops in when needed, dormant otherwise
+- One Spiderman (but other computers can also have their own, Spiderverse)
+- Might download from a GitHub repo
+
+**HTTP**: Tony Stark or Stark Industries
+- remote/web
+- Always monitoring (skynet)
+- Spins up a new instance (many Iron Mans)
+- Might find from a company's website
+
+## The Cop Out Activity
+
+Langchain Academy 2.1 video and notebook

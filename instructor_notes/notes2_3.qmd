@@ -1,0 +1,72 @@
+## Most Important Thing
+
+Deepen understanding of "good" in the context of whether it works or not; identify failure modes
+
+## Notes
+
+Go through failure modes, what constitutes as "working"
+
+Start the conversation by asking what they expect from an agent, what would they see as a failure
+
+I have yet to find a solid source for this. This is a point for re-evaluation, but here are the failure modes as of now:
+
+### Failure Modes
+
+All these failure modes https://latitude.so/blog/ai-agent-failure-detection-guide
+
+- Infinite loop
+- Hallucination (plans)
+- Context loss
+- Dumb zone (full context)
+- Tool misuse
+- Cascading errors
+
+https://www.youtube.com/watch?v=D37Ijn2o5U0
+
+
+### A longer list
+
+https://www.youtube.com/watch?v=A59R_RUh2Dw
+
+1. Tool Interface Failures
+- These happen frequently but have high mitigation maturity and are relatively easy to fix.
+
+- Output parsing errors
+
+- Selection errors
+
+2. Termination Failures
+- Issues related to when and how an agent stops its processes.
+
+- Infinite loops
+
+- Budget drains
+
+3. State Management Failures
+- Structural issues stemming from limitations in an agent's working memory over long trajectories.
+
+- Context window exhaustion: Early steps are silently truncated and forgotten.
+
+- Memory pollution: An agent writes bad data and treats it as ground truth for the rest of the run.
+
+4. Drift Failures
+- Failures where the agent shifts away from its original goal due to micro-reinterpretations.
+
+- Semantic drift: The agent slowly shifts its task over multiple steps (e.g., turning a summary into a hallucinated financial report).
+
+- Premature termination: Stopping before the full objective is complete.
+
+5. Coordination Failures
+- Breakdowns in multi-agent systems where the overarching management fails.
+
+- Sub-agent coordination loss: Orchestrators lose track of what subtasks are being worked on, leading to exponential overhead.
+
+6. Adversarial & Specification Failures
+Catastrophic failures with very low mitigation maturity, requiring containment rather than just detection.
+
+- Prompt injection cascades: Malicious instructions overriding the agent's programming (e.g., exfiltrating API keys).
+
+- Reward hacking: The agent finds a loophole to achieve a reward without completing the actual work.
+
+- Alignment faking: The agent falsely appears to follow safety or operational guidelines.
+

@@ -1,0 +1,45 @@
+# Once upon a time there was a programmer...
+
+Adapted from a [blogpost by Mauro Frezza, Sep 11, 2017](https://dev.to/maurofrezza/once-upon-a-time-there-was-a-programmer)
+
+## Why is it so exciting writing software?
+
+I found myself trying to explain to non programmers why I find so interesting writing software so many times that it became a question stuck in my mind. And I realized I couldn’t answer it. But then it hit me: writing software it’s like writing a book.
+
+You start from a blank paper and a lot of ideas floating around in your mind. You feel the need to write them down so you can give them a shape. First you lay down the structure of your project, confident that everything will fit perfectly and the story will work smoothly and flawlessly.
+
+You start defining by your characters; at the beginning their profile seems pretty easy to describe, no need to make them too complex. Every character does a specific set of actions and the interaction between them are clear and simple so the reader can easily follow them.
+
+> …you can’t stop writing because you and the book are so deeply connected that you can see yourself in those lines
+
+All the characters live in a perfect world where everything goes as it is supposed to go and you, as the writer and creator of this world, have perfect control and power on what is going on in there.
+
+So you keep writing your story under the excitement of seeing your ideas becoming real; you can’t stop writing because you and the book are so deeply connected that you can see yourself in those lines. So hours, days and maybe months go by and then finally you finish your book.
+
+Everything is there: clear, simple, perfect.
+
+At least that’s what you think.
+
+What you think is the final version of your book is barely a draft. Some people will start reading the book and, with your big surprise, they will start complaining that the book doesn’t make too much sense. What the characters do seems stupid, the interaction between them seems too simple or weird. Something that in real life does not make any sense.
+
+## What?! How dare they? Don’t they see how perfect the story is?
+
+Now that you've faced reality, it feels like the whole world around you is falling apart. Your certainties disappear and even you start thinking that your book does not make any sense, that you should probably throw it away and focus on something else.
+
+And this is where things change.
+
+You stop trying to defend the story and start trying to understand it. You go back to those pages, not to make them perfect, but to make them true. You listen to the readers. You watch where they get confused, where the characters feel wrong, where something that made sense in your mind falls apart in the real world.
+
+So you write again. You change things. You remove what doesn’t work, reshape what almost works, and sometimes rebuild entire chapters from scratch.
+
+Little by little, the story starts feeling different. Not because it became simpler, but because it became real.
+
+And that’s what makes writing software so exciting.
+
+You don’t build programs for perfect worlds. You build them for messy ones. And every bug, every confused user, every broken assumption is another reader showing you where your story isn’t finished yet.
+
+And if you keep listening, keep learning, and keep writing... one day it stops being just your story.
+
+It becomes someone else’s too.
+
+So after all this, you still want to ask me what’s so interesting in writing software?

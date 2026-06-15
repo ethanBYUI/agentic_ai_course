@@ -1,0 +1,18 @@
+
+## Practice: Unit 1 Review
+
+After reviewing lessons from unit 1 in class, write down and organize what you learned so you can find it later.
+
+Take some time while you're at it to clean your notes from the semester so far.
+
+If you are struggling to organize yourself, here are some ideas:
+
+<FIX>
+:::{.fix}
+Several videos about second brains, file organization, cheat sheets
+:::
+
+:::{.fix}
+A prompt they can paste in an LLM to grill them and brainstorm what would work for them
+:::
+</FIX>

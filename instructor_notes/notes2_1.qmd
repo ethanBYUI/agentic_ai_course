@@ -1,4 +1,33 @@
+# One Thing
+
+The lessons they learned over Unit 1 and Project 1 get solidified. Secondarily, they know what to expect for Unit 2.
+
+# Outcomes
+
+True outcomes:
+- None
+
+Soft outcomes:
+- Solidify lessons learned during Unit 1 by reviewing successes and failures with the Unit 1 agent
+- Discuss students' preconceived ideas on what makes an agent "bad" and why their best agent was "bad" without revealing a strong conclusion
+- Reveal the true course outline ("bad", "why", "good")
+
 # Notes
+
+Today is less about covering new outcomes, and instead solidifying the big lessons they should have learned from the project and unit 1, as well as prime the big lessons for unit 2. It is a very important day, despite having no major outcomes.
+
+## Conversation Outline
+
+1. If you haven't done so already, have them write down everything they learned on paper
+2. Discuss what they learned, fill in each others' gaps
+3. Discuss as a class separately:
+    - Biggest lessons from Unit 1
+    - Biggest lessons from Project 1
+4. Point out some things they may have forgotten, or wasn't in the discussion
+5. Reveal the structure of the course, identifying the agent they just made as "bad"
+6. Build excitement about the next unit, including having an overview
+
+## Possible Play by play
 
 Who submitted?
 Give them a round of applause
@@ -6,6 +35,7 @@ This is a fail first curriculum - relish in your failure and just submit it
 Perfection is your enemy in this class
 I need you to be fully in this next unit without worrying about the last one. There will be time to catch up later.
 Review discussion
+- Who had this problem? And this problem?
 What is the biggest lesson you learned?
 What didn’t work?
 What lessons did you learn from failures?
@@ -15,6 +45,7 @@ Big reveal
 You made a BAD agent!
 True course structure
 Overarching goals
+Testimony of excitement at this point because "this is the worst they will ever be"
 AI Use
 You can use AI now, but you probably won’t need to a whole lot for unit 2
 Talk in your groups about what you learned from not using AI for programming

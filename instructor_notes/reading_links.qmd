@@ -1,7 +1,13 @@
-https://arxiv.org/html/2411.02948v1	Grounding Natural Language to SQL
-https://www.datacamp.com/tutorial/chainlit	Chainlit tutorial (ChatGPT-like user interface)
-https://www.philschmid.de/agentic-pattern	Agent patterns/diagrams
-https://towardsdatascience.com/a-developers-guide-to-building-scalable-ai-workflows-vs-agents/	Workflows vs. agents
+Diagnostics
+- [Failure Modes](https://latitude.so/blog/ai-agent-failure-detection-guide)
+- [Building an AI Agent Overview IBM](https://www.ibm.com/think/topics/how-to-build-an-ai-agent#1083937709)
+
+
+
+[Grounding Natural Language to SQL](https://arxiv.org/html/2411.02948v1)
+[Chainlit tutorial (ChatGPT-like user interface)](https://www.datacamp.com/tutorial/chainlit)
+[Agent patterns/diagrams](https://www.philschmid.de/agentic-pattern)
+[Workflows vs. agents](https://towardsdatascience.com/a-developers-guide-to-building-scalable-ai-workflows-vs-agents/)
 https://www.organizedintelligence.ai/	Ethics; Organized Intelligence - Latter-Day Saint perspectives on AI
 https://www.blog.langchain.com/in-software-the-code-documents-the-app-in-ai-the-traces-do/	Diagnostics: Debugging is not in the code - it's in the traces
 https://www.blog.langchain.com/tag/in-the-loop/	General collection of great articles on the landscape as a whole

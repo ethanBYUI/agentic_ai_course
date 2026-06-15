@@ -185,15 +185,15 @@
     "objectID": "lecture_slides/slide1_1.html#slides",
     "href": "lecture_slides/slide1_1.html#slides",
     "title": "Example Slide Deck",
-    "section": "",
-    "text": "This is a slide deck\nReally, it is"
+    "section": "Slides",
+    "text": "Slides\n\nThis is a slide deck\nReally, it is"
   },
   {
     "objectID": "lecture_slides/slide1_1.html#more",
     "href": "lecture_slides/slide1_1.html#more",
     "title": "Example Slide Deck",
-    "section": "",
-    "text": "It has more bullet points"
+    "section": "More",
+    "text": "More\n\nIt has more bullet points"
   },
   {
     "objectID": "instructor_notes/notes3_2.html",
@@ -817,5 +817,82 @@
     "title": "",
     "section": "",
     "text": "https://arxiv.org/html/2411.02948v1 Grounding Natural Language to SQL https://www.datacamp.com/tutorial/chainlit Chainlit tutorial (ChatGPT-like user interface) https://www.philschmid.de/agentic-pattern Agent patterns/diagrams https://towardsdatascience.com/a-developers-guide-to-building-scalable-ai-workflows-vs-agents/ Workflows vs. agents https://www.organizedintelligence.ai/ Ethics; Organized Intelligence - Latter-Day Saint perspectives on AI https://www.blog.langchain.com/in-software-the-code-documents-the-app-in-ai-the-traces-do/ Diagnostics: Debugging is not in the code - it’s in the traces https://www.blog.langchain.com/tag/in-the-loop/ General collection of great articles on the landscape as a whole https://www.blog.langchain.com/the-hidden-metric-that-determines-ai-product-success/ Scalability and productization https://manus.im/blog/Context-Engineering-for-AI-Agents-Lessons-from-Building-Manus Lessons from Manus https://github.com/wong2/awesome-mcp-servers MCP collection https://modelcontextprotocol.io/tutorials/building-mcp-with-llms Building MCP servers using AI https://www.moltbook.com/post/9303abf8-ecc9-4bd8-afa5-41330ebb71c8 Security: Human vulnerability/autopilot https://www.moltbook.com/post/783de11a-2937-4ab2-a23e-4227360b126f Memory: Forgetting as a feature https://dschool.stanford.edu/tools/starter-kit Productization: Design thinking https://static1.squarespace.com/static/57c6b79629687fde090a0fdd/t/58890239db29d6cc6c3338f7/1485374014340/METHODCARDS-v3-slim.pdf Productization: Design thinking https://github.com/danielmiessler/Fabric Context: Prompt collection for reuse https://www.youtube.com/watch?v=pwWBcsxEoLk Context: Definitive prompt engineering guide https://rlancemartin.github.io/2025/07/30/bitter_lesson/ Agent patterns: on removing restrictions/scaffolding - nice graph about when scaffolding was removed https://www.youtube.com/watch?v=-uW5-TaVXu4 Context: “Lost in the middle” context window issues https://en.wikipedia.org/wiki/Samuel_Brannan Intro: Samuel Brannan - Richest man in the gold rush https://arxiv.org/pdf/2602.12108 Context: Self-management frameworks https://flompt.dev/?ref=futuretools.io Prompting: Prompt collection/improver https://x.com/karpathy/status/1937902205765607626?lang=en Context: Andrej Karpathy definition [2512.08769] A Practical Guide for Designing, Developing, and Deploying Production-Grade Agentic AI Workflows Mindset The essential guide to scaling agentic AI | IBM Scalability and productization"
+  },
+  {
+    "objectID": "lecture_slides/slide1_1.html#agent-loop",
+    "href": "lecture_slides/slide1_1.html#agent-loop",
+    "title": "Example Slide Deck",
+    "section": "Agent Loop",
+    "text": "Agent Loop"
+  },
+  {
+    "objectID": "lecture_slides/slide1_1.html#diagram",
+    "href": "lecture_slides/slide1_1.html#diagram",
+    "title": "Example Slide Deck",
+    "section": "Diagram",
+    "text": "Diagram"
+  },
+  {
+    "objectID": "lecture_slides/slide1_1.html#venn-diagram",
+    "href": "lecture_slides/slide1_1.html#venn-diagram",
+    "title": "Example Slide Deck",
+    "section": "Venn Diagram",
+    "text": "Venn Diagram"
+  },
+  {
+    "objectID": "lecture_slides/slide1_1.html#section",
+    "href": "lecture_slides/slide1_1.html#section",
+    "title": "Example Slide Deck",
+    "section": "",
+    "text": ":::  :::"
+  },
+  {
+    "objectID": "lecture_slides/slide1_1.html#fun-facts",
+    "href": "lecture_slides/slide1_1.html#fun-facts",
+    "title": "LLMs: Let’s Talk",
+    "section": "Fun Facts",
+    "text": "Fun Facts\n\nLLMs are stateless\nText in, text out\n“AI” is a lot of things"
+  },
+  {
+    "objectID": "lecture_slides/slide1_1.html#lets-review",
+    "href": "lecture_slides/slide1_1.html#lets-review",
+    "title": "First LLM Call",
+    "section": "Let’s Review",
+    "text": "Let’s Review"
+  },
+  {
+    "objectID": "lecture_slides/slide1_1.html#learning-objectives",
+    "href": "lecture_slides/slide1_1.html#learning-objectives",
+    "title": "First LLM Call",
+    "section": "Learning Objectives",
+    "text": "Learning Objectives\n\nExplain what an AI Agent is and how it differs from regular AI/LLM\nDefine an API broadly and practically\nBe aware of common issues working with APIs"
+  },
+  {
+    "objectID": "lecture_slides/slide1_1.html#whats-an-agent",
+    "href": "lecture_slides/slide1_1.html#whats-an-agent",
+    "title": "First LLM Call",
+    "section": "What’s an Agent",
+    "text": "What’s an Agent\n\nTool calling in a loop"
+  },
+  {
+    "objectID": "lecture_slides/slide1_1.html#whats-an-api",
+    "href": "lecture_slides/slide1_1.html#whats-an-api",
+    "title": "First LLM Call",
+    "section": "What’s an API",
+    "text": "What’s an API\n\nAn API key is the password (also termed a “secret”)"
+  },
+  {
+    "objectID": "lecture_slides/slide1_1.html#section-1",
+    "href": "lecture_slides/slide1_1.html#section-1",
+    "title": "First LLM Call",
+    "section": "",
+    "text": "{{&lt; https://www.youtube.com/embed/-MTSQjw5DrM?autoplay=1&start=0&end=24 &gt;}}"
+  },
+  {
+    "objectID": "lecture_slides/slide1_1.html#whats-an-api-1",
+    "href": "lecture_slides/slide1_1.html#whats-an-api-1",
+    "title": "First LLM Call",
+    "section": "What’s an API",
+    "text": "What’s an API\n\nAn API key is the password (also termed a “secret”)"
   }
 ]

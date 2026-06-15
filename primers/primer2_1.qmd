@@ -1,0 +1,5 @@
+## Submit project 1
+
+Failure to make a submission attempt will result in the loss of a learning opportunity you cannot get back... ever.
+
+The agent is permitted to have unexpected behavior, but it should technically work (makes model calls, gets a response, submits to Canvas)

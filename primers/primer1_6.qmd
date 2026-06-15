@@ -1,0 +1,14 @@
+Learn what you can about MCP within 30 minutes
+
+https://modelcontextprotocol.io/docs/getting-started/intro
+
+At the end of 30 minutes, write a few interesting questions
+
+:::{.callout-note}
+
+Use this vague reading as a test for your ability to understand documentation quickly
+
+1. See if you can guess what points we will talk about in class
+2. After class you can take note of what you missed in your reading and what questions went unanswered
+
+:::

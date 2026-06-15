@@ -1,0 +1,27 @@
+## Most Important Thing
+
+Implement solutions from others' functions (community tools, etc.)
+
+## After Class
+
+Send them home with the task to create their own tools
+
+## Notes
+
+If you can, share an experience contributing to community code
+
+1. What is LangChain (first principles, community nature)
+    - OpenAI API came out, flood gates for community exploration
+    - Saw patterns, made a package (ownership?)
+    - Got very bloated and complex
+    - Split into core & community
+        (This is how a lot of software gets made: "It would be nice if...")
+2. Scavenger Hunt in docs
+3. Solve a "nice if..." by combining functionality
+    - Find relevant functions
+    - Combine some functions
+    - Make it a game to solve the problem
+
+## Activity
+
+Have a race to find the langchain-community page from the main docs page (don't put links in the assignment)

@@ -1,0 +1,33 @@
+## One Thing
+
+They clearly understand what a run and trace are, and how to see them in an agent observability platform (LangSmith in this case)
+
+## Outcomes
+
+Define agent observability terms: run, trace, and tracing
+Identify when and when not to use tracing diagnostics
+Be intimately familiar with the tracing UI in LangSmith
+- Identify in LangSmith a run and trace
+- Identify in LangSmith every type of run: LLM, Retriever, Tool, Chain, Prompt, and Parser
+- Identify in LangSmith input, output, and metadata
+
+## Prep
+
+Make sure you have traces to share in the Slack for them to open and navigate. Between the traces, all these components should be found:
+
+![](../Assets/Images/types_of_runs_langsmith_small.png)
+
+## Notes
+
+The outcomes are met by going through the slides and activities.
+
+They should be set up in LangSmith, but they don't need to be for the activities. This should be expected they can do on their own at this point.
+
+Simple outline:
+- What and why LangSmith: usefullness in industry, is it sticking around, when to use it
+- What and why Trace/run
+- Show how to navigate trace
+- They navigate and explore trace
+- Continue primer/practice, which is setting up their own account and running own traces
+
+Traces can be shared, so prepare some traces for them to navigate and identify the parts of a trace.

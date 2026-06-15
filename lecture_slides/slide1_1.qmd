@@ -1,5 +1,5 @@
 ---
-title: "Example Slide Deck"
+title: "First LLM Call"
 format: 
     revealjs:
         controls: true
@@ -8,15 +8,30 @@ format:
         slide-number: true
 ---
 
-# About
+## Let's Review
 
-## Slides
 
-- This is a slide deck
-- Really, it is
 
-## More
+## Learning Objectives
 
-- It has more bullet points
+- Explain what an AI Agent is and how it differs from regular AI/LLM
+- Define an API broadly and practically
+- Be aware of common issues working with APIs
 
-# Thank You
+# AI Agent is tool calling in a loop
+
+## {background-image="../Assets/Images/Agent-Loop.png" background-size="contain"}
+
+# API is a backend connection to an online service
+
+## {background-iframe="https://www.youtube.com/embed/-MTSQjw5DrM?autoplay=1&start=0&end=24" background-interactive="true"}
+
+##
+
+We'll use Google's Gemini API to talk to Google's servers
+
+# Demo
+
+## What's an API
+
+- An API key is the password (also termed a "secret")

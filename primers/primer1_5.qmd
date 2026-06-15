@@ -1,0 +1,8 @@
+Read [Once upon a time there was a programmer...](once_upon_a_time_there_was_a_programmer.qmd)
+
+Then, appreciate these [wonderful people](https://www.langchain.com/community) while you reflect on what you just read
+
+Read these *if they interest you*:
+
+- [langchain vs langchain_core vs langchain_community](https://www.langchain.com/blog/the-new-langchain-architecture-langchain-core-v0-1-langchain-community-and-a-path-to-langchain-v0-1)
+- [Reflections on Three Years of Building LangChain](https://www.langchain.com/blog/three-years-langchain)

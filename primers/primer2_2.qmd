@@ -1,0 +1,7 @@
+
+Sign up for ["Foundation: Building Reliable Agents"](https://academy.langchain.com/courses/building-reliable-agents)
+
+Work through Module 0 (get set up)
+
+- [ ] Get an account
+- [ ] Get an API key
