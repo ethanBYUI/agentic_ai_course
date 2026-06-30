@@ -1,4 +1,4 @@
-# User Stories
+# User Profiles
 
 ## User 1: Brownfielder
 
@@ -34,9 +34,9 @@ Outside the scope of this course is:
 
 ## User 3: Personal Use
 
-Student creates an agent for personal use
+Student creates an agent for personal use.
 
-
+This course should give them confidence to:
 
 - Create within bounds of personal ethics and safety restrictions
 - Generalize skills to easy-iteration, high-abstraction tools, and to new tools/languages
