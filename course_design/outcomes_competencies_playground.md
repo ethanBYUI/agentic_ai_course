@@ -119,6 +119,14 @@ gospel doctrine and informed by industry and societal context.
   *Understanding, not execution* — it left the headline (no longer an outcome) but stays present
   as conceptual literacy that grounds Build, Evaluate, and the iteration between them.
 
+### Cross-cutting THEME — "Intent engineering" *(make the implicit explicit)*
+> ⚑ **OPEN GOAL: find a solid way to paint this.** "Intent is the target, not a competency-in-one-
+> place" (it's *defined* in Outcome 3, *encoded* in Build, *detected* in Evaluate) — but we can't
+> let it vanish into the cracks. It needs to be visibly painted near the competencies even though it
+> isn't housed as a single one. Working theme statement: *control the agent by making the implicit
+> explicit — through structure (architecture) and through language (instructions).* Naming TBD
+> (Specification Precision / Clarity of Intent / Intent Engineering).
+
 ---
 
 ### Under Outcome 1 — Build and deploy agents
@@ -157,6 +165,10 @@ to pull the right ones deliberately, against measured objectives.
 - **Deterministic scaffolding** (the deterministic shell around the probabilistic core):
   - Control flow — workflow vs. agent routing; deterministic steps; scripts (the *path*)
   - Permissions / authorization — what the agent may do; **human-in-the-loop** is a permission checkpoint (the *authority*)
+- **Safety guardrails** — constrain the agent to prevent harmful or disallowed actions
+  - **Human-in-the-loop** — approval checkpoints before consequential actions *(also a permissions mechanism above; also surfaces as human review in Outcome 2)*
+  - **Sandboxing** — isolate what the agent can touch (filesystem, network, credentials, blast radius)
+  > Couples to Outcome 6 (ethics supplies the *why*) and Outcome 2 (safety evals verify the *guardrails hold*).
 - **Instruction / prompt design** *(steering lever)* — system prompt, persona, few-shot, output format (authored text)
 - **Context selection** *(steering lever)* — the state→window faucet: what gets retrieved/included/compressed per step
 - **Streaming**
@@ -182,18 +194,30 @@ to pull the right ones deliberately, against measured objectives.
 - Distinguish run types (LLM · tool · retriever · chain · prompt · parser)
 - Observe pre-production vs. observe in production (distinct contexts)
 
-#### Measure — Offline (test) and Online
+#### Measure — choose an evaluator type to match the criterion type
 > Defining the *standard* of "good" lives in Outcome 3. Here we *implement* and *run* the eval.
-- Build evaluation infrastructure: LLM-as-judge; datasets (golden + production)
-- Run offline evals (before deploy)
-- Run online evals (in production, using real usage)
+> The core competency is **choosing the right evaluator for the criterion** (mirrors "choose a
+> substrate for state"). Don't phrase everything as LLM-as-judge — it's a *portfolio*.
+- **Code / deterministic evaluators** — regex, schema validation, exact match, did-it-call-the-tool
+  → for **hard constraints** (pass/fail). Cheap, reliable, no LLM needed.
+- **LLM-as-judge** — for **graded / subjective qualities** (tone, helpfulness, reasoning quality)
+  - Pointwise (score one output) vs. **pairwise** (compare two, pick the winner)
+  - **Judge calibration** — how do you know the judge is any good? (a recursive "define good")
+- **Human review** — ground truth + judge calibration
+  > **FLAGGED — come back to this.** More nuanced/specific than the others, and it crosses
+  > Outcome 3 (translating ambiguity). Park until we treat it deliberately.
+- Datasets that feed the above: golden (curated) + production (real usage)
+- Run **offline** evals (before deploy) and **online** evals (in production)
 
 #### Experiment
 - Compare two or more agents/versions objectively to decide which is better
+- **Pairwise comparison** powers head-to-head experiments (the "Battle of the Bots" shape)
 
 #### Bridge competency (the iteration hinge)
 - **Root-cause a failure from traces + eval results, and decide which lever to pull next.**
   This is the one genuine iteration skill — it hands Evaluate's findings back to Build.
+  > Closely tied to **failure pattern recognition** (see Parking Lot) — the diagnostic vocabulary
+  > that makes root-causing possible.
 
 ---
 
@@ -211,6 +235,10 @@ to pull the right ones deliberately, against measured objectives.
   - Name and prioritize tradeoffs between conflicting criteria (helpful vs. safe, thorough vs. concise)
   - Distinguish single-output quality from aggregate reliability ("this answer is good" vs. "good across 100 cases")
   - Revise success criteria from observed behavior *(the iterative core — the spec moves each loop)*
+- **Find hidden qualifications / assumptions that must be made explicit** to the agent (in context or
+  architecture) — the "did what I said, not what I meant" detector
+  > Split skill: usually *discovered* when the agent violates an unspoken assumption (Outcome 2,
+  > via failure), but *resolved* here by specifying it. Discovered in 2, fixed in 3.
 > Cross-link: this outcome owns *defining the standard*; Outcome 2's competencies own
 > *operationalizing and running* it (judge, dataset, experiment). Don't duplicate the node.
 
@@ -269,6 +297,35 @@ Students can…
 - *Personal ethics manifesto* → native artifact; primary evidence for conviction + definition
 - Arc: "What can I do with AI?" → "How can I use AI for good?" → "I have a responsibility to do
   morally good things with AI and influence a world where it's often misused."
+
+---
+
+## PARKING LOT — concepts thrown in, proposed landings (not yet grilled)
+
+> Dumped to place, not yet decomposed. Proposed home in **bold**; ⚑ = needs a deliberate pass.
+
+- **Failure pattern recognition** → *Outcome 2 (Evaluate)*, feeding the bridge competency. It's the
+  diagnostic vocabulary that makes root-causing possible. ⚑ **Needs the six failure types defined —
+  your list.** (Candidates to react to: hallucination/fabrication · wrong tool use · context loss/
+  ignored-instruction · planning/looping · format/output · specification failure "did what I said,
+  not what I meant" · safety violation — that's seven; which six are yours?)
+- **Context architecture** → *Outcome 1 (Build)*. The *structural* steering cluster: state + memory
+  + retrieval + context selection, deliberately organized to feed the window. Possibly the Module-3
+  structural climax (the "good agent" design act).
+- **Specification precision / Clarity of intent / Intent engineering** → now a **cross-cutting THEME**
+  (see top of competencies). ⚑ OPEN GOAL: find a solid way to paint it near the competencies.
+- ✅ **Finding hidden qualifications / assumptions to make explicit** → **COMMITTED to Outcome 3**
+  (split: discovered in Evaluate, resolved in Outcome 3).
+- ✅ **Safety guardrails** → **COMMITTED to Outcome 1**, with **Human-in-the-loop** and **Sandboxing**
+  as sub-competencies. Couples to Outcome 6 (why) and Outcome 2 (verify).
+- **UI · async · streaming** → *Outcome 1 (Build/Deploy — interface & execution layer)*. Streaming
+  already listed; add UI and async as the productization/interface surface.
+- **Cost & token economics** → *Outcome 1 (Build) + Outcome 2 (Evaluate measures it)*. Budgeting
+  tokens/calls, cost-aware design, cost as an eval dimension. (Termination failures are partly a cost
+  problem — see failure patterns.)
+- **Size up scope & feasibility of a build** → *home TBD; likely Outcome 1 Design or Outcome 3*. Judge
+  before building: is this tractable for an agent, how big, what's the risk? Pairs with "determine
+  where agentic AI fits" (Outcome 3).
 
 ---
 
