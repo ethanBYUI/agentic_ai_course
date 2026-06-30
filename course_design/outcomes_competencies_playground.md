@@ -304,11 +304,11 @@ Students can…
 
 > Dumped to place, not yet decomposed. Proposed home in **bold**; ⚑ = needs a deliberate pass.
 
-- **Failure pattern recognition** → *Outcome 2 (Evaluate)*, feeding the bridge competency. It's the
-  diagnostic vocabulary that makes root-causing possible. ⚑ **Needs the six failure types defined —
-  your list.** (Candidates to react to: hallucination/fabrication · wrong tool use · context loss/
-  ignored-instruction · planning/looping · format/output · specification failure "did what I said,
-  not what I meant" · safety violation — that's seven; which six are yours?)
+- **Failure pattern recognition** → *Outcome 2 (Evaluate)*, feeding the bridge competency. The
+  diagnostic vocabulary that makes root-causing possible. **"Six" was arbitrary — dropped.** Full
+  banked list of failure modes is below (own section), to be placed into teaching material later.
+  Recognition (classify) and resolution (pull lever) are already largely covered: diagnose +
+  root-cause analysis live under Outcome 2; resolution is the bridge competency.
 - **Context architecture** → *Outcome 1 (Build)*. The *structural* steering cluster: state + memory
   + retrieval + context selection, deliberately organized to feed the window. Possibly the Module-3
   structural climax (the "good agent" design act).
@@ -326,6 +326,69 @@ Students can…
 - **Size up scope & feasibility of a build** → *home TBD; likely Outcome 1 Design or Outcome 3*. Judge
   before building: is this tractable for an agent, how big, what's the risk? Pairs with "determine
   where agentic AI fits" (Outcome 3).
+
+---
+
+## FAILURE MODES — raw teaching material (banked, not yet structured)
+
+> Jointly discovered. NOT a competency list — this is perspective and optionally *material* to teach
+> through (see banked insight below). 
+> Copy/paste into teaching material where wanted.
+
+**Mechanisms (root causes — each points toward a fix-lever):**
+- **Context degradation / pollution** — output quality drops over long sessions as the window fills with noise
+- **Specification drift** — agent forgets its original instructions over a long task unless the harness forcibly re-reminds it
+- **Sycophantic confirmation** — agent confidently affirms incorrect data fed to it, then builds an entire system on the flawed assumption
+- **Hallucination / fabrication** — invents facts/APIs/citations not grounded in anything
+- **Tool selection error** — picks the wrong tool; often from tools being mis-framed in the prompt, too numerous, or too long
+- **Tool execution error** — right tool, bad arguments / never called / tool itself errors
+- **Planning / control failure** — bad plan, gives up, or wanders
+- **Termination failure** — fails to stop: infinite loop, or conversation runs too long, incurring cost/compute (a control failure with a cost face)
+- **Specification failure** — did exactly what you *said*, not what you *meant* (hidden assumptions); the "intent" failure
+- **Coordination failure (multi-agent)** — agents step on each other, duplicate work, miscommunicate, or deadlock *(⚑ not yet crisply defined — revisit)*
+- **Safety / alignment violation** — does something harmful or disallowed, even if "correct" for the task *(⚑ worth treating as genuinely distinct: failure against values, not task-correctness)*
+- **Code bug** — deterministic harness error; less an "agent failure," but real to the course process *(an origin distinction, see below)*
+
+**Cross-cutting DIMENSIONS (modifiers — any mechanism can carry these; each stresses a different diagnostic skill):**
+- **Detectability: silent ↔ loud.** Silent = plausible, correct-*looking* output that's actually wrong (hidden variables, e.g. a warehouse mismatch). The most dangerous; stresses the **detection** skill.
+- **Propagation / scope: isolated ↔ cascading.** One agent's error propagates through the chain when loops/verification are missing; stresses the **localization** skill (hunt for the link where it cascaded).
+- **Origin: model (probabilistic) ↔ code bug (deterministic).** Different eyes, different fixes.
+
+---
+
+## BANKED INSIGHTS — from a past conversation worth revisiting
+
+> Honest pick of what's genuinely reusable from this session — perspective, not committed structure.
+
+1. **The diagnostic skill pipeline (a lens, not a committed competency set).**
+   *Find* (detect + localize) → *Diagnose* (classify + root-cause) → *Fix* (resolve + harden).
+   It traces Evaluate → bridge → Build (= the iteration loop). **Caveat from the design conversation:**
+   "detect" is *not* a standalone competency — it only exists paired with *methods* of detection; and
+   diagnose / root-cause are already housed under Outcome 2. So treat this as a way to *check coverage*
+   and design teaching instruments, not as new outcome scaffolding.
+
+2. **Each failure DIMENSION names a distinct diagnostic skill — this is why silent/cascading earn
+   their keep.** Silent failures train *detection eyes*; cascading failures train *localization eyes*.
+   They aren't mechanisms, but they're the canonical instruments for teaching those skills. This is the
+   single most useful nugget for turning the failure list into curriculum.
+
+3. **Recurring META-MOVE: "split one concept by the skill that touches it."** We kept resolving hard
+   concepts by splitting the *same material* across two competencies based on *which skill acts on it*:
+   - state (persist) vs. context selection (choose what reaches the window) — reservoir/faucet
+   - define "good" (Outcome 3) vs. operationalize/run the eval (Outcome 2)
+   - hidden assumption *discovered* via failure (Outcome 2) vs. *resolved* via spec (Outcome 3)
+   - failure *recognition* (classify) vs. *resolution* (pull lever)
+   When a concept feels too big to home, try splitting it by the verb the student is performing.
+
+4. **Recurring competency SHAPE: "choose the right X for the Y."** Several core competencies are
+   *selection/matching judgments*, not memorized procedures: choose a *substrate* for state's function ·
+   choose an *evaluator type* for the criterion type · choose a *lever* for the failure. This shape is
+   framework-agnostic by nature (it survives stack changes) and is probably the truest expression of the
+   course's "principles over tools" stance. Worth using as a template when drafting more competencies.
+
+5. **The outcome test (already principle 7, restated because it kept earning its keep):** a candidate is
+   only an outcome if it has competencies that aren't just other outcomes run in sequence. It killed
+   "iterate" as a pillar and promoted "evaluate" to one.
 
 ---
 
