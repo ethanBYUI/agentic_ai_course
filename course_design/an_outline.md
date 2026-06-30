@@ -32,3 +32,13 @@ Week 8 (June 8)
 2.15 - Project work
 Week 9 (June 15)
 3.1
+
+
+Module 3 high level concept: 
+- judgment layer: choosing and tuning levers based on diagnostic feedback to hit human-defined reliability goals
+- deliberately steer an agent toward human-defined reliability and objectives
+
+
+Environment direction:
+Colab -> Local .py -> Gradio -> Slack -> agent-chat-ui (maybe)
+(Streamlit, chainlit?)
