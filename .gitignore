@@ -3,3 +3,5 @@
 # environment
 .env
 **/*.quarto_ipynb
+
+.claude/
