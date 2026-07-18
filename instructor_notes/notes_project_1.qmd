@@ -21,6 +21,12 @@ Create a powerful personal assistant from scratch
 
 ## Notes
 
+The goal of this project is to create a highly enabled agent with little testing. It is alright if it only works sometimes and has little security measures. This helps the student see that giving an LLM power is not enough, and gives a good foundation for the following units, which will address these issues.
+
+Completion is based on whether or not it uses the tools taught in this unit, including MCP, read/write to file system, API, and ReAct reasoning.
+
+After creating the agent, a few following activities will be calculated to make their agent and poke holes in their implementation. This includes a prompt injection attack somewhere in provided files
+
 They will start building this pretty early on in the first unit, adding things as they go along
 
 Tell them early on in the course they are building a personal assistant

@@ -66,3 +66,8 @@ On a day, you could propose a discussion, or:
 - RevOps
 - Sales
 - Supply Chain
+
+## Choosing a project
+
+- Rank 3 options, pick the best based on stretch, relevance and feasibility (rubric/matrix?)
+- I’d like this to have some discussion on righteous uses of AI, not just good or coo

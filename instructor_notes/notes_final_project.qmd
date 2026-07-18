@@ -1,0 +1,32 @@
+Start project by setting your own goals/dates
+
+Can do any number of projects or tasks as long as they meet the following:
+- Takes approximately ___ hours in sum total
+- Have at least 1 task/project contribute to the course or community
+- Have most of the work be a stretching experience that tests and improves existing skills
+
+This project does not necessarily have to be completed. One of the biggest learning moments is failing a project and learning the extent of your abilities. The key deliverables for this project are:
+- Some proof of the work that was accomplished and time spent
+- Self assessment writing about the experience, what was learned, and what grade they deserve
+
+In the self-assessment
+- If project not completed, explain what is done and steps to complete or lessons learned, why stopping, challenges faced, resources used to overcome
+- If complete, give a similar justification, ask if it is best work, consider a new stretch, future goal
+- Essentially, what did you do, how much time/effort you spent, what went well, what didn’t go well, future goals
+
+Suggestions for course contribution:
+- Change outdated information or code in the textbook
+- Add additional readings or dictionary items
+- Add functionality to course chatbot
+- Teach a new tool/subject in class
+
+Suggestions for personal project:
+- List the businesses you know someone personally, consider AI use cases that would benefit them
+- Pick a charity or cause and design an agent with someone in that community in mind
+- Find a use case for the industry you plan to move into
+- Ask a professor if there is something they would like made
+- Look at what skills you have fallen short on and ask what kind of project would develop that further
+- Create an agent that will help with your current job
+- Build an agent on a resume website that potential employers can interact with
+
+The student may do multiple projects/tasks as long as it is reasonable and does not far exceed the hours expectation.

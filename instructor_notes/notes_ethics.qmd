@@ -1,0 +1,79 @@
+## Reading: Latter-Day Saint perspectives
+
+Before class:
+- Find an article on Organized Intelligence https://www.organizedintelligence.ai/
+- Write three insights you want to remember forever
+- Be ready to discuss in class and decide who has the most important insight
+
+In class: 
+- Share findings in group
+- Each group nominates one or two people to share their big idea
+- They vote on the most important idea
+- Class discussion argues for what is most important to remember
+- At the end, they vote again
+
+Why?
+- The website has a lot of important perspectives and this helps filter the most valuable insights
+- There is not actually a most important insight, but it invites a good discussion when people are forced to pick a side and judge moral concepts
+- This mirrors the Acton model of energizing socratic discussions
+
+
+## Reading: MechaHitler
+
+Before class:
+- Grok’s Mechahitler incident https://youtu.be/r_9wkavYt4Y?si=wHi0SL4n1KJwxgod
+- Something else about lack of safeguards and immoral behavior of Grok
+- Write …
+
+In class:
+- Grok is responsible for a large amount of unethical AI behavior including pornographic material, AI girlfriends, and effective scamming or social engineering. It is also easier to misalign compared to other models.
+    - Should you treat it equally as other models (Gemini, Claude, ChatGPT)?
+    - By paying to use it, you are supporting the company and communicating you want more of this product, even if you are using it for other purposes. Should you use it at all?
+    - ChatGPT and Gemini are also used for harmful and immoral purposes. Should you use them at all?
+    - Are you going to do the research into what ratio of good to harm a given model has before using it?
+- You are working on a high risk project. If it goes wrong, people’s lives are in danger. Implementing an agent for real time monitoring and diagnostics would increase safety significantly. 
+    - Based on previous testing, you know that Grok is best suited for this task. Should you use it for your system?
+
+Why?
+- AI users will have to make judgements about what AI models they will use and when
+- Line of questions intends to escalate moral tension, starting by convincing them that Grok is bad, then moving far more ambiguous, helping them wrestle with the moral ambiguity
+
+
+## Reading: Existential Risk
+
+Before class:
+- Pick one of these videos on existential AI risk
+    - AI in Context https://youtu.be/5KVDDfAkRgc?si=lnlwvT29bfUpkT4-
+    - Writing Doom https://youtu.be/xfMQ7hzyFW4?si=TXp7z5fhV1iMAYu6
+- Read what prophets say about the future and second coming or existential risk
+    - Some source...
+- Write about whether or not these two ideas are irreconcilable
+
+In class:
+- Share insights with group
+- Is an existential threat coming?
+- Does it matter?
+- If somehow you knew no one would die or be hurt by AI, would you do anything to prevent it?
+    - Is the future fixed no matter what we do?
+    - If we knew the gathering of Israel would happen, would we do anything to support it?
+- What should we do knowing this?
+
+Why?
+- This addresses one of the world’s most common concerns about AI
+- The goal is to cut from worry to action and toward the most relevant and important action
+
+
+## Reading: Social Costs
+
+AI girlfriends, Meta’s friendships, pornographic material
+
+
+## Reading: Environment
+
+Video & article about water waste, heat pollution, noise pollution
+
+If everyone used AI like you do, how would that impact the environment? Does it matter what you do in a sea of people doing the same thing? Avatar episode, parable of the canyon and food - Would you “bring food” or use AI just because you know the other party will do the same?
+
+Reduce the environment problem to a local environment, such as your house and roommates. Gradually increase it to a global scale.
+
+If there is a worse model that is from a company that is far more environmentally conscious, would you prefer that model? Would you still use other models?

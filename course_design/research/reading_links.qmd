@@ -9,6 +9,9 @@
 *Architecture*
 - [Agent patterns/diagrams](https://www.philschmid.de/agentic-pattern)
 - [Workflows vs. agents](https://towardsdatascience.com/a-developers-guide-to-building-scalable-ai-workflows-vs-agents/)
+- [Training to the Harness - Jensen Huang and Harrison Chase](https://www.youtube.com/watch?v=Yy3JH6dDugc)
+    - [Corresponding Announcement](https://www.langchain.com/blog/langchain-and-nvidia-launch-the-nemoclaw-deep-agents-blueprint)
+- [Loop Engineering - Improvement Loop](https://www.langchain.com/blog/the-art-of-loop-engineering)
 
 *Diagnostics*
 - 2.3 [Failure Modes](https://latitude.so/blog/ai-agent-failure-detection-guide)
@@ -16,6 +19,11 @@
 
 *Ethics*
 - [Organized Intelligence - Latter-Day Saint perspectives on AI](https://www.organizedintelligence.ai/)
+- [Things as They Really Are 2.0](https://www.churchofjesuschrist.org/study/broadcasts/worldwide-devotional-for-young-adults/2024/11/13bednar?lang=eng)
+- [Faith, Dignity, and Human Flourishing: Hearing God's Voice in an Age of Artificial Intelligence](https://youtu.be/Ts5Z64A0Vv4?si=XQRIXV4Sn-3XbqSw)
+- [MechaHitler](https://youtu.be/r_9wkavYt4Y?si=wHi0SL4n1KJwxgod)
+- [AI in Context: Existential Threat](https://youtu.be/5KVDDfAkRgc?si=lnlwvT29bfUpkT4-)
+- [Writing Doom: Existential Threat](https://youtu.be/xfMQ7hzyFW4?si=TXp7z5fhV1iMAYu6)
 
 *Production*
 - [The Hidden Metric](https://www.blog.langchain.com/the-hidden-metric-that-determines-ai-product-success/)
@@ -29,6 +37,9 @@
 
 *Security*
 - [Security: Human vulnerability/autopilot](https://www.moltbook.com/post/9303abf8-ecc9-4bd8-afa5-41330ebb71c8)
+- [IBM - Runtime Security](https://www.youtube.com/watch?v=NH0plIdqDMk)
+- [IBM - Best Practices for Safety](https://www.youtube.com/watch?v=UMYtqHptYvA)
+- [IBM - Zero Trust](https://www.youtube.com/watch?v=d8d9EZHU7fw)
 
 ## LangChain ecosystem
 
