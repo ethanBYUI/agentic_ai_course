@@ -1,0 +1,51 @@
+## Framework-Agnostic
+
+*Context Engineering*
+- ["Lost in the middle" context window issues](https://www.youtube.com/watch?v=-uW5-TaVXu4)
+- [Memory: Forgetting as a feature](https://www.moltbook.com/post/783de11a-2937-4ab2-a23e-4227360b126f)
+- [Definitive prompt engineering guide](https://www.youtube.com/watch?v=pwWBcsxEoLk)
+- [Context Self-management Frameworks](https://arxiv.org/pdf/2602.12108)
+
+*Architecture*
+- [Agent patterns/diagrams](https://www.philschmid.de/agentic-pattern)
+- [Workflows vs. agents](https://towardsdatascience.com/a-developers-guide-to-building-scalable-ai-workflows-vs-agents/)
+
+*Diagnostics*
+- 2.3 [Failure Modes](https://latitude.so/blog/ai-agent-failure-detection-guide)
+- 2.1, 2.3.1 [Traces: Debugging is not in the code - it's in the traces](https://www.blog.langchain.com/in-software-the-code-documents-the-app-in-ai-the-traces-do/)
+
+*Ethics*
+- [Organized Intelligence - Latter-Day Saint perspectives on AI](https://www.organizedintelligence.ai/)
+
+*Production*
+- [The Hidden Metric](https://www.blog.langchain.com/the-hidden-metric-that-determines-ai-product-success/)
+- [Design Thinking Stanford](https://dschool.stanford.edu/tools/starter-kit)
+- [Design Thinking](https://static1.squarespace.com/static/57c6b79629687fde090a0fdd/t/58890239db29d6cc6c3338f7/1485374014340/METHODCARDS-v3-slim.pdf)
+
+*Case Studies*
+- [Lessons from Building Manus](https://manus.im/blog/Context-Engineering-for-AI-Agents-Lessons-from-Building-Manus)
+- [The Bitter Lesson](https://rlancemartin.github.io/2025/07/30/bitter_lesson/)
+- [Use Cases IBM](https://www.ibm.com/think/topics/ai-agent-use-cases#1580786329)
+
+*Security*
+- [Security: Human vulnerability/autopilot](https://www.moltbook.com/post/9303abf8-ecc9-4bd8-afa5-41330ebb71c8)
+
+## LangChain ecosystem
+
+
+
+## Unorganized
+
+- [Building an AI Agent Overview IBM](https://www.ibm.com/think/topics/how-to-build-an-ai-agent#1083937709)
+- [Shared Memory at Scale](https://info.yugabyte.com/webinar-designing-data-layers-for-agentic-ai-aws-infoq-ybdb)
+- [Grounding Natural Language to SQL](https://arxiv.org/html/2411.02948v1)
+- [Chainlit tutorial (ChatGPT-like user interface)](https://www.datacamp.com/tutorial/chainlit)
+- [LangChain In-the-Loop Blog Collection](https://www.blog.langchain.com/tag/in-the-loop/)
+- [MCP Collection](https://github.com/wong2/awesome-mcp-servers)
+- [Building MCP servers using AI](https://modelcontextprotocol.io/tutorials/building-mcp-with-llms)
+- [Prompt collection for reuse](https://github.com/danielmiessler/Fabric)
+- [Prompt collection/improver](https://flompt.dev/?ref=futuretools.io)
+- [Context Engineering Definition - Andrej Karpathy](https://x.com/karpathy/status/1937902205765607626?lang=en)
+
+[2512.08769] A Practical Guide for Designing, Developing, and Deploying Production-Grade Agentic AI Workflows	Mindset
+The essential guide to scaling agentic AI | IBM	Scalability and productization

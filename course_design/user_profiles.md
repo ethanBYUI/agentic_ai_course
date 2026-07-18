@@ -1,4 +1,4 @@
-# User Profiles
+# User Profiles On Exit
 
 ## User 1: Brownfielder
 
@@ -40,3 +40,26 @@ This course should give them confidence to:
 
 - Create within bounds of personal ethics and safety restrictions
 - Generalize skills to easy-iteration, high-abstraction tools, and to new tools/languages
+
+
+
+# User Profiles on Entry
+
+## User 1: Fresh
+
+Has taken Intro to programming and is still exploring their options. They are exploring agent development as a career path.
+
+
+## User 2: Data Scientist
+
+Has taken DS 250 and is not the greatest programmer, but is skilled in data analysis and abstraction.
+
+
+## User 3: Software Engineer
+
+Has taken upper level software courses and is skilled with Claude Code. Has never made an agent before.
+
+
+## User 4: Agent Maker
+
+Has made several agents, but does not have the skill to assess, diagnose objectively, and implement reliability standards like safety guardrails.

@@ -13,6 +13,31 @@
 
 ---
 
+## OPEN TENSIONS / QUESTIONS / TASKS
+
+- **The old document has superseded this one - what here is outdated and needs to be removed?** In essence, let's clean, which will help us see the next thing
+- **What lives here that has not made its way to the outcomes and should?**
+- **What lives here that is valuable, but not outcome related?** In other words, where does it belong? Is there an existing structural place for it? Do we need to refine the structure to hold it?
+- **What is still genuinely missing?** I've asked that a few times in a few ways, and one lives in `course_design/research/build-outcome-gap-analysis.md`
+- **Where do the "menus" live?** Several competencies use the "choose the right X for the Y" shape,
+   each carrying a menu of options (state-substrate, evaluator-type, context-delivery, artifact-type —
+   see the MENUS section). Menus are not competencies, but they currently have no structural home
+   beyond `<!-- -->` comments next to their competency. Decide: inline comments · a shared appendix ·
+   or a standalone reference doc?
+- **Tools specific judgement?** Judgement is an outcome 3 ideal, but it is non-specific. Where would something like "Judge good vs. bad tool definitions" live? Or describing the taste for a certain format.
+- **Where does "understand the lifecycle" formally live?** Parked as a cross-cutting foundational
+   competency that grounds outcomes 1, 2, and 3; may want a permanent home once structure is decided.
+- **Does Intent engineering earn its place in all the outcomes?** — "control the agent by making the implicit explicit, through structure (architecture) and through language (instructions)." 
+  - Defined in "Translate ambiguity," encoded in Build, detected in Evaluate. An open goal: needs a solid way to be painted near the competencies without being housed as a single one. Naming TBD (Specification Precision / Clarity of Intent / Intent Engineering).
+- **How much spec engineering should be taught?**
+- **Where exactly is the state↔context-engineering line drawn in practice?** Principle is set
+   (reservoir vs. faucet); the teaching boundary still needs concrete examples.
+- **Does Module 3 introduce new primitives or only judgment?** Decided: it MAY introduce new
+   primitives (don't frontload everything before observability). Competency tree stays concept-first
+   regardless of when taught.
+
+---
+
 ## Governing principles (locked enough to reason with)
 
 1. **Framework-agnostic competencies; one opinionated stack as the vehicle.**
@@ -300,6 +325,36 @@ Students can…
 
 ---
 
+## MENUS — "choose the right X for the Y" material  *(placement TBD — see Open Tensions #4)*
+
+> These are **menus, not competencies** (per the substrate rule: "a menu, not 4 competencies").
+> Each menu hangs off a *selection/matching* competency of the recurring **"choose the right X for the
+> Y"** shape (banked insight #4). **There is more than one menu**, and none has a settled structural
+> home yet — right now they survive only in `<!-- -->` comments beside their competency.
+>
+> ⚑ Open issue (also logged in Open Tensions): where do menus live — inline comments, a shared
+> appendix, or a standalone reference doc? Collected here in the meantime so they're in one place.
+
+**Menus already in play (each already attached to a competency):**
+- **State-substrate menu** *(under Build → state, organized by function)* — md/text · objects/classes · SQL · vector
+- **Evaluator-type menu** *(under Evaluate → Measure)* — code/deterministic · LLM-as-judge (pointwise / pairwise) · human review
+- **Context-delivery menu** *(under the design-time "decide how each piece of context is delivered" competency)* — reservoir vs. faucet · deterministic vs. LLM · which file / DB / schema
+
+**Artifact-type menu** — *the durable deliverables of intent/context engineering. Hangs off "Author
+intent into durable artifacts that are both agent- and human-readable." These are what employers
+foreground when they ask "what documents are in the repo?"*
+- **Agent operating / instruction file** — the general class; e.g. AGENTS.md / CLAUDE.md / AGENT.md
+  *(lead with the general noun; keep the coding-specific filenames as examples so the concept survives
+  the "reliable agents for ANY use case, not coding-with-agents" scope)*
+- **Constitution / principles file** — values, rules, persona the agent runs under (e.g. CONSTITUTION.md)
+- **Knowledge / context docs** — the human-readable reservoir the agent reads (e.g. CONTEXT.md, domain docs)
+- **Success spec / rubric** — what "good" means *(really an Outcome 3 artifact — referenced here, owned there)*
+- **Schemas** — structured-output schemas · tool I/O contracts · state layout
+- **Tool definitions** — the authored text that frames each tool
+- **Curated examples** — few-shot / good–bad sets (the golden-dataset seed)
+
+---
+
 ## PARKING LOT — concepts thrown in, proposed landings (not yet grilled)
 
 > Dumped to place, not yet decomposed. Proposed home in **bold**; ⚑ = needs a deliberate pass.
@@ -354,6 +409,12 @@ Students can…
 - **Propagation / scope: isolated ↔ cascading.** One agent's error propagates through the chain when loops/verification are missing; stresses the **localization** skill (hunt for the link where it cascaded).
 - **Origin: model (probabilistic) ↔ code bug (deterministic).** Different eyes, different fixes.
 
+**They could also be framed within the outcomes in this format:**
+- Identify failure root cause from trace (here's where it went wrong)
+- Classify failure mode (here's what we call it, and next steps)
+- Define failure modes...
+- Describe failures
+
 ---
 
 ## BANKED INSIGHTS — from a past conversation worth revisiting
@@ -389,25 +450,3 @@ Students can…
 5. **The outcome test (already principle 7, restated because it kept earning its keep):** a candidate is
    only an outcome if it has competencies that aren't just other outcomes run in sequence. It killed
    "iterate" as a pillar and promoted "evaluate" to one.
-
----
-
-## OPEN TENSIONS / DECISIONS NOT YET MADE
-
-1. **Primary spine among the three development outcomes.** Build / Evaluate / Translate-ambiguity
-   are currently co-equal. For final-letter narrative and grading weight, we may eventually need to
-   declare a primary. Deferred.
-2. **Assessment orphaning of Outcome 3 (the soft crown).** Hard to measure by nature; risks being
-   crowded out by the gradeable Build/Evaluate work unless deliberately assessed. (Principle 6
-   helps — its evidence can be borrowed — but doesn't fully solve it.)
-3. **Scope imbalance.** Build is large, Evaluate medium, Translate-ambiguity tight. They don't look
-   parallel — may need rebalancing or re-leveling.
-4. **One-vs-many outcomes (structural).** Whether the three development outcomes should be one
-   integrated outcome or stay split — deliberately deferred as a structural/semantic question.
-5. **Where exactly is the state↔context-engineering line drawn in practice?** Principle is set
-   (reservoir vs. faucet); the teaching boundary still needs concrete examples.
-6. **Does Module 3 introduce new primitives or only judgment?** Decided: it MAY introduce new
-   primitives (don't frontload everything before observability). Competency tree stays concept-first
-   regardless of when taught.
-7. **Where does "understand the lifecycle" formally live?** Parked as a cross-cutting foundational
-   competency; may want a permanent home once structure is decided.

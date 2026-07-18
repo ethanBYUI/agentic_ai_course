@@ -5,3 +5,5 @@
 **/*.quarto_ipynb
 
 .claude/
+# scratch / working notes
+/scratch/

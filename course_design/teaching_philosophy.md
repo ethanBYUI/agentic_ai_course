@@ -259,9 +259,9 @@ Assignments should include time limits to reduce cognitive load (for example, "Y
 
 Unrelated to grade, students should have an easy Canvas pathway to request professor feedback if they want it.
 
-### Character
+### Effort and Leadership
 
-Character is difficult to measure directly, so it is assessed through guided survey instruments:
+These qualities are difficult to measure directly, so it is assessed through guided survey instruments:
 
 - Self-assessments for improvement and effort
 - Peer assessments for leadership and helpfulness
@@ -270,7 +270,7 @@ Example prompts:
 
 - I have overcome a learning hurdle or solved a problem because of this person.
 - This person has been a positive influence for me in this class.
-- For a __ credit class, I put in a sufficient amount of time and effort.
+- For a 3 credit class, I put in a sufficient amount of time and effort.
 - I have improved the following skills (with sliders for given skills).
 
 One final project is a moral manifesto.

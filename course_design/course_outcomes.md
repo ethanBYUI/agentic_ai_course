@@ -1,153 +1,141 @@
 # About
 
-This is split into a few categories:
+Includes both outcomes and their sub-competencies; outcomes are headers, competencies bullets.
 
-1. Course outcomes: generalizable, "What can the student ultimately do?", the first level bullets in the following section
-2. Competencies: specific skills, "What capabilities make that possible?", sub bullets under outcomes
-3. Evidence/assessments: demonstrations of the above, "How will we know they can do it?", under performances
-4. Tasks: "What will they do to practice?", under performances
+Outcomes and competencies are stated in transferable,
+principle-level terms; the concrete vehicle (LangChain / LangGraph / LangSmith, mostly Gemini API) lives one layer down at the performance level, so the outcomes survive a stack change.
 
-Additional notes about why certain things are taught in the order they are is found in [teaching_philosophy.md](teaching_philosophy.md)
+Grammar follows "Students can + verb" format. 
 
-Grammar follows "Students can + verb" format.
 
 # Outcomes and Competencies
 
-- Design, build, observe, measure, test, and iteratively refine Agentic AI solutions.
-    - Design
-        - Define clearly the purpose and intent of an agent without the use of digital tools
-        - Plan the harness structure for an LLM
-        - Identify and plan for deterministic components of an agent application
-        - Design a meaningful harness architectures for an agent
-            - Appropriate memory use
-            - Well-defined skills
-        - Use effective context engineering to steer the agent consistently
-    - Build
-        - Connect to major LLM providers for an agent's "brain"
-        - Develop using core model features most commonly built into LLM providers' APIs
-                - (being able to find and implement these from documentation is sufficient; memorization is not essential)
-            - Token limits
-            - System prompt
-            - Temperature
-            - Structured output
-            - Web search
-            - Thinking
-            - Function calling
-            - Cacheing
-            - Other data types
-        - Develop using core agent features commonly built into harness frameworks
-            - 
-- Communicate AI competence using current industry language to both technical and non-technical audiences
-    - 
-        
+## Build and deploy agentic AI solutions
+
+*Design folds into the front of Build and deploy into the back — shipping is building. Students continuously evaluate and refine what they build; the iteration loop is carried in the wording, not given a separate outcome.*
+
+- 1.1 *flag wording* Connect to the model (the "brain")
+    - 1.1.1 Pick appropriate models for an agent or subagent
+    - 1.1.2 Connect to an LLM provider's API
+    - 1.1.3 Implement common model features from documentation <!-- token limits, system prompt, temperature, structured output, web search, thinking, function calling, caching, other data types -->
+- 1.2 Build the agent harness <!-- (the steering levers) -->
+    - 1.2.1 Design an agent's instructions and prompts <!-- system prompt, tool descriptions, skills, persona, few-shot, output format -->
+    - 1.2.2 Give the agent memory and manage its context *should this competency have children?*
+        - 1.2.2.1 Persist and pass conversation state across multiple runs in a thread
+        - 1.2.2.2 *flag location* Organize state by function and choose a substrate *sounds like an outcome 3 task*
+        - 1.2.2.3 *flag existence* Implement retrieval (RAG) systems
+        - 1.2.2.4 *flag existence* Implement multi-tenant memory architecture (shared memory)
+        - *worth giving more attention to define parts thoughtfully*
+    - 1.2.3 Extend the agent with tools and services *should this have children? Menu?*
+        - 1.2.3.1 Define, register, and invoke custom tools
+        - 1.2.3.2 Connect external tools through Model Context Protocol (MCP) <!-- eg Slack, Google Calendar -->
+        - 1.2.3.3 Connect external tools through CLI
+    - 1.2.4 Constrain the agent with deterministic safety guardrails
+        - 1.2.4.1 Implment human-in-the-loop
+        - 1.2.4.2 Connect a sandbox for arbitrary code execution
+        - 1.2.4.3 Create permissions and authorization constraints
+        - 1.2.4.4 Handle errors and retries
+        - 1.2.4.5 *this deserves more sub-competencies*
+    - 1.2.5 Architect multi-agent / sub-agent delegation
+- 1.3 Deploy
+    - 1.3.1 Set up a publishable local environment <!-- API secret standards, environment tooling with uv, git basics -->
+    - 1.3.2 Stream output to a basic user interface
+    - 1.3.3 Deploy an agent with a basic user interface <!-- (e.g., Vercel, phone, or Slack app) -->
+- 1.4 *flag location* Refine (the loop)
+    - 1.4.1 Use evaluation findings to deliberately tune the steering levers and re-enter the cycle
+
+*Considering removing most or all of the level 4 competencies*
 
 
-# Old
+## Evaluate agents using agent observability tools
+
+*Students can observe, measure, and experiment on an agent's behavior to know whether and why it works, feeding each finding back into the next build.*
+
+- 2.1 Observe agent performance <!-- (pre-production and production) -->
+    - 2.1.1 *flag wording* Instrument tracing to see what the agent actually did
+    - 2.1.2 Read runs, traces, and spans <!-- (inputs, outputs, metadata) -->
+    - 2.1.3 Distinguish run types <!-- (LLM, tool, retriever, chain, prompt, parser) -->
+    - 2.1.4 *flag existence* Observe both pre-production and in production agent runs
+- 2.2 Measure agent performance <!-- choose an evaluator type to match the criterion -->
+    - 2.2.1 Write and implement deterministic evaluators for hard constraints <!-- (regex, schema validation, exact match, did-it-call-the-tool) -->
+    - 2.2.2 Create LLM-as-judge evaluators for subjective qualities 
+        - 2.2.2.1 *flag existence* (pointwise and pairwise), and calibrate the judge *what needs to be specified under LLM-as-judge?*
+    - 2.2.3 Build curated golden datasets from scratch
+    - 2.2.4 Build datasets from in-production responses
+    - 2.2.5 Run offline evals from datasets
+    - 2.2.6 *flag existence* Compare two or more agent versions objectively to decide which is better <!-- pairwise; "Battle of the Bots" --> *not sure if this captures the meaning of pairwise, and the comparison should be explicit in an experiment, which this also doesn't capture*
+- 2.3 Diagnose agent performance <!-- iterative, post-creation discovery -->
+    - 2.3.1 Root-cause a failure from traces and eval results
+    - 2.3.2 Classify failures into nameable failure modes
+    - 2.3.3 Use human review to re-calibrate rubrics and judges
+
+*The above competencies need further evaluating as to comprehensiveness. I'm troubled by how "Human Review" can fall under Measure and Diagnose. Maybe there is something wrong with the organization.*
 
 
+## Translate ambiguous production goals into explicit architectural decisions and measurable success criteria
 
-    - Build
-        - Create a powerful personal assistant AI agent (the big, "bad" agent)
-            - Make an API call to Gemini using LangChain
-                - Have a basic understanding of what API's are
-                - Be familiar with common problems that can arise
-                - Be able to troubleshoot various common problems
-            - Use core features most commonly built into LLM providers' APIs
-                    - (being able to find and implement these from documentation is sufficient; memorization is not essential)
-                - Token limits
-                - System prompt
-                - Temperature
-                - Structured output
-                - Web search
-                - Thinking
-                - Function calling
-                - Cacheing
-                - Other data types
-            - Use core features built into LangChain/LangGraph
-                - Chat history
-                - Statefulness
-                - Checkpoints
-                - Function calling
-                - Community tools
-            - Create and use custom functions
-                - Differentiate between a good and bad tool definition
-                - 
-            - MCP
-                - Implement
-                    - stdio
-                    - HTTPS
-                    - local
-                    - externally hosted
-                - Create
-            - Services
-                - Host agent on Vercel (they could make a phone app that talks to the agent)
-                - Connect to Slack
-                - Google Calendar
-                
+*Students can take a human objective from fuzzy intuition and convert it into explicit, decidable, measurable structure — both where AI fits and what success means. Defines the target that "Evaluate agents" measures against. Involves investigation, elicitation of clients, and internalizing.*
 
-            - Memory
-                - Short term
-                - Long term
-            - Sub-agent architecture
-            - Workflow elements
-        - Set up a sufficient local working environment publishable to GitHub
-            - Use API safety standards
-            - 
-    - Observe
-        - Set up tracing for an agent
-        - 
+- 3.1 Define clearly the purpose and intent of an agent without digital tools
+- 3.2 Make educated gut-check assessments of the viability for AI to solve a problem within constraints
+    - 3.2.1 Demonstrate awareness of an LLM's limitations
+    - 3.2.2 Identify the most expensive parts of a build
+    - 3.2.3 Identify common failure points for a given situation
+    - 3.2.4 Make a quick cost assessment
+- 3.3 Define and operationalize success for an agent
+    - 3.3.1 Choose which quality dimensions matter for an agent <!-- correctness, safety, tone, format, completeness, latency, cost -->
+    - 3.3.2 Operationalize constraints into gradeable criteria
+    - 3.3.3 *this does not capture the different types, or truly fit defining success - more time is needed here*
+    - 3.3.4 Anchor criteria with concrete good/bad examples <!-- the seed of a golden dataset -->
+    - 3.3.5 Revise success criteria from observed behavior
+- 3.4 Find hidden domain knowledge, qualifications, and assumptions from employees and processes to make explicit to the agent
+- 3.5 Anticipate, from the agent's perspective, what context it will and won't need at each point in its task
+- 3.6 Plan an agent's architecture from first principles
+    - 3.6.1 Decide how each piece of context should be delivered - its mechanism and actual location <!-- eg system prompt, file system, tool description, database, schema, example, sub-agent handoff -->
+    - 3.6.2 Identify deterministic elements that should NOT be decided by an LLM
+    - 3.6.3 Propose multiple harness schemas that fit the problem definition
+- 3.7 Author intent into durable artifacts that are both agent- and human-readable <!-- eg CONSTITUTION.md, CONTEXT.md, AGENTS.md, specs, schemas, user stories,  other docs; or principles, instructions, context, success criteria, schemas, tool definitions, and curated examples -->
 
-    - Measure
-        - LangSmith
-            - Understand the purpose and brief history of LangSmith's tracing capability
-            - Become intimately familiar with the tracing UI in LangSmith
-            - Identify in LangSmith a run and trace
-            - Identify in LangSmith every type of run: LLM, Retriever, Tool, Chain, Prompt, and Parser
-            - Identify in LangSmith input, output, and metadata
-            - Obtain a LangSmith API key
-        - LLM as judge
-        - Golden datasets
-    - Test
-        - Compare two or more agents objectively to determine the more effective one (LangSmith experiments)
-    - Iteratively refine
-        - Skills
-    - Plan
-        - Create a purposeful "good" agent
-            - Define clearly the purpose and intent of an agent without the use of digital tools
-            - Design a meaningful architectures for an agent
-            - Use effective prompt engineering to steer the agent consistently
-- Identify which problems are best solved with agentic AI as opposed to other methods
-    - Demonstrate consistency identifying deterministic elements of problems
-    - Demonstrate awareness of an LLM's limitations
-- Develop personal guidelines for ethical use of LLMs and agentic AI.
-    - Create a personal ethics manifesto containing:
-        - .
-        - .
-        - .
-- Communicate AI competence using current industry language to both technical and non-technical audiences.
-    - Publish work where employers can see it
-        - Create a public GitHub repository for an AI agent
-            - Use appropriate API secret standards
-            - Use environment tools (uv)
-            - Understand the basics of git
-            - .
-        - Publish a LinkedIn post communicating work accomplished and lessons learned during this course
-    - Use industry definitions
-        - Explain what agentic AI is and how it differs from regular AI/LLMs
-        - Define an API broadly and practically
-        - Define runs, traces, and tracing
-    - Simplify explanations of AI agent systems so non-technical audiences understand its function and limitations
-- Grow an ability to self-learn in an ever-changing AI landscape.
-    - Navigate and learn from documentation
-        - Learn the core functionality of a given package
-        - Find features deliberately to solve a predermined problem
-    - Find new software that is useful and relevant
-        - Companies
-        - GitHub repos
-        - MCP's
-    - Use AI wisely to find new information
-    <!-- - Become an active contributor in the AI landscape -->
+*This outcome has nearly taken shape, but still needs a little more consideration. AI has framed a new shape interestingly which should be taken seriously with a grain of salt*
 
 
-# Performances
+## Communicate about AI using language fitted to each audience
 
+*Students can communicate their own competence and their agents' behavior to technical and non-technical audiences alike.*
+
+- 4.1 Use current industry terminology correctly <!-- agentic AI vs. LLM, API, runs/traces/tracing, alignment -->
+    - 4.1.1 Describe an agent from multiple definitions
+    - 4.1.2 Articulate the agent development lifecycle
+    - 4.1.3 Differentiate "Engineering" terms: Prompt, Context, Agent, Harness, Intent, and Software Engineering
+    - *how specific should it get here (as opposed to actual lesson content)*
+- 4.2 Demonstrate competence with AI to employers
+    - 4.2.1 Publish work and lessons learned where employers can see it <!-- e.g., a LinkedIn post -->
+    - 4.2.2 Explain agents they built, the decisions behind them, and what they learned from the process
+- 4.3 Communicate an agent's behavior and results in the workplace
+    - 4.3.1 Explain how an agent works to technical and non-technical colleagues
+    - 4.3.2 Report an agent's measured performance and behavior to a manager or decision-maker
+    - 4.3.3 Make recommendations on where an agent should improve or next steps
+    - 4.3.4 Advocate strongly for ethical AI use to an employer or stakeholder
+
+## Find and evaluate quality sources to self-learn in an ever-changing AI landscape
+
+*Students can find and judge sources of AI knowledge,preferring primary, current sources over stale tutorials and unreliable AI answers.*
+
+- 5.1 Learn from primary-source documentation and tutorials
+    - 5.1.1 Quickly discern a package's core functionality
+    - 5.1.2 Find features deliberately to solve a predetermined problem
+    - 5.1.3 Explore documentation to imagine new ways of doing things
+- 5.2 Find and evaluate trusted people and communities <!-- thought leaders, professionals, forums, YouTube, blogs, in person --> *lacks something*
+- 5.3 Evaluate relevance and currency of information, including online tutorials and AI/coding-agent output
+- 5.4 Find and evaluate software, judging whether it is maintained and current <!-- companies, GitHub repos, MCPs -->
+- 5.5 Develop a genuine excitement for AI use cases that propels continued learning
+
+## Form and live a personal ethic for the use of AI agents
+
+*Students can develop and act on a personal conviction for the ethical use of AI, grounded in gospel doctrine and informed by industry and societal context.*
+
+- 6.1 Develop a personal conviction for ethical AI use that is genuinely their own
+- 6.2 Define what ethical AI use means to them personally
+- 6.3 Examine and remain conscious of how their AI use impacts themselves and others
+- 6.4 Apply Church doctrine and gospel principles to real AI-use situations
+- 6.5 Articulate how the industry frames alignment and AI ethics as fundamentally an ethics question
