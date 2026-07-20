@@ -1,31 +1,14 @@
-LangSmith scavenger hunt
+# Activities & Assessments
 
-# Outcome-Activity
-
-If an outcome is listed here, I don't think it is sufficiently covered by the performances, activities, and assessments in this document.
-
-- 4.2 Demonstrate competence with AI to employers
-    - 4.2.2 Explain agents they built, the decisions behind them, and what they learned from the process
-
-- 5.1 Learn from primary-source documentation and tutorials
-    - 5.1.1 Quickly discern a package's core functionality
-    - 5.1.2 Find features deliberately to solve a predetermined problem
-    - 5.1.3 Explore documentation to imagine new ways of doing things
-- 5.2 Find and evaluate trusted people and communities <!-- thought leaders, professionals, forums, YouTube, blogs, in person --> *lacks something*
-- 5.4 Find and evaluate software, judging whether it is maintained and current <!-- companies, GitHub repos, MCPs -->
-
-- 6.3 Examine and remain conscious of how their AI use impacts themselves and others
-- 6.5 Articulate how the industry frames alignment and AI ethics as fundamentally an ethics question
+Abstracts for activities and assessments, and the competencies they teach or assess. 
 
 ## Ethics Readings and Class Discussions
 
 6.1, 6.2, 6.4, 6.5
 
-Readings and discussion focused on ethics topics including
+Readings and discussion focused on ethics topics followed by class discussion.
 
-Prophets' teachings: Bednar, Gong
-BYUI and Church AI use guides
-Model 
+See `instructor_notes/notes_ethics.qmd` 
 
 ## Ethics Manifesto *Summative Assessment*
 
@@ -55,13 +38,16 @@ Student meets with professor in a mock meeting with their boss where they commun
 
 This is meant to be difficult and give good feedback so that when this occurs with their actual employer, they are more than ready.
 
-## Present Your Findings *Summative Assessment*
+## Project 2 *Summative Assessment*
 
-4.3.1, 4.3.2, 4.3.3
+2.1, 2.2, 2.3, 4.1, 4.3
 
-Students present the work they have done assessing an agent through a recorded presentation 
+Spend a few weeks evaluating, diagnosing, measuring an agent. Culminates in written and oral communication about the agent, targeted toward a mock employer and company audience.
 
-(project 2 deliverable)
+Compises of the activities in this document:
+- Present Your Findings
+- Report Your Findings
+- Progress Meeting with Fake Employer
 
 ## Present Your Findings *Summative Assessment*
 
@@ -71,7 +57,7 @@ Students present the work they have done assessing an agent through a recorded p
 
 (project 2 deliverable)
 
-## Report Your Findings *Summarive Assessment*
+## Report Your Findings *Summative Assessment*
 
 4.3.1, 4.3.2, 4.3.3
 
@@ -113,7 +99,7 @@ This portfolio includes GitHub links (and may be a GitHub repo itself). Don't pr
 
 --
 
-Student presents a grade they think they deserve based on their work in preparation for the Final Interview.
+Student presents a grade they think they deserve based on their work in preparation for the Final Interview. Contains both structured facts and personal reflection. See `teaching_philosophy.md` for details.
 
 ## Final Interview *Summative Assessment* *Connection Building*
 
@@ -125,13 +111,13 @@ Student meets with the professor in a final, merciful, "judgement day" interview
 
 5.1
 
-Goal: they try to learn something under a time limit. They come to class and see how well they did.
+Goal: Students try to learn something between classes under a time limit (eg 30 minutes). They come to class and see how well they did.
 
 ## Out of Date Reading
 
 5.3
 
-Student given an out-of-date reading before class without being told. In their group discussion, they discuss what they learned. In the class discussion, the first question is "What are some signs that the articles you read are inaccurate?" The discussion becomes about that.
+Student given an out-of-date reading before class without being told. In their group discussion, they naively discuss what they learned. In the class discussion, the first question is "What are some signs that the articles you read are inaccurate?" The discussion becomes about that.
 
 These can be sprinkled in more than once so they don't trust what they read too readily.
 
@@ -143,7 +129,7 @@ Student is given articles, tutorials, and AI responses. For each they must asses
 
 ## Tips and Tricks Document
 
-5.3
+5.3, --
 
 Students are given a written resource with tips and tricks or rules of thumb on several topics, including:
 
@@ -312,7 +298,7 @@ Students
 
 1.1, 1.2
 
-Each take-home pass-off directly corresponds to a competency. It comprises of a test case, and they need to build an agent that passes the case. Introduced in Unit 3 (when they have AI coding permission)
+Each take-home pass-off directly corresponds to a competency. It comprises of a literal test case, and they need to build an agent that passes the case. Introduced in Unit 3 (when they have AI coding permission)
 
 ## Leaderboards
 
@@ -339,4 +325,6 @@ Students are given a survey that is just a list of all the competencies, and the
 | 2 | quick  | fluency     |
 | 3 | expert | abstraction |
 
-This can easily be a quiz in Canvas
+This can easily be a quiz in Canvas.
+
+This is not a definitive test, but a good feedback mechanism for them to better understand where they are. Could be offered at the very start of the semester, the middle, and the end (or just before). This could also help them pick a final project that stretches them.

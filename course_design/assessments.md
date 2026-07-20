@@ -1,3 +1,7 @@
+
+
+Both formative and summative assessments are named in connection with outcomes. For more details about each, see `activities_assessments.md`.
+
 ## 1. Build and deploy agentic AI solutions
 
 This is primarily measured by *pass-offs* and *coding challenge*
