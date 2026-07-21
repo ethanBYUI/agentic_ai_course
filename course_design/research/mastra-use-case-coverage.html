@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mastra Coverage of Agent Use Cases</title>
+<style>
+  :root {
+    --bg: #ffffff;
+    --fg: #1a1f24;
+    --muted: #5c6773;
+    --border: #e2e6ea;
+    --border-strong: #cbd2d9;
+    --accent: #6b3fa0;
+    --code-bg: #f4f2f8;
+    --row-alt: #fafbfc;
+    --thead-bg: #f0edf6;
+    --link: #6b3fa0;
+    --note-bg: #f7f4fb;
+    --note-border: #6b3fa0;
+    --maxw: 980px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #14171a;
+      --fg: #e6e9ec;
+      --muted: #9aa4ae;
+      --border: #2a2f35;
+      --border-strong: #3a4048;
+      --accent: #b794e6;
+      --code-bg: #22262b;
+      --row-alt: #191d21;
+      --thead-bg: #23202b;
+      --link: #b794e6;
+      --note-bg: #201b2b;
+      --note-border: #8a5fc0;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    font-size: 16px;
+  }
+  .wrap {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 48px 24px 96px;
+  }
+  h1, h2, h3 { line-height: 1.25; font-weight: 700; }
+  h1 {
+    font-size: 2.1rem;
+    margin: 0 0 .5em;
+    letter-spacing: -0.02em;
+  }
+  h2 {
+    font-size: 1.5rem;
+    margin: 2.4em 0 .8em;
+    padding-bottom: .3em;
+    border-bottom: 2px solid var(--border-strong);
+  }
+  h3 {
+    font-size: 1.18rem;
+    margin: 1.8em 0 .6em;
+    color: var(--accent);
+  }
+  p { margin: .8em 0; }
+  a { color: var(--link); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  code {
+    background: var(--code-bg);
+    padding: .12em .4em;
+    border-radius: 4px;
+    font-family: "SF Mono", "Cascadia Code", Consolas, "Liberation Mono", Menlo, monospace;
+    font-size: .88em;
+  }
+  strong { font-weight: 700; }
+  hr {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 2.4em 0;
+  }
+  .table-scroll {
+    overflow-x: auto;
+    margin: 1.2em 0;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+  }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: .93rem;
+  }
+  thead th {
+    background: var(--thead-bg);
+    text-align: left;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  th, td {
+    padding: .55em .8em;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  tbody tr:nth-child(even) { background: var(--row-alt); }
+  tbody tr:last-child td { border-bottom: none; }
+  td:first-child { font-weight: 500; }
+  blockquote {
+    margin: 1.4em 0;
+    padding: .8em 1.2em;
+    background: var(--note-bg);
+    border-left: 4px solid var(--note-border);
+    border-radius: 0 6px 6px 0;
+    color: var(--fg);
+  }
+  blockquote p { margin: .3em 0; }
+  ul { margin: .8em 0; padding-left: 1.4em; }
+  li { margin: .3em 0; }
+  .lede {
+    font-size: 1.08rem;
+    color: var(--muted);
+  }
+  .legend-sym { white-space: nowrap; font-weight: 600; }
+  .subhead {
+    font-size: .82rem;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    color: var(--muted);
+    margin: 2em 0 .4em;
+    font-weight: 700;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>Mastra Coverage of Agent Use Cases</h1>
+
+<p class="lede">A mapping of the use cases catalogued in <a href="every-use-case.md">every-use-case.md</a> to concrete material in the <a href="https://mastra.ai">Mastra</a> documentation — guides, templates, and capability docs — with an assessment of how deeply each is covered.</p>
+
+<h2>How to read this</h2>
+
+<p>Mastra is a <strong>TypeScript agent framework</strong>, not a library of turnkey vertical solutions. Its documentation is organized around <em>capabilities and patterns</em> (agents, tools, workflows, memory, RAG, voice, browser, evals, human-in-the-loop, scheduling) rather than around industries. So the honest picture is:</p>
+
+<ul>
+  <li>A <strong>small set of concrete end-to-end guides and templates</strong> implement specific named use cases (resume screening, meeting notes, code review, docs Q&amp;A, etc.).</li>
+  <li>A <strong>larger set of capability docs</strong> directly enable whole <em>classes</em> of use cases with generic examples you adapt to a vertical.</li>
+  <li>Most <strong>industry-specific (vertical) use cases have no dedicated example</strong> — they are "buildable" by composing the primitives, but Mastra ships no walkthrough for them.</li>
+  <li>A few use cases in the catalog are <strong>out of scope</strong> for an LLM-agent framework entirely (computer vision defect detection, drone imagery, ML forecasting models, dynamic pricing engines).</li>
+</ul>
+
+<h3>Depth legend</h3>
+
+<div class="table-scroll">
+<table>
+<thead><tr><th>Symbol</th><th>Meaning</th></tr></thead>
+<tbody>
+<tr><td class="legend-sym">🟢 Dedicated</td><td>A Mastra guide or template implements essentially this exact use case end-to-end.</td></tr>
+<tr><td class="legend-sym">🟡 Capability</td><td>A framework feature/pattern doc directly enables it with a generic (non-vertical) example.</td></tr>
+<tr><td class="legend-sym">🟠 Composable</td><td>No example, but the needed primitives exist and are documented; you assemble them.</td></tr>
+<tr><td class="legend-sym">⚪ Out of scope</td><td>Not something an LLM-agent framework provides (vision/ML-model/pricing-engine territory).</td></tr>
+</tbody>
+</table>
+</div>
+
+<hr>
+
+<h2>Part 0 — The concrete guides &amp; templates (the anchor examples)</h2>
+
+<p>These are the end-to-end walkthroughs and starter templates Mastra actually ships. Everything else in this document maps back to these plus the capability docs.</p>
+
+<h3>Tutorial guides</h3>
+
+<div class="table-scroll">
+<table>
+<thead><tr><th>Guide</th><th>What it builds</th><th>Anchors these catalog use cases</th></tr></thead>
+<tbody>
+<tr><td><a href="https://mastra.ai/guides/guide/chef-michel">Chef Michel</a></td><td>Basic single agent with instructions</td><td>Any assistant/copilot pattern</td></tr>
+<tr><td><a href="https://mastra.ai/guides/guide/stock-agent">Stock Agent</a></td><td>Agent that calls a data tool</td><td>Tool-calling foundation</td></tr>
+<tr><td><a href="https://mastra.ai/guides/guide/web-search">Web Search</a></td><td>Agent with web search</td><td>Research/browsing agents</td></tr>
+<tr><td><a href="https://mastra.ai/guides/guide/firecrawl">Firecrawl</a></td><td>Web scraping into an agent</td><td>Research, lead enrichment, site-feasibility</td></tr>
+<tr><td><a href="https://mastra.ai/guides/guide/ai-recruiter">AI Recruiter</a></td><td>Workflow that screens candidates</td><td><strong>Resume ranking / candidate-fit</strong></td></tr>
+<tr><td><a href="https://mastra.ai/guides/guide/research-assistant">Research Assistant</a></td><td>RAG over documents</td><td><strong>RAG internal Q&amp;A, research synthesis</strong></td></tr>
+<tr><td><a href="https://mastra.ai/guides/guide/research-coordinator">Research Coordinator</a></td><td>Supervisor delegating to sub-agents</td><td><strong>Orchestrator / multi-agent</strong></td></tr>
+<tr><td><a href="https://mastra.ai/guides/guide/coding-agent">Coding Agent</a></td><td>Plan/write/run code</td><td><strong>Code agents</strong></td></tr>
+<tr><td><a href="https://mastra.ai/guides/guide/code-review-bot">Code Review Bot</a></td><td>Reviews code changes</td><td><strong>Automated code review</strong></td></tr>
+<tr><td><a href="https://mastra.ai/guides/guide/dev-assistant">Dev Assistant</a></td><td>Workspace-backed dev helper</td><td>IT/engineering copilot</td></tr>
+<tr><td><a href="https://mastra.ai/guides/guide/docs-manager">Docs Manager</a></td><td>Filesystem doc management</td><td>Docs concierge, KB upkeep</td></tr>
+<tr><td><a href="https://mastra.ai/guides/guide/github-actions-pr-description">GitHub Actions: PR Description</a></td><td>CI-triggered agent</td><td>DevOps automation</td></tr>
+<tr><td><a href="https://mastra.ai/guides/guide/slack-assistant">Slack Assistant</a></td><td>Slack-channel agent</td><td>Support/IT/HR chat surface</td></tr>
+<tr><td><a href="https://mastra.ai/guides/guide/whatsapp-chat-bot">WhatsApp Chat Bot</a></td><td>Messaging bot</td><td>Conversational support/commerce</td></tr>
+<tr><td><a href="https://mastra.ai/guides/guide/notes-mcp-server">Notes MCP Server</a> / <a href="https://mastra.ai/guides/guide/publishing-mcp-server">Publishing an MCP Server</a></td><td>Build &amp; ship MCP tools</td><td>Tool/integration plumbing</td></tr>
+<tr><td><a href="https://mastra.ai/guides/guide/signal-provider">CI Signal Provider</a></td><td>Event-driven agent trigger</td><td>Monitor-and-alert plumbing</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>Starter templates (<code>npx create-mastra --template &lt;name&gt;</code>)</h3>
+
+<div class="table-scroll">
+<table>
+<thead><tr><th>Template</th><th>What it implements</th><th>Anchors these catalog use cases</th></tr></thead>
+<tbody>
+<tr><td><code>template-docs-expert</code></td><td>Docs Q&amp;A: web search + citations + memory + structured output</td><td><strong>Docs concierge, virtual TA with citations, citizen-service assistant</strong></td></tr>
+<tr><td><code>template-company-knowledge</code></td><td>Indexes Linear + Notion into pgvector for internal Q&amp;A</td><td><strong>RAG internal Q&amp;A, KB search across engagements</strong></td></tr>
+<tr><td><code>template-meeting-notes</code></td><td>Zoom transcript / audio → notes, decisions, action items</td><td><strong>Meeting transcription &amp; action items, call summarization</strong></td></tr>
+<tr><td><code>template-browser-agent</code></td><td>AgentBrowser to browse/inspect/act on web pages</td><td><strong>Computer-use / GUI agents, permit-status tracking</strong></td></tr>
+<tr><td><code>template-claw-assistant</code></td><td>General workspace agent (filesystem + sandbox + browser + search)</td><td><strong>Personal-assistant / research agents</strong></td></tr>
+</tbody>
+</table>
+</div>
+
+<hr>
+
+<h2>Part 3 — Agentic capability patterns (Mastra's strongest coverage)</h2>
+
+<p>Mastra maps most directly to the cross-cutting patterns. Nearly all are covered at the 🟢/🟡 level.</p>
+
+<div class="table-scroll">
+<table>
+<thead><tr><th>Pattern</th><th>Depth</th><th>Mastra docs</th></tr></thead>
+<tbody>
+<tr><td>Monitor-and-alert agents</td><td>🟡</td><td><a href="https://mastra.ai/docs/workflows/scheduled-workflows">Scheduled Workflows</a>, <a href="https://mastra.ai/docs/long-running-agents/schedules">Schedules</a>, <a href="https://mastra.ai/docs/long-running-agents/signals">Signals</a> + <a href="https://mastra.ai/docs/long-running-agents/signal-providers">Signal Providers</a>, <a href="https://mastra.ai/docs/long-running-agents/background-tasks">Background Tasks</a></td></tr>
+<tr><td>Research / browsing agents</td><td>🟢</td><td><a href="https://mastra.ai/guides/guide/web-search">Web Search</a>, <a href="https://mastra.ai/guides/guide/research-assistant">Research Assistant</a>, <a href="https://mastra.ai/docs/browser/overview">Browser overview</a>, <code>template-claw-assistant</code></td></tr>
+<tr><td>Orchestrator / multi-agent</td><td>🟢</td><td><a href="https://mastra.ai/docs/agents/supervisor-agents">Supervisor Agents</a>, <a href="https://mastra.ai/guides/guide/research-coordinator">Research Coordinator</a>, <a href="https://mastra.ai/guides/concepts/multi-agent-systems">Multi-agent systems</a>, <a href="https://mastra.ai/docs/agents/a2a">A2A</a></td></tr>
+<tr><td>Workflow-automation agents</td><td>🟢</td><td><a href="https://mastra.ai/docs/workflows/overview">Workflows overview</a>, <a href="https://mastra.ai/docs/workflows/control-flow">Control Flow</a>, <a href="https://mastra.ai/docs/workflows/agents-and-tools">Agents and Tools in workflows</a></td></tr>
+<tr><td>Copilot / assistant agents</td><td>🟢</td><td><a href="https://mastra.ai/docs/agents/overview">Agents overview</a>, UI guides (<a href="https://mastra.ai/guides/build-your-ui/copilotkit/overview">CopilotKit</a>, <a href="https://mastra.ai/guides/build-your-ui/assistant-ui">Assistant UI</a>, <a href="https://mastra.ai/guides/build-your-ui/ai-sdk-ui">AI SDK UI</a>)</td></tr>
+<tr><td>Autonomous-transaction agents (within guardrails)</td><td>🟡</td><td><a href="https://mastra.ai/docs/agents/guardrails">Guardrails</a>, <a href="https://mastra.ai/docs/agents/agent-approval">Agent Approval</a>, <a href="https://mastra.ai/docs/long-running-agents/durable-agents">Durable Agents</a></td></tr>
+<tr><td>Human-in-the-loop review agents</td><td>🟢</td><td><a href="https://mastra.ai/docs/workflows/human-in-the-loop">Human-in-the-loop workflows</a>, <a href="https://mastra.ai/docs/workflows/suspend-and-resume">Suspend and Resume</a>, <a href="https://mastra.ai/docs/agent-controller/tool-approvals">Tool Approvals</a></td></tr>
+<tr><td>Simulation / planning agents</td><td>🟠</td><td><a href="https://mastra.ai/docs/long-running-agents/goals">Goals</a>, <a href="https://mastra.ai/reference/tools/submit-plan-tool">submitPlanTool</a> — planning primitives, no what-if simulation example</td></tr>
+<tr><td>Computer-use / GUI agents</td><td>🟢</td><td><a href="https://mastra.ai/docs/browser/agent-browser">AgentBrowser</a>, <a href="https://mastra.ai/docs/browser/stagehand">Stagehand</a>, <code>template-browser-agent</code></td></tr>
+<tr><td>Personal-assistant agents</td><td>🟢</td><td><code>template-claw-assistant</code>, <a href="https://mastra.ai/docs/memory/working-memory">Working Memory</a>, <a href="https://mastra.ai/docs/capabilities/channels/overview">Channels</a></td></tr>
+<tr><td>Voice agents</td><td>🟢</td><td><a href="https://mastra.ai/docs/voice/overview">Voice overview</a>, <a href="https://mastra.ai/docs/voice/speech-to-speech">Speech-to-Speech</a>, <a href="https://mastra.ai/docs/voice/livekit">LiveKit</a></td></tr>
+<tr><td>Code agents</td><td>🟢</td><td><a href="https://mastra.ai/guides/guide/coding-agent">Coding Agent</a>, <a href="https://mastra.ai/reference/coding-agent/create-coding-agent">createCodingAgent()</a>, <a href="https://mastra.ai/docs/workspace/overview">Workspace</a> + <a href="https://mastra.ai/docs/workspace/sandbox">Sandbox</a></td></tr>
+</tbody>
+</table>
+</div>
+
+<hr>
+
+<h2>Part 1 — Cross-functional (horizontal) use cases</h2>
+
+<h3>Customer Service &amp; Support</h3>
+<div class="table-scroll">
+<table>
+<thead><tr><th>Use case</th><th>Depth</th><th>Mastra material</th></tr></thead>
+<tbody>
+<tr><td>Tier-1 support bot w/ confidence + escalation</td><td>🟡</td><td><a href="https://mastra.ai/guides/guide/slack-assistant">Slack Assistant</a>, <a href="https://mastra.ai/docs/capabilities/channels/overview">Channels</a>, <a href="https://mastra.ai/docs/workflows/human-in-the-loop">Human-in-the-loop</a> for escalation</td></tr>
+<tr><td>Live-chat / voice IVR deflection</td><td>🟡</td><td><a href="https://mastra.ai/docs/voice/overview">Voice overview</a>, <a href="https://mastra.ai/docs/voice/speech-to-speech">Speech-to-Speech</a>, <a href="https://mastra.ai/docs/voice/livekit">LiveKit</a></td></tr>
+<tr><td>Conversation-QA auditor / scoring &amp; leaderboards</td><td>🟡</td><td><a href="https://mastra.ai/docs/evals/overview">Evals overview</a>, <a href="https://mastra.ai/docs/evals/multi-turn">Multi-turn Evals</a>, <a href="https://mastra.ai/docs/evals/built-in-scorers">Built-in Scorers</a></td></tr>
+<tr><td>Knowledge-base auto-writer from tickets</td><td>🟠</td><td><a href="https://mastra.ai/guides/guide/docs-manager">Docs Manager</a> + <a href="https://mastra.ai/docs/agents/structured-output">Structured Output</a></td></tr>
+<tr><td>Ticket triage / routing / tagging</td><td>🟠</td><td><a href="https://mastra.ai/docs/workflows/overview">Workflows</a> + <a href="https://mastra.ai/docs/agents/structured-output">Structured Output</a> (classification)</td></tr>
+<tr><td>Post-interaction summarization / CRM notes</td><td>🟡</td><td><a href="https://mastra.ai/reference/templates/overview">template-meeting-notes</a>, <a href="https://mastra.ai/reference/memory/summarizeConversation">summarizeConversation()</a></td></tr>
+<tr><td>Multilingual support / translation</td><td>🟡</td><td><a href="https://mastra.ai/reference/processors/language-detector">LanguageDetector</a> processor + agent generation</td></tr>
+<tr><td>Proactive outreach (renewals, outages)</td><td>🟡</td><td><a href="https://mastra.ai/docs/workflows/scheduled-workflows">Scheduled Workflows</a>, <a href="https://mastra.ai/docs/long-running-agents/signals">Signals</a></td></tr>
+<tr><td>Smart upsell / cross-sell recommender</td><td>🟠</td><td>Composable (tools + memory); no example</td></tr>
+<tr><td>Automated refund / return adjudication</td><td>🟠</td><td><a href="https://mastra.ai/docs/workflows/human-in-the-loop">Human-in-the-loop</a> + <a href="https://mastra.ai/docs/agents/guardrails">Guardrails</a>; no example</td></tr>
+<tr><td>Sentiment early-warning / churn signals</td><td>🟠</td><td>Monitor pattern (<a href="https://mastra.ai/docs/long-running-agents/signals">Signals</a>); no example</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>Sales &amp; Revenue</h3>
+<div class="table-scroll">
+<table>
+<thead><tr><th>Use case</th><th>Depth</th><th>Mastra material</th></tr></thead>
+<tbody>
+<tr><td>Lead enrichment from external data</td><td>🟡</td><td><a href="https://mastra.ai/guides/guide/firecrawl">Firecrawl</a>, <a href="https://mastra.ai/reference/tools/brightdata">Bright Data Tools</a></td></tr>
+<tr><td>SDR / outbound drafting &amp; personalization</td><td>🟠</td><td>Agent + <a href="https://mastra.ai/docs/memory/working-memory">Working Memory</a>; no example</td></tr>
+<tr><td>Sales-call transcription &amp; next-steps</td><td>🟢</td><td><a href="https://mastra.ai/reference/templates/overview">template-meeting-notes</a></td></tr>
+<tr><td>Proposal / quote / RFP generation</td><td>🟠</td><td><a href="https://mastra.ai/docs/rag/overview">RAG</a> + <a href="https://mastra.ai/docs/agents/structured-output">Structured Output</a>; no example</td></tr>
+<tr><td>Meeting scheduling / calendar coordination</td><td>🟠</td><td>Tools + <a href="https://mastra.ai/docs/long-running-agents/schedules">Schedules</a>; no example</td></tr>
+<tr><td>Lead scoring/qualification/routing</td><td>🟠</td><td>Similar to <a href="https://mastra.ai/guides/guide/ai-recruiter">AI Recruiter</a> scoring pattern; no dedicated example</td></tr>
+<tr><td>Pipeline hygiene / CRM data quality</td><td>🟠</td><td>Composable; no example</td></tr>
+<tr><td>Deal-risk / forecast analysis</td><td>🟠</td><td>Composable; no example</td></tr>
+<tr><td>Contract renewal / churn outreach</td><td>🟠</td><td>Monitor + outreach pattern; no example</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>Marketing</h3>
+<div class="table-scroll">
+<table>
+<thead><tr><th>Use case</th><th>Depth</th><th>Mastra material</th></tr></thead>
+<tbody>
+<tr><td>Content generation (blog/ad/email/social)</td><td>🟡</td><td><a href="https://mastra.ai/docs/agents/overview">Agents overview</a> (generation is the core primitive)</td></tr>
+<tr><td>SEO research / keyword clustering / content-gap</td><td>🟡</td><td><a href="https://mastra.ai/guides/guide/web-search">Web Search</a>, <a href="https://mastra.ai/reference/tools/perplexity">Perplexity</a>/<a href="https://mastra.ai/reference/tools/tavily">Tavily</a> tools</td></tr>
+<tr><td>Social-listening / brand-sentiment monitoring</td><td>🟠</td><td>Monitor pattern; no example</td></tr>
+<tr><td>Campaign brief writer + task filing</td><td>🟠</td><td>Workflow + tools; no example</td></tr>
+<tr><td>Creative-variation / resizing</td><td>⚪</td><td>Image generation/resizing is outside the framework's remit</td></tr>
+<tr><td>Ad-budget pacing / bid adjustment</td><td>⚪</td><td>Optimization engine territory, not agent-framework</td></tr>
+<tr><td>Email A/B / multi-armed bandit</td><td>⚪</td><td>Statistical-optimization territory</td></tr>
+<tr><td>Audience segmentation / personalization</td><td>🟠</td><td>Composable; no example</td></tr>
+<tr><td>Influencer discovery &amp; vetting</td><td>🟠</td><td>Research pattern; no example</td></tr>
+<tr><td>Marketing analytics / attribution</td><td>🟠</td><td>Composable; no example</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>Human Resources &amp; People Ops</h3>
+<div class="table-scroll">
+<table>
+<thead><tr><th>Use case</th><th>Depth</th><th>Mastra material</th></tr></thead>
+<tbody>
+<tr><td>Resume ranking / candidate-fit scoring</td><td>🟢</td><td><a href="https://mastra.ai/guides/guide/ai-recruiter">AI Recruiter</a> — dedicated workflow tutorial</td></tr>
+<tr><td>Job-description / offer-letter writing</td><td>🟡</td><td>Agent generation + <a href="https://mastra.ai/docs/agents/structured-output">Structured Output</a></td></tr>
+<tr><td>Employee self-service HR assistant</td><td>🟡</td><td><a href="https://mastra.ai/guides/guide/slack-assistant">Slack Assistant</a> + <a href="https://mastra.ai/docs/rag/overview">RAG</a> over policy docs</td></tr>
+<tr><td>Interview scheduling / candidate comms</td><td>🟠</td><td>Tools + schedules; no example</td></tr>
+<tr><td>Onboarding concierge (accounts/hardware)</td><td>🟠</td><td>Workflow orchestration; no example</td></tr>
+<tr><td>Employee-sentiment / pulse-survey analysis</td><td>🟠</td><td>Classification + summarization; no example</td></tr>
+<tr><td>Exit-survey synthesis / theme clustering</td><td>🟠</td><td><a href="https://mastra.ai/docs/rag/graph-rag">GraphRAG</a> clustering; no example</td></tr>
+<tr><td>Internal gig / skills matching</td><td>🟠</td><td>Composable; no example</td></tr>
+<tr><td>Skills-gap / learning recommendations</td><td>🟠</td><td>Composable; no example</td></tr>
+<tr><td>Payroll issue detection</td><td>🟠</td><td>Monitor pattern; no example</td></tr>
+<tr><td>Performance-review drafting</td><td>🟡</td><td>Agent generation; no dedicated example</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>Finance, Accounting &amp; Procurement</h3>
+<div class="table-scroll">
+<table>
+<thead><tr><th>Use case</th><th>Depth</th><th>Mastra material</th></tr></thead>
+<tbody>
+<tr><td>Regulatory / compliance-change monitoring (e.g. SEC scanning)</td><td>🟡</td><td><a href="https://mastra.ai/docs/workflows/scheduled-workflows">Scheduled Workflows</a> + <a href="https://mastra.ai/guides/guide/web-search">Web Search</a></td></tr>
+<tr><td>Ledger anomaly / discrepancy flagging</td><td>🟠</td><td>Monitor + tools; no example</td></tr>
+<tr><td>Journal-entry drafting (accountant-in-loop)</td><td>🟠</td><td><a href="https://mastra.ai/docs/workflows/human-in-the-loop">Human-in-the-loop</a>; no example</td></tr>
+<tr><td>Credit underwriting / credit memos</td><td>🟠</td><td>RAG + structured output; no example</td></tr>
+<tr><td>Invoice-to-PO / three-way matching</td><td>🟠</td><td>Workflow; no example</td></tr>
+<tr><td>Expense-report processing</td><td>🟠</td><td>Workflow + structured output; no example</td></tr>
+<tr><td>AR / collections agent</td><td>🟠</td><td>Outreach + schedule; no example</td></tr>
+<tr><td>Financial forecasting / variance analysis</td><td>⚪</td><td>Forecasting-model territory (though narrative <em>around</em> it is 🟠)</td></tr>
+<tr><td>P&amp;L root-cause analysis</td><td>🟠</td><td>Composable; no example</td></tr>
+<tr><td>Procurement (quote-to-requisition)</td><td>🟠</td><td>Workflow; no example</td></tr>
+<tr><td>Supplier-risk monitoring (OFAC/health)</td><td>🟡</td><td><a href="https://mastra.ai/docs/workflows/scheduled-workflows">Scheduled Workflows</a> + search tools</td></tr>
+<tr><td>Fraud detection on transactions</td><td>🟠</td><td>Monitor pattern; no example</td></tr>
+<tr><td>Audit / continuous controls monitoring</td><td>🟠</td><td>Monitor pattern; no example</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>IT, Software Engineering &amp; DevOps (Mastra's second-strongest area)</h3>
+<div class="table-scroll">
+<table>
+<thead><tr><th>Use case</th><th>Depth</th><th>Mastra material</th></tr></thead>
+<tbody>
+<tr><td>Code generation / completion / refactoring</td><td>🟢</td><td><a href="https://mastra.ai/guides/guide/coding-agent">Coding Agent</a>, <a href="https://mastra.ai/reference/coding-agent/create-coding-agent">createCodingAgent()</a></td></tr>
+<tr><td>Automated code review (PR copilot)</td><td>🟢</td><td><a href="https://mastra.ai/guides/guide/code-review-bot">Code Review Bot</a>, <a href="https://mastra.ai/guides/guide/github-actions-pr-description">GitHub Actions PR Description</a></td></tr>
+<tr><td>Internal documentation Q&amp;A / docs concierge</td><td>🟢</td><td><a href="https://mastra.ai/reference/templates/overview">template-docs-expert</a>, <a href="https://mastra.ai/guides/guide/docs-manager">Docs Manager</a></td></tr>
+<tr><td>Test generation / execution</td><td>🟡</td><td><a href="https://mastra.ai/guides/guide/coding-agent">Coding Agent</a> + <a href="https://mastra.ai/docs/workspace/sandbox">Sandbox</a></td></tr>
+<tr><td>Bug detection / reproduction / fix</td><td>🟡</td><td><a href="https://mastra.ai/guides/guide/coding-agent">Coding Agent</a> + <a href="https://mastra.ai/docs/workspace/overview">Workspace</a></td></tr>
+<tr><td>Incident commander / runbook / postmortems</td><td>🟡</td><td><a href="https://mastra.ai/docs/long-running-agents/signals">Signals</a> + <a href="https://mastra.ai/docs/long-running-agents/durable-agents">Durable Agents</a></td></tr>
+<tr><td>CVE / vulnerability watcher</td><td>🟡</td><td><a href="https://mastra.ai/docs/workflows/scheduled-workflows">Scheduled Workflows</a> + search</td></tr>
+<tr><td>Log analysis / root-cause</td><td>🟠</td><td>Composable; no example</td></tr>
+<tr><td>IaC drafting / change review</td><td>🟡</td><td><a href="https://mastra.ai/guides/guide/coding-agent">Coding Agent</a> pattern</td></tr>
+<tr><td>IT helpdesk / password reset / provisioning</td><td>🟡</td><td><a href="https://mastra.ai/guides/guide/slack-assistant">Slack Assistant</a> + tools</td></tr>
+<tr><td>Data-pipeline / ETL error handling</td><td>🟡</td><td><a href="https://mastra.ai/docs/workflows/error-handling">Error Handling</a> + <a href="https://mastra.ai/docs/long-running-agents/signals">Signals</a></td></tr>
+<tr><td>Cloud-cost optimization / rightsizing</td><td>🟠</td><td>Composable; no example</td></tr>
+<tr><td>APM / auto-remediation</td><td>🟠</td><td>Monitor + action; no example</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>Data &amp; Analytics (BI)</h3>
+<div class="table-scroll">
+<table>
+<thead><tr><th>Use case</th><th>Depth</th><th>Mastra material</th></tr></thead>
+<tbody>
+<tr><td>Natural-language querying of warehouses</td><td>🟠</td><td>Tools (<a href="https://mastra.ai/reference/tools/create-tool">createTool()</a>) + structured output; no example</td></tr>
+<tr><td>Automated report / narrative generation</td><td>🟡</td><td>Agent generation + workflows</td></tr>
+<tr><td>Proactive anomaly detection + root-cause</td><td>🟡</td><td><a href="https://mastra.ai/docs/workflows/scheduled-workflows">Scheduled Workflows</a> + <a href="https://mastra.ai/docs/long-running-agents/signals">Signals</a></td></tr>
+<tr><td>Automated data tagging / cleaning / enrichment</td><td>🟡</td><td><a href="https://mastra.ai/docs/agents/structured-output">Structured Output</a>, <a href="https://mastra.ai/reference/rag/extract-params">ExtractParams</a></td></tr>
+<tr><td>KPI monitoring + next actions</td><td>🟡</td><td>Monitor pattern (Schedules/Signals)</td></tr>
+<tr><td>Dashboard-insight summarization</td><td>🟠</td><td>Composable; no example</td></tr>
+<tr><td>Embedded analytics narrative layer</td><td>🟠</td><td>Composable; no example</td></tr>
+<tr><td>Data-catalog / metadata governance</td><td>🟠</td><td>Composable; no example</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>Legal, Risk &amp; Compliance</h3>
+<div class="table-scroll">
+<table>
+<thead><tr><th>Use case</th><th>Depth</th><th>Mastra material</th></tr></thead>
+<tbody>
+<tr><td>Contract review / clause red-flagging</td><td>🟡</td><td><a href="https://mastra.ai/docs/rag/overview">RAG</a> + <a href="https://mastra.ai/docs/agents/structured-output">Structured Output</a> with confidence</td></tr>
+<tr><td>Legal research / case summarization</td><td>🟢</td><td><a href="https://mastra.ai/guides/guide/research-assistant">Research Assistant</a> pattern (RAG)</td></tr>
+<tr><td>Regulatory / policy-change monitoring + memo</td><td>🟡</td><td><a href="https://mastra.ai/docs/workflows/scheduled-workflows">Scheduled Workflows</a> + search</td></tr>
+<tr><td>Contract drafting / redlining</td><td>🟠</td><td>Agent generation from templates; no example</td></tr>
+<tr><td>E-discovery clustering / summarization</td><td>🟡</td><td><a href="https://mastra.ai/docs/rag/graph-rag">GraphRAG</a></td></tr>
+<tr><td>Due-diligence / KYC document review</td><td>🟠</td><td>RAG + structured output; no example</td></tr>
+<tr><td>Whistleblower intake / severity routing</td><td>🟠</td><td>Classification workflow; no example</td></tr>
+<tr><td>Trademark / IP fuzzy-matching watch</td><td>🟠</td><td>Monitor pattern; no example</td></tr>
+<tr><td>Privacy / DSAR handling</td><td>🟡</td><td><a href="https://mastra.ai/reference/processors/pii-detector">PIIDetector</a> processor</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>Administrative &amp; Personal Productivity</h3>
+<div class="table-scroll">
+<table>
+<thead><tr><th>Use case</th><th>Depth</th><th>Mastra material</th></tr></thead>
+<tbody>
+<tr><td>Research assistant / web-briefing agent</td><td>🟢</td><td><a href="https://mastra.ai/guides/guide/web-search">Web Search</a>, <code>template-claw-assistant</code></td></tr>
+<tr><td>Note-taking / transcription / action items</td><td>🟢</td><td><a href="https://mastra.ai/reference/templates/overview">template-meeting-notes</a></td></tr>
+<tr><td>Document drafting / summarization / translation</td><td>🟡</td><td>Agent generation + processors</td></tr>
+<tr><td>Email triage / drafting / inbox summary</td><td>🟠</td><td>Tools + memory; no example (Gmail via MCP)</td></tr>
+<tr><td>Meeting scheduling / calendar mgmt</td><td>🟠</td><td>Tools + schedules; no example</td></tr>
+<tr><td>Travel planning / booking</td><td>🟠</td><td><a href="https://mastra.ai/docs/browser/overview">Browser agent</a> + tools; no example</td></tr>
+<tr><td>Task / project management</td><td>🟡</td><td><a href="https://mastra.ai/reference/tools/task-tools">Task tools</a>, tool integrations</td></tr>
+<tr><td>Expense filing</td><td>🟠</td><td>Composable; no example</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>Knowledge Management &amp; Training</h3>
+<div class="table-scroll">
+<table>
+<thead><tr><th>Use case</th><th>Depth</th><th>Mastra material</th></tr></thead>
+<tbody>
+<tr><td>RAG-based internal Q&amp;A</td><td>🟢</td><td><a href="https://mastra.ai/guides/guide/research-assistant">Research Assistant</a>, <a href="https://mastra.ai/reference/templates/overview">template-company-knowledge</a>, <a href="https://mastra.ai/docs/rag/overview">RAG overview</a></td></tr>
+<tr><td>Virtual TA / tutor with citations</td><td>🟢</td><td><a href="https://mastra.ai/reference/templates/overview">template-docs-expert</a> (citations + memory)</td></tr>
+<tr><td>Onboarding / skills-training content gen</td><td>🟡</td><td>Agent generation</td></tr>
+<tr><td>Adaptive learning / study coach</td><td>🟠</td><td><a href="https://mastra.ai/docs/memory/working-memory">Working Memory</a> to track learner; no example</td></tr>
+<tr><td>Curriculum-gap analysis vs. standards</td><td>🟠</td><td>RAG + structured output; no example</td></tr>
+</tbody>
+</table>
+</div>
+
+<hr>
+
+<h2>Part 2 — Industry-specific (vertical) use cases</h2>
+
+<p>This is where Mastra's <em>examples</em> thin out sharply. Almost none of the vertical use cases have a dedicated walkthrough; the framework provides the parts, not the assembled vertical product. Representative assessment (the pattern repeats across every industry):</p>
+
+<div class="table-scroll">
+<table>
+<thead><tr><th>Vertical</th><th>Best Mastra fit</th><th>Typical depth</th></tr></thead>
+<tbody>
+<tr><td><strong>Healthcare</strong> — clinical scribe, record summarization, triage intake</td><td><a href="https://mastra.ai/reference/templates/overview">template-meeting-notes</a> (scribe-like), <a href="https://mastra.ai/docs/rag/overview">RAG</a>, <a href="https://mastra.ai/reference/processors/pii-detector">PIIDetector</a></td><td>🟠 Composable — no healthcare example. Radiology/pathology imaging = ⚪ out of scope.</td></tr>
+<tr><td><strong>Financial Services</strong> — fraud, AML/KYC, claims, underwriting</td><td>Monitor pattern (<a href="https://mastra.ai/docs/long-running-agents/signals">Signals</a>), RAG, <a href="https://mastra.ai/docs/agents/guardrails">Guardrails</a></td><td>🟠 Composable. Photo damage assessment / risk-scoring models = ⚪.</td></tr>
+<tr><td><strong>Retail &amp; E-commerce</strong> — conversational shopping, catalog enrichment, reviews</td><td><a href="https://mastra.ai/guides/guide/whatsapp-chat-bot">WhatsApp Bot</a>, <a href="https://mastra.ai/docs/agents/structured-output">Structured Output</a></td><td>🟠 Composable. Dynamic pricing / demand forecasting = ⚪.</td></tr>
+<tr><td><strong>Manufacturing</strong> — operator assistant, predictive maintenance, digital twin</td><td>RAG assistant; <a href="https://mastra.ai/docs/long-running-agents/signals">Signals</a> for alerts</td><td>🟠 for assistant. Vision defect detection / predictive-maintenance ML / digital-twin sim = ⚪.</td></tr>
+<tr><td><strong>Supply Chain &amp; Logistics</strong> — route planning, ETA messaging, customs docs</td><td>Workflows, <a href="https://mastra.ai/docs/workflows/scheduled-workflows">Scheduled Workflows</a>, tools</td><td>🟠 Composable. Route optimization solvers = ⚪.</td></tr>
+<tr><td><strong>Energy &amp; Utilities</strong> — outage forecasting, crew dispatch, emissions reporting</td><td>Monitor + workflows</td><td>🟠 for reporting/dispatch coordination. Load-shift/grid optimization + drone imagery = ⚪.</td></tr>
+<tr><td><strong>Real Estate &amp; Construction</strong> — listing generation, permit tracking, feasibility packets</td><td><a href="https://mastra.ai/docs/browser/overview">Browser agent</a> (permit portals), <a href="https://mastra.ai/guides/guide/firecrawl">Firecrawl</a> (feasibility research)</td><td>🟡 for portal/research tasks; 🟠 for the rest. BIM/drone progress = ⚪.</td></tr>
+<tr><td><strong>Media &amp; Entertainment</strong> — script coverage, clipping/captioning, moderation</td><td>Agent generation; <a href="https://mastra.ai/reference/processors/moderation-processor">ModerationProcessor</a></td><td>🟡 moderation; 🟠 script coverage. Video clipping/dubbing/NPC AI = ⚪.</td></tr>
+<tr><td><strong>Education</strong> — TA chatbot, grading, learning paths</td><td><a href="https://mastra.ai/reference/templates/overview">template-docs-expert</a> (TA w/ citations)</td><td>🟢 for TA chatbot; 🟠 for grading/paths. Proctoring vision = ⚪.</td></tr>
+<tr><td><strong>Government</strong> — citizen-service assistant, FOIA processing, case management</td><td><a href="https://mastra.ai/reference/templates/overview">template-docs-expert</a>, RAG, workflows</td><td>🟡 for citizen Q&amp;A; 🟠 for the rest.</td></tr>
+<tr><td><strong>Agriculture</strong> — market monitoring; crop/pest detection</td><td>Monitor for market data</td><td>🟠 for market monitoring. Satellite/imagery/yield models = ⚪.</td></tr>
+<tr><td><strong>Hospitality &amp; Travel</strong> — concierge, itinerary, review analysis</td><td><a href="https://mastra.ai/guides/guide/whatsapp-chat-bot">WhatsApp Bot</a>, <a href="https://mastra.ai/docs/browser/overview">Browser agent</a>, review classification</td><td>🟡/🟠. Yield/dynamic pricing = ⚪.</td></tr>
+<tr><td><strong>Telecommunications</strong> — troubleshooting, churn, SIM-swap fraud</td><td>RAG assistant; monitor pattern</td><td>🟠 Composable. Network self-healing / fraud ML = ⚪.</td></tr>
+<tr><td><strong>Professional Services &amp; Consulting</strong> — proposals, research synthesis, KB search, deliverable QA</td><td><a href="https://mastra.ai/guides/guide/research-assistant">Research Assistant</a>, <a href="https://mastra.ai/reference/templates/overview">template-company-knowledge</a>, <a href="https://mastra.ai/docs/evals/overview">Evals</a> for QA</td><td>🟡 — closest vertical to Mastra's shipped examples.</td></tr>
+</tbody>
+</table>
+</div>
+
+<hr>
+
+<h2>Specific use cases with NO dedicated Mastra example</h2>
+
+<p>These appear in the catalog but are <strong>not</strong> implemented by any Mastra guide or template. They split into two groups.</p>
+
+<h3>A. Buildable but no walkthrough (🟠 — primitives exist, you assemble them)</h3>
+
+<p><em>Customer service:</em> smart upsell recommender · automated refund/return adjudication · sentiment early-warning / churn.<br>
+<em>Sales:</em> SDR outbound drafting · proposal/quote/RFP generation · meeting scheduling · lead scoring/routing · pipeline hygiene · deal-risk/forecast analysis · renewal/churn outreach.<br>
+<em>Marketing:</em> social-listening · campaign-brief writer · audience segmentation · influencer discovery · marketing analytics/attribution.<br>
+<em>HR:</em> interview scheduling · onboarding concierge · pulse-survey analysis · exit-survey clustering · skills matching · skills-gap/learning recs · payroll issue detection.<br>
+<em>Finance:</em> ledger anomaly flagging · journal-entry drafting · credit underwriting/memos · invoice/three-way matching · expense-report processing · AR/collections · P&amp;L root-cause · procurement quote-to-requisition · transaction fraud · audit/controls monitoring.<br>
+<em>IT/Data:</em> log root-cause · cloud-cost optimization · APM auto-remediation · NL warehouse querying · dashboard-insight summarization · embedded-analytics narrative · data-catalog governance.<br>
+<em>Legal:</em> contract drafting/redlining · due-diligence/KYC review · whistleblower intake · trademark/IP watch.<br>
+<em>Admin:</em> email triage/drafting · calendar management · travel booking · expense filing.<br>
+<em>Training:</em> adaptive study coach · curriculum-gap analysis.<br>
+<em>Verticals:</em> essentially every healthcare, financial-services, retail, manufacturing (assistant parts), logistics, energy (reporting/dispatch), real-estate, media (script coverage), government (case mgmt/FOIA), agriculture (market monitoring), telecom, and professional-services use case not explicitly listed as 🟢/🟡 above.</p>
+
+<h3>B. Out of scope for an LLM-agent framework (⚪ — needs vision/ML/optimization, not agents)</h3>
+
+<ul>
+  <li>Creative-variation/image resizing; automated video/podcast clipping, captioning, dubbing</li>
+  <li>Ad-budget pacing / bid adjustment; email A/B multi-armed-bandit optimization</li>
+  <li>Financial forecasting/budgeting <em>models</em> (the narrative around them is buildable; the model isn't)</li>
+  <li>Dynamic pricing / markdown optimization; demand forecasting; yield management</li>
+  <li>Vision-based quality control / defect detection; radiology/pathology image pre-screening</li>
+  <li>Predictive-maintenance ML; digital-twin simulation; route-optimization solvers</li>
+  <li>Load-shift/battery/grid optimization; drone/sensor imagery analysis; BIM progress checking</li>
+  <li>Crop/soil/pest detection from imagery; yield prediction models</li>
+  <li>Proctoring / exam-integrity vision; network self-healing &amp; fraud-scoring ML models</li>
+</ul>
+
+<blockquote>
+<p>Note: Mastra can still <em>orchestrate</em> these — call an external vision/ML/optimization service as a <a href="https://mastra.ai/reference/tools/create-tool">tool</a> and reason over the result. What it doesn't provide is the model itself, and it ships no example wiring one up.</p>
+</blockquote>
+
+<hr>
+
+<h2>Coverage summary</h2>
+
+<div class="table-scroll">
+<table>
+<thead><tr><th>Depth</th><th>Count (approx.)</th><th>Reading</th></tr></thead>
+<tbody>
+<tr><td>🟢 Dedicated example</td><td>~18 use cases</td><td>Concentrated in: code (agent/review/PR), RAG/docs Q&amp;A, research/multi-agent, meeting notes, resume screening, TA-with-citations, personal/browser assistants.</td></tr>
+<tr><td>🟡 Direct capability</td><td>~35 use cases</td><td>Mostly the capability patterns + anything that is "monitor," "voice," "channel-deployed chat," "structured extraction," "eval/QA," or "HITL approval" flavored.</td></tr>
+<tr><td>🟠 Composable, no example</td><td>~70+ use cases</td><td>The long tail of horizontal functions and nearly all verticals.</td></tr>
+<tr><td>⚪ Out of scope</td><td>~20 use cases</td><td>Vision, forecasting/pricing/optimization ML, media transcoding.</td></tr>
+</tbody>
+</table>
+</div>
+
+<p><strong>Bottom line for the course:</strong> Mastra covers the <em>agentic capability patterns</em> (Part 3) essentially completely and at good depth, and ships strong end-to-end examples in a handful of horizontal areas — <strong>software engineering, knowledge Q&amp;A/RAG, research &amp; multi-agent orchestration, meeting notes, and recruiting</strong>. Coverage of <em>industry-specific</em> use cases is almost entirely at the "compose the primitives yourself" level, with no vertical walkthroughs, and a meaningful slice of the catalog (vision/ML/optimization) sits outside the framework's remit altogether.</p>
+
+</div>
+</body>
+</html>

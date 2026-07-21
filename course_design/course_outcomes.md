@@ -96,7 +96,7 @@ Grammar follows "Students can + verb" format.
     - 3.6.3 Propose multiple harness schemas that fit the problem definition
 - 3.7 Author intent into durable artifacts that are both agent- and human-readable <!-- eg CONSTITUTION.md, CONTEXT.md, AGENTS.md, specs, schemas, user stories,  other docs; or principles, instructions, context, success criteria, schemas, tool definitions, and curated examples -->
 
-*This outcome has nearly taken shape, but still needs a little more consideration. AI has framed a new shape interestingly which should be taken seriously with a grain of salt*
+*This outcome has nearly taken shape, but still needs a little more consideration. AI has framed a new shape interestingly inside `outcomes_competencies_playground.md` which should be taken seriously with a grain of salt*
 
 
 ## Communicate about AI using language fitted to each audience

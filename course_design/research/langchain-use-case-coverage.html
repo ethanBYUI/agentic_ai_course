@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LangChain Coverage of Agent Use Cases</title>
+<style>
+  :root {
+    --bg: #ffffff;
+    --fg: #1a1f24;
+    --muted: #5c6773;
+    --border: #e2e6ea;
+    --border-strong: #cbd2d9;
+    --accent: #1c6b5a;
+    --code-bg: #eef4f2;
+    --row-alt: #fafbfc;
+    --thead-bg: #e9f2ef;
+    --link: #1c6b5a;
+    --note-bg: #eef6f3;
+    --note-border: #1c6b5a;
+    --maxw: 980px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #14171a;
+      --fg: #e6e9ec;
+      --muted: #9aa4ae;
+      --border: #2a2f35;
+      --border-strong: #3a4048;
+      --accent: #5fc9ac;
+      --code-bg: #1f2a27;
+      --row-alt: #191d21;
+      --thead-bg: #1c2825;
+      --link: #5fc9ac;
+      --note-bg: #17231f;
+      --note-border: #3d9a82;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    font-size: 16px;
+  }
+  .wrap {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 48px 24px 96px;
+  }
+  h1, h2, h3 { line-height: 1.25; font-weight: 700; }
+  h1 {
+    font-size: 2.1rem;
+    margin: 0 0 .5em;
+    letter-spacing: -0.02em;
+  }
+  h2 {
+    font-size: 1.5rem;
+    margin: 2.4em 0 .8em;
+    padding-bottom: .3em;
+    border-bottom: 2px solid var(--border-strong);
+  }
+  h3 {
+    font-size: 1.18rem;
+    margin: 1.8em 0 .6em;
+    color: var(--accent);
+  }
+  p { margin: .8em 0; }
+  a { color: var(--link); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  code {
+    background: var(--code-bg);
+    padding: .12em .4em;
+    border-radius: 4px;
+    font-family: "SF Mono", "Cascadia Code", Consolas, "Liberation Mono", Menlo, monospace;
+    font-size: .88em;
+  }
+  strong { font-weight: 700; }
+  hr {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 2.4em 0;
+  }
+  .table-scroll {
+    overflow-x: auto;
+    margin: 1.2em 0;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+  }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: .93rem;
+  }
+  thead th {
+    background: var(--thead-bg);
+    text-align: left;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  th, td {
+    padding: .55em .8em;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  tbody tr:nth-child(even) { background: var(--row-alt); }
+  tbody tr:last-child td { border-bottom: none; }
+  td:first-child { font-weight: 500; }
+  blockquote {
+    margin: 1.4em 0;
+    padding: .8em 1.2em;
+    background: var(--note-bg);
+    border-left: 4px solid var(--note-border);
+    border-radius: 0 6px 6px 0;
+    color: var(--fg);
+  }
+  blockquote p { margin: .3em 0; }
+  ul { margin: .8em 0; padding-left: 1.4em; }
+  li { margin: .3em 0; }
+  .lede {
+    font-size: 1.08rem;
+    color: var(--muted);
+  }
+  .legend-sym { white-space: nowrap; font-weight: 600; }
+  .depth { white-space: nowrap; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>LangChain Coverage of Agent Use Cases</h1>
+
+<p class="lede">A mapping of the use cases catalogued in <a href="every-use-case.md">every-use-case.md</a> to concrete material in the <a href="https://docs.langchain.com">LangChain</a> documentation — tutorials, capability guides, the tool-integration catalog, and the LangGraph <strong>case-studies</strong> roster — with an assessment of how deeply each is covered.</p>
+
+<p>Companion to <a href="mastra-use-case-coverage.html">mastra-use-case-coverage.md</a>; same catalog, same depth legend, so the two frameworks can be compared side by side.</p>
+
+<h2>How to read this</h2>
+
+<p>"LangChain" here means the whole open-source stack the docs cover: <strong>LangChain</strong> (agents, tools, models, memory, RAG, middleware, multi-agent), <strong>LangGraph</strong> (the graph/workflow runtime, persistence, human-in-the-loop, durability), <strong>Deep Agents</strong> (planning + subagents + filesystem + sandbox for long-horizon tasks), and <strong>LangSmith</strong> (evals, tracing, online monitoring, scheduling). The public docs live at <code>https://docs.langchain.com</code>.</p>
+
+<p>Like Mastra, LangChain is a <strong>framework organized around capabilities and patterns</strong>, not a library of turnkey vertical solutions. So the honest picture is the same shape:</p>
+
+<ul>
+  <li>A <strong>small set of concrete end-to-end tutorials</strong> implement specific named use cases (SQL/data Q&amp;A, RAG docs Q&amp;A, deep research, data analysis, customer-support state machine, personal assistant, voice agent).</li>
+  <li>A <strong>larger set of capability guides</strong> enable whole <em>classes</em> of use cases with generic examples.</li>
+  <li>A <strong>broad tool-integration catalog</strong> supplies the connectors (search, browser, Gmail, SQL, payments) that turn a generic agent into a specific one.</li>
+  <li>A <strong>real-world case-studies table</strong> names ~40 companies and the use case each shipped on LangGraph — these are external references (blog posts / talks), <strong>not</strong> in-docs walkthroughs, but they prove the pattern in a vertical.</li>
+  <li>Most <strong>industry-specific use cases have no dedicated tutorial</strong> — they are "buildable" by composing primitives; the case-studies table is often the only vertical-specific pointer.</li>
+  <li>A slice of the catalog is <strong>out of scope</strong> for an LLM-agent framework (computer-vision defect detection, drone imagery, ML forecasting/pricing/optimization models).</li>
+</ul>
+
+<h3>Depth legend</h3>
+
+<div class="table-scroll">
+<table>
+<thead><tr><th>Symbol</th><th>Meaning</th></tr></thead>
+<tbody>
+<tr><td class="legend-sym">🟢 Dedicated</td><td>A LangChain tutorial implements essentially this exact use case end-to-end.</td></tr>
+<tr><td class="legend-sym">🟡 Capability</td><td>A capability/pattern guide directly enables it with a generic (non-vertical) example.</td></tr>
+<tr><td class="legend-sym">🟠 Composable</td><td>No example, but the needed primitives exist and are documented; you assemble them.</td></tr>
+<tr><td class="legend-sym">🔗 Case study</td><td>A real company shipped this on LangGraph — referenced in <a href="https://docs.langchain.com/oss/python/langgraph/case-studies">case-studies</a> via external blog/talk, not an in-docs build.</td></tr>
+<tr><td class="legend-sym">⚪ Out of scope</td><td>Not something an LLM-agent framework provides (vision / ML-model / pricing-engine territory).</td></tr>
+</tbody>
+</table>
+</div>
+
+<blockquote>
+<p>Note on links: the docs ship parallel <strong>Python</strong> and <strong>JavaScript</strong> trees (<code>/oss/python/…</code> and <code>/oss/javascript/…</code>). Links below use the Python paths; swap <code>python</code>→<code>javascript</code> for the JS equivalent. A few capabilities (e.g. <code>data-analysis</code>, <code>sql-agent</code> under langgraph) exist on only one tree.</p>
+</blockquote>
+
+<hr>
+
+<h2>Part 0 — The concrete tutorials &amp; anchors</h2>
+
+<p>These are the end-to-end walkthroughs the docs actually ship. Everything else maps back to these plus the capability guides and the tool catalog.</p>
+
+<div class="table-scroll">
+<table>
+<thead><tr><th>Tutorial</th><th>What it builds</th><th>Anchors these catalog use cases</th></tr></thead>
+<tbody>
+<tr><td><a href="https://docs.langchain.com/oss/python/langchain/sql-agent">SQL Agent</a></td><td>Agent that queries a database with error-correction &amp; validation</td><td><strong>NL querying of warehouses</strong>, BI, reporting</td></tr>
+<tr><td><a href="https://docs.langchain.com/oss/python/langchain/knowledge-base">Knowledge base / RAG</a> + <a href="https://docs.langchain.com/oss/python/langchain/retrieval">Retrieval</a></td><td>RAG Q&amp;A over a corpus</td><td><strong>RAG internal Q&amp;A, docs concierge, TA with citations</strong></td></tr>
+<tr><td><a href="https://docs.langchain.com/oss/python/langgraph/agentic-rag">Agentic RAG</a></td><td>Agent that decides when/what to retrieve</td><td>Grounded Q&amp;A, research synthesis</td></tr>
+<tr><td><a href="https://docs.langchain.com/oss/python/deepagents/deep-research">Deep research agent</a></td><td>Planner + subagents + web search → cited report</td><td><strong>Research/browsing agents, market-analysis synthesis</strong></td></tr>
+<tr><td><a href="https://docs.langchain.com/oss/python/deepagents/data-analysis">Data analysis agent</a></td><td>CSV → EDA + visualizations, shares to Slack</td><td><strong>Report/narrative generation, dashboard insights</strong></td></tr>
+<tr><td><a href="https://docs.langchain.com/oss/python/deepagents/rag">RAG with Deep Agents</a></td><td>Skills-guided + rubric-graded retrieval over docs.langchain.com</td><td>Grounded docs Q&amp;A, e-discovery-style analysis</td></tr>
+<tr><td><a href="https://docs.langchain.com/oss/python/langchain/multi-agent/handoffs-customer-support">Customer-support state machine</a></td><td>Warranty intake → classify hardware/software → solve or escalate</td><td><strong>Tier-1 support bot w/ escalation, ticket triage</strong></td></tr>
+<tr><td><a href="https://docs.langchain.com/oss/python/langchain/multi-agent/router-knowledge-base">KB router</a></td><td>Routes across GitHub + Notion + Slack specialists</td><td><strong>Internal KB search across sources, docs concierge</strong></td></tr>
+<tr><td><a href="https://docs.langchain.com/oss/python/langchain/multi-agent/skills-sql-assistant">SQL skills assistant</a></td><td>Progressive-disclosure skills for per-vertical SQL</td><td>NL querying, multi-domain analytics</td></tr>
+<tr><td><a href="https://docs.langchain.com/oss/python/langchain/multi-agent/subagents-personal-assistant">Personal assistant (supervisor)</a></td><td>Calendar + email specialists with HITL approval</td><td><strong>Meeting scheduling, email drafting, personal assistant</strong></td></tr>
+<tr><td><a href="https://docs.langchain.com/oss/python/langchain/voice-agent">Voice agent</a></td><td>Real-time spoken agent</td><td><strong>Voice agents, IVR deflection</strong></td></tr>
+<tr><td><a href="https://docs.langchain.com/oss/python/deepagents/code/overview">Deep Agents coding CLI</a></td><td>Autonomous coding agent (plan/edit/run in sandbox)</td><td><strong>Code agents, code generation</strong></td></tr>
+</tbody>
+</table>
+</div>
+
+<p><strong>Tool integrations that turn a generic agent vertical</strong> (from the <a href="https://docs.langchain.com/oss/python/integrations/tools">tool catalog</a>): web <a href="https://docs.langchain.com/oss/python/integrations/tools/tavily_search">search</a> (Tavily, Exa, Perplexity, Google…), <a href="https://docs.langchain.com/oss/python/integrations/tools/bedrock_agentcore_browser">browser automation</a> (AgentCore, Hyperbrowser, AgentQL), <a href="https://docs.langchain.com/oss/python/integrations/tools/google_gmail">Gmail</a> &amp; email toolkits, <a href="https://docs.langchain.com/oss/python/integrations/tools/mcp_toolbox">SQL/DB</a>, code interpreters, and <a href="https://docs.langchain.com/oss/python/integrations/tools/goat">payment/finance</a> tools (GOAT, Privy) for autonomous-transaction agents.</p>
+
+<hr>
+
+<h2>Part 3 — Agentic capability patterns (LangChain's strongest coverage)</h2>
+
+<p>LangChain maps most directly to the cross-cutting patterns. Nearly all are covered at 🟢/🟡.</p>
+
+<div class="table-scroll">
+<table>
+<thead><tr><th>Pattern</th><th>Depth</th><th>LangChain docs</th></tr></thead>
+<tbody>
+<tr><td>Monitor-and-alert agents</td><td class="depth">🟡</td><td><a href="https://docs.langchain.com/langsmith/alerts">LangSmith Alerts</a> + <a href="https://docs.langchain.com/langsmith/online-evaluations-llm-as-judge">Online evaluations</a> (runtime monitoring); <a href="https://docs.langchain.com/langsmith/cron-jobs">Cron jobs</a> / <a href="https://docs.langchain.com/langsmith/managed-deep-agents-schedules">Deep-agent schedules</a> for scheduled watchers</td></tr>
+<tr><td>Research / browsing agents</td><td class="depth">🟢</td><td><a href="https://docs.langchain.com/oss/python/deepagents/deep-research">Deep research agent</a>, <a href="https://docs.langchain.com/oss/python/deepagents/deep-research">Deep research overview</a>, browser <a href="https://docs.langchain.com/oss/python/integrations/tools/bedrock_agentcore_browser">tools</a></td></tr>
+<tr><td>Orchestrator / multi-agent</td><td class="depth">🟢</td><td><a href="https://docs.langchain.com/oss/python/langchain/multi-agent">Multi-agent overview</a>, <a href="https://docs.langchain.com/oss/python/langchain/multi-agent/subagents-personal-assistant">supervisor/subagents</a>, <a href="https://docs.langchain.com/oss/python/langchain/multi-agent/router-knowledge-base">router</a>, <a href="https://docs.langchain.com/oss/python/langchain/multi-agent/handoffs">handoffs</a>, <a href="https://docs.langchain.com/oss/python/deepagents/subagents">Deep Agents subagents</a></td></tr>
+<tr><td>Workflow-automation agents</td><td class="depth">🟢</td><td><a href="https://docs.langchain.com/oss/python/langgraph/workflows-agents">Workflows &amp; agents</a>, <a href="https://docs.langchain.com/oss/python/langgraph/use-graph-api">Graph API</a>, <a href="https://docs.langchain.com/oss/python/langgraph/functional-api">Functional API</a></td></tr>
+<tr><td>Copilot / assistant agents</td><td class="depth">🟢</td><td><a href="https://docs.langchain.com/oss/python/langchain/agents">Agents overview</a>, <a href="https://docs.langchain.com/oss/python/langchain/ui">UI / generative UI</a>; "Copilot for domain-specific task" is the single most common case-study category</td></tr>
+<tr><td>Autonomous-transaction agents (within guardrails)</td><td class="depth">🟡</td><td><a href="https://docs.langchain.com/oss/python/langchain/guardrails">Guardrails</a>, <a href="https://docs.langchain.com/oss/python/langchain/middleware/overview">Middleware</a>, <a href="https://docs.langchain.com/oss/python/deepagents/permissions">Deep-agent permissions</a> + <a href="https://docs.langchain.com/oss/python/integrations/tools/goat">finance tools</a></td></tr>
+<tr><td>Human-in-the-loop review agents</td><td class="depth">🟢</td><td><a href="https://docs.langchain.com/oss/python/langchain/human-in-the-loop">Human-in-the-loop (LangChain)</a>, <a href="https://docs.langchain.com/oss/python/langgraph/interrupts">Interrupts (LangGraph)</a>, <a href="https://docs.langchain.com/oss/python/deepagents/human-in-the-loop">Deep-agent HITL</a></td></tr>
+<tr><td>Simulation / planning agents</td><td class="depth">🟡</td><td><a href="https://docs.langchain.com/oss/python/deepagents/overview">Deep Agents planning/todo</a>, <a href="https://docs.langchain.com/oss/python/langgraph/use-time-travel">Time travel</a> for what-if replays; no dedicated simulation tutorial</td></tr>
+<tr><td>Computer-use / GUI agents</td><td class="depth">🟡</td><td>Browser <a href="https://docs.langchain.com/oss/python/integrations/tools/bedrock_agentcore_browser">tools</a> (AgentCore, Hyperbrowser, AgentQL); AirTop case study (🔗)</td></tr>
+<tr><td>Personal-assistant agents</td><td class="depth">🟢</td><td><a href="https://docs.langchain.com/oss/python/langchain/multi-agent/subagents-personal-assistant">Personal assistant tutorial</a>, <a href="https://docs.langchain.com/oss/python/langchain/long-term-memory">long-term memory</a></td></tr>
+<tr><td>Voice agents</td><td class="depth">🟢</td><td><a href="https://docs.langchain.com/oss/python/langchain/voice-agent">Voice agent</a></td></tr>
+<tr><td>Code agents</td><td class="depth">🟢</td><td><a href="https://docs.langchain.com/oss/python/deepagents/code/overview">Deep Agents coding CLI</a>; GitLab, Replit, Qodo, Uber, LinkedIn case studies (🔗)</td></tr>
+</tbody>
+</table>
+</div>
+
+<p><strong>Supporting capability guides</strong> referenced throughout the tables below:
+<a href="https://docs.langchain.com/oss/python/langchain/agents">Agents</a> ·
+<a href="https://docs.langchain.com/oss/python/langchain/tools">Tools</a> ·
+<a href="https://docs.langchain.com/oss/python/langchain/structured-output">Structured output</a> ·
+<a href="https://docs.langchain.com/oss/python/langchain/short-term-memory">Short-term</a> /
+<a href="https://docs.langchain.com/oss/python/langchain/long-term-memory">Long-term memory</a> ·
+<a href="https://docs.langchain.com/oss/python/langchain/context-engineering">Context engineering</a> ·
+<a href="https://docs.langchain.com/oss/python/langchain/middleware/overview">Middleware</a> ·
+<a href="https://docs.langchain.com/oss/python/langchain/mcp">MCP</a> ·
+<a href="https://docs.langchain.com/oss/python/langgraph/persistence">Persistence</a> ·
+<a href="https://docs.langchain.com/oss/python/langgraph/fault-tolerance">Fault tolerance / durability</a> ·
+<a href="https://docs.langchain.com/oss/python/deepagents/sandboxes">Sandboxes</a> ·
+<a href="https://docs.langchain.com/langsmith/evaluation">LangSmith Evaluation</a>.</p>
+
+<hr>
+
+<h2>Part 1 — Cross-functional (horizontal) use cases</h2>
+
+<h3>Customer Service &amp; Support</h3>
+<div class="table-scroll">
+<table>
+<thead><tr><th>Use case</th><th>Depth</th><th>LangChain material</th></tr></thead>
+<tbody>
+<tr><td>Tier-1 support bot w/ confidence + escalation</td><td class="depth">🟢</td><td><a href="https://docs.langchain.com/oss/python/langchain/multi-agent/handoffs-customer-support">Customer-support state machine</a> (classify → solve → escalate) + <a href="https://docs.langchain.com/oss/python/langchain/human-in-the-loop">HITL</a></td></tr>
+<tr><td>Ticket triage / routing / tagging</td><td class="depth">🟢</td><td>Same state-machine tutorial (intent classifier + routing); <a href="https://docs.langchain.com/oss/python/langchain/structured-output">structured output</a></td></tr>
+<tr><td>Live-chat / voice IVR deflection</td><td class="depth">🟢</td><td><a href="https://docs.langchain.com/oss/python/langchain/voice-agent">Voice agent</a></td></tr>
+<tr><td>Multi-agent support system (production)</td><td class="depth">🔗</td><td>Minimal, Cisco CX/TAC, Prosper, Infor case studies (<a href="https://docs.langchain.com/oss/python/langgraph/case-studies">case-studies</a>)</td></tr>
+<tr><td>Post-interaction summarization / CRM notes</td><td class="depth">🟡</td><td>Agent generation + <a href="https://docs.langchain.com/oss/python/langchain/structured-output">structured output</a></td></tr>
+<tr><td>Knowledge-base auto-writer from tickets</td><td class="depth">🟠</td><td><a href="https://docs.langchain.com/oss/python/langchain/retrieval">Retrieval</a> + generation; no example</td></tr>
+<tr><td>Multilingual support / translation</td><td class="depth">🟡</td><td>Core model generation; <a href="https://docs.langchain.com/oss/python/langchain/middleware/overview">middleware</a> for pre/post-processing</td></tr>
+<tr><td>Proactive outreach (renewals, outages)</td><td class="depth">🟡</td><td><a href="https://docs.langchain.com/langsmith/cron-jobs">Cron jobs</a> / <a href="https://docs.langchain.com/langsmith/managed-deep-agents-schedules">schedules</a> + tools</td></tr>
+<tr><td>Smart upsell / cross-sell recommender</td><td class="depth">🟠</td><td>Tools + memory; no example</td></tr>
+<tr><td>Automated refund / return adjudication</td><td class="depth">🟠</td><td><a href="https://docs.langchain.com/oss/python/langchain/human-in-the-loop">HITL</a> + <a href="https://docs.langchain.com/oss/python/langchain/guardrails">guardrails</a>; no example</td></tr>
+<tr><td>Sentiment early-warning / churn signals</td><td class="depth">🟠</td><td>Monitor pattern (<a href="https://docs.langchain.com/langsmith/alerts">alerts</a>); no example</td></tr>
+<tr><td>Conversation-QA auditor / scoring &amp; leaderboards</td><td class="depth">🟡</td><td><a href="https://docs.langchain.com/langsmith/llm-as-judge">LLM-as-judge</a> + <a href="https://docs.langchain.com/langsmith/online-evaluations-llm-as-judge">online evaluations</a></td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>Sales &amp; Revenue</h3>
+<div class="table-scroll">
+<table>
+<thead><tr><th>Use case</th><th>Depth</th><th>LangChain material</th></tr></thead>
+<tbody>
+<tr><td>Meeting scheduling / calendar coordination</td><td class="depth">🟢</td><td><a href="https://docs.langchain.com/oss/python/langchain/multi-agent/subagents-personal-assistant">Personal assistant</a> (calendar agent)</td></tr>
+<tr><td>SDR / outbound drafting &amp; personalization</td><td class="depth">🔗</td><td>11x ("Research &amp; outreach"), Unify ("agents for account qualification") case studies</td></tr>
+<tr><td>Lead enrichment from external data</td><td class="depth">🟡</td><td><a href="https://docs.langchain.com/oss/python/integrations/tools/tavily_search">Search tools</a> + <a href="https://docs.langchain.com/oss/python/integrations/tools/hyperbrowser_web_scraping_tools">browser/scraping</a></td></tr>
+<tr><td>Lead scoring / qualification / routing</td><td class="depth">🔗/🟠</td><td>Unify case study (🔗); otherwise classification workflow, no in-docs example</td></tr>
+<tr><td>Sales-call transcription &amp; next-steps</td><td class="depth">🟡</td><td><a href="https://docs.langchain.com/oss/python/langchain/voice-agent">Voice</a> + summarization/<a href="https://docs.langchain.com/oss/python/langchain/structured-output">structured output</a></td></tr>
+<tr><td>Proposal / quote / RFP generation</td><td class="depth">🟠</td><td><a href="https://docs.langchain.com/oss/python/langchain/retrieval">Retrieval</a> + generation; no example</td></tr>
+<tr><td>Pipeline hygiene / CRM data quality</td><td class="depth">🟠</td><td>Tools + workflow; no example</td></tr>
+<tr><td>Deal-risk / forecast analysis</td><td class="depth">🟠</td><td>Composable; no example</td></tr>
+<tr><td>Contract renewal / churn outreach</td><td class="depth">🟡</td><td>Schedule + outreach pattern; no dedicated example</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>Marketing</h3>
+<div class="table-scroll">
+<table>
+<thead><tr><th>Use case</th><th>Depth</th><th>LangChain material</th></tr></thead>
+<tbody>
+<tr><td>Content generation (blog/ad/email/social)</td><td class="depth">🟡</td><td><a href="https://docs.langchain.com/oss/python/langchain/agents">Agents</a> (generation is the core primitive)</td></tr>
+<tr><td>SEO research / keyword clustering / content-gap</td><td class="depth">🟢</td><td><a href="https://docs.langchain.com/oss/python/deepagents/deep-research">Deep research agent</a> + <a href="https://docs.langchain.com/oss/python/integrations/tools/tavily_search">search tools</a></td></tr>
+<tr><td>Social-listening / brand-sentiment monitoring</td><td class="depth">🟠</td><td>Monitor pattern; no example</td></tr>
+<tr><td>Campaign brief writer + task filing</td><td class="depth">🟠</td><td>Workflow + tools; no example</td></tr>
+<tr><td>Audience segmentation / personalization</td><td class="depth">🟠</td><td>Composable; no example</td></tr>
+<tr><td>Influencer discovery &amp; vetting</td><td class="depth">🟡</td><td><a href="https://docs.langchain.com/oss/python/deepagents/deep-research">Research agent</a> pattern</td></tr>
+<tr><td>Marketing analytics / attribution</td><td class="depth">🟠</td><td><a href="https://docs.langchain.com/oss/python/langchain/sql-agent">SQL agent</a> over marketing data; no attribution example</td></tr>
+<tr><td>Creative-variation / image resizing</td><td class="depth">⚪</td><td>Image generation/resizing outside the framework's remit</td></tr>
+<tr><td>Ad-budget pacing / bid adjustment</td><td class="depth">⚪</td><td>Optimization-engine territory</td></tr>
+<tr><td>Email A/B / multi-armed bandit</td><td class="depth">⚪</td><td>Statistical-optimization territory</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>Human Resources &amp; People Ops</h3>
+<div class="table-scroll">
+<table>
+<thead><tr><th>Use case</th><th>Depth</th><th>LangChain material</th></tr></thead>
+<tbody>
+<tr><td>Resume ranking / candidate-fit scoring</td><td class="depth">🟠</td><td>Classification + <a href="https://docs.langchain.com/oss/python/langchain/structured-output">structured output</a>; no dedicated tutorial (cf. Mastra's AI Recruiter)</td></tr>
+<tr><td>Job-description / offer-letter writing</td><td class="depth">🟡</td><td>Agent generation + structured output</td></tr>
+<tr><td>Employee self-service HR assistant</td><td class="depth">🟢</td><td><a href="https://docs.langchain.com/oss/python/langchain/multi-agent/router-knowledge-base">KB router</a> / <a href="https://docs.langchain.com/oss/python/langchain/knowledge-base">RAG</a> over policy docs</td></tr>
+<tr><td>Interview scheduling / candidate comms</td><td class="depth">🟢</td><td><a href="https://docs.langchain.com/oss/python/langchain/multi-agent/subagents-personal-assistant">Personal assistant</a> (calendar+email) pattern</td></tr>
+<tr><td>Onboarding concierge (accounts/hardware)</td><td class="depth">🟠</td><td>Workflow orchestration + tools; no example</td></tr>
+<tr><td>Employee-sentiment / pulse-survey analysis</td><td class="depth">🟠</td><td>Classification + summarization; no example</td></tr>
+<tr><td>Exit-survey synthesis / theme clustering</td><td class="depth">🟠</td><td>Retrieval/clustering; no example</td></tr>
+<tr><td>Internal gig / skills matching</td><td class="depth">🟠</td><td>Composable; no example</td></tr>
+<tr><td>Skills-gap / learning recommendations</td><td class="depth">🟠</td><td>Composable; no example</td></tr>
+<tr><td>Payroll issue detection</td><td class="depth">🟠</td><td>Monitor pattern; no example</td></tr>
+<tr><td>Performance-review drafting</td><td class="depth">🟡</td><td>Agent generation; no dedicated example</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>Finance, Accounting &amp; Procurement</h3>
+<div class="table-scroll">
+<table>
+<thead><tr><th>Use case</th><th>Depth</th><th>LangChain material</th></tr></thead>
+<tbody>
+<tr><td>Regulatory / compliance-change monitoring (SEC scanning)</td><td class="depth">🟡</td><td><a href="https://docs.langchain.com/langsmith/cron-jobs">Cron jobs</a> + <a href="https://docs.langchain.com/oss/python/integrations/tools/tavily_search">search tools</a></td></tr>
+<tr><td>Data extraction from filings / documents</td><td class="depth">🔗</td><td>Captide ("equity research"), WebToon ("data extraction") case studies</td></tr>
+<tr><td>Financial research &amp; summarization</td><td class="depth">🔗</td><td>Morningstar case study; <a href="https://docs.langchain.com/oss/python/deepagents/deep-research">deep research</a> pattern</td></tr>
+<tr><td>Credit underwriting / credit memos</td><td class="depth">🟠</td><td>RAG + structured output; no example</td></tr>
+<tr><td>Ledger anomaly / discrepancy flagging</td><td class="depth">🟠</td><td>Monitor + tools; no example</td></tr>
+<tr><td>Journal-entry drafting (accountant-in-loop)</td><td class="depth">🟠</td><td><a href="https://docs.langchain.com/oss/python/langchain/human-in-the-loop">HITL</a>; no example</td></tr>
+<tr><td>Invoice-to-PO / three-way matching</td><td class="depth">🟠</td><td>Workflow; no example</td></tr>
+<tr><td>Expense-report processing</td><td class="depth">🟠</td><td>Workflow + structured output; no example</td></tr>
+<tr><td>AR / collections agent</td><td class="depth">🟠</td><td>Outreach + schedule; no example</td></tr>
+<tr><td>P&amp;L root-cause analysis</td><td class="depth">🟡</td><td><a href="https://docs.langchain.com/oss/python/langchain/sql-agent">SQL agent</a> + <a href="https://docs.langchain.com/oss/python/deepagents/data-analysis">data analysis</a></td></tr>
+<tr><td>Procurement (quote-to-requisition)</td><td class="depth">🟠</td><td>Workflow; no example</td></tr>
+<tr><td>Supplier-risk monitoring (OFAC/health)</td><td class="depth">🟡</td><td>Scheduled watcher + search; no dedicated example</td></tr>
+<tr><td>Fraud detection on transactions</td><td class="depth">🟠</td><td>Monitor pattern; no example (ML model = ⚪)</td></tr>
+<tr><td>Audit / continuous controls monitoring</td><td class="depth">🟠</td><td>Monitor pattern; no example</td></tr>
+<tr><td>Financial forecasting / variance analysis</td><td class="depth">⚪</td><td>Forecasting-model territory (narrative around it is 🟠)</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>IT, Software Engineering &amp; DevOps (LangChain's strongest horizontal area)</h3>
+<div class="table-scroll">
+<table>
+<thead><tr><th>Use case</th><th>Depth</th><th>LangChain material</th></tr></thead>
+<tbody>
+<tr><td>Code generation / completion / refactoring</td><td class="depth">🟢</td><td><a href="https://docs.langchain.com/oss/python/deepagents/code/overview">Deep Agents coding CLI</a>; Replit, Qodo, GitLab, Uber, Vodafone case studies (🔗)</td></tr>
+<tr><td>Automated code review (PR copilot)</td><td class="depth">🟡</td><td>Coding agent + <a href="https://docs.langchain.com/oss/python/deepagents/sandboxes">sandbox</a> + structured output</td></tr>
+<tr><td>Test generation / execution</td><td class="depth">🟡</td><td>Coding agent + <a href="https://docs.langchain.com/oss/python/deepagents/sandboxes">sandbox</a></td></tr>
+<tr><td>Bug detection / reproduction / fix</td><td class="depth">🟡</td><td>Coding agent + workspace/sandbox</td></tr>
+<tr><td>DevOps automation (REST-API agents)</td><td class="depth">🔗</td><td>Cisco Outshift ("ReAct agent for DevOps tasks") case study</td></tr>
+<tr><td>Internal documentation Q&amp;A / docs concierge</td><td class="depth">🟢</td><td><a href="https://docs.langchain.com/oss/python/langchain/multi-agent/router-knowledge-base">KB router</a>, <a href="https://docs.langchain.com/oss/python/deepagents/rag">RAG with Deep Agents</a>, <a href="https://docs.langchain.com/oss/python/langchain/knowledge-base">knowledge base</a></td></tr>
+<tr><td>Incident commander / runbook / postmortems</td><td class="depth">🟠</td><td><a href="https://docs.langchain.com/oss/python/langgraph/fault-tolerance">Durable execution</a> + tools; no example</td></tr>
+<tr><td>CVE / vulnerability watcher</td><td class="depth">🟡</td><td>Scheduled watcher + search</td></tr>
+<tr><td>Log analysis / root-cause</td><td class="depth">🟠</td><td>Composable; no example</td></tr>
+<tr><td>IaC drafting / change review</td><td class="depth">🟡</td><td>Coding-agent pattern</td></tr>
+<tr><td>IT helpdesk / password reset / provisioning</td><td class="depth">🟡</td><td><a href="https://docs.langchain.com/oss/python/langchain/multi-agent/router-knowledge-base">KB router</a> + tools</td></tr>
+<tr><td>Data-pipeline / ETL error handling</td><td class="depth">🟡</td><td><a href="https://docs.langchain.com/oss/python/langgraph/fault-tolerance">Fault tolerance / durability</a></td></tr>
+<tr><td>Cloud-cost optimization / rightsizing</td><td class="depth">🟠</td><td>Composable; no example</td></tr>
+<tr><td>APM / auto-remediation</td><td class="depth">🟠</td><td>Monitor + action; no example</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>Data &amp; Analytics (BI)</h3>
+<div class="table-scroll">
+<table>
+<thead><tr><th>Use case</th><th>Depth</th><th>LangChain material</th></tr></thead>
+<tbody>
+<tr><td>Natural-language querying of warehouses</td><td class="depth">🟢</td><td><a href="https://docs.langchain.com/oss/python/langchain/sql-agent">SQL agent</a>, <a href="https://docs.langchain.com/oss/python/langchain/multi-agent/skills-sql-assistant">SQL skills assistant</a>; LinkedIn text-to-SQL case study (🔗)</td></tr>
+<tr><td>Automated report / narrative generation</td><td class="depth">🟢</td><td><a href="https://docs.langchain.com/oss/python/deepagents/data-analysis">Data analysis agent</a> (EDA + viz + share)</td></tr>
+<tr><td>Dashboard-insight summarization</td><td class="depth">🟡</td><td>Data analysis agent + generation</td></tr>
+<tr><td>Automated data tagging / cleaning / enrichment</td><td class="depth">🟡</td><td><a href="https://docs.langchain.com/oss/python/langchain/structured-output">Structured output</a> extraction</td></tr>
+<tr><td>Proactive anomaly detection + root-cause</td><td class="depth">🟡</td><td><a href="https://docs.langchain.com/langsmith/alerts">Alerts</a> + agent root-cause; no vertical example</td></tr>
+<tr><td>KPI monitoring + next actions</td><td class="depth">🟡</td><td>Scheduled watcher + tools</td></tr>
+<tr><td>Embedded analytics narrative layer</td><td class="depth">🔗</td><td>Monday, Pigment, Modern Treasury, Infor ("GenAI embedded product experiences") case studies</td></tr>
+<tr><td>Data-catalog / metadata governance</td><td class="depth">🟠</td><td>Composable; no example</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>Legal, Risk &amp; Compliance</h3>
+<div class="table-scroll">
+<table>
+<thead><tr><th>Use case</th><th>Depth</th><th>LangChain material</th></tr></thead>
+<tbody>
+<tr><td>Legal research / case summarization</td><td class="depth">🟢</td><td><a href="https://docs.langchain.com/oss/python/deepagents/deep-research">Deep research</a> / <a href="https://docs.langchain.com/oss/python/deepagents/rag">RAG</a> patterns</td></tr>
+<tr><td>Contract review / clause red-flagging</td><td class="depth">🔗/🟡</td><td>Definely ("copilot for legal") case study (🔗); <a href="https://docs.langchain.com/oss/python/langchain/retrieval">RAG</a> + <a href="https://docs.langchain.com/oss/python/langchain/structured-output">structured output</a> with confidence</td></tr>
+<tr><td>Regulatory / policy-change monitoring + memo</td><td class="depth">🟡</td><td>Scheduled watcher + search</td></tr>
+<tr><td>E-discovery clustering / summarization</td><td class="depth">🟡</td><td><a href="https://docs.langchain.com/oss/python/deepagents/rag">RAG with Deep Agents</a> (retrieve/offload/delegate over large corpora)</td></tr>
+<tr><td>Contract drafting / redlining</td><td class="depth">🟠</td><td>Generation from templates; no example</td></tr>
+<tr><td>Due-diligence / KYC document review</td><td class="depth">🟠</td><td>RAG + structured output; no example</td></tr>
+<tr><td>Whistleblower intake / severity routing</td><td class="depth">🟠</td><td>Classification workflow; no example</td></tr>
+<tr><td>Trademark / IP fuzzy-matching watch</td><td class="depth">🟠</td><td>Monitor pattern; no example</td></tr>
+<tr><td>Privacy / DSAR handling</td><td class="depth">🟡</td><td><a href="https://docs.langchain.com/oss/python/langchain/guardrails">Guardrails</a> / middleware for PII; no dedicated example</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>Administrative &amp; Personal Productivity</h3>
+<div class="table-scroll">
+<table>
+<thead><tr><th>Use case</th><th>Depth</th><th>LangChain material</th></tr></thead>
+<tbody>
+<tr><td>Research assistant / web-briefing agent</td><td class="depth">🟢</td><td><a href="https://docs.langchain.com/oss/python/deepagents/deep-research">Deep research agent</a></td></tr>
+<tr><td>Email triage / drafting / inbox summary</td><td class="depth">🟢</td><td><a href="https://docs.langchain.com/oss/python/langchain/multi-agent/subagents-personal-assistant">Personal assistant</a> (email agent + HITL) + <a href="https://docs.langchain.com/oss/python/integrations/tools/google_gmail">Gmail toolkit</a></td></tr>
+<tr><td>Meeting scheduling / calendar mgmt</td><td class="depth">🟢</td><td><a href="https://docs.langchain.com/oss/python/langchain/multi-agent/subagents-personal-assistant">Personal assistant</a> (calendar agent)</td></tr>
+<tr><td>Document drafting / summarization / translation</td><td class="depth">🟡</td><td>Agent generation + middleware</td></tr>
+<tr><td>Travel planning / booking</td><td class="depth">🔗</td><td>Docent Pro (travel) case study; <a href="https://docs.langchain.com/oss/python/integrations/tools/bedrock_agentcore_browser">browser tools</a></td></tr>
+<tr><td>Task / project management</td><td class="depth">🟡</td><td>Tools + <a href="https://docs.langchain.com/oss/python/deepagents/overview">Deep Agents planning/todo</a></td></tr>
+<tr><td>Note-taking / transcription / action items</td><td class="depth">🟡</td><td><a href="https://docs.langchain.com/oss/python/langchain/voice-agent">Voice</a> + summarization; no meeting-notes tutorial</td></tr>
+<tr><td>Expense filing</td><td class="depth">🟠</td><td>Composable; no example</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>Knowledge Management &amp; Training</h3>
+<div class="table-scroll">
+<table>
+<thead><tr><th>Use case</th><th>Depth</th><th>LangChain material</th></tr></thead>
+<tbody>
+<tr><td>RAG-based internal Q&amp;A</td><td class="depth">🟢</td><td><a href="https://docs.langchain.com/oss/python/langchain/knowledge-base">Knowledge base</a>, <a href="https://docs.langchain.com/oss/python/langchain/retrieval">Retrieval</a>, <a href="https://docs.langchain.com/oss/python/langgraph/agentic-rag">Agentic RAG</a>, <a href="https://docs.langchain.com/oss/python/deepagents/rag">RAG with Deep Agents</a></td></tr>
+<tr><td>Virtual TA / tutor with citations</td><td class="depth">🟢</td><td><a href="https://docs.langchain.com/oss/python/deepagents/rag">RAG with Deep Agents</a> (rubric-checked grounding + citations)</td></tr>
+<tr><td>Enterprise search / discovery</td><td class="depth">🔗</td><td>Exa, Harmonic, Abu Dhabi Government, Vodafone case studies</td></tr>
+<tr><td>Onboarding / skills-training content gen</td><td class="depth">🟡</td><td>Agent generation</td></tr>
+<tr><td>Adaptive learning / study coach</td><td class="depth">🟠</td><td><a href="https://docs.langchain.com/oss/python/langchain/long-term-memory">Long-term memory</a> to track learner; no example</td></tr>
+<tr><td>Curriculum-gap analysis vs. standards</td><td class="depth">🟠</td><td>RAG + structured output; no example</td></tr>
+</tbody>
+</table>
+</div>
+
+<hr>
+
+<h2>Part 2 — Industry-specific (vertical) use cases</h2>
+
+<p>This is where in-docs <em>tutorials</em> thin out — but LangChain has one asset Mastra lacks: the <a href="https://docs.langchain.com/oss/python/langgraph/case-studies"><strong>case-studies roster</strong></a>, ~40 named companies mapped to industry + use case (external blog/talk references). So many verticals get a 🔗 "someone shipped this" pointer even without an in-docs walkthrough. The framework still provides the <em>parts</em>, not an assembled vertical product.</p>
+
+<div class="table-scroll">
+<table>
+<thead><tr><th>Vertical</th><th>Best LangChain fit</th><th>Typical depth</th></tr></thead>
+<tbody>
+<tr><td><strong>Healthcare</strong> — clinical copilot, record summarization, triage</td><td><a href="https://docs.langchain.com/oss/python/langchain/knowledge-base">RAG</a>; Komodo Health, Vizient, OpenRecovery, City of Hope case studies (🔗)</td><td>🔗/🟠 — real deployments referenced; no in-docs healthcare build. Radiology/pathology imaging = ⚪.</td></tr>
+<tr><td><strong>Financial Services / Fintech</strong> — copilot, research, extraction, support</td><td>BlackRock, J.P. Morgan, Klarna, Morningstar, Captide, Prosper, Rakuten case studies (🔗); <a href="https://docs.langchain.com/oss/python/langchain/sql-agent">SQL agent</a>, <a href="https://docs.langchain.com/oss/python/langchain/guardrails">guardrails</a></td><td>🔗 heaviest vertical in the roster. Fraud/risk-scoring <em>models</em> = ⚪.</td></tr>
+<tr><td><strong>Retail &amp; E-commerce</strong> — support, embedded GenAI, product</td><td>Minimal, Rakuten, Monday case studies (🔗); <a href="https://docs.langchain.com/oss/python/langchain/multi-agent/handoffs-customer-support">customer-support tutorial</a></td><td>🔗/🟠. Dynamic pricing / demand forecasting = ⚪.</td></tr>
+<tr><td><strong>Manufacturing &amp; Industrial</strong> — operator assistant, docs Q&amp;A</td><td><a href="https://docs.langchain.com/oss/python/langchain/knowledge-base">RAG</a>; <a href="https://docs.langchain.com/langsmith/alerts">alerts</a></td><td>🟠 for assistant. Vision defect detection / predictive-maintenance ML / digital twin = ⚪.</td></tr>
+<tr><td><strong>Supply Chain &amp; Logistics</strong> — automation, coordination</td><td>C.H. Robinson case study (🔗); <a href="https://docs.langchain.com/oss/python/langgraph/workflows-agents">workflows</a></td><td>🔗/🟠. Route-optimization solvers = ⚪.</td></tr>
+<tr><td><strong>Energy &amp; Utilities</strong> — outage/crew coordination, emissions reporting</td><td>Monitor + workflows</td><td>🟠 for reporting/dispatch coordination. Grid/load optimization + drone imagery = ⚪.</td></tr>
+<tr><td><strong>Real Estate &amp; Construction</strong> — domain copilot, feasibility, permits</td><td>AppFolio, Rexera case studies (🔗); <a href="https://docs.langchain.com/oss/python/integrations/tools/bedrock_agentcore_browser">browser tools</a> (permit portals), <a href="https://docs.langchain.com/oss/python/integrations/tools/tavily_search">search</a></td><td>🔗/🟡 for copilot &amp; portal/research tasks. BIM/drone progress = ⚪.</td></tr>
+<tr><td><strong>Media &amp; Entertainment</strong> — data extraction, moderation, script coverage</td><td>WebToon case study (🔗); <a href="https://docs.langchain.com/oss/python/langchain/guardrails">guardrails</a> (moderation)</td><td>🔗/🟠. Video clipping/dubbing / NPC AI = ⚪.</td></tr>
+<tr><td><strong>Education</strong> — TA chatbot, learning paths, grading</td><td><a href="https://docs.langchain.com/oss/python/deepagents/rag">RAG with Deep Agents</a> (TA w/ citations)</td><td>🟢 for TA chatbot; 🟠 for grading/paths. Proctoring vision = ⚪.</td></tr>
+<tr><td><strong>Government &amp; Public Sector</strong> — citizen search, case mgmt, FOIA</td><td>Abu Dhabi Government case study (🔗); <a href="https://docs.langchain.com/oss/python/langchain/multi-agent/router-knowledge-base">KB router</a></td><td>🔗/🟡 for citizen Q&amp;A; 🟠 for case mgmt/FOIA.</td></tr>
+<tr><td><strong>Agriculture</strong> — market monitoring</td><td>Monitor for market data</td><td>🟠 for market monitoring. Satellite/imagery/yield models = ⚪.</td></tr>
+<tr><td><strong>Hospitality &amp; Travel</strong> — concierge, itinerary, embedded GenAI</td><td>Docent Pro case study (🔗); <a href="https://docs.langchain.com/oss/python/langchain/multi-agent/subagents-personal-assistant">personal assistant</a>, <a href="https://docs.langchain.com/oss/python/integrations/tools/bedrock_agentcore_browser">browser tools</a></td><td>🔗/🟡. Yield/dynamic pricing = ⚪.</td></tr>
+<tr><td><strong>Telecommunications</strong> — code gen, internal search, troubleshooting</td><td>Vodafone case study (🔗); <a href="https://docs.langchain.com/oss/python/langchain/knowledge-base">RAG</a></td><td>🔗/🟠. Network self-healing / fraud ML = ⚪.</td></tr>
+<tr><td><strong>Professional Services &amp; Consulting</strong> — research synthesis, KB search, deliverable QA</td><td>Athena Intelligence case study (🔗); <a href="https://docs.langchain.com/oss/python/deepagents/deep-research">deep research</a>, <a href="https://docs.langchain.com/oss/python/langchain/multi-agent/router-knowledge-base">KB router</a>, <a href="https://docs.langchain.com/langsmith/evaluation">evals</a> for QA</td><td>🟡 — one of the closest verticals to shipped examples.</td></tr>
+</tbody>
+</table>
+</div>
+
+<hr>
+
+<h2>Specific use cases with NO dedicated LangChain example</h2>
+
+<p>These appear in the catalog but are <strong>not</strong> implemented by any LangChain tutorial. They split into three groups.</p>
+
+<h3>A. Buildable, no walkthrough (🟠 — primitives exist, you assemble them)</h3>
+
+<p><em>Customer service:</em> knowledge-base auto-writer · smart upsell recommender · refund/return adjudication · sentiment early-warning/churn.<br>
+<em>Sales:</em> proposal/quote/RFP generation · pipeline hygiene · deal-risk/forecast analysis · lead scoring/routing (Unify shipped it, no in-docs build).<br>
+<em>Marketing:</em> social-listening · campaign-brief writer · audience segmentation · marketing analytics/attribution.<br>
+<em>HR:</em> resume ranking (no tutorial, unlike Mastra) · onboarding concierge · pulse-survey analysis · exit-survey clustering · skills matching · skills-gap/learning recs · payroll issue detection.<br>
+<em>Finance:</em> credit underwriting/memos · ledger anomaly flagging · journal-entry drafting · invoice/three-way matching · expense-report processing · AR/collections · procurement quote-to-requisition · audit/controls monitoring · transaction fraud (monitor part).<br>
+<em>IT/Data:</em> incident commander/runbook · log root-cause · cloud-cost optimization · APM auto-remediation · data-catalog governance.<br>
+<em>Legal:</em> contract drafting/redlining · due-diligence/KYC review · whistleblower intake · trademark/IP watch.<br>
+<em>Admin:</em> expense filing · dedicated meeting-notes/transcription pipeline.<br>
+<em>Training:</em> adaptive study coach · curriculum-gap analysis.<br>
+<em>Verticals:</em> essentially every healthcare, manufacturing (assistant parts), logistics, energy (reporting/dispatch), agriculture (market monitoring), and government (case mgmt/FOIA) use case not explicitly 🟢/🟡/🔗 above.</p>
+
+<h3>B. Referenced only as a case study (🔗 — real deployment, external link, no in-docs build)</h3>
+
+<p>Financial-services copilots (BlackRock, J.P. Morgan, Klarna) · financial research (Morningstar) · equity-research data extraction (Captide) · legal copilot (Definely) · healthcare copilots (Komodo Health, Vizient, OpenRecovery, City of Hope) · logistics automation (C.H. Robinson) · real-estate copilots (AppFolio, Rexera) · travel embedded GenAI (Docent Pro) · e-commerce support (Minimal) · government search (Abu Dhabi) · telecom (Vodafone) · media data extraction (WebToon) · SDR/outreach (11x, Unify) · embedded analytics (Monday, Pigment, Modern Treasury). These prove the pattern in a vertical but give you a blog post, not a code walkthrough.</p>
+
+<h3>C. Out of scope for an LLM-agent framework (⚪ — needs vision/ML/optimization, not agents)</h3>
+
+<ul>
+  <li>Creative-variation/image resizing; automated video/podcast clipping, captioning, dubbing</li>
+  <li>Ad-budget pacing / bid adjustment; email A/B multi-armed-bandit optimization</li>
+  <li>Financial forecasting/budgeting <em>models</em>; dynamic pricing / markdown optimization; demand forecasting; yield management</li>
+  <li>Vision-based quality control / defect detection; radiology/pathology image pre-screening</li>
+  <li>Predictive-maintenance ML; digital-twin simulation; route-optimization solvers</li>
+  <li>Load-shift/battery/grid optimization; drone/sensor imagery analysis; BIM progress checking</li>
+  <li>Crop/soil/pest detection from imagery; yield prediction models</li>
+  <li>Proctoring / exam-integrity vision; network self-healing &amp; fraud-scoring ML models</li>
+</ul>
+
+<blockquote>
+<p>Note: LangChain can still <em>orchestrate</em> these — wrap an external vision/ML/optimization service as a <a href="https://docs.langchain.com/oss/python/langchain/tools">tool</a> and reason over the result. What it doesn't provide is the model itself, and it ships no example wiring one up.</p>
+</blockquote>
+
+<hr>
+
+<h2>Coverage summary</h2>
+
+<div class="table-scroll">
+<table>
+<thead><tr><th>Depth</th><th>Count (approx.)</th><th>Reading</th></tr></thead>
+<tbody>
+<tr><td>🟢 Dedicated tutorial</td><td>~20 use cases</td><td>Concentrated in: code agents, RAG/docs Q&amp;A, deep research, data analysis/NL-SQL, customer-support state machine, personal assistant (calendar/email), voice, multi-agent orchestration.</td></tr>
+<tr><td>🟡 Direct capability</td><td>~35 use cases</td><td>The capability patterns + anything "monitor/alert," "scheduled," "structured extraction," "eval/QA," "HITL approval," or "guardrail" flavored.</td></tr>
+<tr><td>🔗 Case study only</td><td>~25 companies / ~15 verticals</td><td>LangChain's differentiator — real named deployments across finance, healthcare, legal, logistics, real estate, telecom, media, government, travel — but as external references, not in-docs builds.</td></tr>
+<tr><td>🟠 Composable, no example</td><td>~60+ use cases</td><td>The long tail of horizontal functions and most verticals' internals.</td></tr>
+<tr><td>⚪ Out of scope</td><td>~20 use cases</td><td>Vision, forecasting/pricing/optimization ML, media transcoding.</td></tr>
+</tbody>
+</table>
+</div>
+
+<p><strong>Bottom line for the course:</strong> LangChain covers the <em>agentic capability patterns</em> (Part 3) essentially completely and at good depth, and ships strong end-to-end tutorials in <strong>software engineering (deep-agent coding), RAG / knowledge Q&amp;A, deep research, data analysis &amp; NL-SQL, customer support, and personal-assistant orchestration (calendar/email + HITL)</strong>. Its distinctive edge over a pure-framework catalog is the <strong>case-studies roster</strong> — proof that finance, healthcare, legal, logistics, real-estate, telecom, media, and government teams have shipped these use cases on LangGraph — even though those verticals have <strong>no in-docs walkthrough</strong>. As with Mastra, industry <em>internals</em> are almost entirely "compose the primitives yourself," and the vision/ML/optimization slice of the catalog sits outside the framework's remit.</p>
+
+<h3>LangChain vs. Mastra at a glance</h3>
+
+<ul>
+  <li><strong>Both</strong> cover Part 3 capability patterns thoroughly and ship concrete examples for code, RAG/docs Q&amp;A, research, and multi-agent orchestration.</li>
+  <li><strong>Mastra</strong> has dedicated tutorials LangChain lacks (resume screening / AI Recruiter, meeting-notes template, WhatsApp/Slack channel bots) and first-class <em>scheduling/signals</em> primitives in-core.</li>
+  <li><strong>LangChain</strong> has dedicated tutorials Mastra lacks (SQL agent, data-analysis agent, customer-support state machine, calendar+email personal assistant, agentic-RAG/rubric grounding, voice) and a far larger <em>tool-integration catalog</em> plus the <em>case-studies roster</em> of real vertical deployments.</li>
+  <li><strong>Neither</strong> provides vertical walkthroughs for most industries, and both exclude the vision/ML/optimization-model use cases (usable only by wrapping an external service as a tool).</li>
+</ul>
+
+</div>
+</body>
+</html>

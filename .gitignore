@@ -5,5 +5,7 @@
 **/*.quarto_ipynb
 
 .claude/
+.agents/
+.mcp.json
 # scratch / working notes
 /scratch/

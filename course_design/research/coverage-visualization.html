@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Visualizing (and Checking) the Coverage Map</title>
+<style>
+  :root {
+    --bg: #ffffff;
+    --fg: #1a1f24;
+    --muted: #5c6773;
+    --border: #e2e6ea;
+    --border-strong: #cbd2d9;
+    --accent: #1c6b5a;
+    --code-bg: #eef4f2;
+    --row-alt: #fafbfc;
+    --thead-bg: #e9f2ef;
+    --link: #1c6b5a;
+    --note-bg: #eef6f3;
+    --note-border: #1c6b5a;
+    --maxw: 1040px;
+    /* status */
+    --ok: #0ca30c;
+    --ok-wash: rgba(12,163,12,.14);
+    --gap: #d03b3b;
+    --gap-wash: rgba(208,59,59,.14);
+    --warn: #eda100;
+    --warn-wash: rgba(237,161,0,.16);
+    /* categorical (entity types) */
+    --c-comp: #2a78d6;
+    --c-usecase: #eb6834;
+    --c-example: #1baf7a;
+    --c-assess: #4a3aa7;
+    --c-activity: #e87ba4;
+    --c-day: #eda100;
+    --grid: #e1e0d9;
+    --axis: #c3c2b7;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #14171a;
+      --fg: #e6e9ec;
+      --muted: #9aa4ae;
+      --border: #2a2f35;
+      --border-strong: #3a4048;
+      --accent: #5fc9ac;
+      --code-bg: #1f2a27;
+      --row-alt: #191d21;
+      --thead-bg: #1c2825;
+      --link: #5fc9ac;
+      --note-bg: #17231f;
+      --note-border: #3d9a82;
+      --ok: #0ca30c;
+      --ok-wash: rgba(12,163,12,.20);
+      --gap: #e66767;
+      --gap-wash: rgba(230,103,103,.18);
+      --warn: #c98500;
+      --warn-wash: rgba(201,133,0,.20);
+      --c-comp: #3987e5;
+      --c-usecase: #d95926;
+      --c-example: #199e70;
+      --c-assess: #9085e9;
+      --c-activity: #d55181;
+      --c-day: #c98500;
+      --grid: #2c2c2a;
+      --axis: #383835;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    font-size: 16px;
+  }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 48px 24px 96px; }
+  h1, h2, h3, h4 { line-height: 1.25; font-weight: 700; }
+  h1 { font-size: 2.1rem; margin: 0 0 .3em; letter-spacing: -0.02em; }
+  h2 { font-size: 1.5rem; margin: 2.6em 0 .8em; padding-bottom: .3em; border-bottom: 2px solid var(--border-strong); }
+  h3 { font-size: 1.2rem; margin: 1.9em 0 .5em; color: var(--accent); }
+  h4 { font-size: 1.02rem; margin: 1.4em 0 .4em; }
+  p { margin: .8em 0; }
+  a { color: var(--link); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  code {
+    background: var(--code-bg); padding: .12em .4em; border-radius: 4px;
+    font-family: "SF Mono", "Cascadia Code", Consolas, "Liberation Mono", Menlo, monospace;
+    font-size: .86em;
+  }
+  pre {
+    background: var(--code-bg); padding: 16px 18px; border-radius: 8px;
+    overflow-x: auto; font-size: .84rem; line-height: 1.55;
+    border: 1px solid var(--border);
+  }
+  pre code { background: none; padding: 0; }
+  .lead { font-size: 1.08rem; color: var(--muted); margin-top: .2em; }
+  .subtle { color: var(--muted); font-size: .92rem; }
+  hr { border: none; border-top: 1px solid var(--border); margin: 2.6em 0; }
+  ul, ol { padding-left: 1.3em; }
+  li { margin: .3em 0; }
+
+  .note {
+    background: var(--note-bg); border-left: 4px solid var(--note-border);
+    padding: 12px 18px; border-radius: 0 8px 8px 0; margin: 1.4em 0;
+  }
+  .figure {
+    border: 1px solid var(--border); border-radius: 12px;
+    padding: 22px 22px 18px; margin: 1.6em 0; background: var(--bg);
+  }
+  .figure figcaption { color: var(--muted); font-size: .9rem; margin-top: 14px; }
+  .figure figcaption b { color: var(--fg); font-weight: 650; }
+
+  /* ---- method scorecard ---- */
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap: 14px; margin: 1.4em 0; }
+  .method-card { border: 1px solid var(--border); border-radius: 12px; padding: 16px 18px; }
+  .method-card h4 { margin: 0 0 .2em; }
+  .method-card .tag { font-size: .72rem; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+  .method-card ul { margin: .5em 0 0; padding-left: 1.15em; font-size: .9rem; }
+
+  /* ---- heatmap / matrix ---- */
+  .matrix-scroll { overflow-x: auto; }
+  table.matrix { border-collapse: collapse; font-size: .85rem; }
+  table.matrix th, table.matrix td { border: 1px solid var(--border); text-align: center; padding: 0; }
+  table.matrix th { background: var(--thead-bg); font-weight: 600; padding: 6px 9px; white-space: nowrap; }
+  table.matrix th.rowh { text-align: left; }
+  table.matrix td { width: 40px; height: 34px; }
+  .cell-ok { background: var(--ok-wash); color: var(--ok); font-weight: 700; }
+  .cell-ok::after { content: "●"; }
+  .cell-empty { color: var(--border-strong); }
+  .sum { font-variant-numeric: tabular-nums; font-weight: 700; }
+  .sum-ok { color: var(--ok); }
+  .sum-gap { background: var(--gap-wash); color: var(--gap); }
+  .gap-row th.rowh { color: var(--gap); }
+
+  /* ---- dashboard meters ---- */
+  .rules { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap: 14px; margin: 1.2em 0; }
+  .rule { border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; }
+  .rule .r-top { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
+  .rule .r-name { font-weight: 600; font-size: .95rem; }
+  .rule .r-frac { font-variant-numeric: tabular-nums; font-weight: 700; font-size: .95rem; }
+  .meter { height: 9px; border-radius: 5px; background: var(--code-bg); margin: 9px 0 8px; overflow: hidden; }
+  .meter > span { display: block; height: 100%; border-radius: 5px; }
+  .r-full .r-frac { color: var(--ok); }
+  .r-full .meter > span { background: var(--ok); }
+  .r-part .r-frac { color: var(--gap); }
+  .r-part .meter > span { background: var(--gap); }
+  .r-warn .r-frac { color: var(--warn); }
+  .r-warn .meter > span { background: var(--warn); }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+  .chip { font-size: .74rem; padding: 2px 8px; border-radius: 20px; background: var(--gap-wash); color: var(--gap); font-weight: 600; }
+  .chip.ok { background: var(--ok-wash); color: var(--ok); }
+  .r-done { font-size: .78rem; color: var(--muted); }
+
+  .legend { display: flex; flex-wrap: wrap; gap: 16px; font-size: .85rem; color: var(--muted); margin: 4px 0 2px; }
+  .legend span { display: inline-flex; align-items: center; gap: 6px; }
+  .dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; }
+
+  svg text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+  .pros { color: var(--ok); } .cons { color: var(--gap); }
+  table.cmp { border-collapse: collapse; width: 100%; font-size: .9rem; margin: 1.2em 0; }
+  table.cmp th, table.cmp td { border: 1px solid var(--border); padding: 8px 11px; text-align: left; vertical-align: top; }
+  table.cmp th { background: var(--thead-bg); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>Visualizing (and Checking) the Coverage Map</h1>
+<p class="lead">Three viable ways to see whether every record is covered — plus a no-visual, markdown-native check that scales better than any of them.</p>
+
+<div class="note">
+<b>What the highlighted block actually is.</b> It is not a chart request — it is a set of
+<b>cardinality constraints over a multipartite graph</b>. Each entity type (competency, use
+case, example, assessment, activity, prep reading, day, template) is a set of nodes; each
+"has at least one …" / "has exactly one …" line is a <b>required edge with a count rule</b>.
+"Coverage" = <i>no node violates its rule</i>. That framing is what makes all four approaches
+below possible, and it is why the honest answer to "can I check this without visuals?" is
+<b>yes, and you probably should.</b>
+</p>
+
+<h2>The model in one picture</h2>
+<p>Before choosing a visualization, name the graph. Nodes are typed; edges carry a minimum (and
+sometimes a maximum) count. Everything downstream is just a view over this.</p>
+
+<div class="figure">
+<svg viewBox="0 0 980 300" width="100%" role="img" aria-label="Entity relationship graph of the coverage model">
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="var(--axis)"/>
+    </marker>
+  </defs>
+  <!-- edges -->
+  <g stroke="var(--axis)" stroke-width="1.6" fill="none" marker-end="url(#arrow)">
+    <path d="M150,150 L330,80"/>   <!-- comp -> assess -->
+    <path d="M150,150 L330,150"/>  <!-- comp -> activity -->
+    <path d="M270,235 L340,175"/>  <!-- usecase -> example (approx) -->
+    <path d="M430,150 L610,150"/>  <!-- activity -> day -->
+    <path d="M430,80  L610,120"/>  <!-- assess -> day -->
+    <path d="M270,235 L610,190"/>  <!-- usecase -> day -->
+    <path d="M470,235 L610,215"/>  <!-- prep reading -> day (exactly one) -->
+  </g>
+  <!-- example -> competency (reverse) -->
+  <g stroke="var(--c-example)" stroke-width="1.4" fill="none" stroke-dasharray="4 3" marker-end="url(#arrow)">
+    <path d="M330,175 L170,160"/>
+  </g>
+
+  <!-- nodes -->
+  <g font-size="13" font-weight="600" text-anchor="middle">
+    <g>
+      <circle cx="110" cy="150" r="30" fill="var(--c-comp)" opacity=".16" stroke="var(--c-comp)" stroke-width="1.6"/>
+      <text x="110" y="147" fill="var(--fg)">Compe-</text><text x="110" y="162" fill="var(--fg)">tency</text>
+      <text x="110" y="200" fill="var(--muted)" font-size="11" font-weight="400">~70</text>
+    </g>
+    <g>
+      <circle cx="370" cy="80" r="27" fill="var(--c-assess)" opacity=".16" stroke="var(--c-assess)" stroke-width="1.6"/>
+      <text x="370" y="84" fill="var(--fg)">Assess-</text><text x="370" y="99" fill="var(--fg)"></text>
+      <text x="370" y="46" fill="var(--muted)" font-size="11" font-weight="400">~8</text>
+    </g>
+    <g>
+      <circle cx="370" cy="150" r="27" fill="var(--c-activity)" opacity=".18" stroke="var(--c-activity)" stroke-width="1.6"/>
+      <text x="370" y="154" fill="var(--fg)">Activity</text>
+      <text x="370" y="188" fill="var(--muted)" font-size="11" font-weight="400">~30</text>
+    </g>
+    <g>
+      <circle cx="270" cy="255" r="27" fill="var(--c-usecase)" opacity=".16" stroke="var(--c-usecase)" stroke-width="1.6"/>
+      <text x="270" y="252" fill="var(--fg)">Use</text><text x="270" y="267" fill="var(--fg)">case</text>
+      <text x="210" y="255" fill="var(--muted)" font-size="11" font-weight="400"></text>
+    </g>
+    <g>
+      <circle cx="480" cy="255" r="27" fill="var(--c-example)" opacity=".16" stroke="var(--c-example)" stroke-width="1.6"/>
+      <text x="480" y="252" fill="var(--fg)">Prep</text><text x="480" y="267" fill="var(--fg)">read</text>
+    </g>
+    <g>
+      <circle cx="640" cy="150" r="30" fill="var(--c-day)" opacity=".18" stroke="var(--c-day)" stroke-width="1.6"/>
+      <text x="640" y="154" fill="var(--fg)">Day</text>
+      <text x="640" y="200" fill="var(--muted)" font-size="11" font-weight="400">~36</text>
+    </g>
+    <g>
+      <circle cx="820" cy="255" r="27" fill="var(--c-example)" opacity=".16" stroke="var(--c-example)" stroke-width="1.6"/>
+      <text x="820" y="252" fill="var(--fg)">Example</text>
+      <text x="820" y="220" fill="var(--muted)" font-size="11" font-weight="400">~50</text>
+    </g>
+    <g stroke="var(--c-example)" stroke-width="1.4" fill="none" stroke-dasharray="4 3" marker-end="url(#arrow)">
+      <path d="M793,250 L150,165"/>
+    </g>
+  </g>
+  <text x="820" y="292" text-anchor="middle" fill="var(--muted)" font-size="11">example → competency (dashed = "meets")</text>
+</svg>
+<figcaption><b>The coverage graph.</b> Solid arrows are "requires ≥1 of"; the dashed arrow is the
+reverse "meets" relation (every example must point back to a competency). A rule is satisfied when a
+node has the required out-edges at the required count. This single mental model drives all four views below.</figcaption>
+</div>
+
+<h2>Three viable visualization methods</h2>
+
+<div class="cards">
+  <div class="method-card">
+    <span class="tag">Method 1</span>
+    <h4>Coverage matrix (heatmap)</h4>
+    <p class="subtle">One relationship pair at a time.</p>
+    <ul>
+      <li class="pros">Exhaustive &amp; auditable</li>
+      <li class="pros">Empty row/column = the gap, instantly</li>
+      <li class="cons">One grid per relation (9+ grids)</li>
+    </ul>
+  </div>
+  <div class="method-card">
+    <span class="tag">Method 2</span>
+    <h4>Multipartite node-link graph</h4>
+    <p class="subtle">The whole web at once.</p>
+    <ul>
+      <li class="pros">Orphans literally float free</li>
+      <li class="pros">Shows the structure, not just gaps</li>
+      <li class="cons">Hairball past ~100 nodes</li>
+    </ul>
+  </div>
+  <div class="method-card">
+    <span class="tag">Method 3</span>
+    <h4>Coverage dashboard (rule meters)</h4>
+    <p class="subtle">"Am I done yet?" at a glance.</p>
+    <ul>
+      <li class="pros">Scales to any size</li>
+      <li class="pros">Names the exact offenders</li>
+      <li class="cons">Hides structure / relationships</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ============ METHOD 1 ============ -->
+<h3>Method 1 — Coverage matrix / heatmap</h3>
+<p>Put one entity type on the rows, the type it must link to on the columns, and fill a cell when
+the edge exists. A <b>row sum of 0</b> is a coverage gap for a "≥1" rule; a <b>row sum ≠ 1</b> is a
+gap for an "exactly one" rule. Column sums catch the reverse (e.g. an activity template with no
+instance). This is the workhorse for auditing a <i>single</i> constraint thoroughly.</p>
+
+<div class="figure">
+<div class="legend">
+  <span><span class="dot" style="background:var(--ok)"></span> edge present</span>
+  <span><span class="dot" style="background:var(--gap)"></span> row fails its rule</span>
+  <span class="subtle">Rule shown: <b>every competency has ≥1 assessment</b></span>
+</div>
+<div class="matrix-scroll">
+<table class="matrix">
+  <thead>
+    <tr><th class="rowh">Competency ↓ / Assessment →</th>
+      <th>A1<br>Proj</th><th>A2<br>Quiz</th><th>A3<br>Lab</th><th>A4<br>Capstone</th><th>A5<br>Peer</th><th>Σ</th></tr>
+  </thead>
+  <tbody>
+    <tr><th class="rowh">C1 Prompt design</th><td class="cell-ok"></td><td class="cell-empty">·</td><td class="cell-ok"></td><td class="cell-empty">·</td><td class="cell-empty">·</td><td class="sum sum-ok">2</td></tr>
+    <tr><th class="rowh">C2 Tool calling</th><td class="cell-empty">·</td><td class="cell-empty">·</td><td class="cell-ok"></td><td class="cell-ok"></td><td class="cell-empty">·</td><td class="sum sum-ok">2</td></tr>
+    <tr class="gap-row"><th class="rowh">C3 Eval &amp; tracing</th><td class="cell-empty">·</td><td class="cell-empty">·</td><td class="cell-empty">·</td><td class="cell-empty">·</td><td class="cell-empty">·</td><td class="sum sum-gap">0</td></tr>
+    <tr><th class="rowh">C4 Memory design</th><td class="cell-empty">·</td><td class="cell-ok"></td><td class="cell-empty">·</td><td class="cell-ok"></td><td class="cell-empty">·</td><td class="sum sum-ok">2</td></tr>
+    <tr><th class="rowh">C5 Multi-agent</th><td class="cell-empty">·</td><td class="cell-empty">·</td><td class="cell-empty">·</td><td class="cell-ok"></td><td class="cell-ok"></td><td class="sum sum-ok">2</td></tr>
+    <tr class="gap-row"><th class="rowh">C6 Cost/latency</th><td class="cell-empty">·</td><td class="cell-empty">·</td><td class="cell-empty">·</td><td class="cell-empty">·</td><td class="cell-empty">·</td><td class="sum sum-gap">0</td></tr>
+  </tbody>
+</table>
+</div>
+<figcaption><b>C3 and C6 jump out</b> as empty rows — competencies with no assessment. Sort by Σ to float
+gaps to the top. In markdown you keep the source of truth as a table (or generate this grid from
+frontmatter); the color is a rendering step, not the record. Best when you want to <b>certify one rule
+completely</b>. You need roughly one matrix per arrow in the model picture, which is its main cost.</figcaption>
+</div>
+
+<!-- ============ METHOD 2 ============ -->
+<h3>Method 2 — Multipartite node-link graph</h3>
+<p>Lay each entity type in its own column and draw the edges. Anything a rule requires shows up as a
+line; anything <b>missing a required line is an orphan</b> and is trivial to spot once you color
+violators. Unlike the matrix, this shows several relations at once and reveals structure ("this one
+activity is carrying six competencies"), at the cost of getting busy at full scale.</p>
+
+<div class="figure">
+<svg viewBox="0 0 760 380" width="100%" role="img" aria-label="Layered node-link graph with two orphan nodes highlighted">
+  <!-- column headers -->
+  <g text-anchor="middle" font-size="13" font-weight="700">
+    <text x="110" y="26" fill="var(--c-comp)">Competency</text>
+    <text x="380" y="26" fill="var(--c-activity)">Activity</text>
+    <text x="650" y="26" fill="var(--c-day)">Day</text>
+  </g>
+  <!-- edges comp -> activity -->
+  <g stroke="var(--axis)" stroke-width="1.8" fill="none">
+    <path d="M132,70  C240,70 270,110 358,110"/>
+    <path d="M132,130 C240,130 270,110 358,110"/>
+    <path d="M132,190 C250,190 260,200 358,200"/>
+    <path d="M132,250 C250,250 260,290 358,290"/>
+  </g>
+  <!-- edges activity -> day -->
+  <g stroke="var(--axis)" stroke-width="1.8" fill="none">
+    <path d="M402,110 C500,110 520,70 628,70"/>
+    <path d="M402,110 C500,110 520,130 628,130"/>
+    <path d="M402,200 C520,200 520,190 628,190"/>
+    <path d="M402,290 C520,290 520,250 628,250"/>
+  </g>
+
+  <!-- competency nodes -->
+  <g font-size="12" text-anchor="middle">
+    <g><circle cx="110" cy="70"  r="12" fill="var(--c-comp)"/><text x="80" y="74" fill="var(--fg)" text-anchor="end">C1</text></g>
+    <g><circle cx="110" cy="130" r="12" fill="var(--c-comp)"/><text x="80" y="134" fill="var(--fg)" text-anchor="end">C2</text></g>
+    <g><circle cx="110" cy="190" r="12" fill="var(--c-comp)"/><text x="80" y="194" fill="var(--fg)" text-anchor="end">C3</text></g>
+    <g><circle cx="110" cy="250" r="12" fill="var(--c-comp)"/><text x="80" y="254" fill="var(--fg)" text-anchor="end">C4</text></g>
+    <!-- ORPHAN competency -->
+    <g><circle cx="110" cy="330" r="13" fill="var(--gap)" stroke="var(--gap)" stroke-width="2"/>
+       <circle cx="110" cy="330" r="20" fill="none" stroke="var(--gap)" stroke-width="1.4" stroke-dasharray="3 3"/>
+       <text x="80" y="334" fill="var(--gap)" text-anchor="end" font-weight="700">C5</text></g>
+  </g>
+  <!-- activity nodes -->
+  <g font-size="12" text-anchor="middle">
+    <g><circle cx="380" cy="110" r="12" fill="var(--c-activity)"/><text x="380" y="92" fill="var(--fg)">Act 1</text></g>
+    <g><circle cx="380" cy="200" r="12" fill="var(--c-activity)"/><text x="380" y="182" fill="var(--fg)">Act 2</text></g>
+    <g><circle cx="380" cy="290" r="12" fill="var(--c-activity)"/><text x="380" y="272" fill="var(--fg)">Act 3</text></g>
+  </g>
+  <!-- day nodes -->
+  <g font-size="12" text-anchor="middle">
+    <g><circle cx="650" cy="70"  r="12" fill="var(--c-day)"/><text x="680" y="74" fill="var(--fg)" text-anchor="start">D1</text></g>
+    <g><circle cx="650" cy="130" r="12" fill="var(--c-day)"/><text x="680" y="134" fill="var(--fg)" text-anchor="start">D2</text></g>
+    <g><circle cx="650" cy="190" r="12" fill="var(--c-day)"/><text x="680" y="194" fill="var(--fg)" text-anchor="start">D3</text></g>
+    <g><circle cx="650" cy="250" r="12" fill="var(--c-day)"/><text x="680" y="254" fill="var(--fg)" text-anchor="start">D4</text></g>
+    <!-- ORPHAN day -->
+    <g><circle cx="650" cy="330" r="13" fill="var(--gap)" stroke="var(--gap)" stroke-width="2"/>
+       <circle cx="650" cy="330" r="20" fill="none" stroke="var(--gap)" stroke-width="1.4" stroke-dasharray="3 3"/>
+       <text x="680" y="334" fill="var(--gap)" text-anchor="start" font-weight="700">D5</text></g>
+  </g>
+</svg>
+<figcaption><b>Two violations read at a glance:</b> <span class="cons">C5</span> is a competency with no
+activity (left-side coverage gap), and <span class="cons">D5</span> is a day with no in-class activity
+(right-side gap). No counting required — orphans have no lines. Tools that do this from markdown for free:
+<b>Obsidian's graph view</b> over <code>[[wikilinks]]</code>, or Mermaid <code>graph LR</code> fenced
+blocks committed alongside the records.</figcaption>
+</div>
+
+<!-- ============ METHOD 3 ============ -->
+<h3>Method 3 — Coverage dashboard (rule meters + offender lists)</h3>
+<p>Give each <i>rule</i> from your spec its own meter: satisfied nodes over total, plus the names of
+the ones that fail. This is the view that answers "how close is the whole course to done?" and it is the
+only one of the three that stays readable at 70 competencies × 9 rules. It hides structure entirely —
+you can't see <i>which</i> activity covers <i>which</i> competency — so it pairs naturally with Method 1
+or 2 for drill-down.</p>
+
+<div class="figure">
+<div class="rules">
+  <div class="rule r-part">
+    <div class="r-top"><span class="r-name">Competency → ≥1 assessment</span><span class="r-frac">68 / 70</span></div>
+    <div class="meter"><span style="width:97%"></span></div>
+    <div class="chips"><span class="chip">C3 Eval &amp; tracing</span><span class="chip">C6 Cost/latency</span></div>
+  </div>
+  <div class="rule r-full">
+    <div class="r-top"><span class="r-name">Competency → ≥1 activity</span><span class="r-frac">70 / 70</span></div>
+    <div class="meter"><span style="width:100%"></span></div>
+    <div class="r-done">✓ complete</div>
+  </div>
+  <div class="rule r-part">
+    <div class="r-top"><span class="r-name">Use case → ≥1 runnable example</span><span class="r-frac">21 / 24</span></div>
+    <div class="meter"><span style="width:88%"></span></div>
+    <div class="chips"><span class="chip">UC-09</span><span class="chip">UC-14</span><span class="chip">UC-22</span></div>
+  </div>
+  <div class="rule r-part">
+    <div class="r-top"><span class="r-name">Use case → case-study reading</span><span class="r-frac">18 / 24</span></div>
+    <div class="meter"><span style="width:75%"></span></div>
+    <div class="chips"><span class="chip">+6 missing</span></div>
+  </div>
+  <div class="rule r-full">
+    <div class="r-top"><span class="r-name">Example → ≥1 competency</span><span class="r-frac">50 / 50</span></div>
+    <div class="meter"><span style="width:100%"></span></div>
+    <div class="r-done">✓ complete</div>
+  </div>
+  <div class="rule r-warn">
+    <div class="r-top"><span class="r-name">Prep reading → exactly 1 day</span><span class="r-frac">28 / 30</span></div>
+    <div class="meter"><span style="width:93%"></span></div>
+    <div class="chips"><span class="chip">R-11 (0 days)</span><span class="chip">R-19 (2 days)</span></div>
+  </div>
+  <div class="rule r-warn">
+    <div class="r-top"><span class="r-name">Day → exactly 1 practice activity</span><span class="r-frac">33 / 36</span></div>
+    <div class="meter"><span style="width:92%"></span></div>
+    <div class="chips"><span class="chip">soft rule</span><span class="chip">D07, D18, D31</span></div>
+  </div>
+  <div class="rule r-part">
+    <div class="r-top"><span class="r-name">Activity template → ≥1 instance</span><span class="r-frac">17 / 20</span></div>
+    <div class="meter"><span style="width:85%"></span></div>
+    <div class="chips"><span class="chip">T-04</span><span class="chip">T-12</span><span class="chip">T-15</span></div>
+  </div>
+</div>
+<figcaption><b>Nine rules, one screen.</b> Green = satisfied, red = hard gap, amber = a "most/soft" rule
+where a miss is allowed but flagged (your day-level rules are explicitly non-strict). The offender chips
+are the actionable payload — they are the same list a script would print. This renders from the exact
+same parsed graph as the other two views; only the aggregation differs.</figcaption>
+</div>
+
+<h4>Honorable mention: Sankey / alluvial</h4>
+<p>If you care about <i>flow</i> — how 70 competencies fan into 30 activities and land on 36 days — a
+Sankey shows band widths and where flow thins to nothing. It's prettier than useful for gap-finding
+(a zero-width band is easy to miss), so treat it as a communication artifact for stakeholders, not your
+working audit. Mermaid supports it (<code>sankey-beta</code>) straight from markdown.</p>
+
+<h2>Update — two of the new rules aren't cardinality. They're <i>ordering</i>.</h2>
+<p>The revised spec added two rules that none of the three views above natively handle, because they're
+not about <i>counts</i> — they're about <b>position in time</b>:</p>
+<ul>
+  <li><b>Teach-before-assess</b> — "for every competency an assessment measures, some activity teaching it
+  exists on an <i>earlier day</i>." A count can be satisfied while the order is still wrong.</li>
+  <li><b>Prerequisites</b> — a sparse, mostly-on-assessments DAG. Ordering again, and it can contain
+  <i>cycles</i>, which a cardinality check can't even see.</li>
+</ul>
+<p>The cheap fix costs no new view: <b>give the day axis meaning</b>. Order the "Day" column of the
+node-link graph (M2) by real day index, and a violation becomes an edge that <b>points backward in
+time</b> — as visible as an orphan was. A dedicated timeline lane makes it unmissable:</p>
+
+<div class="figure">
+<svg viewBox="0 0 820 250" width="100%" role="img" aria-label="Day timeline showing a backward teach-after-assess edge">
+  <!-- time axis -->
+  <line x1="40" y1="200" x2="800" y2="200" stroke="var(--axis)" stroke-width="2"/>
+  <g font-size="11" fill="var(--muted)" text-anchor="middle">
+    <text x="800" y="222" text-anchor="end">day →</text>
+    <g stroke="var(--grid)" stroke-width="1">
+      <line x1="140" y1="196" x2="140" y2="204"/><line x1="300" y1="196" x2="300" y2="204"/>
+      <line x1="460" y1="196" x2="460" y2="204"/><line x1="620" y1="196" x2="620" y2="204"/>
+    </g>
+    <text x="140" y="222">D4</text><text x="300" y="222">D6</text>
+    <text x="460" y="222">D9</text><text x="620" y="222">D12</text>
+  </g>
+
+  <!-- GOOD: activity D4 -> assessment D9 (forward) -->
+  <path d="M140,150 C240,110 360,110 460,150" fill="none" stroke="var(--ok)" stroke-width="2.2" marker-end="url(#arrow2ok)"/>
+  <!-- BAD: activity D12 -> assessment D6 (backward) -->
+  <path d="M620,90 C480,45 420,45 300,90" fill="none" stroke="var(--gap)" stroke-width="2.4" stroke-dasharray="6 4" marker-end="url(#arrow2bad)"/>
+  <defs>
+    <marker id="arrow2ok" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="var(--ok)"/></marker>
+    <marker id="arrow2bad" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="var(--gap)"/></marker>
+  </defs>
+
+  <g font-size="12" text-anchor="middle">
+    <!-- good pair -->
+    <circle cx="140" cy="150" r="11" fill="var(--c-activity)"/><text x="140" y="180" fill="var(--fg)">teach C1</text>
+    <circle cx="460" cy="150" r="11" fill="var(--c-assess)"/><text x="460" y="180" fill="var(--fg)">assess C1</text>
+    <text x="300" y="128" fill="var(--ok)" font-size="11" font-weight="700">✓ taught first</text>
+    <!-- bad pair -->
+    <circle cx="300" cy="90" r="11" fill="var(--c-assess)"/><text x="300" y="72" fill="var(--fg)">assess C3</text>
+    <circle cx="620" cy="90" r="12" fill="var(--gap)" stroke="var(--gap)" stroke-width="2"/><text x="620" y="72" fill="var(--gap)" font-weight="700">teach C3</text>
+    <text x="455" y="34" fill="var(--gap)" font-size="11" font-weight="700">✗ assessed on D6, first taught D12</text>
+  </g>
+</svg>
+<figcaption><b>Direction is the signal.</b> Forward (green) edges are fine; any <span class="cons">backward
+(red) edge</span> is a teach-after-assess violation. Ordering the axis by day turns an invisible temporal
+bug into a visual one — and the same day-index makes prereq edges checkable the same way. This is where
+the <b>linter earns its keep</b>: a human scanning 36 days will miss a backward edge; a topological sort
+won't.</figcaption>
+</div>
+
+<h2>Which to use when</h2>
+<table class="cmp">
+  <thead><tr><th>Question you're asking</th><th>Reach for</th><th>Why</th></tr></thead>
+  <tbody>
+    <tr><td>"Is <i>this one rule</i> fully satisfied?"</td><td>Matrix (M1)</td><td>Exhaustive; every cell accounted for.</td></tr>
+    <tr><td>"What's the <i>shape</i> of my coverage? Who's carrying load?"</td><td>Node-link (M2)</td><td>Structure and orphans in one look.</td></tr>
+    <tr><td>"How close to done is the <i>whole course</i>?"</td><td>Dashboard (M3)</td><td>Scales; names offenders; one screen.</td></tr>
+    <tr><td>"Is anything <i>taught after it's assessed</i>, or a prereq out of order?"</td><td>Day-ordered M2 + linter</td><td>Ordering isn't a count — needs a time axis and a topological sort.</td></tr>
+    <tr><td>"Don't let a gap ship, ever."</td><td>Linter (below)</td><td>No human in the loop; runs on every commit.</td></tr>
+  </tbody>
+</table>
+
+<hr>
+
+<h2>Yes — you can check coverage with no visuals at all</h2>
+<p><b>This is the recommendation, not an afterthought.</b> A coverage rule is a testable assertion, so
+treat the whole map like a test suite: parse the markdown, build the graph, assert every rule —
+<b>cardinality, ranges, and the two ordering rules alike</b> — and print the violations. A visualization
+is for <i>exploring</i>; a linter is for <i>guaranteeing</i>. You want both, but the linter is the one
+that keeps the map honest as it grows — and it is the <i>only</i> practical way to enforce teach-before-assess
+and prereq order across 36 days.</p>
+
+<h3>Step 1 — make the markdown machine-readable</h3>
+<p>Keep records exactly where they are, but give each one a tiny YAML frontmatter block with typed
+links (the same <code>[[wikilink]]</code> convention your notes already use). Nothing here stops it
+being a normal, human-editable markdown file.</p>
+<pre><code>---
+id: C3
+type: competency
+title: Evaluation &amp; tracing
+assessments: []              # &lt;- empty: this is the gap
+activities: [act-eval-harness]
+---
+Students can instrument an agent run and read a trace...</code></pre>
+
+<pre><code>---
+id: D18
+type: day
+day: 18                           # &lt;- the ordering key: teach-before-assess
+                                  #    and prereqs are checked against this
+prep_reading: [r-langgraph-intro] # 0 or 1
+practice: [act-eval-harness]      # >=1
+in_class: [demo-tracing, pair-debug]   # 1 or 2
+examples: [ex-trace-reader]       # >=1
+---</code></pre>
+<p class="subtle">Give every schedulable node (day, activity, assessment) a <code>day:</code> integer —
+it's the single field that makes both new ordering rules checkable. Prereq edges live on the node that
+depends on them: <code>prereqs: [A1]</code>.</p>
+
+<h3>Step 2 — assert the rules</h3>
+<p>~40 lines of Python (or a Quarto/pandas pass, since you already use <code>.qmd</code>) turns the
+whole spec into pass/fail. The rules map one-to-one onto the highlighted block.</p>
+<pre><code>import glob, yaml, sys
+from collections import defaultdict
+
+nodes = {}
+for path in glob.glob("course_design/**/*.md", recursive=True):
+    fm = read_frontmatter(path)          # split on '---'
+    if fm and "id" in fm:
+        nodes[fm["id"]] = fm
+
+day_of = {n["id"]: n.get("day") for n in nodes.values()}   # day index per node
+
+def count(node, field, lo=1, hi=None):                     # range check (hi=None = unbounded)
+    n = len(node.get(field, []) or [])
+    return (n >= lo and (hi is None or n <= hi)), n
+
+hard, soft = [], []
+for node in nodes.values():
+    t, nid = node["type"], node["id"]
+    if t == "competency":
+        for f in ("assessments", "activities"):
+            ok, n = count(node, f)
+            if not ok: hard.append((nid, f"needs &gt;=1 {f}, has {n}"))
+    if t == "use_case":
+        for f in ("examples", "days", "case_studies"):
+            ok, n = count(node, f)
+            if not ok: hard.append((nid, f"needs &gt;=1 {f}, has {n}"))
+    if t == "prep_reading":
+        ok, n = count(node, "days", 1, 1)      # exactly one
+        if not ok: hard.append((nid, f"needs exactly 1 day, has {n}"))
+        ok, n = count(node, "competencies")     # NEW: &gt;=1 competency
+        if not ok: hard.append((nid, f"needs &gt;=1 competency, has {n}"))
+    if t == "day":                              # NEW ranges — soft ('most days')
+        for f, lo, hi in [("prep_reading",0,1), ("practice",1,None),
+                          ("in_class",1,2), ("examples",1,None)]:
+            ok, n = count(node, f, lo, hi)
+            if not ok: soft.append((nid, f"day {f}: want {lo}..{hi or '∞'}, has {n}"))
+
+# NEW rule 1 — teach-before-assess (ordering, not a count)
+for a in [n for n in nodes.values() if n["type"] == "assessment"]:
+    d_assess = day_of[a["id"]]
+    for comp in a.get("competencies", []):
+        taught = [act for act in nodes.values()
+                  if act["type"] == "activity" and comp in act.get("competencies", [])
+                  and day_of.get(act["id"], 1e9) &lt; d_assess]
+        if not taught:
+            hard.append((a["id"], f"measures {comp} but nothing teaches it before day {d_assess}"))
+
+# NEW rule 2 — prereqs must land on earlier days + no cycles (topo sort)
+edges = {n["id"]: n.get("prereqs", []) for n in nodes.values()}
+for nid, pres in edges.items():
+    for p in pres:
+        if day_of.get(p, -1) &gt;= day_of.get(nid, 1e9):
+            hard.append((nid, f"prereq {p} is not on an earlier day"))
+if has_cycle(edges):                            # Kahn / DFS — a cardinality check can't see this
+    hard.append(("GRAPH", "prerequisite cycle detected"))
+
+for vid, msg in hard: print(f"  {vid}: {msg}")
+for vid, msg in soft: print(f"  ~ {vid}: {msg}  (soft)")
+sys.exit(1 if hard else 0)                       # soft warnings don't fail the build</code></pre>
+
+<h3>Step 3 — read the report</h3>
+<p>The output <i>is</i> the coverage status — the same offenders the dashboard chips showed, in plain text
+a script (or a person) can act on. Exit-code it and drop it in a pre-commit hook or CI so a gap can never
+silently ship.</p>
+<pre><code>coverage: 6 hard violations, 3 soft warnings
+
+  C3    competency needs &gt;=1 assessments, has 0
+  C6    competency needs &gt;=1 assessments, has 0
+  UC-14 use_case needs &gt;=1 examples, has 0
+  R-11  prep_reading needs exactly 1 day, has 0
+  A4    measures C5 but nothing teaches it before day 22   &lt;- ordering
+  A2    prereq A1 is not on an earlier day                 &lt;- ordering
+  ~ D07 day in_class: want 1..2, has 0   (soft)
+  ~ D18 day practice: want 1..∞, has 0   (soft)
+  ~ T-12 template: no instances found    (soft)
+
+FAIL (hard violations present)</code></pre>
+<p class="subtle">The last two hard lines are the payoff of the update: they're the failures no matrix or
+dashboard could surface, because they're about <i>when</i> a node sits, not <i>how many</i> edges it has.</p>
+
+<div class="note">
+<b>Zero-code option.</b> If you keep the records in an Obsidian vault, a <b>Dataview</b> query does the
+same thing without a script — e.g. <code>TABLE assessments WHERE type="competency" AND
+length(assessments)=0</code> renders a live gap table that updates as you edit. And a
+<b>Mermaid</b> graph block gives you Method 2 in the same file. Between Dataview (the linter/matrix) and
+Mermaid (the graph), a plain markdown vault covers three of these four approaches with no build step.</div>
+
+<h2>Recommendation</h2>
+<ol>
+  <li><b>Source of truth:</b> markdown records with frontmatter + <code>[[wikilinks]]</code>. Never let a
+  visualization become the master copy.</li>
+  <li><b>Add a <code>day:</code> index to every schedulable node</b> — it's cheap and it's the one field
+  that turns the two new ordering rules (teach-before-assess, prereqs) from unenforceable into a topological
+  sort. Without it, those rules can only be eyeballed.</li>
+  <li><b>Guarantee:</b> the Step-2 linter, wired to exit non-zero, run on every commit. This is what
+  actually keeps the full rule set — cardinality, ranges, <i>and</i> ordering — honest. The ordering rules
+  in particular have no human-scalable alternative.</li>
+  <li><b>Explore &amp; communicate:</b> the <b>dashboard (M3)</b> as your day-to-day "how done am I" view
+  (it reuses the linter's parsed graph), the <b>matrix (M1)</b> when you need to certify a single rule, and
+  the <b>day-ordered node-link (M2)</b> — free via Obsidian/Mermaid — when you want to <i>feel</i> the
+  structure and catch backward edges by eye.</li>
+  <li><b>On templates:</b> your open question — include templates in the map, but as a <i>soft</i> rule
+  (template → ≥1 instance) that warns rather than fails. A template with no instance is a smell, not a
+  broken course.</li>
+</ol>
+
+<p class="subtle">Generated as design research for the agentic AI course · coverage model derived from
+<code>course_design/plan.md</code>.</p>
+
+</div>
+</body>
+</html>
