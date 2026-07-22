@@ -12,6 +12,10 @@
   var SVGNS = "http://www.w3.org/2000/svg";
   var state = { dirHandle: null, result: null, pollTimer: null };
 
+  // Which files the loader reads, from config.contentExtensions (default .md).
+  var CONTENT_RE = new RegExp("\\.(" +
+    (CFG.contentExtensions || ["md"]).join("|") + ")$", "i");
+
   var el = {
     load: document.getElementById("load"),
     fallback: document.getElementById("fallback"),
@@ -55,7 +59,7 @@
 
   /* ---- reading files ------------------------------------------------------- */
 
-  // Walk a directory handle recursively, collecting .md files (skip ignored).
+  // Walk a directory handle recursively, collecting content files (skip ignored).
   function walkHandle(dirHandle, prefix, out) {
     return (async function () {
       for await (var entry of dirHandle.values()) {
@@ -64,7 +68,7 @@
         if (entry.kind === "directory") {
           if (CFG.ignoreFolders.indexOf(name) !== -1 || name.charAt(0) === ".") continue;
           await walkHandle(entry, rel, out);
-        } else if (/\.md$/i.test(name)) {
+        } else if (CONTENT_RE.test(name)) {
           out.push({ path: rel, handle: entry });
         }
       }
@@ -85,7 +89,7 @@
   // Fallback: <input webkitdirectory>. webkitRelativePath includes the picked
   // folder name as its first segment; strip it so paths match the handle form.
   function readViaInput(fileList) {
-    var arr = Array.prototype.slice.call(fileList).filter(function (f) { return /\.md$/i.test(f.name); });
+    var arr = Array.prototype.slice.call(fileList).filter(function (f) { return CONTENT_RE.test(f.name); });
     return Promise.all(arr.map(function (f) {
       var rel = (f.webkitRelativePath || f.name).split("/").slice(1).join("/") || f.name;
       return f.text().then(function (t) { return { path: rel, text: t }; });

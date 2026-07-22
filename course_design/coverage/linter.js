@@ -29,7 +29,7 @@
 
   function basename(path) {
     const p = path.split("/").pop();
-    return p.replace(/\.md$/i, "");
+    return p.replace(/\.(md|qmd|ipynb)$/i, "");
   }
 
   function topFolder(path) {
@@ -41,6 +41,38 @@
   // of L (dotted-prefix). So `competency: 1.2` covers 1.2, 1.2.1, 1.2.3.4 ...
   function covers(listed, target) {
     return target === listed || target.startsWith(listed + ".");
+  }
+
+  // Negation: a node may carve a subtree out of a broader listing, e.g.
+  // `competency: 3, !3.3.4` covers all of 3 EXCEPT 3.3.4 (and its descendants).
+  // A value is an exclusion when prefixed with `!` or `-` (see splitComps); the
+  // positive part lands in node.competencies, the excluded part in .competenciesExcl.
+  function excluded(node, target) {
+    return (node.competenciesExcl || []).some(function (N) { return covers(N, target); });
+  }
+  // node covers target downward (some listing covers it AND nothing excludes it).
+  function coversComp(node, target) {
+    return !excluded(node, target) &&
+      node.competencies.some(function (L) { return covers(L, target); });
+  }
+  // Looser, bidirectional test used only for teach-before-assess: a node teaches
+  // "toward" target if it lists an ancestor OR descendant of target (teaching a
+  // leaf counts toward assessing its parent), unless target is excluded.
+  function teachesToward(node, target) {
+    return !excluded(node, target) &&
+      node.competencies.some(function (L) { return covers(L, target) || covers(target, L); });
+  }
+
+  // Split raw competency values into positive listings and exclusions.
+  // "!3.3.4" or "-3.3.4" -> exclusion of 3.3.4; everything else is positive.
+  function splitComps(vals) {
+    var pos = [], neg = [];
+    (vals || []).forEach(function (v) {
+      var m = /^[!-]\s*(.+)$/.exec(v);
+      if (m) neg.push(m[1].trim());
+      else pos.push(v);
+    });
+    return { pos: pos, neg: neg };
   }
 
   // "1_2" -> unit 1, day 2 -> a single sortable index (assumes < 1000 days/unit)
@@ -57,8 +89,8 @@
   }
 
   /* ---- comment property blocks -------------------------------------------- *
-   * A block is <!-- ... -->. Inside, properties are `key: v1, v2;`
-   * Semicolons terminate every property (even across newlines); commas separate
+   * A block is <!-- ... -->. Inside, properties are `key: v1, v2`, separated by
+   * a semicolon OR a newline (either one terminates a property); commas separate
    * values within a property. A comment only counts as a node block if it holds
    * at least one KNOWN key, so prose comments elsewhere are ignored.
    */
@@ -75,7 +107,7 @@
   function parseProps(raw) {
     var props = {};
     var found = false;
-    raw.split(";").forEach(function (part) {
+    raw.split(/[;\n]/).forEach(function (part) {
       part = part.trim();
       if (!part) return;
       var ci = part.indexOf(":");
@@ -200,11 +232,13 @@
 
   function mkNode(id, label, props, defaultType, dayId, path, template) {
     var kind = normalizeKind((props.type) || defaultType);
+    var comps = splitComps(props.competencies);
     return {
       id: id,
       label: label,
       kind: kind,
-      competencies: props.competencies || [],
+      competencies: comps.pos,
+      competenciesExcl: comps.neg,
       useCases: props.useCases || [],
       examples: props.examples || [],
       prereqs: props.prereqs || [],
@@ -243,9 +277,7 @@
     comps.forEach(function (c) { byId[c.id] = c; });
 
     function directHit(compId) {
-      return nodes.some(function (n) {
-        return n.competencies.some(function (L) { return covers(L, compId); });
-      });
+      return nodes.some(function (n) { return coversComp(n, compId); });
     }
     var memo = {};
     function covered(compId) {
@@ -326,7 +358,7 @@
     rules.push(dayRule("day-practice", "Day → 1+ practice activity", dayList, "practice", 1, Infinity));
     rules.push(dayRule("day-inclass", "Day → 1–2 in-class activities", dayList, "in_class", 1, 2));
     rules.push(dayRule("day-example", "Day → 1+ example", dayList, "example", 1, Infinity));
-    rules.push(dayRule("day-prep", "Day → 0–1 prep reading", dayList, "prep_reading", 0, 1));
+    rules.push(dayRule("day-prep", "Day → exactly 1 prep reading", dayList, "prep_reading", 1, 1));
 
     // template -> >=1 instance (soft)
     var instancedTemplates = {};
@@ -342,22 +374,32 @@
       "Soft — an untyped node matches no activity/assessment rule; give it a type."));
 
     // ---- ordering: teach-before-assess (hard) ----
+    // For every competency an assessment measures, some activity teaching that
+    // competency must be scheduled on an EARLIER day than the assessment.
+    // Every (assessment, competency) pair is a check — we do NOT skip pairs
+    // whose assessment lacks a day: an unscheduled assessment can't have
+    // anything "earlier" than it, so that's a real failure, not a free pass.
+    // (A silent 0/0 here was hiding exactly that.)
     var tbaOffenders = [];
+    var tbaTotal = 0;
     assessments.forEach(function (a) {
-      if (a.dayIndex == null) return; // can't check order without a day
       a.competencies.forEach(function (compId) {
-        var taughtEarlier = teaching.some(function (t) {
+        tbaTotal++;
+        var taughtEarlier = a.dayIndex != null && teaching.some(function (t) {
           return t.dayIndex != null && t.dayIndex < a.dayIndex &&
-            t.competencies.some(function (L) { return covers(L, compId) || covers(compId, L); });
+            teachesToward(t, compId);
         });
         if (!taughtEarlier) {
-          tbaOffenders.push({ id: a.id, label: a.label + " — " + compId + " not taught before day " + a.day });
+          var why = a.dayIndex == null
+            ? " — on no day, so " + compId + " can't be taught earlier"
+            : " — " + compId + " not taught before day " + a.day;
+          tbaOffenders.push({ id: a.id, label: a.label + why });
         }
       });
     });
     rules.push(ruleResult("teach-before-assess", "Teach-before-assess (ordering)",
-      tbaOffenders, tbaOffenders.length + countOrderChecks(assessments), false,
-      "Every competency an assessment measures must be taught on an earlier day."));
+      tbaOffenders, tbaTotal, false,
+      "Every competency an assessment measures must be taught on an earlier day than the assessment."));
 
     // ---- ordering: prereqs on earlier days + no cycles (hard) ----
     var byId = {};
@@ -387,12 +429,6 @@
 
     function noComp(n) { return n.competencies.length === 0; }
     function noDay(n) { return !n.day; }
-  }
-
-  function countOrderChecks(assessments) {
-    return assessments.reduce(function (s, a) {
-      return s + (a.dayIndex != null ? a.competencies.length : 0);
-    }, 0);
   }
 
   function dayRule(id, name, dayList, kind, lo, hi) {
@@ -473,6 +509,17 @@
       var d = days[n.day] || (days[n.day] = { id: n.day, dayIndex: n.dayIndex, all: [] });
       (d[n.kind] = d[n.kind] || []).push(n);
       d.all.push(n);
+    });
+
+    // A day exists as soon as a file in a content folder is named for it
+    // (`lesson1_2.qmd` => day 1_2), even if that file has no node/comment yet.
+    // This surfaces empty-but-scheduled days (they show up, and the day-level
+    // soft rules flag them as still needing content) rather than hiding them.
+    files.forEach(function (f) {
+      if (config.contentFolders.indexOf(topFolder(f.path)) === -1) return;
+      var dId = dayIdFromFilename(f.path);
+      if (!dId || days[dId]) return;
+      days[dId] = { id: dId, dayIndex: dayIndexOf(dId), all: [] };
     });
 
     var model = {

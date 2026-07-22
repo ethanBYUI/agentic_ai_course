@@ -30,6 +30,12 @@ window.COVERAGE_CONFIG = {
   // (e.g. `lesson1_2.md` => unit 1, day 2) unless a `<!-- day: 1_2; -->`
   // comment overrides it.
   contentFolders: ["lessons", "practice", "primers", "examples"],
+
+  // File extensions the loader reads. Course content is authored in Quarto
+  // (`.qmd`) and notebooks (`.ipynb`) as well as plain `.md`; all three are
+  // scanned. A file's DAY still comes from its filename (`lesson1_2.qmd`), so an
+  // empty lesson file registers its day even before any content is written.
+  contentExtensions: ["md", "qmd", "ipynb"],
   folderTypeDefaults: {
     primers:  "prep_reading",
     practice: "practice",

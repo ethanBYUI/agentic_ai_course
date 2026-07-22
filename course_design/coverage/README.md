@@ -1,7 +1,39 @@
 # Course Coverage Linter
 
-A browser tool that parses the course markdown, checks every coverage rule from
-[`../plan.md`](../plan.md), and shows the result in five tabs.
+A browser tool that parses coverage properties from course files and visualizes them
+
+## Intended Coverage Rules
+
+Every competency has at least one
+- assessment
+- activity / teaching material (some scaffolding)
+
+Every *significant* use case has at least one
+- example the student can run
+- day it is shown off (either in class or before/after)
+- reading/video case study for an in-industry example
+
+Every example (~50) has at least one
+- competency it meets
+
+Every assessment (~8) and activity (~30) (separate) has at least one
+- competency
+- day it is performed
+
+Every prep reading (~30) has
+- at least one video/article
+- exactly one day
+- at least one competency
+
+Most (not strict) days (~36) have
+- one prep reading
+- at least one practice activity
+- one or two in-class activity
+- at least one example
+
+For every competency an assessment measures, some activity teaching that competency exists on an earlier day than the first assessment.
+
+Meets prereq rules (sporadically explicitly defined per node, not for every node, mostly for assessments)
 
 ## Running it
 
