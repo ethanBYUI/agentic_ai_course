@@ -56,6 +56,7 @@ button:disabled { opacity: .5; cursor: default; }
 .status b { color: var(--fg); }
 .status.err { color: var(--gap); }
 .status.ok { color: var(--ok); }
+.status.hidden { display: none; }
 label.autobox { font-size: .82rem; color: var(--muted); display: inline-flex; align-items: center; gap: 5px; }
 
 /* summary strip */
@@ -86,8 +87,9 @@ label.autobox { font-size: .82rem; color: var(--muted); display: inline-flex; al
 .tab.muted { color: var(--border-strong); }
 .panel { display: none; padding: 22px 2px; }
 .panel.active { display: block; }
-.panel h2 { font-size: 1.15rem; margin: 0 0 4px; }
-.panel p.lead { color: var(--muted); margin: 0 0 18px; font-size: .95rem; }
+/* title + description sit below each visualization as a caption */
+.panel h2 { font-size: 1.15rem; margin: 22px 0 4px; }
+.panel p.lead { color: var(--muted); margin: 0; font-size: .95rem; }
 
 /* dashboard rule meters — independent flex columns (cards are distributed into
    these columns in JS) so a card expanding only lengthens its own column; it
@@ -123,7 +125,9 @@ label.autobox { font-size: .82rem; color: var(--muted); display: inline-flex; al
 .ri-label { color: var(--fg); }
 .r-done { font-size: .78rem; color: var(--muted); }
 .r-note { font-size: .74rem; color: var(--muted); margin-top: 6px; font-style: italic; }
-.soft-tag { font-size: .68rem; text-transform: uppercase; letter-spacing: .05em; color: var(--warn); font-weight: 700; }
+.rules-section { font-size: .82rem; text-transform: uppercase; letter-spacing: .06em; color: var(--muted);
+  font-weight: 700; margin: 22px 0 12px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
+.rules-section:first-child { margin-top: 0; }
 
 /* matrix */
 .matrix-controls { margin-bottom: 14px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }

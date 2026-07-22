@@ -37,14 +37,12 @@
   </nav>
 
   <section class="panel active" id="panel-m3">
+    <div id="m3-body"><div class="empty">Load a folder to run the rules.</div></div>
     <h2>Coverage dashboard — one meter per rule</h2>
     <p class="lead">Green = satisfied · red = hard gap · amber = soft ("most days") miss. Chips name the exact offenders.</p>
-    <div id="m3-body"><div class="empty">Load a folder to run the rules.</div></div>
   </section>
 
   <section class="panel" id="panel-m2">
-    <h2>Multipartite node-link — orphans float free</h2>
-    <p class="lead">Competency → activity/assessment → day. A node missing a required edge is highlighted; orphans have no lines.</p>
     <div class="legend">
       <span><span class="dot" style="background:var(--c-comp)"></span> competency</span>
       <span><span class="dot" style="background:var(--c-activity)"></span> activity</span>
@@ -53,22 +51,24 @@
       <span><span class="dot" style="background:var(--gap)"></span> orphan / gap</span>
     </div>
     <div id="m2-body"><div class="empty">Load a folder to draw the graph.</div></div>
+    <h2>Multipartite node-link — orphans float free</h2>
+    <p class="lead">Competency → activity/assessment → day. A node missing a required edge is highlighted; orphans have no lines.</p>
   </section>
 
   <section class="panel" id="panel-m1">
-    <h2>Coverage matrix — certify one relation exhaustively</h2>
-    <p class="lead">Rows link to columns; a filled cell is an edge. A row sum that breaks its rule turns red.</p>
     <div class="matrix-controls">
       <label for="relation">Relation:</label>
       <select id="relation"></select>
     </div>
     <div id="m1-body"><div class="empty">Load a folder to build the matrix.</div></div>
+    <h2>Coverage matrix — certify one relation exhaustively</h2>
+    <p class="lead">Rows link to columns; a filled cell is an edge. A row sum that breaks its rule turns red.</p>
   </section>
 
   <section class="panel" id="panel-graph">
-    <h2>The model in one picture</h2>
-    <p class="lead">Entity types and the "requires ≥1 of" edges between them, annotated with live counts from your files.</p>
     <div id="graph-body"><div class="empty">Load a folder to see live counts.</div></div>
+    <h2>The model in one picture</h2>
+    <p class="lead">Entity types and the "requires 1+ of" edges between them, annotated with live counts from your files.</p>
   </section>
 
   <section class="panel" id="panel-timeline">

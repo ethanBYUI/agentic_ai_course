@@ -181,7 +181,10 @@
     var secs = findSections(text);
     var blocks = findPropBlocks(text);
     var folder = topFolder(file.path);
-    var folderType = config.folderTypeDefaults[folder] || roleDefaultType || "activity";
+    // A folder-level default is an explicit, configured signal (e.g. everything
+    // in primers/ is a prep reading). If neither the node nor its folder says
+    // what it is, we do NOT invent a type — it stays "untyped" (see mkNode).
+    var folderType = config.folderTypeDefaults[folder] || roleDefaultType || null;
     var fileDayId = dayIdFromFilename(file.path);
     var nodes = [];
 
@@ -214,13 +217,14 @@
   }
 
   function normalizeKind(k) {
-    k = String(k).toLowerCase().replace(/[\s-]+/g, "_");
+    k = String(k == null ? "" : k).toLowerCase().replace(/[\s-]+/g, "_");
+    if (!k) return "untyped";                 // no type declared -> don't guess
     if (k === "inclass" || k === "in_class_activity") return "in_class";
     if (k === "summative_assessment" || k === "assessment") return "assessment";
     if (k === "prep" || k === "primer" || k === "reading" || k === "prep_reading") return "prep_reading";
-    if (["assessment","in_class","practice","example","prep_reading","connection","activity","competency","use_case"].indexOf(k) === -1) {
-      return "activity";
-    }
+    // Any other declared type is kept verbatim (e.g. "reflection", "lecture").
+    // It simply won't match the activity/assessment rules — which is correct:
+    // a reflection is not an activity, so we must not pretend it is one.
     return k;
   }
 
@@ -286,27 +290,27 @@
     var coveredByTeach  = makeCoverage(comps, teaching);
     var assessOffenders = comps.filter(function (c) { return !coveredByAssess(c.id); });
     var teachOffenders  = comps.filter(function (c) { return !coveredByTeach(c.id); });
-    rules.push(ruleResult("comp-assess", "Competency → ≥1 assessment", assessOffenders, comps.length, false));
-    rules.push(ruleResult("comp-activity", "Competency → ≥1 activity", teachOffenders, comps.length, false));
+    rules.push(ruleResult("comp-assess", "Competency → 1+ assessment", assessOffenders, comps.length, false));
+    rules.push(ruleResult("comp-activity", "Competency → 1+ activity", teachOffenders, comps.length, false));
 
     // example / assessment / activity / prep -> >=1 competency
-    rules.push(ruleResult("example-comp", "Example → ≥1 competency",
+    rules.push(ruleResult("example-comp", "Example → 1+ competency",
       examples.filter(noComp), examples.length, false));
-    rules.push(ruleResult("assess-comp", "Assessment → ≥1 competency",
+    rules.push(ruleResult("assess-comp", "Assessment → 1+ competency",
       assessments.filter(noComp), assessments.length, false));
-    rules.push(ruleResult("activity-comp", "Activity → ≥1 competency",
+    rules.push(ruleResult("activity-comp", "Activity → 1+ competency",
       teaching.filter(noComp), teaching.length, false));
 
     // scheduled nodes -> a day
-    rules.push(ruleResult("assess-day", "Assessment → ≥1 day",
+    rules.push(ruleResult("assess-day", "Assessment → 1+ day",
       assessments.filter(noDay), assessments.length, false));
-    rules.push(ruleResult("activity-day", "Activity → ≥1 day",
+    rules.push(ruleResult("activity-day", "Activity → 1+ day",
       teaching.filter(noDay), teaching.length, false));
 
     // prep reading -> exactly one day + >=1 competency
     rules.push(ruleResult("prep-day", "Prep reading → exactly 1 day",
       preps.filter(function (n) { return !n.day; }), preps.length, false));
-    rules.push(ruleResult("prep-comp", "Prep reading → ≥1 competency",
+    rules.push(ruleResult("prep-comp", "Prep reading → 1+ competency",
       preps.filter(noComp), preps.length, false));
 
     // use case -> >=1 example (an example points to it via useCases)
@@ -314,22 +318,28 @@
     examples.forEach(function (e) {
       e.useCases.forEach(function (uc) { ucExampleCount[uc] = (ucExampleCount[uc] || 0) + 1; });
     });
-    rules.push(ruleResult("uc-example", "Use case → ≥1 example",
+    rules.push(ruleResult("uc-example", "Use case → 1+ example",
       useCases.filter(function (u) { return !ucExampleCount[u.id]; }), useCases.length, false));
 
     // day-level soft rules
     var dayList = Object.keys(days).map(function (d) { return days[d]; });
-    rules.push(dayRule("day-practice", "Day → ≥1 practice activity", dayList, "practice", 1, Infinity));
+    rules.push(dayRule("day-practice", "Day → 1+ practice activity", dayList, "practice", 1, Infinity));
     rules.push(dayRule("day-inclass", "Day → 1–2 in-class activities", dayList, "in_class", 1, 2));
-    rules.push(dayRule("day-example", "Day → ≥1 example", dayList, "example", 1, Infinity));
+    rules.push(dayRule("day-example", "Day → 1+ example", dayList, "example", 1, Infinity));
     rules.push(dayRule("day-prep", "Day → 0–1 prep reading", dayList, "prep_reading", 0, 1));
 
     // template -> >=1 instance (soft)
     var instancedTemplates = {};
     nodes.forEach(function (n) { if (n.template) instancedTemplates[n.template] = 1; });
     var templateOffenders = model.templates.filter(function (t) { return !instancedTemplates[t.id]; });
-    rules.push(ruleResult("template-instance", "Template → ≥1 instance", templateOffenders,
+    rules.push(ruleResult("template-instance", "Template → 1+ instance", templateOffenders,
       model.templates.length, true, "A template with no instance is a smell, not a broken course."));
+
+    // every node should declare a type (untyped nodes are excluded from every
+    // activity/assessment rule, so surface them rather than silently dropping)
+    var untyped = nodes.filter(function (n) { return n.kind === "untyped"; });
+    rules.push(ruleResult("node-typed", "Node → has an explicit type", untyped, nodes.length, true,
+      "Soft — an untyped node matches no activity/assessment rule; give it a type."));
 
     // ---- ordering: teach-before-assess (hard) ----
     var tbaOffenders = [];
@@ -438,7 +448,7 @@
 
     // templates (abstracts)
     var tmplFile = files.find(function (f) { return f.path.endsWith(config.templatesFile); });
-    var templates = tmplFile ? parseDocNodes(tmplFile, "activity", config) : [];
+    var templates = tmplFile ? parseDocNodes(tmplFile, null, config) : [];
 
     // instances in content folders
     var instances = [];

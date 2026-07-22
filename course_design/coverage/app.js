@@ -112,12 +112,7 @@
     state.result = result;
     el.exportBtn.disabled = false;
     renderAll(result);
-    var s = result.summary;
-    var when = new Date().toLocaleTimeString();
-    status("Read <b>" + files.length + "</b> files · <b>" + s.hardViolations +
-      "</b> hard, <b>" + s.softWarnings + "</b> soft · " +
-      (s.pass ? "<b class='ok'>PASS</b>" : "hard gaps present") + " · " + when,
-      s.pass ? "ok" : null);
+    status("", "hidden");   // clear the load instructions on a successful run
   }
 
   async function loadFromHandle(dirHandle, opts) {
@@ -219,6 +214,9 @@
     var cls = r.offenders.length === 0 ? "r-full" : (r.soft ? "r-warn" : "r-part");
     var card = document.createElement("div");
     card.className = "rule " + cls;
+    // Only the two competency-coverage rules list competencies as offenders; for
+    // those we keep the title. Every other rule shows just the id.
+    var showLabel = (r.id === "comp-assess" || r.id === "comp-activity");
     var reveal = "";
     if (r.offenders.length) {
       // Sorted numeric/alphabetical, all shown, one per row when expanded.
@@ -229,14 +227,13 @@
       var list = '<div class="r-list" hidden>' + sorted.map(function (o) {
         return '<div class="r-item ' + (r.soft ? "warn" : "") + '">' +
           '<span class="ri-id">' + esc(o.id) + "</span>" +
-          '<span class="ri-label">' + esc(o.label) + "</span></div>";
+          (showLabel ? '<span class="ri-label">' + esc(o.label) + "</span>" : "") + "</div>";
       }).join("") + "</div>";
       reveal = '<div class="r-reveal"><button class="r-toggle" type="button" aria-expanded="false">' +
         n + " gap" + (n === 1 ? "" : "s") + ' <span class="caret">▾</span></button></div>' + list;
     }
     card.innerHTML =
-      '<div class="r-top"><span class="r-name">' + esc(r.name) +
-        (r.soft ? ' <span class="soft-tag">soft</span>' : "") + "</span>" +
+      '<div class="r-top"><span class="r-name">' + esc(r.name) + "</span>" +
         '<span class="r-frac">' + r.satisfied + " / " + r.total + "</span></div>" +
       '<div class="meter"><span style="width:' + pct + '%"></span></div>' +
       (r.offenders.length ? reveal : '<div class="r-done">✓ complete</div>') +
@@ -247,15 +244,11 @@
   // We distribute cards into real column elements ourselves (rather than CSS
   // multi-column) so a card expanding only lengthens its own column — it never
   // reflows into a neighbouring column the way balanced CSS columns do.
-  function renderDashboard(rules) {
-    var body = document.getElementById("m3-body");
-    if (!rules.length) { body.innerHTML = '<div class="empty">No rules ran.</div>'; return; }
-    state.dashRules = rules;
-
+  // One round-robin column grid for a set of rules. Cards are distributed into
+  // real column elements so an expanding card only lengthens its own column.
+  function buildRuleGrid(rules, n) {
     var wrap = document.createElement("div");
     wrap.className = "rules";
-    var width = body.clientWidth || 960;
-    var n = Math.max(1, Math.floor((width + 12) / 332));   // ~320px card + 12px gap
     var colEls = [];
     for (var i = 0; i < n; i++) {
       var col = document.createElement("div");
@@ -265,20 +258,51 @@
     }
     // Round-robin so cards still read left-to-right, row by row, when collapsed.
     rules.forEach(function (r, i) { colEls[i % n].appendChild(buildRuleCard(r)); });
+    return wrap;
+  }
 
-    // Toggle a card open/closed without disturbing any other card.
-    wrap.addEventListener("click", function (e) {
-      var btn = e.target.closest(".r-toggle");
-      if (!btn) return;
-      var card = btn.closest(".rule");
-      var list = card.querySelector(".r-list");
-      var open = list.hasAttribute("hidden");
-      if (open) { list.removeAttribute("hidden"); } else { list.setAttribute("hidden", ""); }
-      btn.setAttribute("aria-expanded", open ? "true" : "false");
-      card.classList.toggle("expanded", open);
-    });
+  function renderDashboard(rules) {
+    var body = document.getElementById("m3-body");
+    if (!rules.length) { body.innerHTML = '<div class="empty">No rules ran.</div>'; return; }
+    state.dashRules = rules;
+
+    var width = body.clientWidth || 960;
+    var n = Math.max(1, Math.floor((width + 12) / 332));   // ~320px card + 12px gap
+
+    var hard = rules.filter(function (r) { return !r.soft; });
+    var soft = rules.filter(function (r) { return r.soft; });
+
     body.innerHTML = "";
-    body.appendChild(wrap);
+    if (hard.length) {
+      var hh = document.createElement("h3");
+      hh.className = "rules-section";
+      hh.textContent = "Hard Requirements";
+      body.appendChild(hh);
+      body.appendChild(buildRuleGrid(hard, n));
+    }
+    if (soft.length) {
+      var sh = document.createElement("h3");
+      sh.className = "rules-section";
+      sh.textContent = "Soft Requirements";
+      body.appendChild(sh);
+      body.appendChild(buildRuleGrid(soft, n));
+    }
+
+    // Toggle a card open/closed without disturbing any other card. Delegated on
+    // the persistent body element, so bind exactly once.
+    if (!state.dashClickBound) {
+      state.dashClickBound = true;
+      body.addEventListener("click", function (e) {
+        var btn = e.target.closest(".r-toggle");
+        if (!btn) return;
+        var card = btn.closest(".rule");
+        var list = card.querySelector(".r-list");
+        var open = list.hasAttribute("hidden");
+        if (open) { list.removeAttribute("hidden"); } else { list.setAttribute("hidden", ""); }
+        btn.setAttribute("aria-expanded", open ? "true" : "false");
+        card.classList.toggle("expanded", open);
+      });
+    }
 
     // Re-flow columns on width changes (collapses open cards — acceptable on resize).
     if (!state.dashResizeBound) {
@@ -334,12 +358,13 @@
     svg.appendChild(text(colX.node, 22, "Activity / Assessment", { fill: "var(--c-activity)", "font-weight": 700, "text-anchor": "middle" }));
     svg.appendChild(text(colX.day, 22, "Day", { fill: "var(--c-day)", "font-weight": 700, "text-anchor": "middle" }));
 
-    // edges comp -> node
+    // edges comp -> node, coloured by the node's type (activity vs assessment)
     teaching.forEach(function (n) {
+      var edgeColor = n.kind === "assessment" ? "var(--c-assess)" : "var(--c-activity)";
       n.competencies.forEach(function (L) {
         comps.forEach(function (c) {
           if (window.CoverageLinter.covers(L, c.id) && yComp[c.id] != null) {
-            svg.appendChild(edge(colX.comp + 8, yComp[c.id], colX.node - 8, yNode[n.id]));
+            svg.appendChild(edge(colX.comp + 8, yComp[c.id], colX.node - 8, yNode[n.id], edgeColor));
           }
         });
       });
@@ -493,7 +518,7 @@
       n(640, 150, 30, "var(--c-day)", ["Day"], c.days) +
       "</svg>";
     body.innerHTML = '<div class="svg-scroll">' + svg + "</div>" +
-      '<div class="note">Solid arrows are "requires ≥1 of." Counts are live from your files. ' +
+      '<div class="note">Solid arrows are "requires 1+ of." Counts are live from your files. ' +
       "Prep readings: <b>" + c.prepReadings + "</b> · templates: <b>" + c.templates + "</b>.</div>";
   }
 
@@ -515,10 +540,10 @@
       stroke: "var(--gap)", "stroke-width": 1.2, "stroke-dasharray": "3 3" }));
     return g;
   }
-  function edge(x1, y1, x2, y2) {
+  function edge(x1, y1, x2, y2, color) {
     var mx = (x1 + x2) / 2;
     return svgEl("path", { d: "M" + x1 + "," + y1 + " C" + mx + "," + y1 + " " + mx + "," + y2 + " " + x2 + "," + y2,
-      fill: "none", stroke: "var(--axis)", "stroke-width": 1, opacity: 0.55 });
+      fill: "none", stroke: color || "var(--axis)", "stroke-width": color ? 1.3 : 1, opacity: color ? 0.7 : 0.55 });
   }
 
   /* ---- misc helpers -------------------------------------------------------- */
