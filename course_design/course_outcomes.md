@@ -10,41 +10,30 @@ Grammar follows "Students can + verb" format.
 
 # Outcomes and Competencies
 
-## Build and deploy agentic AI solutions
+## Build AI agent harnesses
 
-*Design folds into the front of Build and deploy into the back — shipping is building. Students continuously evaluate and refine what they build; the iteration loop is carried in the wording, not given a separate outcome.*
+*Only implementation to exist functionally, design and deployment are out of scope. Students continuously evaluate and refine what they build; the iteration loop is carried in the wording, not given a separate outcome.*
 
 - 1.1 *flag wording* Connect to the model (the "brain")
     - 1.1.1 Pick appropriate models for an agent or subagent
     - 1.1.2 Connect to an LLM provider's API
     - 1.1.3 Implement common model features from documentation <!-- token limits, system prompt, temperature, structured output, web search, thinking, function calling, caching, other data types -->
-- 1.2 Build the agent harness <!-- (the steering levers) -->
-    - 1.2.1 Design an agent's instructions and prompts <!-- system prompt, tool descriptions, skills, persona, few-shot, output format -->
-    - 1.2.2 Give the agent memory and manage its context *should this competency have children?*
-        - 1.2.2.1 Persist and pass conversation state across multiple runs in a thread
-        - 1.2.2.2 *flag location* Organize state by function and choose a substrate *sounds like an outcome 3 task*
-        - 1.2.2.3 *flag existence* Implement retrieval (RAG) systems
-        - 1.2.2.4 *flag existence* Implement multi-tenant memory architecture (shared memory)
-        - *worth giving more attention to define parts thoughtfully*
-    - 1.2.3 Extend the agent with tools and services *should this have children? Menu?*
-        - 1.2.3.1 Define, register, and invoke custom tools
-        - 1.2.3.2 Connect external tools through Model Context Protocol (MCP) <!-- eg Slack, Google Calendar -->
-        - 1.2.3.3 Connect external tools through CLI
-    - 1.2.4 Constrain the agent with deterministic safety guardrails
-        - 1.2.4.1 Implment human-in-the-loop
-        - 1.2.4.2 Connect a sandbox for arbitrary code execution
-        - 1.2.4.3 Create permissions and authorization constraints
-        - 1.2.4.4 Handle errors and retries
-        - 1.2.4.5 *this deserves more sub-competencies*
-    - 1.2.5 Architect multi-agent / sub-agent delegation
-- 1.3 Deploy
-    - 1.3.1 Set up a publishable local environment <!-- API secret standards, environment tooling with uv, git basics -->
-    - 1.3.2 Stream output to a basic user interface
-    - 1.3.3 Deploy an agent with a basic user interface <!-- (e.g., Vercel, phone, or Slack app) -->
-- 1.4 *flag location* Refine (the loop)
-    - 1.4.1 Use evaluation findings to deliberately tune the steering levers and re-enter the cycle
-
-*Considering removing most or all of the level 4 competencies*
+- 1.2 Design an agent's instructions and prompts <!-- system prompt, tool descriptions, skills, persona, few-shot, output format -->
+- 1.3 Give the agent memory and manage its context
+    - 1.3.1 Implement short-term memory
+    - 1.3.2 Implement long-term memory
+    - 1.3.3 Trim or reduce memory through context engineering
+- 1.4 Extend the agent with tools and services
+    - 1.4.1 Define, register, and invoke custom tools
+    - 1.4.2 Connect external tools through Model Context Protocol (MCP) <!-- eg Slack, Google Calendar -->
+    - 1.4.3 Connect external tools through CLI
+- 1.5 Constrain the agent with deterministic safety guardrails
+    - 1.5.1 Implment human-in-the-loop
+    - 1.5.2 Connect a sandbox for arbitrary code execution
+    - 1.5.3 Create permissions and authorization constraints
+    - 1.5.4 Handle errors and retries
+    - 1.5.5 *this deserves more attention*
+- 1.6 Architect multi-agent / sub-agent delegation
 
 
 ## Evaluate agents using agent observability tools
@@ -57,7 +46,7 @@ Grammar follows "Students can + verb" format.
     - 2.1.3 Distinguish run types <!-- (LLM, tool, retriever, chain, prompt, parser) -->
     - 2.1.4 *flag existence* Observe both pre-production and in production agent runs
 - 2.2 Measure agent performance <!-- choose an evaluator type to match the criterion -->
-    - 2.2.1 Write and implement deterministic evaluators for hard constraints <!-- (regex, schema validation, exact match, did-it-call-the-tool) -->
+    - 2.2.1 Write and implement deterministic evaluators for hard constraints
     - 2.2.2 Create LLM-as-judge evaluators for subjective qualities 
         - 2.2.2.1 *flag existence* (pointwise and pairwise), and calibrate the judge *what needs to be specified under LLM-as-judge?*
     - 2.2.3 Build curated golden datasets from scratch
@@ -84,22 +73,20 @@ Grammar follows "Students can + verb" format.
     - 3.2.4 Make a quick cost assessment
 - 3.3 Define and operationalize success for an agent
     - 3.3.1 Choose which quality dimensions matter for an agent <!-- correctness, safety, tone, format, completeness, latency, cost -->
-    - 3.3.2 Operationalize constraints into gradeable criteria
-    - 3.3.3 *this does not capture the different types, or truly fit defining success - more time is needed here*
+    - 3.3.2 Identify important safety guardrails
+    - 3.3.3 Operationalize constraints into gradeable criteria
     - 3.3.4 Anchor criteria with concrete good/bad examples <!-- the seed of a golden dataset -->
     - 3.3.5 Revise success criteria from observed behavior
 - 3.4 Find hidden domain knowledge, qualifications, and assumptions from employees and processes to make explicit to the agent
 - 3.5 Anticipate, from the agent's perspective, what context it will and won't need at each point in its task
-- 3.6 Plan an agent's architecture from first principles
-    - 3.6.1 Decide how each piece of context should be delivered - its mechanism and actual location <!-- eg system prompt, file system, tool description, database, schema, example, sub-agent handoff -->
-    - 3.6.2 Identify deterministic elements that should NOT be decided by an LLM
-    - 3.6.3 Propose multiple harness schemas that fit the problem definition
+- 3.6 Plan multiple harness architectures that fit the problem definition
+    - 3.6.1 *flag existence* Organize state by function and choose a substrate
 - 3.7 Author intent into durable artifacts that are both agent- and human-readable <!-- eg CONSTITUTION.md, CONTEXT.md, AGENTS.md, specs, schemas, user stories,  other docs; or principles, instructions, context, success criteria, schemas, tool definitions, and curated examples -->
 
 *This outcome has nearly taken shape, but still needs a little more consideration. AI has framed a new shape interestingly inside `outcomes_competencies_playground.md` which should be taken seriously with a grain of salt*
 
 
-## Communicate about AI using language fitted to each audience
+## Communicate about AI using language fitted to the audience
 
 *Students can communicate their own competence and their agents' behavior to technical and non-technical audiences alike.*
 
@@ -117,7 +104,7 @@ Grammar follows "Students can + verb" format.
     - 4.3.3 Make recommendations on where an agent should improve or next steps
     - 4.3.4 Advocate strongly for ethical AI use to an employer or stakeholder
 
-## Find and evaluate quality sources to self-learn in an ever-changing AI landscape
+## Use quality sources to self-learn in an ever-changing AI landscape
 
 *Students can find and judge sources of AI knowledge,preferring primary, current sources over stale tutorials and unreliable AI answers.*
 
@@ -139,3 +126,5 @@ Grammar follows "Students can + verb" format.
 - 6.3 Examine and remain conscious of how their AI use impacts themselves and others
 - 6.4 Apply Church doctrine and gospel principles to real AI-use situations
 - 6.5 Articulate how the industry frames alignment and AI ethics as fundamentally an ethics question
+
+*Alternative: Develop personal guidelines for ethical use of LLMs and agentic AI.*

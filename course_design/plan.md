@@ -32,7 +32,7 @@ Every prep reading (~30) has
 - at least one competency
 
 Most (not strict) days (~36) have
-- one or zero prep reading
+- one prep reading
 - at least one practice activity
 - one or two in-class activity
 - at least one example

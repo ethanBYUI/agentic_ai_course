@@ -18,6 +18,7 @@ There's a judgement about whether this agent justifies its creation. There are s
 
 [ ] "Gotchas" & Common Edge Cases: A candid list of where students consistently get stuck (e.g., "In Week 3, 40% of students will accidentally trigger infinite loops that hit API rate limits; here is how to resolve it").
 
+
 ## Fun Techniques
 
 ### Reverse Hand Raise
@@ -25,6 +26,11 @@ There's a judgement about whether this agent justifies its creation. There are s
 "Everyone raise your hand! Keep it up if..."
 
 Not only does this generate more volunteers, but it releases tension by putting people in an open pose and because it's funny.
+
+### Forum
+
+As an occasional scare, and to keep things fresh, call up ~6 students at random. The rest of the class asks interesting questions, and the forum answers.
+
 
 ## Safety 1
 

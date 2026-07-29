@@ -9,11 +9,12 @@ toc-depth: 1
 
 # Course Objectives
 
-- Be able to plan, program, measure, test, and iteratively refine Agentic AI solutions.
-- Identify which problems are best solved with agentic AI as opposed to other methods.
-- Develop personal guidelines for ethical use of LLMs and agentic AI.
-- Communicate AI competence using current industry language to both technical and non-technical audiences.
-- Grow an ability to self-learn in an ever-changing AI landscape.
+- Build AI agent harnesses
+- Evaluate agents using agent observability tools
+- Translate ambiguous production goals into explicit architectural decisions and measurable success criteria
+- Communicate about AI using language fitted to the audience
+- Use quality sources to self-learn in an ever-changing AI landscape
+- Form and live a personal ethic for the use of AI agents
 
 ---
 

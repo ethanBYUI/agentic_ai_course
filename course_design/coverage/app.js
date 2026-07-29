@@ -349,10 +349,80 @@
     var height = pad * 2 + rows * rowH;
     var width = 920;
 
+    // Every column occupies the full height of the longest one. y0..y1 is the band
+    // the tallest column would span at the natural rowH spacing.
+    var y0 = pad, y1 = pad + (rows - 1) * rowH;
+
+    // Even spacing across the band for a column of k items (short columns stretch).
+    function evenY(k) {
+      if (k <= 1) return [(y0 + y1) / 2];
+      var step = (y1 - y0) / (k - 1), a = [];
+      for (var i = 0; i < k; i++) a.push(y0 + i * step);
+      return a;
+    }
+
+    // Isotonic regression (pool-adjacent-violators): the non-decreasing series
+    // closest (least squares) to w. Used to enforce a minimum gap with the least
+    // total displacement from each node's desired position.
+    function pava(w) {
+      var blocks = [];
+      for (var i = 0; i < w.length; i++) {
+        blocks.push({ sum: w[i], count: 1, val: w[i] });
+        while (blocks.length > 1 && blocks[blocks.length - 2].val > blocks[blocks.length - 1].val) {
+          var b = blocks.pop(), a = blocks.pop();
+          var m = { sum: a.sum + b.sum, count: a.count + b.count };
+          m.val = m.sum / m.count;
+          blocks.push(m);
+        }
+      }
+      var z = [];
+      blocks.forEach(function (b) { for (var k = 0; k < b.count; k++) z.push(b.val); });
+      return z;
+    }
+
+    // Place items (given in target order) as near their target y as possible while
+    // keeping >= gap between neighbours and staying inside [y0, y1].
+    function layoutColumn(targets, gap) {
+      var n = targets.length;
+      if (!n) return [];
+      if (n === 1) return [Math.min(Math.max(targets[0], y0), y1)];
+      // No slack: the gap constraint fills the whole band -> even spacing.
+      if ((n - 1) * gap >= (y1 - y0)) return evenY(n);
+      // Solve with the gap folded out (y_i - i*gap must be non-decreasing).
+      var w = targets.map(function (t, i) { return t - i * gap; });
+      var z = pava(w);
+      var y = z.map(function (v, i) { return v + i * gap; });
+      var off = 0;
+      if (y[0] < y0) off = y0 - y[0];
+      else if (y[n - 1] > y1) off = y1 - y[n - 1];
+      return y.map(function (v) { return v + off; });
+    }
+
+    // Left (competency) and right (day) columns: evenly spaced.
     var yComp = {}, yNode = {}, yDay = {};
-    comps.forEach(function (c, i) { yComp[c.id] = pad + i * rowH; });
-    teaching.forEach(function (n, i) { yNode[n.id] = pad + i * rowH; });
-    days.forEach(function (d, i) { yDay[d] = pad + i * rowH; });
+    var compY = evenY(comps.length);
+    comps.forEach(function (c, i) { yComp[c.id] = compY[i]; });
+    var dayY = evenY(days.length);
+    days.forEach(function (d, i) { yDay[d] = dayY[i]; });
+
+    // Middle column: aim each node at the centroid of the competencies (and its
+    // day, if placed) it links to, then order and space it dynamically.
+    function nodeTarget(n) {
+      var ys = [];
+      n.competencies.forEach(function (L) {
+        comps.forEach(function (c) {
+          if (window.CoverageLinter.covers(L, c.id) && yComp[c.id] != null) ys.push(yComp[c.id]);
+        });
+      });
+      if (n.day && yDay[n.day] != null) ys.push(yDay[n.day]);
+      if (!ys.length) return (y0 + y1) / 2;
+      return ys.reduce(function (s, v) { return s + v; }, 0) / ys.length;
+    }
+    var tgt = {};
+    teaching.forEach(function (n) { tgt[n.id] = nodeTarget(n); });
+    teaching = teaching.slice().sort(function (a, b) { return tgt[a.id] - tgt[b.id]; });
+    var nodeY = layoutColumn(teaching.map(function (n) { return tgt[n.id]; }), rowH);
+    teaching.forEach(function (n, i) { yNode[n.id] = nodeY[i]; });
 
     var svg = svgEl("svg", { viewBox: "0 0 " + width + " " + height, width: "100%",
       height: height, role: "img" });

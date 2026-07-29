@@ -10,23 +10,17 @@ How this is used is in flux
 
 - token limits, system prompt, temperature, structured output, web search, thinking, function calling, caching, other data types
 
-1.2.1 Design an agent's instructions and prompts
+1.2 Design an agent's instructions and prompts
 
 - system prompt, tool descriptions, skills, persona, few-shot, output format
 
-1.2.2.2 Organize state by function and choose a substrate
+1.3
 
-- md/text, 
-- objects, 
-- SQL, 
-- vector 
-for each: 
-- conversational, 
-- working, 
-- knowledge, and 
-- operational/metadata state
+- Persist and pass conversation state across multiple runs in a thread
+- Implement multi-tenant memory architecture (shared memory)
+- Implement retrieval (RAG) systems
 
-1.2.3 Extend the agent with tools and services
+1.4 Extend the agent with tools and services
 
 - Define, register, and invoke custom tool
 - Connect external tools through Model Context Protocol (MCP)
@@ -36,20 +30,12 @@ for each:
 - Their file system
 - TODO what would be easy to connect and useful for a student?
 
-1.2.4 Constrain the agent with deterministic safety
+1.5 Constrain the agent with deterministic safety
 
 - human-in-the-loop
 - sandbox (arbitrary code)
 - permissions/authorization
 - errors and retries
-
-1.3.1 Set up a publishable local environment
-
-- API secret standards, environment tooling with uv, git basics
-
-1.3.3 Set up a publishable local environment
-
-- Vercel, phone, or Slack app
 
 2.1.3 Distinguish run types
 
@@ -68,6 +54,19 @@ for each:
 - completeness
 - latency
 - cost
+
+3.6.1 Organize state by function and choose a substrate
+
+- md/text, 
+- objects, 
+- SQL, 
+- vector 
+for each: 
+- conversational, 
+- working, 
+- knowledge, and 
+- operational/metadata state
+- 
 
 3.6.1 Decide how each piece of context should be delivered - its mechanism and actual location
 

@@ -10,11 +10,12 @@ Each decision is accompanied by a "why" (the reason for that pedagogical decisio
 
 ### Course Objectives
 
-- Be able to plan, program, measure, test, and iteratively refine Agentic AI solutions.
-- Know which problems are best solved with agentic AI as opposed to other methods.
-- Develop personal guidelines for ethical use of LLMs and agentic AI.
-- Communicate AI competence using current industry language to both technical and non-technical audiences.
-- Grow an ability to self-learn in an ever-changing AI landscape.
+- Build AI agent harnesses
+- Evaluate agents using agent observability tools
+- Translate ambiguous production goals into explicit architectural decisions and measurable success criteria
+- Communicate about AI using language fitted to the audience
+- Use quality sources to self-learn in an ever-changing AI landscape
+- Form and live a personal ethic for the use of AI agents
 
 ## How It Is Taught
 
@@ -23,7 +24,7 @@ This is a project-based curriculum that follows the AI agent development lifecyc
 While the pros far outweigh the cons, there are still a few challenges with this approach:
 
 - Success is difficult to measure (inherent with AI, not just the class structure).
-- Students who are averse to failure may try to perfect their work, creating a heavy load.
+- Students who are adverse to failure may try to perfect their work, creating a heavy load.
 - A fail-first environment for an ambiguous topic can hurt motivation.
 
 The following sections explain why the fail-first approach is important, as well as a framework for implementation and for overcoming its challenges.
@@ -52,13 +53,13 @@ This practice of embracing difficulty to become stronger is called **antifragili
 
 ### Project 1: Basics
 
-**Create a powerful, unpredictable, "bad" agent**
+**Build a powerful, unpredictable, "bad" agent**
 
 Early on, students are given the most current tools that allow them to make powerful agents with vast capabilities, only to realize those agents are unpredictable and hard to control. Ideally, what they make is cool but not useful. This creates a clear foundation for why diagnostics and context engineering are so important.
 
 ### Project 2: Diagnostics
 
-**Know "why" it does not work and what it should be doing**
+**Diagnose "why" it does not work and what it should be doing**
 
 Next is defining how an agent should behave, measuring it, and observing it to see whether it behaves correctly. This is an essential prerequisite to making a good agent. It is not an end state.
 
@@ -210,6 +211,20 @@ Breadth can be learned through in-class Q and A, student-taught lessons, or self
 
 ## Grading and Assessment
 
+TODO: Needs revision to better align with [University Policy](https://www.byui.edu/student-records/grades/grading-system)
+
+### Purpose
+
+Grading and assessment serve three general purposes:
+
+- Feedback mechanism (are they learning)
+- Justification for awarding credits and a degree
+- Motivator with a real threat of losing money and determining ability to continue college
+
+The third purpose fosters completion of work and destruction of learning. The following methods aim to decouple grades from feedback mechanisms and mitigate the associated threat while still maintaining its purpose for justification.
+
+## 
+
 The goal of a course is generally learning. BYU-Idaho's mission also includes becoming disciple-leaders, so principles of character and discipleship are included in coursework and grading.
 
 As a general rule, accomplishment in this course is based on:
@@ -285,7 +300,19 @@ How are these measures weighted in a final grade? In short:
 - **D:** Did some stuff
 - **F:** Did nothing
 
-Students decide this in a final letter, and the instructor approves it.
+Students decide this in a final letter, and the instructor approves it based on evidences and their own observation.
+
+The university describes grades as:
+
+- **A:** Outstanding, Diligent
+- **B:** Considerable/Significant, Participates
+- **C:** Sufficient, Minimal
+- **D:** Poor, Insufficient
+- **F:** Failure
+
+## Objective Judgement with Grace
+
+Every prep work, class work, assignment, and assessment are all indicators of the above student qualities. Instead of weighting these on a semi-arbitrary point system, they are presented as evidence to the professor, who makes a judgement with grace.
 
 ## Final Letter
 

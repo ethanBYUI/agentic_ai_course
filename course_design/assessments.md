@@ -2,7 +2,7 @@
 
 Both formative and summative assessments are named in connection with outcomes. For more details about each, see `activities_assessments.md`.
 
-## 1. Build and deploy agentic AI solutions
+## 1. Build AI agent harnesses
 
 This is primarily measured by *pass-offs* and *coding challenge*
 
@@ -33,7 +33,7 @@ Also evident in
 
 
 
-## 4. Communicate about AI using language fitted to each audience
+## 4. Communicate about AI using language fitted to the audience
 
 This is primarily measured by *project 2*
 
@@ -44,7 +44,7 @@ Also evident in
 
 Students spend time communicating throughout the semester as they discuss agent concepts and vocabulary in class and from readings.
 
-## 5. Find and evaluate quality sources to self-learn in an ever-changing AI landscape
+## 5. Use quality sources to self-learn in an ever-changing AI landscape
 
 This is primarily measured by the *contribution assignment*
 

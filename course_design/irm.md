@@ -30,10 +30,10 @@ and to show where it runs out.
 
 | # | Outcome | U1 | U2 | U3 | Cap |
 |---|---------|:--:|:--:|:--:|:---:|
-| 1 | Build and deploy agentic AI solutions | **I** | R | R | **M** |
+| 1 | Build AI agent harnesses | **I** | R | R | **M** |
 | 2 | Evaluate agents using agent observability tools | — | **I** | R | **M** |
 | 3 | Translate ambiguous goals into architecture and success criteria | — | — | **I → R** | **M** |
-| 4 | Communicate about AI using language fitted to each audience | **I** | R | R | **M** |
+| 4 | Communicate about AI using language fitted to the audience | **I** | R | R | **M** |
 | 5 | Find and evaluate quality sources to self-learn | I | R | R | **M** |
 | 6 | Form and live a personal ethic for the use of AI agents | **I** | R | R | **M** |
 

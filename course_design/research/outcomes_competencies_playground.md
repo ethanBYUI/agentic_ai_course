@@ -101,7 +101,7 @@ present without teaching a waterfall ("build, *then* evaluate").
 > by tooling: **Build** (construct), **Evaluate** (the *hard* side of measurement), and
 > **Translate ambiguity** (the *soft* side — defines what Evaluate measures).
 
-### Outcome 1 — Build and deploy agentic AI solutions  *(the "hard" skill — construction)*
+### Outcome 1 — Build AI agent harnesses  *(the "hard" skill — construction)*
 Students can design, build, and deploy a working agentic AI solution — one whose behavior they
 continuously evaluate and refine. (Design folds into the front of Build; deploy folds into the
 back — shipping is building.)
@@ -123,7 +123,7 @@ Outcome 2 measures against.
 Students can communicate their own competence and their agents' behavior to technical and
 non-technical audiences alike.
 
-### Outcome 5 — Find and evaluate quality sources to self-learn in an ever-changing AI landscape
+### Outcome 5 — Use quality sources to self-learn in an ever-changing AI landscape
 Students can find and judge sources of AI knowledge — preferring primary, current sources over
 stale tutorials and unreliable AI answers. ("Seek out of the best books words of wisdom.")
 > Finding and evaluating are *one act*, not two — you judge a source as you find it. So the
