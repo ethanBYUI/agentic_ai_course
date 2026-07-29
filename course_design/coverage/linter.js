@@ -554,6 +554,11 @@
     return { model: model, rules: rules, summary: summary, generatedAt: new Date().toISOString() };
   }
 
-  global.CoverageLinter = { analyze: analyze, covers: covers, dayIndexOf: dayIndexOf };
+  global.CoverageLinter = {
+    analyze: analyze,
+    covers: covers,
+    coversComp: coversComp,   // views must use the same downward-coverage test
+    dayIndexOf: dayIndexOf
+  };
 
 })(typeof window !== "undefined" ? window : this);

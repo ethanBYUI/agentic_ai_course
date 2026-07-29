@@ -183,6 +183,7 @@
     renderDashboard(result.rules);
     renderNodeLink(result.model);
     renderMatrix(result);
+    renderTimeline(result);
     renderGraph(result);
     updateTabBadges(result.rules);
   }
@@ -448,12 +449,18 @@
       }
     });
 
-    // competency nodes (orphan = uncovered)
+    // competency nodes (orphan = uncovered). Only the id fits in the column, so
+    // the full name lives in a cursor-following tooltip — dot and id share one
+    // hover group, widened by an invisible hit circle so the 6px dot is easy to hit.
     comps.forEach(function (c) {
       var orphan = !coveredComp[c.id];
-      svg.appendChild(dot(colX.comp, yComp[c.id], orphan ? "var(--gap)" : "var(--c-comp)", orphan));
-      svg.appendChild(text(colX.comp - 12, yComp[c.id] + 4, c.id,
+      var g = svgEl("g", { class: "nl-node" });
+      g.setAttribute("data-tip", (c.label && c.label !== c.id) ? c.label : c.id);
+      g.appendChild(svgEl("circle", { cx: colX.comp, cy: yComp[c.id], r: 14, fill: "transparent" }));
+      g.appendChild(dot(colX.comp, yComp[c.id], orphan ? "var(--gap)" : "var(--c-comp)", orphan));
+      g.appendChild(text(colX.comp - 12, yComp[c.id] + 4, c.id,
         { "text-anchor": "end", "font-size": 11, fill: orphan ? "var(--gap)" : "var(--fg)" }));
+      svg.appendChild(g);
     });
     // activity/assessment nodes (orphan = no day)
     teaching.forEach(function (n) {
@@ -471,8 +478,9 @@
     });
 
     var scroll = document.createElement("div");
-    scroll.className = "svg-scroll";
+    scroll.className = "svg-scroll nl-wrap";
     scroll.appendChild(svg);
+    attachTooltip(scroll, svg);
     body.innerHTML = "";
     if (!days.length) {
       var n = document.createElement("div");
@@ -558,6 +566,205 @@
     return model.nodes.filter(function (n) { return n.kind === rel.colsKind; });
   }
 
+  /* ---- timeline: competency × day matrix ----------------------------------- *
+   * Rows are competencies, columns are days in schedule order. Every column and
+   * every edge here already exists in the linter model — days are derived from
+   * content filenames (linter.js analyze(), so an empty `lesson1_4.qmd` still
+   * gets a column) and cells reuse CoverageLinter.coversComp. Nothing is
+   * re-parsed; this is only the view.
+   *
+   * A cell's glyph says what kind of thing lands there:
+   *   yellow dot = prep reading · blue inner ring = activity · green outer ring
+   *   = assessment.
+   * Examples and untyped nodes get no glyph (they appear in the cell tooltip
+   * only) — they are not what makes a competency "placed".
+   *
+   * Parent roll-up: a parent competency is satisfied when every child is placed,
+   * matching makeCoverage() in the linter. On the days where a descendant lands,
+   * the parent row shows the same glyph dimmed ("inherited"), so an untagged
+   * parent reads as covered instead of as a gap.
+   */
+  var TL_KINDS = [
+    { key: "prep",   cls: "has-prep",   label: "prep",
+      test: function (n) { return n.kind === "prep_reading"; } },
+    { key: "act",    cls: "has-act",    label: "activity",
+      test: function (n) { return n.kind === "in_class" || n.kind === "practice" || n.kind === "activity"; } },
+    { key: "assess", cls: "has-assess", label: "assessment",
+      test: function (n) { return n.kind === "assessment"; } }
+  ];
+
+  function tlBucket(n) {
+    for (var i = 0; i < TL_KINDS.length; i++) if (TL_KINDS[i].test(n)) return TL_KINDS[i].key;
+    return "other";
+  }
+  function tlGlyphKeys(cell) {
+    return TL_KINDS.filter(function (k) { return cell && cell[k.key].length; })
+      .map(function (k) { return k.key; });
+  }
+  function tlMarkHtml(keys, derived) {
+    if (!keys.length) return "";
+    var cls = TL_KINDS.filter(function (k) { return keys.indexOf(k.key) !== -1; })
+      .map(function (k) { return k.cls; }).join(" ");
+    return '<span class="tl-mark ' + cls + (derived ? " derived" : "") + '"></span>';
+  }
+
+  function renderTimeline(result) {
+    var body = document.getElementById("timeline-body");
+    var model = result.model;
+    var comps = model.competencies.slice().sort(function (a, b) {
+      return String(a.id).localeCompare(String(b.id), undefined, { numeric: true, sensitivity: "base" });
+    });
+    var days = Object.keys(model.days).map(function (k) { return model.days[k]; })
+      .sort(function (a, b) {
+        if (a.dayIndex != null && b.dayIndex != null) return a.dayIndex - b.dayIndex;
+        return String(a.id).localeCompare(String(b.id), undefined, { numeric: true, sensitivity: "base" });
+      });
+    if (!comps.length || !days.length) {
+      body.innerHTML = '<div class="empty">No ' + (!comps.length ? "competencies" : "days") +
+        " to put on a timeline yet.</div>";
+      return;
+    }
+
+    var byId = {};
+    comps.forEach(function (c) { byId[c.id] = c; });
+
+    // direct[compId][dayId] = { prep:[nodes], act:[], assess:[], other:[] }
+    var direct = {};
+    comps.forEach(function (c) { direct[c.id] = {}; });
+    days.forEach(function (d) {
+      d.all.forEach(function (n) {
+        var bucket = tlBucket(n);
+        comps.forEach(function (c) {
+          if (!window.CoverageLinter.coversComp(n, c.id)) return;
+          var cell = direct[c.id][d.id] ||
+            (direct[c.id][d.id] = { prep: [], act: [], assess: [], other: [] });
+          cell[bucket].push(n);
+        });
+      });
+    });
+
+    // Descendants of a competency, memoized (used for the parent roll-up).
+    var descMemo = {};
+    function descendants(id) {
+      if (descMemo[id]) return descMemo[id];
+      var out = [];
+      descMemo[id] = out;   // set first: a malformed tree can't loop forever
+      (byId[id] ? byId[id].children : []).forEach(function (ch) {
+        out.push(ch);
+        descendants(ch).forEach(function (g) { out.push(g); });
+      });
+      return out;
+    }
+
+    // Glyphs a parent inherits on a given day from anything below it, plus the
+    // nodes responsible (so the tooltip can name them).
+    function inherited(compId, dayId) {
+      var cell = { prep: [], act: [], assess: [], other: [] };
+      descendants(compId).forEach(function (dId) {
+        var sub = (direct[dId] || {})[dayId];
+        if (!sub) return;
+        tlGlyphKeys(sub).forEach(function (k) {
+          sub[k].forEach(function (n) { cell[k].push({ node: n, via: dId }); });
+        });
+      });
+      return cell;
+    }
+
+    // Row verdict, same shape as the linter's makeCoverage: placed directly, or
+    // every child placed. Only glyph kinds count — an example alone isn't enough.
+    var placedMemo = {};
+    function placed(id) {
+      if (placedMemo.hasOwnProperty(id)) return placedMemo[id];
+      placedMemo[id] = false;
+      var mine = direct[id] || {};
+      var ok = Object.keys(mine).some(function (dId) { return tlGlyphKeys(mine[dId]).length > 0; });
+      var c = byId[id];
+      if (!ok && c && c.children.length) ok = c.children.every(placed);
+      placedMemo[id] = ok;
+      return ok;
+    }
+
+    // A day is a yellow column when nothing on it lands on any competency.
+    var dayHasMark = {};
+    days.forEach(function (d) {
+      dayHasMark[d.id] = comps.some(function (c) {
+        return tlGlyphKeys((direct[c.id] || {})[d.id]).length > 0;
+      });
+    });
+
+    var unitOf = function (dayId) { return String(dayId).split("_")[0]; };
+    var colCls = days.map(function (d, i) {
+      var cls = [];
+      if (!dayHasMark[d.id]) cls.push("col-gap");
+      if (i > 0 && unitOf(d.id) !== unitOf(days[i - 1].id)) cls.push("unit-start");
+      return cls.join(" ");
+    });
+
+    var rows = comps.map(function (c) {
+      var gap = !placed(c.id);
+      var sum = 0;
+      var cells = days.map(function (d, i) {
+        var cell = (direct[c.id] || {})[d.id];
+        var keys = tlGlyphKeys(cell);
+        var derived = false;
+        if (!keys.length) {
+          var inh = inherited(c.id, d.id);
+          keys = tlGlyphKeys(inh);
+          if (keys.length) { derived = true; cell = mergeOther(inh, cell); }
+        }
+        if (keys.length) sum++;
+        var tip = tlTip(c, d, cell, keys, derived);
+        return '<td class="tl-cell ' + colCls[i] + '"' + (tip ? ' title="' + esc(tip) + '"' : "") +
+          ">" + tlMarkHtml(keys, derived) + "</td>";
+      }).join("");
+      return '<tr class="' + (gap ? "gap-row" : "") + '">' +
+        '<th class="rowh" title="' + esc(c.id + " " + c.label) + '">' +
+          esc(c.id) + " " + esc(clip(c.label, 34)) + "</th>" +
+        '<td class="sum ' + (gap ? "sum-gap" : "sum-ok") + '">' + sum + "</td>" +
+        cells + "</tr>";
+    }).join("");
+
+    var foot = '<tr><th class="rowh">day →</th><th class="sumh">Σ</th>' +
+      days.map(function (d, i) {
+        var n = d.all.length;
+        return '<th class="dayh ' + colCls[i] + '" title="' + esc("Day " + d.id + " — " + n +
+          " node" + (n === 1 ? "" : "s")) + '">' + esc(d.id) + "</th>";
+      }).join("") + "</tr>";
+
+    body.innerHTML = "<div class='matrix-scroll'><table class='matrix tl'><tbody>" +
+      rows + "</tbody><tfoot>" + foot + "</tfoot></table></div>";
+  }
+
+  // Keep a parent's own uncounted nodes (examples etc.) visible on an inherited
+  // cell — the glyph comes from below, but "what else is here" still applies.
+  function mergeOther(inh, own) {
+    inh.other = (inh.other || []).concat((own && own.other) || []);
+    return inh;
+  }
+
+  // Entries are nodes, or {node, via} when they came from a sub-competency.
+  function tlEntry(e) {
+    var n = e.node || e;
+    return n.label + (e.via ? " [" + e.via + "]" : "");
+  }
+
+  function tlTip(comp, day, cell, keys, derived) {
+    if (!keys.length && !(cell && cell.other.length)) return "";
+    var lines = ["Day " + day.id + " · " + comp.id + " " + comp.label];
+    if (derived) lines.push("(inherited — nothing here tags " + comp.id + " itself)");
+    TL_KINDS.forEach(function (k) {
+      var ns = cell ? cell[k.key] : [];
+      if (ns.length) lines.push(k.label + ": " + ns.map(tlEntry).join(", "));
+    });
+    if (cell && cell.other.length) {
+      lines.push("not counted here: " + cell.other.map(function (e) {
+        var n = e.node || e;
+        return n.label + " (" + n.kind + ")";
+      }).join(", "));
+    }
+    return lines.join("\n");
+  }
+
   /* ---- Graph tab: model overview ------------------------------------------- */
 
   function renderGraph(result) {
@@ -614,6 +821,42 @@
       stroke: "var(--gap)", "stroke-width": 1.2, "stroke-dasharray": "3 3" }));
     return g;
   }
+  // Cursor-following tooltip for any [data-tip] group inside `svg`. Native <title>
+  // is the obvious option but browsers hold it back ~1s; this shows on contact.
+  // Positioned against `host` (the scroll box), so it rides along with scrolling.
+  function attachTooltip(host, svg) {
+    var tip = document.createElement("div");
+    tip.className = "nl-tip";
+    tip.hidden = true;
+    host.appendChild(tip);
+
+    function place(e) {
+      var hb = host.getBoundingClientRect();
+      // Offset off the cursor, then clamp so the tooltip never leaves the box.
+      var x = e.clientX - hb.left + host.scrollLeft + 14;
+      var y = e.clientY - hb.top + host.scrollTop - 10;
+      var maxX = host.scrollLeft + host.clientWidth - tip.offsetWidth - 6;
+      if (x > maxX) x = e.clientX - hb.left + host.scrollLeft - tip.offsetWidth - 14;
+      tip.style.left = Math.max(host.scrollLeft + 4, x) + "px";
+      tip.style.top = Math.max(host.scrollTop + 4, y) + "px";
+    }
+
+    svg.addEventListener("mouseover", function (e) {
+      var g = e.target.closest(".nl-node");
+      if (!g) return;
+      tip.textContent = g.getAttribute("data-tip");
+      tip.hidden = false;
+      place(e);
+    });
+    svg.addEventListener("mousemove", function (e) {
+      if (!tip.hidden && e.target.closest(".nl-node")) place(e);
+    });
+    svg.addEventListener("mouseout", function (e) {
+      var g = e.target.closest(".nl-node");
+      if (g && !g.contains(e.relatedTarget)) tip.hidden = true;
+    });
+  }
+
   function edge(x1, y1, x2, y2, color) {
     var mx = (x1 + x2) / 2;
     return svgEl("path", { d: "M" + x1 + "," + y1 + " C" + mx + "," + y1 + " " + mx + "," + y2 + " " + x2 + "," + y2,

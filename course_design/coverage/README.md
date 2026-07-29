@@ -56,17 +56,17 @@ Edit [`config.js`](config.js) to point it at files/folders. Roles:
 ## Node comment format (for when you spread things into days)
 
 Position encodes what it can; a single HTML comment carries the rest. Every
-property is terminated by `;`; commas separate values within a property:
+property is terminated by `;` or carriage return; Commas separate values within a property:
 
 ```markdown
 ## Pull - AI
 <!--
-  id: pull-ai;
-  type: practice;
-  competency: 3.4, 3.5;
-  use_case: sales;
-  prereqs: pull, hit-the-board;   # ids of activities/assessments, never competencies
-  template: pull-ai;              # on an instance: links back to the abstract
+  id: pull-ai
+  type: practice
+  competency: 3.4, 3.5
+  use_case: sales
+  prereqs: pull, hit-the-board   # ids of activities/assessments, never competencies
+  template: pull-ai              # on an instance: links back to the abstract
 -->
 ```
 

@@ -33,7 +33,7 @@
     <button class="tab" data-tab="m2">Node-link</button>
     <button class="tab" data-tab="m1">Matrix</button>
     <button class="tab" data-tab="graph">Graph</button>
-    <button class="tab muted" data-tab="timeline">Timeline</button>
+    <button class="tab" data-tab="timeline">Timeline</button>
   </nav>
 
   <section class="panel active" id="panel-m3">
@@ -72,11 +72,20 @@
   </section>
 
   <section class="panel" id="panel-timeline">
-    <div class="placeholder">
-      <div class="big">Timeline — unimplemented</div>
-      <p>A day-ordered lane showing teach-before-assess and prereq edges as forward/backward arrows.<br>
-      The ordering <em>rules</em> already run (see the Dashboard); this is only the missing <em>view</em>.</p>
+    <div class="legend">
+      <span><span class="tl-mark has-prep"></span> prep reading</span>
+      <span><span class="tl-mark has-act"></span> activity</span>
+      <span><span class="tl-mark has-assess"></span> assessment</span>
+      <span><span class="tl-mark has-act derived"></span> inherited from a sub-competency</span>
+      <span><span class="swatch gap"></span> competency on no day</span>
+      <span><span class="swatch warn"></span> day with no competency</span>
     </div>
+    <div id="timeline-body"><div class="empty">Load a folder to build the timeline.</div></div>
+    <h2>Timeline matrix — competency × day</h2>
+    <p class="lead">Columns are days, read left to right, taken from the day suffix in each content
+    filename (so an empty <code>lesson1_4.qmd</code> still gets a column). A red row is a competency
+    that lands on no day; a yellow column is a day that teaches no competency. A parent row is
+    satisfied when every child is placed, so it needs no tag of its own.</p>
   </section>
 
 </div>
