@@ -27,7 +27,7 @@ Student applies the idea in assessment/project
 <!--
   id: pass-offs
   type: assessment
-  competency: 1.1, 1.2
+  competency: 1
 -->
 
 Each take-home pass-off directly corresponds to a competency. It comprises of a literal test case, and they need to build an agent that passes the case. Introduced in Unit 3 (when they have AI coding permission).

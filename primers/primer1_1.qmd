@@ -3,6 +3,12 @@ title: "What is an API?"
 subtitle: "Primer 1.1   Read before Lesson 1"
 ---
 
+<!--
+  id: about-api
+  type: reading
+  competency: 1.1
+-->
+
 # Takeaways
 
 1. An API is a backend connection to an online service.
