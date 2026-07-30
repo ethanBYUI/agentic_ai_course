@@ -190,21 +190,6 @@
     return comps;
   }
 
-  function parseUseCases(text) {
-    var ucs = [], seen = {};
-    text.split(/\r?\n/).forEach(function (line) {
-      var m = line.match(/^##\s+(.+?)\s*$/);
-      if (!m) return;
-      var title = m[1].trim();
-      if (/^files\b/i.test(title)) return;
-      var id = slug(title);
-      if (seen[id]) return;
-      seen[id] = true;
-      ucs.push({ id: id, kind: "use_case", label: title });
-    });
-    return ucs;
-  }
-
   // Build activity/assessment/example/prep nodes from any content/template file.
   // Every node is declared by a `<!-- ... -->` comment block attached to its L2
   // heading (or the file itself, for a block before any heading).
@@ -478,9 +463,9 @@
     var compFile = files.find(function (f) { return f.path.endsWith(config.competenciesFile); });
     var competencies = compFile ? parseCompetencies(compFile.text) : [];
 
-    // use cases
+    // use cases — same comment-block format as every other node
     var ucFile = files.find(function (f) { return f.path.endsWith(config.useCasesFile); });
-    var useCases = ucFile ? parseUseCases(ucFile.text) : [];
+    var useCases = ucFile ? parseDocNodes(ucFile, "use_case", config) : [];
 
     // templates (abstracts)
     var tmplFile = files.find(function (f) { return f.path.endsWith(config.templatesFile); });
