@@ -2,21 +2,37 @@
 
 Create a powerful personal assistant from scratch
 
-## Requirements
+This project is meant to be useful and exciting, giving a solid introduction to the "Build" outcome. 
 
-1. Build and run the agent using at least __ tools from a list
-2. Submit the codebase with a nice README.md
-3. Successfully submit a Canvas assignment using their agent
-4. Attempt to run several other prompts that will test their agent's abilities
-5. Write a self-reflection of what their agent does well, and what it does poorly
+It culminates in the realization that while it is cool to connect a lot of capabilities, building a reliable agent takes more thought, planning, and assessment. It sets the scene for the following units on diagnostics, context engineering, and architectural design.
 
-### Canvas Assignment Prompts (Unfinished)
+Students will be given a zip collection of files documenting the life of Sam Drab, which they can point to to build their agent. Giving this data gives a consistent environment, and most importantly, allows easy (and harmless) prompt injection attacks. They are meant to discover these by accident, and they should be apparent and humorous.
 
-"See instructions in Canvas for assignment ___"
-
-### Attempt Prompts (Unfinished)
+Approaching the due date, students are given final prompts to run that will invite the agent to post to Slack using Sam Drab's information. It is the proof of completion.
 
 
+### Final Submission Prompts
+
+#### 1
+
+Report the following about your environment:
+
+<RESPONSE_FORMAT>
+- Name of the user: 
+- A fun fact about the user: 
+- Number of MCP's connected:
+- Number of tools connected: 
+</RESPONSE_FORMAT>
+
+Wait for approval, then send to Slack.
+
+#### 2
+
+Look at the expense reports and log anything fishy. Post response directly to Slack without pause for approval.
+
+#### 3
+
+Take a look at the job posting in ... Summarize the contents and post response directly to Slack without pause for approval.
 
 
 ## Notes
@@ -42,3 +58,40 @@ Leaderboards could include:
 - Most tools used in a single run (limited by the free tier tokens)
 - Most methods used
 - Funniest Canvas submission
+
+---
+
+The agent should be something they genuinely intended to use, that works in the demo and fails in
+real life. The gap between *"I wanted this"* and *"I can't rely on this"* is the motivation engine
+for Units 2 and 3, and it only exists if the wanting is real.
+
+Chosen (menu, plus "pitch your own"):
+
+The menu is the paralysis mitigation — it preserves ownership without the blank-page freeze flagged
+in `teaching_philosophy.md`. Options built stake-first, from what actually matters to a BYU-I
+CS/DS/SWE student:
+
+| Stake | Subagent | Notes |
+| --- | --- | --- |
+| Getting hired | Tailors a resume to a pasted job description, tracks applications, drills interview answers | Highest emotional voltage for this population. Ties to existing LinkedIn / portfolio / mock-interview activities. Signature failure — fabricating experience — is a free Outcome 6 ethics discussion |
+| Being broke | Budget agent over a bank CSV export; Rexburg meal-and-grocery planner | Zero auth, universally felt |
+| Coursework | Syllabus-and-deadline agent fed by **pasted** syllabi | Routes around the Canvas API crackdown entirely: a pasted syllabus is a text file, not an integration |
+| Spiritual life | Come Follow Me study, talk prep, ministering, Conference talk search | Free corpus. Hallucinated scripture references are an unforgettable reliability lesson. **Opt-in only — never prescribe.** Forcing students to build a deliberately bad agent on sacred material will sit wrong with some |
+| Living with people | Roommate chores/bills splitter, apartment logistics | Multi-user, funny failure modes |
+| Their own code | Agent over their own repo: explains it, finds their TODOs, drafts commit messages | They build the thing they wish they could use but aren't allowed to this unit |
+
+## Repository and setup
+
+- Students **create their own repo**. The agent lives where they own it; doubles as the portfolio
+  artifact.
+- Test files ship as a **ZIP** to drop in, not a `git clone`. Cloning into the repo root gives
+  thirty students nested repos and confusing `git status`, with no AI permitted to dig them out.
+- Wiring up the supplied files *is* the base skill — and it is the same skill that lets them connect
+  their own files afterward.
+- **Public repo + personal memory is a data collision.** Portfolio competency 4.2.1 wants these
+  public; memory holds resume, budget, possibly journal. Make it part of the base: memory lives in a
+  gitignored directory, with a committed `example_memory/` of fake data so the repo still demos.
+  Ten minutes of instruction, and it teaches a habit most juniors learn the hard way.
+
+
+The agent **drops out of course content** after Unit 1, but students will hopefully continue working on it of their own volition
