@@ -15,8 +15,8 @@ Grammar follows "Students can + verb" format.
 *Only implementation to exist functionally, design and deployment are out of scope. Students continuously evaluate and refine what they build; the iteration loop is carried in the wording, not given a separate outcome.*
 
 - 1.1 *flag wording* Connect to the model (the "brain")
-    - 1.1.1 Pick appropriate models for an agent or subagent
-    - 1.1.2 Connect to an LLM provider's API
+    - 1.1.1 Connect to an LLM provider's API
+    - 1.1.2 Pick appropriate models for an agent or subagent
     - 1.1.3 Implement common model features from documentation <!-- token limits, system prompt, temperature, structured output, web search, thinking, function calling, caching, other data types -->
 - 1.2 Design an agent's instructions and prompts <!-- system prompt, tool descriptions, skills, persona, few-shot, output format -->
 - 1.3 Give the agent memory and manage its context
@@ -44,15 +44,12 @@ Grammar follows "Students can + verb" format.
     - 2.1.1 *flag wording* Instrument tracing to see what the agent actually did
     - 2.1.2 Read runs, traces, and spans <!-- (inputs, outputs, metadata) -->
     - 2.1.3 Distinguish run types <!-- (LLM, tool, retriever, chain, prompt, parser) -->
-    - 2.1.4 *flag existence* Observe both pre-production and in production agent runs
 - 2.2 Measure agent performance <!-- choose an evaluator type to match the criterion -->
     - 2.2.1 Write and implement deterministic evaluators for hard constraints
-    - 2.2.2 Create LLM-as-judge evaluators for subjective qualities 
-        - 2.2.2.1 *flag existence* (pointwise and pairwise), and calibrate the judge *what needs to be specified under LLM-as-judge?*
+    - 2.2.2 Create LLM-as-judge evaluators for subjective qualities
     - 2.2.3 Build curated golden datasets from scratch
-    - 2.2.4 Build datasets from in-production responses
-    - 2.2.5 Run offline evals from datasets
-    - 2.2.6 *flag existence* Compare two or more agent versions objectively to decide which is better <!-- pairwise; "Battle of the Bots" --> *not sure if this captures the meaning of pairwise, and the comparison should be explicit in an experiment, which this also doesn't capture*
+    - 2.2.4 Run offline evals from datasets
+    - 2.2.5 *flag existence* Compare two or more agent versions objectively to decide which is better <!-- pairwise; "Battle of the Bots" --> *not sure if this captures the meaning of pairwise, and the comparison should be explicit in an experiment, which this also doesn't capture*
 - 2.3 Diagnose agent performance <!-- iterative, post-creation discovery -->
     - 2.3.1 Root-cause a failure from traces and eval results
     - 2.3.2 Classify failures into nameable failure modes

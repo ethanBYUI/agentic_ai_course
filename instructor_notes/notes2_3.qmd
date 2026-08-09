@@ -2,71 +2,130 @@
 
 Deepen understanding of "good" in the context of whether it works or not; identify failure modes
 
+## Outcomes
+
+- Name the six failure modes, and say which lever fixes each
+- Classify an observed failure into a mode and defend the classification
+- Describe a failure along the three dimensions (silent/loud, isolated/cascading, model/code)
+- Recognize the same failure under other names, and explain why no taxonomy is authoritative
+
 ## Notes
 
-Go through failure modes, what constitutes as "working"
+Start the conversation by asking what they expect from an agent, and what they would see as a
+failure. Collect their answers before showing the taxonomy — the list lands better as a
+tidying-up of what they already said than as a list handed down.
 
-Start the conversation by asking what they expect from an agent, what would they see as a failure
+The taxonomy is committed in [failure_modes.md](../course_design/failure_modes.md). Teach from
+that document; it is the source of truth and holds the reasoning, the dropped categories, and
+the source links.
 
-I have yet to find a solid source for this. This is a point for re-evaluation, but here are the failure modes as of now:
+### The framing that makes it teachable
 
-### Failure Modes
+The modes are **named for the lever that fixes them**, not for the phenomenon. So this is not a
+new list to memorize — it is the Module 1 build levers read backwards. Say that out loud early;
+it converts the whole day from vocabulary drill into recognition.
 
-All these failure modes https://latitude.so/blog/ai-agent-failure-detection-guide
+| Mode | What went wrong | Lever |
+|---|---|---|
+| Tool | wrong tool, bad args, unparsed output | tool definitions & schemas |
+| Grounding | asserts what nothing supports | retrieval / knowledge state |
+| State | needed info lost, stale, or poisoned | state & memory design |
+| Control | won't stop, stops early, wanders | deterministic scaffolding |
+| Specification | did what you said, not what you meant | instructions & spec |
+| Safety | harmful or disallowed, even if correct | guardrails, permissions, HITL |
 
-- Infinite loop
-- Hallucination (plans)
-- Context loss
-- Dumb zone (full context)
-- Tool misuse
-- Cascading errors
+Naming the mode *is* naming the fix. That is the whole point, and it is what makes the bridge
+competency (root-cause → choose a lever) teachable in a single day.
 
-https://www.youtube.com/watch?v=D37Ijn2o5U0
+### Admit the mess — out loud, early
 
+- No authoritative taxonomy exists. Every list is cut for a different purpose.
+- OWASP Top 10 for LLM Apps (2025) — cut by attacker. Mostly collapses into our Safety.
+- MAST (arxiv 2503.13657) — cut by trace analysis. 14 modes, multi-agent only.
+- Vendor lists — cut by what their tool detects. Five or six items, never the same six.
+- Ours is cut by the lever, because our question is "what do I change?"
+- Line to use: *"Six because you need to say something in a meeting Tuesday. It's a tool, not a discovery."*
+- Why say it: they'll hit other lists this week, and Outcome 5 says an unhedged list in a
+  four-year-old field is the warning sign.
 
-### A longer list
+**If they push back that OWASP is authoritative — agree, then show the cut.** It's a risk
+register (what can hurt you); ours is a repair manual (what's broken, indexed by the fix). No
+conflicts, because different axes. Work the mapping live:
 
-https://www.youtube.com/watch?v=A59R_RUh2Dw
+- 4 of their 10 → our Safety alone (prompt injection, sensitive info disclosure, excessive
+  agency, system prompt leakage). Our one lever, their whole field.
+- 2 land outside our six (supply chain, model poisoning) — build-time, no lever a student can
+  pull. Name it as a gap in ours, don't paper over it.
+- Misinformation → Grounding. Unbounded consumption → Control. Improper output handling → Tool.
+- **Two of ours have no OWASP entry: State and Specification.** "Forgot the order number" and
+  "did what I said, not what I meant" aren't security risks — and they're most of Project 2.
+- The point, sharper than "everyone disagrees": *the most authoritative list in the room is
+  authoritative about a different question.*
+- Detail worth using: LLM09 is "Misinformation," not "hallucination." OWASP dodged the popular
+  word too.
 
-1. Tool Interface Failures
-- These happen frequently but have high mitigation maturity and are relatively easy to fix.
+### Aliases — recognition, not memorization
 
-- Output parsing errors
+- **Tool** — tool interface / selection / execution error · parsing error · schema violation
+- **Grounding** — hallucination · fabrication · confabulation · faithfulness · sycophancy
+- **State** — context loss / exhaustion / degradation / rot · dumb zone · memory pollution
+- **Control** — infinite loop · budget drain · runaway · planning failure · premature termination
+- **Specification** — goal / semantic / spec drift · instruction decay · reward hacking
+- **Safety** — alignment violation · prompt injection · jailbreak · excessive agency · exfiltration
 
-- Selection errors
+"Hallucination" is the most-used and least useful word. Follow-up is always: *which lever?*
 
-2. Termination Failures
-- Issues related to when and how an agent stops its processes.
+### The long list — hand out, don't lecture
 
-- Infinite loops
+Job: make six feel like a compression of something real, not an arbitrary short list.
 
-- Budget drains
+Tool — parsing error · wrong tool · bad args · never called · tool errored · too many tools ·
+mis-framed descriptions
+Grounding — fabricated facts/citations/APIs · retrieval miss, answered anyway · retrieved and
+contradicted it · sycophantic confirmation
+State — window exhaustion · context degradation · memory pollution · session state loss
+Control — infinite loop · budget drain · premature termination · bad plan · abandons plan ·
+wanders · sub-agent coordination loss · deadlock
+Specification — spec drift · semantic drift · hidden assumption · reward hacking
+Safety — prompt injection · excessive agency · data leak · alignment faking
 
-3. State Management Failures
-- Structural issues stemming from limitations in an agent's working memory over long trajectories.
+Then the payoff: **cascading errors** and **code bug** are top-level modes on published lists
+and dimensions in ours. Taxonomies disagree about what counts as a category, not about what
+goes wrong.
 
-- Context window exhaustion: Early steps are silently truncated and forgotten.
+### The dimensions carry the real skill
 
-- Memory pollution: An agent writes bad data and treats it as ground truth for the rest of the run.
+Spend real time here, not just on the six.
 
-4. Drift Failures
-- Failures where the agent shifts away from its original goal due to micro-reinterpretations.
+- **silent ↔ loud** — trains **detection**. A stack trace is a bug report; a confidently wrong
+  refund amount is a diagnosis. Ask: "how would you have caught this if it never crashed?"
+  Every evaluator they write later is an answer to that question.
+- **isolated ↔ cascading** — trains **localization**. Hunt the trace for the *earliest* bad
+  span, not the last. This is the skill that makes their LangSmith reading from 2_2 pay off.
+- **model ↔ code** — students reflexively blame the model. Separate it early.
 
-- Semantic drift: The agent slowly shifts its task over multiple steps (e.g., turning a summary into a hallucinated financial report).
+### Coverage note
 
-- Premature termination: Stopping before the full objective is complete.
+[slide2_3.qmd](../lecture_slides/slide2_3.qmd) works three of the six in depth — Control
+(infinite loop), Tool (hallucinated planning), Safety (unsafe tool use). Grounding, State, and
+Specification are named but not worked; students meet them in Project 2. If a day frees up,
+Specification is the one most worth promoting to a worked example, since it is the hand-off to
+Outcome 3.
 
-5. Coordination Failures
-- Breakdowns in multi-agent systems where the overarching management fails.
+The hallucinated-planning slide is the best demonstration of why the taxonomy is lever-named:
+students want to file it under Grounding because "hallucination" sounds like a model problem,
+but its fix is the tool schema. Let them make that mistake before correcting it.
 
-- Sub-agent coordination loss: Orchestrators lose track of what subtasks are being worked on, leading to exponential overhead.
+### Simple outline
 
-6. Adversarial & Specification Failures
-Catastrophic failures with very low mitigation maturity, requiring containment rather than just detection.
+- Ask what they expect, what counts as failure — collect on the board
+- Reveal the six, mapped back to the levers they already built
+- Dimensions, with emphasis on silent and cascading
+- Classify real failures from traces; make them *defend* the label
+- Where classifications are contested, that's the lesson — several levers can be plausible
 
-- Prompt injection cascades: Malicious instructions overriding the agent's programming (e.g., exfiltrating API keys).
+### Caution
 
-- Reward hacking: The agent finds a loophole to achieve a reward without completing the actual work.
-
-- Alignment faking: The agent falsely appears to follow safety or operational guidelines.
-
+Some failures genuinely admit more than one fix, so the mode is a judgment call rather than a
+lookup. Do not present the taxonomy as a decision tree with unique answers. The assessable act
+is defending a classification with trace evidence, not producing the "right" label.

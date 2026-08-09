@@ -41,7 +41,6 @@ Pick from this menu, or pitch your own idea to the instructor:
 
 - **Job hunt.** Tailors your resume to a job description you paste in, tracks applications, drills
   interview questions.
-- **File search.** Move your memory to a subagent and give it access to more files.
 - **Money.** Reads a CSV export from your bank, categorizes spending, answers questions about it.
   Or plans meals and groceries on a budget.
 - **Coursework.** You paste in your syllabi. It answers questions about deadlines and requirements.

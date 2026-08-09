@@ -384,11 +384,13 @@ foreground when they ask "what documents are in the repo?"*
 
 ---
 
-## FAILURE MODES — raw teaching material (banked, not yet structured)
+## FAILURE MODES — raw teaching material (banked, SUPERSEDED)
 
-> Jointly discovered. NOT a competency list — this is perspective and optionally *material* to teach
-> through (see banked insight below). 
-> Copy/paste into teaching material where wanted.
+> ✅ **Settled.** The committed taxonomy is [../failure_modes.md](../failure_modes.md): six modes
+> each named for the *lever that fixes it* (tool · grounding · state · control · specification ·
+> safety), plus the three dimensions below, which survived intact and carry most of the teaching
+> value. The raw list below is kept as the source material it was synthesized from — it is no
+> longer the thing to teach from, and it is not a competency list.
 
 **Mechanisms (root causes — each points toward a fix-lever):**
 - **Context degradation / pollution** — output quality drops over long sessions as the window fills with noise

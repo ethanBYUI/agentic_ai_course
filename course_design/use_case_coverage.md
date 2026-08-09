@@ -2,9 +2,9 @@
 
 One course requirement is to cover as many use cases as possible to bring interest to a variety of students. It comes from competency 5.5 — the one competency no single activity can satisfy, since breadth *is* the evidence.
 
-A use case is an industry domain: what field a student wants to work in. Coverage comes from `use_case:` tags on activities and readings, not from file lists here.
+A use case is a field a student would name as the one they want to work in — usually an industry, sometimes a practice. Entries overlap on purpose; a node may carry several `use_case:` tags. Coverage comes from those tags, not from file lists here.
 
-Industry list is Part 2 of [research/every-use-case.md](research/every-use-case.md), compiled from:
+List is drawn from [research/every-use-case.md](research/every-use-case.md), compiled from:
 
 - [IBM](https://www.ibm.com/think/topics/ai-agent-use-cases)
 - [Domo](https://www.domo.com/learn/article/ai-agent-examples)
@@ -31,6 +31,10 @@ Industry list is Part 2 of [research/every-use-case.md](research/every-use-case.
 
 <!-- id: supply-chain; type: use-case -->
 
+## Transportation & Logistics
+
+<!-- id: transportation-logistics; type: use-case -->
+
 ## Energy
 
 <!-- id: energy; type: use-case -->
@@ -51,6 +55,10 @@ Industry list is Part 2 of [research/every-use-case.md](research/every-use-case.
 
 <!-- id: government; type: use-case -->
 
+## Emergency Response
+
+<!-- id: emergency-response; type: use-case -->
+
 ## Agriculture
 
 <!-- id: agriculture; type: use-case -->
@@ -66,3 +74,35 @@ Industry list is Part 2 of [research/every-use-case.md](research/every-use-case.
 ## Professional Services
 
 <!-- id: professional-services; type: use-case -->
+
+## IT & DevOps
+
+<!-- id: it-devops; type: use-case -->
+
+## Automation
+
+<!-- id: automation; type: use-case -->
+
+## Customer Support
+
+<!-- id: customer-support; type: use-case -->
+
+## Sales
+
+<!-- id: sales; type: use-case -->
+
+## Analytics
+
+<!-- id: analytics; type: use-case -->
+
+## Legal
+
+<!-- id: legal; type: use-case -->
+
+## Software & Technology
+
+<!-- id: software-technology; type: use-case -->
+
+## Non-profit
+
+<!-- id: non-profit; type: use-case -->

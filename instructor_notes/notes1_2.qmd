@@ -1,7 +1,14 @@
 ## Most Important Thing
 
-Finish setup and point out the most important LLM-native features
+Understand the basic scaffold of an agent
 
-## After Class
+## Objectives
 
-They go on a scavenger hunt in the documentation to find and try new things
+- Principles of agents
+- Anatomy of create_agent
+- Structure of input/output
+- Introduce memory and tools
+
+## Practice
+
+Inspect the structure of output, fill in the blank for memory, fill in the blank for tools

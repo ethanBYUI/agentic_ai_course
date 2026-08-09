@@ -45,6 +45,12 @@ How this is used is in flux
 
 - regex, schema validation, exact match, did-it-call-the-tool
 
+2.3.2 Classify failures into nameable failure modes
+
+- tool, grounding, state, control, specification, safety — each named for the lever that fixes it
+- dimensions (modifiers, not modes): silent↔loud · isolated↔cascading · model↔code
+- COMMITTED, and longer than a menu line deserves — see [failure_modes.md](failure_modes.md)
+
 3.3 Choose which quality dimensions matter for an agent
 
 - correctness

@@ -7,7 +7,3 @@ The loop really isn't complete without production. Maybe the end-to-end loop doe
 ## Menus
 
 How do I decide what goes into the outcomes and competencies from the menus? How do I make sure menu items are covered? Maybe it has to do with how much it matters and if the menu is exhaustive and unlikely to change. Also, if it can't be taught in a day (because I could just put the top competency and have menu items fit that day)
-
-## Failure Modes
-
-There are so many failure mode categories. What do I focus on? Just the skills and not the types? Introduce the types briefly?

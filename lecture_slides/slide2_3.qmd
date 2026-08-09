@@ -12,7 +12,74 @@ This lesson covers three of the most common failure modes and how to mitigate th
 Agentic AI is not just an LLM with tools. It's a system that observes, plans, acts, and evaluates — cyclically. That complexity introduces new categories of failure. Modern failures are usually architectural, not model-level.
 :::
 
+## Six modes, named by their fix
+
+| Mode | Lever |
+|---|---|
+| Tool | tool definitions & schemas |
+| Grounding | retrieval / knowledge state |
+| State | state & memory design |
+| Control | deterministic scaffolding |
+| Specification | instructions & spec |
+| Safety | guardrails, permissions, HITL |
+
+::: notes
+These are not six new things. They are the six levers you already built in Module 1, read backwards — each mode is named for the thing you reach for to fix it. So classifying a failure and choosing a fix are the same act.
+
+We work three of them in depth today. The other three you will meet in the wild during Project 2.
+:::
+
+## Nobody agrees on this list
+
+- **OWASP Top 10 for LLM Apps** — cut by attacker
+- **MAST** (research) — 14 modes, multi-agent only
+- **Vendor lists** — cut by what their tool detects
+- **Ours** — cut by the lever that fixes it
+
+::: notes
+There is no authoritative taxonomy of agent failure. The field is young, the systems change every six months, and every list is cut for a different purpose. OWASP asks "what do I defend against?" MAST asks "what did we observe in 150 traces?" We ask "what do I change?" — so our categories are levers.
+
+None of them is wrong. They're answers to different questions.
+
+I'm giving you six because you need to say something in a meeting on Tuesday. It's a working vocabulary, not a discovery. If you find a better cut for your work, take it.
+
+You will hit other lists this week. If you think ours is *the* taxonomy, the first contradiction reads as someone being wrong. And remember Outcome 5 — in a four-year-old field, a confident unhedged list is the warning sign, not the credential.
+:::
+
+## The same failure, other names
+
+- **Tool** — tool interface / selection / execution error · parsing error
+- **Grounding** — hallucination · fabrication · faithfulness · sycophancy
+- **State** — context loss · exhaustion · degradation · memory pollution
+- **Control** — infinite loop · budget drain · runaway · premature termination
+- **Specification** — goal drift · semantic drift · reward hacking
+- **Safety** — alignment violation · prompt injection · excessive agency
+
+::: notes
+Recognition, not memorization. You will hear all of these.
+
+"Hallucination" is the most-used word in the industry and the least useful — it names a symptom with at least three different fixes. When someone says it, the follow-up question is always: which lever?
+:::
+
+## Three dimensions cut across all six
+
+- Detectability: **silent ↔ loud**
+- Propagation: **isolated ↔ cascading**
+- Origin: **model ↔ code**
+
+::: notes
+Any mode can carry any dimension, and this is where most of the diagnostic skill lives.
+
+**Silent vs. loud:** a stack trace is a bug report; a confidently wrong refund amount is a diagnosis. Silent failures are the dangerous ones — you cannot classify what you never noticed. Ask constantly: how would I have caught this if it never crashed?
+
+**Isolated vs. cascading:** one bad tool result flows downstream through three more steps before anything looks wrong. Cascading failures are why you hunt the trace for the *earliest* bad span, not the last.
+
+**Model vs. code:** probabilistic failure or deterministic bug. Students reflexively blame the model. Separate it early.
+:::
+
 # Failure Mode 1: Infinite Loop
+
+## Mode: Control · Lever: deterministic scaffolding
 
 ## The agent retries without progress
 
@@ -54,6 +121,14 @@ Not a catastrophic failure mode, but it wastes resources and increases cost.
 
 # Failure Mode 2: Hallucinated Planning
 
+## Mode: Tool · Lever: tool definitions & schemas
+
+::: notes
+Worth pausing on this one. "Hallucination" sounds like a model problem, so students want to file it under grounding and blame the LLM. But look at the mitigation: define the tool schemas properly. The lever is the tool definitions, so the mode is Tool.
+
+This is the taxonomy earning its keep — naming the mode by its fix cuts through a label that would otherwise send you to the wrong lever.
+:::
+
 ## The agent makes a plausible but impossible plan
 
 ::: notes
@@ -91,6 +166,12 @@ Example: You ask an agent to book flights to Milan under $500. The agent plans: 
 :::
 
 # Failure Mode 3: Unsafe Tool Use
+
+## Mode: Safety · Lever: guardrails, permissions, HITL
+
+::: notes
+Note the name is misleading on purpose — it involves a tool, but the lever is not the tool definition. The action executed correctly. What failed was the permission around it. Failure against values, not against task-correctness.
+:::
 
 ## The agent takes a valid but harmful action
 
@@ -148,4 +229,39 @@ Agentic AI failures aren't random — they're the result of predictable design g
 - **Lack of monitoring:** No tracking of actions, progress, or plan validity.
 
 Engineering discipline — not just model quality — is what makes agents reliable.
+
+Close by returning to the six. Every one of them is a lever you already know how to pull. The hard part was never the fix — it's noticing the failure (silent/loud) and finding where it started (isolated/cascading). That is what Project 2 is for.
+:::
+
+# Appendix: The Long List
+
+## Every named mechanism, mapped
+
+**Tool** — parsing error · wrong tool · bad args · never called · tool errored · too many tools · mis-framed descriptions
+
+**Grounding** — fabricated facts / citations / APIs · retrieval miss, answered anyway · retrieved it and contradicted it · sycophantic confirmation
+
+**State** — window exhaustion · context degradation · memory pollution · session state loss
+
+## Every named mechanism, mapped
+
+**Control** — infinite loop · budget drain · premature termination · bad plan · abandons plan · wanders · sub-agent coordination loss · deadlock
+
+**Specification** — spec drift · semantic drift · hidden assumption · reward hacking
+
+**Safety** — prompt injection · excessive agency · data leak · alignment faking
+
+::: notes
+Don't lecture through these. The job of the long list is to make six feel like a compression of something real rather than an arbitrary short list.
+:::
+
+## Two that didn't make the cut
+
+- **Cascading errors** → our *propagation* dimension
+- **Code bug** → our *origin* dimension
+
+::: notes
+Both appear as top-level failure modes on published lists. In our cut they're dimensions, because they can happen to any of the six.
+
+This is the payoff of the whole appendix: taxonomies mostly disagree about what counts as a *category*, not about what goes wrong.
 :::

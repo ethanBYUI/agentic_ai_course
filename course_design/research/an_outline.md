@@ -1,18 +1,18 @@
 Week 1
-0.1
-1.1
-1.2
+0.1 - Intro: Is this course for me? Yes
+1.1 - API: Make a call, get a response - 1.1
+1.2 - Concepts, finish troubleshooting - 1.
 Week 2
-1.3
-1.4
-1.5
+1.3 - Group, solve a problem together
+1.4 - Setup tools and memory locally
+1.5 - Sub-agents as tools
 Week 3
-1.6
-1.7
-1.8
+1.6 - MCP and long-term memory
+1.7 - Continued
+1.8 - Ethics discussion, Work day
 Week 4
-2.1 - Debrief, solidify
-2.2 - Tracing Basics
+2.1 - Debrief, review and intro
+2.2 - Tracing - Read and Instrument
 2.3 - Failure Modes, Advanced tracing
 Week 5
 2.4 - Advanced tracing

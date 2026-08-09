@@ -14,6 +14,7 @@ APIs & Your First LLM Call
 - Define what an API is, broadly and practically
 - Make an API call to an LLM — seamless environment setup
 - Be aware of common challenges when working with APIs
+- Play with changing the models and model parameters
 
 # Links
 
@@ -48,3 +49,7 @@ Check in regularly to see how many have gotten a response, invite buddies to hel
 When more that half the class has finished that step, invite them to move on to the self-directed play
 
 If they can't get the API working by the end of the day, you'll have to authorize AI use for troubleshooting it or meet with them individually.
+
+## practice notes
+
+They should be invited to play with changing the model, temperature, and other model paramaters in the documentation. That requires: a meaningful example, a few questions, comparison, and links to documentation to find more parameters.

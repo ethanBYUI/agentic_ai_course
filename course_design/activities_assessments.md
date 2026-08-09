@@ -63,7 +63,7 @@ An in-class coding challenge definitively shows the student's speed and ability 
   id: project-1
 -->
 
-Students 
+Students are their own client, given a base requirement for a locally run agent, along with a few options for extending it. They should connect it to their own files, but are also given access to Sam Drab's file system for practice and submission. Submission is via course MCP (doubles as teaching and assessment tool)
 
 ## Talking to Employer About Ethics
 
@@ -93,7 +93,7 @@ Connected to:
 
 Spend a few weeks evaluating, diagnosing, measuring an agent. Culminates in written and oral communication about the agent, targeted toward a mock employer and company audience.
 
-Compises of the activities in this document:
+Comprises of the activities in this document:
 - Present Your Findings
 - Report Your Findings
 - Progress Meeting with Fake Employer
@@ -186,7 +186,7 @@ Students are given a dataset of definitions for different industry terms and the
 
 <!--
   id: human-review-definition-practice
-  competency: 2.2.6, 2.3.3, 4.1
+  competency: 2.2.5, 2.3.3, 4.1
 -->
 
 Students use human review to give AB comparisons of two explanations from different students, treating each student as an agent. The top student is named best agent. We can include two AI agents in the mix for fun. 
@@ -196,7 +196,7 @@ Students use human review to give AB comparisons of two explanations from differ
 <!--
   id: definition-dataset
   type: assessment
-  competency: 2.2.3, 2.2.4, 4.1
+  competency: 2.2.3, 4.1
 -->
 
 Student defines every term to create their own definition dataset, first on their own, then from in production (their peers' responses)

@@ -1,0 +1,69 @@
+---
+title: "What is Human-in-the-Loop?"
+subtitle: "Primer 2.1   Read before Lesson 2.1"
+---
+
+<!--
+  id: about-hitl
+  type: reading
+  day: 2_1
+  competency: 1.5.1
+-->
+
+# Takeaways
+
+1. Human-in-the-loop (HITL) means an agent pauses before a risky action and waits for a person to approve, edit, reject, or answer it.
+2. Not every tool needs this — you choose which actions are risky enough to require review.
+3. LangChain implements this with a middleware plus a checkpointer, so execution can genuinely pause and resume later, not just get slowed down.
+
+# What is Human-in-the-Loop?
+
+By this point your agent can call tools, remember things across sessions, and pull in outside systems through MCP. It can *act*. That's exactly when a new question shows up: what happens the moment it's about to do something wrong?
+
+For a tool that prints "4653" for a math problem, a wrong answer is annoying. For a tool that sends a message, schedules a patient, or moves money, a wrong answer is a real-world consequence you can't quietly patch in the next release.
+
+**Human-in-the-loop is a pause button you put in front of specific tools.** The agent proposes an action, execution stops, a person looks at exactly what's about to happen, and only then does it continue — approved, edited, rejected, or answered directly.
+
+---
+
+## A Simple Analogy
+
+Think of a intern who drafts emails for their manager. The intern (the agent) can write anything they want, but nothing gets *sent* until the manager (the human) glances at it and clicks send — or fixes a typo first, or says "no, don't send this one."
+
+The intern isn't slower at drafting because of this. They just don't have the authority to hit send unsupervised yet.
+
+---
+
+## The Four Decisions
+
+| Decision | What it means |
+|---|---|
+| ✅ Approve | Run the action exactly as proposed |
+| ✏️ Edit | Change something first, then run it |
+| ❌ Reject | Don't run it — and tell the agent why |
+| 💬 Respond | Answer directly, skipping the tool entirely |
+
+You don't have to allow all four for every tool. A tool that deletes something might only ever offer approve/reject — editing a delete doesn't really make sense.
+
+---
+
+## Why This Needs a Checkpointer
+
+A pause that lasts a few milliseconds isn't interesting. A pause that lasts until a nurse has time to actually look at it — that could be minutes, could be tomorrow morning — requires the agent's entire state to be saved somewhere durable, not just held in a variable. That's what the checkpointer is for. It's what makes "pause and resume later" actually possible instead of just "block and wait."
+
+---
+
+# What to Think About Before Class
+
+Come to class ready to answer these in your head:
+
+- Think of a tool you've already built (retail inventory, hotel memory, network status). Would you want a human reviewing every call to it? Why or why not?
+- What's the difference between a tool that deserves `reject` only, versus one that deserves `edit` too?
+- Who is the "human" in human-in-the-loop, in a real production system — is it always the end user?
+
+---
+
+::: {.callout-tip}
+## You do not need to memorize anything
+This primer is just to get the concept in your head before we build with it. Everything will click once you watch an agent actually pause mid-run in class.
+:::

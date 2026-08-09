@@ -1,0 +1,861 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Use Cases → Course Competencies (LangChain)</title>
+<style>
+  :root {
+    color-scheme: light dark;
+
+    --ground:      #F7F8F6;
+    --surface:     #FFFFFF;
+    --surface-alt: #F1F3F0;
+    --line:        #DDE1DC;
+    --line-soft:   #E8EBE6;
+    --ink:         #1B211E;
+    --ink-soft:    #4C5651;
+    --ink-mute:    #6E7873;
+    --accent:      #2E6A5C;
+    --accent-soft: #E2EDE8;
+    --clay:        #9C5230;
+    --clay-soft:   #F3E7E0;
+
+    --sans: "Segoe UI", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+    --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
+    --mono: ui-monospace, "Cascadia Mono", "SF Mono", Consolas, "Liberation Mono", monospace;
+
+    --measure: 66ch;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ground:      #141816;
+      --surface:     #1A1F1D;
+      --surface-alt: #202624;
+      --line:        #2E3835;
+      --line-soft:   #262E2C;
+      --ink:         #E6EAE7;
+      --ink-soft:    #B3BDB8;
+      --ink-mute:    #8A948F;
+      --accent:      #7CC0AB;
+      --accent-soft: #1F332D;
+      --clay:        #D5936C;
+      --clay-soft:   #33241C;
+    }
+  }
+
+  :root[data-theme="light"] {
+    color-scheme: light;
+    --ground:      #F7F8F6;
+    --surface:     #FFFFFF;
+    --surface-alt: #F1F3F0;
+    --line:        #DDE1DC;
+    --line-soft:   #E8EBE6;
+    --ink:         #1B211E;
+    --ink-soft:    #4C5651;
+    --ink-mute:    #6E7873;
+    --accent:      #2E6A5C;
+    --accent-soft: #E2EDE8;
+    --clay:        #9C5230;
+    --clay-soft:   #F3E7E0;
+  }
+
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --ground:      #141816;
+    --surface:     #1A1F1D;
+    --surface-alt: #202624;
+    --line:        #2E3835;
+    --line-soft:   #262E2C;
+    --ink:         #E6EAE7;
+    --ink-soft:    #B3BDB8;
+    --ink-mute:    #8A948F;
+    --accent:      #7CC0AB;
+    --accent-soft: #1F332D;
+    --clay:        #D5936C;
+    --clay-soft:   #33241C;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { -webkit-text-size-adjust: 100%; }
+
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  .wrap {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: clamp(2rem, 5vw, 4.5rem) clamp(1rem, 4vw, 3rem) 6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 3.25rem;
+  }
+
+  a {
+    color: var(--accent);
+    text-underline-offset: 0.18em;
+    text-decoration-thickness: 1px;
+    text-decoration-color: color-mix(in srgb, var(--accent) 45%, transparent);
+  }
+  a:hover { text-decoration-color: currentColor; }
+  a:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  /* ---- masthead ---- */
+
+  .masthead {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 2rem;
+  }
+
+  .eyebrow {
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    font-weight: 600;
+  }
+
+  h1 {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: clamp(2rem, 4.4vw, 3rem);
+    line-height: 1.12;
+    letter-spacing: -0.015em;
+    margin: 0;
+    text-wrap: balance;
+  }
+  h1 .arrow { color: var(--accent); }
+
+  .dek {
+    max-width: var(--measure);
+    color: var(--ink-soft);
+    font-size: 1.03rem;
+    margin: 0;
+  }
+
+  .sources {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.25rem;
+    font-size: 0.85rem;
+    color: var(--ink-mute);
+  }
+
+  /* ---- reading key ---- */
+
+  .key {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));
+    gap: 1px;
+    background: var(--line-soft);
+    border: 1px solid var(--line-soft);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+
+  .key > div {
+    background: var(--surface);
+    padding: 1.15rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .key h3 {
+    margin: 0;
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  .key p {
+    margin: 0;
+    font-size: 0.88rem;
+    color: var(--ink-soft);
+    line-height: 1.55;
+  }
+
+  /* ---- section headings ---- */
+
+  .section-head {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  h2 {
+    font-family: var(--serif);
+    font-size: 1.6rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin: 0;
+  }
+
+  .section-note {
+    margin: 0;
+    max-width: var(--measure);
+    font-size: 0.9rem;
+    color: var(--ink-mute);
+  }
+
+  /* ---- the map ---- */
+
+  .map {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .table-scroll {
+    overflow-x: auto;
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    background: var(--surface);
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    min-width: 940px;
+    font-size: 0.9rem;
+  }
+
+  thead th {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    background: var(--surface-alt);
+    text-align: left;
+    font-size: 0.7rem;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    font-weight: 700;
+    padding: 0.85rem 1rem;
+    border-bottom: 1px solid var(--line);
+    white-space: nowrap;
+  }
+
+  tbody td {
+    padding: 1rem;
+    border-bottom: 1px solid var(--line-soft);
+    vertical-align: top;
+    color: var(--ink-soft);
+  }
+
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:hover td { background: color-mix(in srgb, var(--accent) 5%, transparent); }
+
+  th.c-case, td.c-case { width: 12%; }
+  th.c-ex,   td.c-ex   { width: 19%; }
+  th.c-cs,   td.c-cs   { width: 17%; }
+
+  .case-name {
+    font-family: var(--serif);
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.25;
+    display: block;
+  }
+
+  .none {
+    color: var(--ink-mute);
+    font-style: italic;
+    font-size: 0.85rem;
+  }
+
+  .studies {
+    font-size: 0.84rem;
+    line-height: 1.5;
+  }
+
+  ul.comp {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+  }
+
+  ul.comp li {
+    line-height: 1.5;
+    padding-left: 0.9rem;
+    position: relative;
+  }
+
+  ul.comp li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.62em;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: color-mix(in srgb, var(--accent) 60%, transparent);
+  }
+
+  code {
+    font-family: var(--mono);
+    font-size: 0.79em;
+    font-variant-numeric: tabular-nums;
+    background: var(--accent-soft);
+    color: var(--accent);
+    padding: 0.12em 0.4em;
+    border-radius: 2px;
+    white-space: nowrap;
+    font-weight: 600;
+  }
+
+  code.ethic {
+    background: var(--clay-soft);
+    color: var(--clay);
+  }
+
+  /* ---- pairings ---- */
+
+  .pairings {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .pairing {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    padding: 1.35rem 1.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+  }
+
+  .pairing .when {
+    font-size: 0.72rem;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    font-weight: 700;
+    line-height: 1.5;
+  }
+
+  .pairing .pick {
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.3;
+  }
+
+  .pairing p {
+    margin: 0;
+    font-size: 0.88rem;
+    color: var(--ink-soft);
+  }
+
+  footer {
+    border-top: 1px solid var(--line);
+    padding-top: 1.5rem;
+    font-size: 0.82rem;
+    color: var(--ink-mute);
+  }
+
+  /* ---- stacked layout on narrow screens ---- */
+
+  @media (max-width: 860px) {
+    .table-scroll { border: none; background: none; overflow-x: visible; }
+    table, thead, tbody, tr, td { display: block; width: 100%; min-width: 0; }
+    thead { display: none; }
+
+    tbody tr {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 3px;
+      margin-bottom: 1rem;
+      padding: 0.35rem 0;
+    }
+    tbody tr:hover td { background: none; }
+
+    tbody td {
+      border-bottom: 1px solid var(--line-soft);
+      padding: 0.85rem 1.1rem;
+    }
+    tbody td:last-child { border-bottom: none; }
+
+    td[data-label]::before {
+      content: attr(data-label);
+      display: block;
+      font-size: 0.66rem;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--ink-mute);
+      font-weight: 700;
+      margin-bottom: 0.35rem;
+    }
+    td.c-case::before { content: none; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="eyebrow">Course design · research</div>
+    <h1>Use Cases <span class="arrow">→</span> Course Competencies (LangChain)</h1>
+    <p class="dek">
+      Maps every entry in the use-case coverage inventory to the outcomes and competencies in the
+      course outcomes doc, and — where a concrete build exists — to a worked LangChain example or a
+      real case study that demonstrates it.
+    </p>
+    <p class="dek">
+      The companion doc inventories <em>what LangChain material exists</em> per use case. This one
+      answers a different question: <em>which competency does building that thing actually
+      exercise?</em> A use case is only worth picking for an activity if it earns its place on both
+      axes — it should teach something on the outcomes rubric, not just fill a breadth checkbox.
+    </p>
+    <div class="sources">
+      <span>Source: <a href="use-case-competency-map.md">use-case-competency-map.md</a></span>
+      <span><a href="../use_case_coverage.md">use_case_coverage.md</a></span>
+      <span><a href="../course_outcomes.md">course_outcomes.md</a></span>
+      <span><a href="langchain-use-case-coverage.md">langchain-use-case-coverage.md</a></span>
+    </div>
+  </header>
+
+  <section class="key" aria-label="How to read this">
+    <div>
+      <h3>Competency codes</h3>
+      <p>
+        Reference the numbering in <a href="../course_outcomes.md">course_outcomes.md</a> directly
+        (e.g. <code>1.5.2</code> = "Connect a sandbox for arbitrary code execution"). Only codes a
+        use case exercises <em>distinctively well</em> are listed — nearly every agent build touches
+        <code>1.1</code>–<code>1.2</code> trivially, so those are omitted unless there's a specific
+        reason to highlight them.
+      </p>
+    </div>
+    <div>
+      <h3>Examples vs. case studies</h3>
+      <p>
+        <strong>Worked example</strong> links to an in-docs LangChain tutorial or capability guide
+        (🟢/🟡 depth in the companion doc). <strong>Case studies</strong> links to entries on the
+        <a href="https://docs.langchain.com/oss/python/langgraph/case-studies">LangGraph
+        case-studies roster</a> (🔗 depth) — external proof, not an in-docs build.
+      </p>
+    </div>
+    <div>
+      <h3>What isn't repeated</h3>
+      <p>
+        Breadth itself is the evidence for <code>5.5</code>, which no single use case can satisfy,
+        so it isn't repeated on every row. Rows call out <code class="ethic">6.x</code> (personal
+        ethic) only where the use case raises a sharper ethical question than the baseline.
+      </p>
+    </div>
+  </section>
+
+  <section class="map">
+    <div class="section-head">
+      <h2>The map</h2>
+      <p class="section-note">24 use cases, each with the build material that exists and the
+        competencies that build actually exercises.</p>
+    </div>
+
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th class="c-case" scope="col">Use case</th>
+            <th class="c-ex" scope="col">Worked LangChain example</th>
+            <th class="c-cs" scope="col">Case studies (🔗)</th>
+            <th scope="col">Competencies this use case exercises well</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <tr>
+            <td class="c-case"><span class="case-name">Healthcare</span></td>
+            <td class="c-ex" data-label="Worked example"><a href="https://docs.langchain.com/oss/python/langchain/knowledge-base">Knowledge base / RAG</a></td>
+            <td class="c-cs studies" data-label="Case studies">Komodo Health, Vizient, OpenRecovery, City of Hope</td>
+            <td data-label="Competencies">
+              <ul class="comp">
+                <li><code>1.5.1</code> HITL is non-negotiable on clinical output</li>
+                <li><code>1.5.3</code> permissions / PHI access control</li>
+                <li><code>3.3.2</code> identify safety guardrails under real stakes</li>
+                <li><code class="ethic">6.1–6.4</code> privacy and life-impact make this the clearest ethics case in the whole catalog</li>
+              </ul>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="c-case"><span class="case-name">Financial Services</span></td>
+            <td class="c-ex" data-label="Worked example"><a href="https://docs.langchain.com/oss/python/langchain/sql-agent">SQL Agent</a>, <a href="https://docs.langchain.com/oss/python/langchain/guardrails">Guardrails</a></td>
+            <td class="c-cs studies" data-label="Case studies">BlackRock, J.P. Morgan, Klarna, Morningstar, Captide, Prosper, Rakuten</td>
+            <td data-label="Competencies">
+              <ul class="comp">
+                <li><code>1.5.3</code> authorization constraints on money-moving actions</li>
+                <li><code>1.5.4</code> error/retry handling where mistakes cost real dollars</li>
+                <li><code>2.2.1</code> deterministic evaluators for hard constraints (balance checks, limits)</li>
+                <li><code>3.2.4</code> cost assessment — these builds are expensive to get wrong</li>
+              </ul>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="c-case"><span class="case-name">Retail</span></td>
+            <td class="c-ex" data-label="Worked example"><a href="https://docs.langchain.com/oss/python/langchain/multi-agent/handoffs-customer-support">Customer-support state machine</a></td>
+            <td class="c-cs studies" data-label="Case studies">Minimal, Rakuten</td>
+            <td data-label="Competencies">
+              <ul class="comp">
+                <li><code>1.4.1</code> tool calls against order / inventory systems</li>
+                <li><code>1.6</code> handoff architecture between shopping assistant and support</li>
+                <li><code>2.2.2</code> LLM-as-judge for conversational quality</li>
+              </ul>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="c-case"><span class="case-name">Manufacturing</span></td>
+            <td class="c-ex" data-label="Worked example"><span class="none">None — mostly ⚪; shop-floor assistant is 🟠 composable</span></td>
+            <td class="c-cs" data-label="Case studies"><span class="none">None</span></td>
+            <td data-label="Competencies">
+              <ul class="comp">
+                <li><code>3.2.1</code> demonstrate awareness of LLM limits — most of this vertical (vision QC, digital twins, predictive maintenance) is <em>not</em> an agent problem; a good forcing function for recognizing when AI doesn't fit</li>
+              </ul>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="c-case"><span class="case-name">Supply Chain</span></td>
+            <td class="c-ex" data-label="Worked example"><a href="https://docs.langchain.com/oss/python/langgraph/workflows-agents">Workflows &amp; agents</a></td>
+            <td class="c-cs studies" data-label="Case studies">C.H. Robinson ("Automation")</td>
+            <td data-label="Competencies">
+              <ul class="comp">
+                <li><code>1.6</code> multi-agent orchestration across a multi-step process</li>
+                <li><code>3.6</code> planning an architecture that matches a long pipeline</li>
+                <li><code>3.6.1</code> organizing state across stages</li>
+              </ul>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="c-case"><span class="case-name">Transportation &amp; Logistics</span></td>
+            <td class="c-ex" data-label="Worked example"><a href="https://docs.langchain.com/oss/python/langgraph/workflows-agents">Workflows &amp; agents</a></td>
+            <td class="c-cs studies" data-label="Case studies">Uber ("Developer productivity; Code generation")</td>
+            <td data-label="Competencies">
+              <ul class="comp">
+                <li><code>4.1.3</code> differentiating terms — Uber's case study is really an <em>internal dev-tooling</em> story tagged "Transportation" by industry, not a logistics agent</li>
+                <li><code>5.3</code> a useful moment to teach evaluating a source's relevance and currency rather than taking an industry tag at face value</li>
+              </ul>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="c-case"><span class="case-name">Energy</span></td>
+            <td class="c-ex" data-label="Worked example"><a href="https://docs.langchain.com/langsmith/alerts">LangSmith Alerts</a>, <a href="https://docs.langchain.com/langsmith/cron-jobs">Cron jobs</a></td>
+            <td class="c-cs" data-label="Case studies"><span class="none">None</span></td>
+            <td data-label="Competencies">
+              <ul class="comp">
+                <li><code>3.2.2</code> identify the most expensive / infeasible parts of a build (grid optimization, load-shift are ⚪); the monitor-and-alert pattern is the one piece that <em>is</em> buildable</li>
+              </ul>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="c-case"><span class="case-name">Real Estate</span></td>
+            <td class="c-ex" data-label="Worked example"><a href="https://docs.langchain.com/oss/python/integrations/tools/bedrock_agentcore_browser">Browser tools</a> (permit-portal lookups)</td>
+            <td class="c-cs studies" data-label="Case studies">AppFolio, Rexera</td>
+            <td data-label="Competencies">
+              <ul class="comp">
+                <li><code>1.4.3</code> connecting external tools with no clean API (portal scraping)</li>
+                <li><code>3.4</code> eliciting hidden domain knowledge (zoning, listing conventions) from a non-technical expert</li>
+                <li><code>3.7</code> authoring a spec a realtor could read</li>
+              </ul>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="c-case"><span class="case-name">Media &amp; Gaming</span></td>
+            <td class="c-ex" data-label="Worked example"><a href="https://docs.langchain.com/oss/python/langchain/guardrails">Guardrails</a> (content moderation)</td>
+            <td class="c-cs studies" data-label="Case studies">WebToon</td>
+            <td data-label="Competencies">
+              <ul class="comp">
+                <li><code>1.5</code> guardrails for moderation / IP filtering</li>
+                <li><code class="ethic">6.3</code> examine downstream impact of generated or moderated content</li>
+                <li>NPC / dynamic-content generation is ⚪ — a second good "not an agent problem" case alongside Manufacturing</li>
+              </ul>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="c-case"><span class="case-name">Education</span></td>
+            <td class="c-ex" data-label="Worked example"><a href="https://docs.langchain.com/oss/python/deepagents/rag">RAG with Deep Agents</a> (rubric-graded TA)</td>
+            <td class="c-cs" data-label="Case studies"><span class="none">None</span></td>
+            <td data-label="Competencies">
+              <ul class="comp">
+                <li><code>2.2.2</code> LLM-as-judge — this tutorial <em>is</em> a rubric-graded evaluator, the cleanest in-docs example of the concept</li>
+                <li><code>2.2.2.1</code> pointwise grading calibration</li>
+                <li><code>1.3.1</code> short-term memory across a tutoring session</li>
+              </ul>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="c-case"><span class="case-name">Government</span></td>
+            <td class="c-ex" data-label="Worked example"><a href="https://docs.langchain.com/oss/python/langchain/multi-agent/router-knowledge-base">KB router</a></td>
+            <td class="c-cs studies" data-label="Case studies">Abu Dhabi Government</td>
+            <td data-label="Competencies">
+              <ul class="comp">
+                <li><code>3.3.2</code> safety guardrails under public accountability</li>
+                <li><code>4.3.4</code> advocating for ethical use to a stakeholder who isn't a typical "employer"</li>
+                <li><code class="ethic">6.5</code> alignment framed as a public-trust question</li>
+              </ul>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="c-case"><span class="case-name">Emergency Response</span></td>
+            <td class="c-ex" data-label="Worked example"><span class="none">None — no tutorial, no case study</span></td>
+            <td class="c-cs" data-label="Case studies"><span class="none">None</span></td>
+            <td data-label="Competencies">
+              <ul class="comp">
+                <li><code>3.1</code> define purpose without tooling first</li>
+                <li><code>3.2</code> viability assessment under the highest error cost in the catalog — the strongest single case for "should this be an agent at all?"</li>
+                <li><code class="ethic">6.1–6.4</code> life-safety stakes with zero LangChain-provided guardrail to lean on, forcing the student to build the ethical judgment, not borrow it</li>
+              </ul>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="c-case"><span class="case-name">Agriculture</span></td>
+            <td class="c-ex" data-label="Worked example">Monitor pattern only (<a href="https://docs.langchain.com/langsmith/alerts">Alerts</a>)</td>
+            <td class="c-cs" data-label="Case studies"><span class="none">None</span></td>
+            <td data-label="Competencies">
+              <ul class="comp">
+                <li><code>3.2.1</code> LLM limits — imagery / yield models are ⚪</li>
+                <li><code>5.4</code> evaluating whether a vendor tool is actually solving the stated problem vs. adjacent ML work</li>
+              </ul>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="c-case"><span class="case-name">Hospitality</span></td>
+            <td class="c-ex" data-label="Worked example"><a href="https://docs.langchain.com/oss/python/langchain/multi-agent/subagents-personal-assistant">Personal assistant (supervisor)</a></td>
+            <td class="c-cs studies" data-label="Case studies">Docent Pro</td>
+            <td data-label="Competencies">
+              <ul class="comp">
+                <li><code>1.6</code> subagent delegation — concierge routes to booking / itinerary specialists</li>
+                <li><code>1.3.2</code> long-term memory for guest preferences</li>
+              </ul>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="c-case"><span class="case-name">Telecom</span></td>
+            <td class="c-ex" data-label="Worked example"><a href="https://docs.langchain.com/oss/python/langchain/knowledge-base">Knowledge base / RAG</a></td>
+            <td class="c-cs studies" data-label="Case studies">Vodafone (code gen, internal search)</td>
+            <td data-label="Competencies">
+              <ul class="comp">
+                <li><code>1.4.2</code> MCP connections into internal systems</li>
+                <li><code>5.1.1</code> discerning a package's core functionality quickly — Vodafone's case study spans two unrelated capabilities, a good "what did they actually build" reading exercise</li>
+              </ul>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="c-case"><span class="case-name">Professional Services</span></td>
+            <td class="c-ex" data-label="Worked example"><a href="https://docs.langchain.com/oss/python/deepagents/deep-research">Deep research agent</a>, <a href="https://docs.langchain.com/langsmith/evaluation">LangSmith Evaluation</a></td>
+            <td class="c-cs studies" data-label="Case studies">Athena Intelligence</td>
+            <td data-label="Competencies">
+              <ul class="comp">
+                <li><code>2.2</code> measuring performance is the deliverable itself — client work has to be graded for quality before it ships</li>
+                <li><code>3.7</code> authoring durable, human-readable artifacts (the deliverable <em>is</em> the artifact)</li>
+              </ul>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="c-case"><span class="case-name">IT &amp; DevOps</span></td>
+            <td class="c-ex" data-label="Worked example"><a href="https://docs.langchain.com/oss/python/deepagents/code/overview">Deep Agents coding CLI</a>, <a href="https://docs.langchain.com/oss/python/deepagents/sandboxes">Sandboxes</a></td>
+            <td class="c-cs studies" data-label="Case studies">Cisco Outshift, GitLab, Replit, Qodo, Uber, LinkedIn</td>
+            <td data-label="Competencies">
+              <ul class="comp">
+                <li><code>1.5.2</code> sandboxed code execution — a direct 1:1 match</li>
+                <li><code>1.4.1</code> custom tool definition</li>
+                <li><code>2.1–2.3</code> the full observability loop (LangSmith's home turf)</li>
+                <li>The single deepest Outcome-1 vertical in the catalog</li>
+              </ul>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="c-case"><span class="case-name">Automation</span></td>
+            <td class="c-ex" data-label="Worked example"><a href="https://docs.langchain.com/oss/python/langgraph/workflows-agents">Workflows &amp; agents</a>, <a href="https://docs.langchain.com/oss/python/langgraph/functional-api">Functional API</a></td>
+            <td class="c-cs studies" data-label="Case studies">C.H. Robinson</td>
+            <td data-label="Competencies">
+              <ul class="comp">
+                <li><code>3.6.1</code> choosing a state substrate</li>
+                <li><code>1.6</code> orchestration</li>
+                <li>The most "framework-native" use case — good for teaching harness mechanics divorced from any one industry's domain knowledge</li>
+              </ul>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="c-case"><span class="case-name">Customer Support</span></td>
+            <td class="c-ex" data-label="Worked example"><a href="https://docs.langchain.com/oss/python/langchain/multi-agent/handoffs-customer-support">Customer-support state machine</a> 🟢</td>
+            <td class="c-cs studies" data-label="Case studies">Cisco CX, Cisco TAC, Minimal, Prosper, Infor</td>
+            <td data-label="Competencies">
+              <ul class="comp">
+                <li>The most complete single-tutorial build in the docs — touches <code>1.1–1.6</code> in one artifact (model, prompt, memory, tools, HITL escalation, handoff)</li>
+                <li>Best candidate for an activity anchoring <em>all</em> of Outcome 1 at once</li>
+              </ul>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="c-case"><span class="case-name">Sales</span></td>
+            <td class="c-ex" data-label="Worked example"><a href="https://docs.langchain.com/oss/python/langchain/multi-agent/subagents-personal-assistant">Personal assistant</a> — partial fit, no dedicated tutorial</td>
+            <td class="c-cs studies" data-label="Case studies">11x ("Research &amp; outreach"), Unify ("Copilot for domain-specific task")</td>
+            <td data-label="Competencies">
+              <ul class="comp">
+                <li><code>3.4</code> hidden domain knowledge — what actually makes a lead qualified lives in a rep's head, not a doc</li>
+                <li><code>3.6</code> architecting from scratch since no template exists — one of the few 🟠-only verticals, useful for testing whether students can compose primitives without a tutorial crutch</li>
+              </ul>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="c-case"><span class="case-name">Analytics</span></td>
+            <td class="c-ex" data-label="Worked example"><a href="https://docs.langchain.com/oss/python/langchain/sql-agent">SQL Agent</a> 🟢, <a href="https://docs.langchain.com/oss/python/deepagents/data-analysis">Data analysis agent</a> 🟢</td>
+            <td class="c-cs studies" data-label="Case studies">Monday, Pigment, Modern Treasury, Infor</td>
+            <td data-label="Competencies">
+              <ul class="comp">
+                <li><code>2.1.2</code> reading runs / traces on a data-querying agent</li>
+                <li><code>2.2.1</code> deterministic evaluators — query correctness against ground truth</li>
+                <li>Direct root for Outcome 2, since "did the agent get the right number" is externally checkable</li>
+              </ul>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="c-case"><span class="case-name">Legal</span></td>
+            <td class="c-ex" data-label="Worked example"><a href="https://docs.langchain.com/oss/python/langchain/retrieval">Retrieval</a> + <a href="https://docs.langchain.com/oss/python/langchain/structured-output">Structured output</a> — composable, no dedicated tutorial</td>
+            <td class="c-cs studies" data-label="Case studies">Definely ("Copilot for domain-specific task")</td>
+            <td data-label="Competencies">
+              <ul class="comp">
+                <li><code>3.3.3</code> operationalizing constraints into gradeable criteria — a clause is or isn't a red flag, and precision matters</li>
+                <li><code class="ethic">6.1–6.4</code> confidentiality and liability of AI-drafted legal language make this a second sharp ethics case alongside Healthcare</li>
+              </ul>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="c-case"><span class="case-name">Software &amp; Technology</span></td>
+            <td class="c-ex" data-label="Worked example"><a href="https://docs.langchain.com/oss/python/deepagents/code/overview">Deep Agents coding CLI</a>, <a href="https://docs.langchain.com/oss/python/langchain/mcp">MCP</a>, <a href="https://docs.langchain.com/oss/python/langchain/tools">Tools</a></td>
+            <td class="c-cs studies" data-label="Case studies">AirTop, Athena Intelligence, Captide, Cisco CX/TAC/Outshift, Elastic, Exa, GitLab, Harmonic, Inconvo, Infor, Qodo, Replit, Tradestack, Unify, 11x</td>
+            <td data-label="Competencies">
+              <ul class="comp">
+                <li>Largest case-study bucket in the roster — 15 of 40 companies; the richest source of real 🔗 examples for nearly every Outcome-1 competency</li>
+                <li><code>5.1–5.4</code> the natural home for self-learning competencies, since these are the companies whose docs, blogs, and GitHub repos students will actually be reading</li>
+              </ul>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="c-case"><span class="case-name">Non-profit</span></td>
+            <td class="c-ex" data-label="Worked example"><span class="none">None — thin; cost is the whole story</span></td>
+            <td class="c-cs studies" data-label="Case studies">City of Hope ("Copilot for domain-specific task")</td>
+            <td data-label="Competencies">
+              <ul class="comp">
+                <li><code>3.2.4</code> cost assessment under a real budget constraint — nonprofits can't absorb a bad build the way an enterprise can</li>
+                <li><code>3.1</code> defining purpose without tooling, since a nonprofit client is unlikely to hand over a polished spec</li>
+              </ul>
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="map">
+    <div class="section-head">
+      <h2>Notable pairings for planning activities</h2>
+      <p class="section-note">Each of these answers a planning question you'd actually ask while
+        building the activity sequence.</p>
+    </div>
+
+    <div class="pairings">
+      <article class="pairing">
+        <div class="when">If you need one activity that hits most of Outcome 1 at once</div>
+        <div class="pick">Customer Support</div>
+        <p>
+          <a href="https://docs.langchain.com/oss/python/langchain/multi-agent/handoffs-customer-support">handoffs-customer-support</a>
+          is the strongest candidate — the only 🟢 tutorial that exercises model selection, prompt
+          design, memory, tool calls, HITL, and multi-agent handoff in a single build.
+        </p>
+      </article>
+
+      <article class="pairing">
+        <div class="when">If you need a rubric-grading / LLM-as-judge exemplar for Outcome 2</div>
+        <div class="pick">Education</div>
+        <p>
+          <a href="https://docs.langchain.com/oss/python/deepagents/rag">RAG with Deep Agents</a>
+          ships an actual rubric-graded retrieval loop in-docs — closer to competency
+          <code>2.2.2</code> than anything else in the catalog.
+        </p>
+      </article>
+
+      <article class="pairing">
+        <div class="when">If you need a case where AI-fit judgment (Outcome 3) is the whole point, not a build</div>
+        <div class="pick">Manufacturing · Media &amp; Gaming · Agriculture · Emergency Response</div>
+        <p>
+          The "mostly ⚪" use cases. Assign one of these when the goal is teaching <code>3.2</code>
+          viability assessment rather than another harness build.
+        </p>
+      </article>
+
+      <article class="pairing">
+        <div class="when">If you need the sharpest ethics cases for Outcome 6</div>
+        <div class="pick">Healthcare · Legal · Emergency Response · Government</div>
+        <p>
+          Healthcare and Legal for privacy and liability; Emergency Response for life-safety with no
+          framework guardrail to lean on; Government for public-trust alignment framing.
+        </p>
+      </article>
+
+      <article class="pairing">
+        <div class="when">If you need a use case with zero in-docs scaffolding, to test composing primitives from scratch (<code>3.6</code>)</div>
+        <div class="pick">Sales · Non-profit</div>
+        <p>
+          The two thinnest verticals — both 🟠 / case-study-only, with no dedicated tutorial to
+          imitate.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <footer>
+    Generated from <a href="use-case-competency-map.md">course_design/research/use-case-competency-map.md</a>.
+    Edit the Markdown as the source of truth.
+  </footer>
+
+</div>
+</body>
+</html>

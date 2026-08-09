@@ -1,0 +1,69 @@
+---
+title: "What is MCP?"
+subtitle: "Primer 1.6   Read before Lesson 1.6"
+---
+
+<!--
+  id: about-mcp
+  type: reading
+  day: 1_6
+  competency: 1.4.2
+-->
+
+# Takeaways
+
+1. MCP (Model Context Protocol) is a standard way for an agent to use tools it doesn't own the code for.
+2. An MCP server is a separate process — often owned by someone else's team — that exposes tools over a shared protocol.
+3. Your agent connects to one or many MCP servers with a client and gets fully-formed tools back, no manual wrapping required.
+
+# What is MCP?
+
+You already know how to give an agent a tool: write a Python function, decorate it with `@tool`, done. That works great when you own the code.
+
+But what about a tool that lives in a system you don't own? Your company's ticketing system. A public weather service. Slack. You don't want to reverse-engineer their internals and hand-write a wrapper for every one of them — and even if you did, it would break the moment they changed something internally.
+
+**MCP solves this by standardizing the connection, not the tool.** Any system that speaks MCP can hand your agent a ready-to-use tool, the same way any website that speaks HTTP can be opened by any browser.
+
+---
+
+## A Simple Analogy
+
+Think back to the API analogy from Primer 1.1: the API is the waiter, the kitchen is the service.
+
+MCP is what happens when every restaurant in the city agrees to use the *same* waiter uniform, the *same* ordering format, and the *same* way of bringing food back — so *one* waiter can walk into *any* kitchen in town and take an order, without learning that kitchen's specific habits first.
+
+- The **MCP server** is the kitchen (someone else's system: a database, Slack, a ticketing tool)
+- The **MCP client** is the waiter your agent hires
+- Your **agent** just says what it wants — it never learns each kitchen's layout
+
+---
+
+## Why This Matters for Agents
+
+Without MCP, connecting an agent to five external systems means writing and maintaining five custom tool wrappers, and re-writing them every time one of those systems changes.
+
+With MCP, connecting to five systems means connecting to five *servers* — and if someone else already built and maintains that server (increasingly common — Slack, GitHub, and many SaaS tools now ship their own), you write zero integration code.
+
+```python
+tools = await client.get_tools()
+agent = create_agent(model, tools)
+```
+
+That's the whole pattern once the client is configured. The tools show up ready to use, exactly like the custom ones you built in Lesson 1.2 — the agent can't tell the difference.
+
+---
+
+# What to Think About Before Class
+
+Come to class ready to answer these in your head:
+
+- What's a system at your dream job that an agent might need to reach, but that you'd never want to hand-write an integration for?
+- Why might a company choose to build and publish an MCP server for their product, instead of just publishing a normal API?
+- What could go wrong if you connected your agent to an MCP server you didn't fully trust?
+
+---
+
+::: {.callout-tip}
+## You do not need to memorize anything
+This primer is just to get the concept in your head before we build with it. Everything will make more sense once you see two processes actually talking to each other in class.
+:::

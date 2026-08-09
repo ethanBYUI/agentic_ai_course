@@ -1,0 +1,98 @@
+---
+title: "Problem Solution Ladder: Custom Tools"
+subtitle: "Activity — Competency 1.4.1"
+---
+
+<!--
+  id: problem-solution-ladder-1.4.1
+  type: activity
+  day: 1_2
+  competency: 1.4.1
+  use_case: retail
+  template: problem-solution-ladder
+-->
+
+*Prototype instance of [Problem Solution Ladder](../course_design/activities_assessments.md#problem-solution-ladder). Matches [LangChain — Tools](https://docs.langchain.com/oss/python/langchain/tools).*
+
+## Industry Problem
+
+<!--
+  instructor: Ask the room "why can't the agent just answer this?" before
+  explaining — let someone land on "it doesn't know what's in the
+  warehouse today" themselves. Ties directly back to 1_1: a plain LLM call
+  has no way to reach outside its own training data.
+-->
+
+A retail company's support agent gets asked constantly: *"Do you have the blue medium hoodie in stock?"* A plain LLM cannot answer this — it has no idea what is in the warehouse today. Someone has to give the agent a way to actually look it up.
+
+## Instructor / example demonstration
+
+<!--
+  instructor: Live-type this, don't paste it finished — the teaching moment
+  is watching the docstring get written and asking "how would the model
+  know when to call this?" before running anything. Explicitly point at the
+  type hints and say they define the input schema, not just documentation.
+  Prereq: only needs 1_1's environment setup.
+-->
+
+Here's the fix: turn the lookup into a tool the model can call, using LangChain's `@tool` decorator.
+
+```python
+from langchain.tools import tool
+
+@tool
+def check_inventory(sku: str) -> str:
+    """Look up current stock count for a product SKU.
+
+    Args:
+        sku: The product's stock-keeping unit code, e.g. 'HOOD-BLU-M'
+    """
+    fake_warehouse = {"HOOD-BLU-M": 14, "HOOD-BLU-L": 0, "TEE-RED-S": 42}
+    if sku not in fake_warehouse:
+        return f"No record of SKU '{sku}'."
+    return f"{fake_warehouse[sku]} unit(s) of '{sku}' in stock."
+```
+
+Notice the model never sees the function body — only the docstring, which is what it reads to decide *when* to call this tool at all.
+
+## Run It Yourself
+
+<!--
+  instructor: ~10 min. Circulate for the most common snag: calling
+  `check_inventory("HOOD-BLU-M")` instead of `.invoke({"sku": "HOOD-BLU-M"})`
+  — the dict-argument convention trips people up every time, worth a
+  reminder mid-activity rather than waiting for it to surface. Confirm
+  everyone sees the tool run stand-alone before letting them wire up an agent.
+-->
+
+Paste the tool above into Colab and confirm it works stand-alone before trusting an agent with it:
+
+```python
+print(check_inventory.invoke({"sku": "HOOD-BLU-M"}))
+print(check_inventory.invoke({"sku": "HOOD-BLU-L"}))
+print(check_inventory.invoke({"sku": "GHOST-SKU"}))
+```
+
+Then wire it into a `create_agent` call (per [Tools](https://docs.langchain.com/oss/python/langchain/tools)) and ask a question that should trigger it: *"Is the blue medium hoodie in stock?"*
+
+## Modify It, Build It
+
+<!--
+  instructor: ~15 min, pairs. Good work looks like a docstring specific
+  enough that a partner can guess what the tool does and when the agent
+  would call it, without reading the code. That guessing check is the
+  actual assessment moment here — don't skip having partners do it out loud.
+-->
+
+Pick a different retail question your tool doesn't answer yet — *"When will the blue large hoodie be restocked?"* works well — and build a second custom tool for it. (Stretch goal: define its input with a Pydantic `args_schema` instead of plain type hints.) Have your partner read only the docstring and guess what the tool does.
+
+## Apply It
+
+<!--
+  instructor: Flag explicitly that at least one custom tool is a required
+  wire-in for the Unit 1 personal-assistant project, not optional polish,
+  and that it's fair game as a Pass-off case once Unit 3 opens. Worth a
+  30-second callout before moving to the next segment.
+-->
+
+Wire a custom tool — this inventory lookup or an equivalent one for your own project's domain — into your Unit 1 personal-assistant agent project.

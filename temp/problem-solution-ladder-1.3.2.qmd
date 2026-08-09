@@ -1,0 +1,98 @@
+---
+title: "Problem Solution Ladder: Long-Term Memory"
+subtitle: "Activity — Competency 1.3.2"
+---
+
+<!--
+  id: problem-solution-ladder-1.3.2
+  type: activity
+  day: 1_5
+  competency: 1.3.2
+  use_case: hospitality
+  template: problem-solution-ladder
+-->
+
+*Prototype instance of [Problem Solution Ladder](../course_design/activities_assessments.md#problem-solution-ladder). Matches [LangChain — Long-term memory](https://docs.langchain.com/oss/python/langchain/long-term-memory).*
+
+## Industry Problem
+
+<!--
+  instructor: Cold-call for a personal "I had to re-explain myself" story
+  (hotel, airline, support line) — ~1 min, don't let it become a gripe
+  session. Land this: they already have short-term memory from Day 1_1
+  (thread history). Today's gap is specifically that it dies with the thread.
+-->
+
+A hotel concierge agent chats with a returning guest. Last visit, the guest mentioned they're allergic to shellfish and always request a late checkout. Today's conversation is a brand-new thread — a plain agent with only short-term (conversation) memory has already forgotten all of it, and the guest has to repeat themselves every stay.
+
+## Instructor example / demonstration
+
+<!--
+  instructor: Live-code this — don't paste a finished cell. The moment that
+  sells the competency is running store.put in one cell, then store.get in a
+  fresh cell/kernel and having it still resolve. Say out loud: "notice I
+  haven't touched the agent yet — this is just a dictionary that survives."
+  Prereq: only needs 1_1's API key setup; nothing new to install.
+-->
+
+Here's the fix: give the agent a `store` — memory that lives outside any one conversation, per LangChain's long-term memory pattern.
+
+```python
+from langchain.agents import create_agent
+from langgraph.store.memory import InMemoryStore
+
+# InMemoryStore saves data to an in-memory dictionary; a DB-backed store is used in production
+store = InMemoryStore()
+
+agent = create_agent(
+    "google_genai:gemini-2.5-flash",
+    tools=[],
+    store=store,
+)
+```
+
+Watch what happens when a guest preference is written straight into the store, keyed by namespace `(guest_id, "preferences")`, and then read back from a completely separate call — it survives across threads/sessions, unlike short-term memory.
+
+```python
+namespace = ("guest-482", "preferences")
+store.put(namespace, "dietary", {"note": "Shellfish allergy"})
+store.put(namespace, "checkout", {"note": "Always requests late checkout"})
+
+item = store.get(namespace, "dietary")
+print(item.value)
+```
+
+## Run It Yourself
+
+<!--
+  instructor: ~10 min. Circulate for the two most common snags: (1) they name
+  the tool parameter `store` instead of using `runtime.store` — flag it
+  immediately, it's the #1 error the docs warn about; (2) they forget the
+  namespace tuple has to match exactly between put and get. Don't rescue too
+  fast — let them hit the KeyError once.
+-->
+
+Run the snippet above yourself. Then write a tool that lets your *agent* read from the store via `runtime.store` (per [Long-term memory](https://docs.langchain.com/oss/python/langchain/long-term-memory)), and confirm it can answer *"Any dietary notes for guest-482?"* correctly — in a brand-new conversation thread.
+
+## odify It, Build It
+
+<!--
+  instructor: ~15 min, pairs. Good work looks like: a new namespace they
+  chose themselves, a tool with a docstring specific enough the agent calls
+  it unprompted, and a live demo where a preference mentioned mid-chat is
+  still there after starting a new thread. Have partners try to break each
+  other's tool before moving on.
+-->
+
+Pick a preference the demo tool doesn't cover — room temperature, pillow type, anything you'd want remembered — and build both a namespace and a tool that *writes* it to the store mid-conversation. If a guest mentions it once, your agent should never need to ask again.
+
+## Apply It
+
+<!--
+  instructor: This is the hook forward — flag explicitly that long-term
+  memory is a required wire-in for the Unit 1 personal-assistant project
+  (not optional polish), and that it's fair game as a Pass-off case once
+  Unit 3 opens. Worth a 30-second callout before moving to the next segment.
+-->
+
+Wire this into your Unit 1 personal-assistant project: pick a returning user your agent should recognize (a guest, client, or patient, depending on the use case you're building toward), and make it recall their preferences across sessions — not just within one chat.

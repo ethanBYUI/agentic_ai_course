@@ -1,0 +1,128 @@
+---
+title: "Problem Solution Ladder: Human-in-the-Loop"
+subtitle: "Activity — Competency 1.5.1"
+---
+
+<!--
+  id: problem-solution-ladder-1.5.1
+  type: activity
+  day: 2_1
+  competency: 1.5.1
+  use_case: healthcare
+  template: problem-solution-ladder
+  example: hitl-healthcare-demo
+-->
+
+<!--
+  instructor (file-level): day 2_1 is a placeholder — Unit 2's daily schedule
+  isn't built yet (unit2.qmd is empty). Placed here because by the end of
+  Unit 1 students' agents already take real actions (tools, MCP, subagents),
+  which is exactly when an unreviewed action starts being dangerous. Move
+  this tag once Unit 2's actual sequence is set.
+-->
+
+*Prototype instance of [Problem Solution Ladder](../course_design/activities_assessments.md#problem-solution-ladder). Matches [LangChain — Human-in-the-loop](https://docs.langchain.com/oss/python/langchain/human-in-the-loop). Informed by [use-case-competency-map.md](../course_design/research/use-case-competency-map.md) — Healthcare → 1.5.1.*
+
+## Industry Problem
+
+<!--
+  instructor: Don't open with the code. Open with the stakes: ask "what's
+  the worst thing that happens if this agent is wrong?" for a retail tool
+  (1_2) vs. this one. The gap in acceptable failure cost is the whole reason
+  1.5.1 exists as its own competency instead of just being "more testing."
+-->
+
+A clinical intake agent reviews a patient's symptoms and decides to schedule a follow-up appointment with a specialist. If it's wrong — wrong specialist, wrong urgency, or wrong patient entirely — a real person's care is affected. Unlike the retail or telecom tools you've built so far, this is not a case where you can just fix it next release.
+
+## Instructor Example / Demonstration
+
+<!--
+  instructor: Live-run this and actually trigger the interrupt in front of
+  the class — don't just show the code. Pause on the printed interrupt
+  object and ask "what information would a nurse reviewing this need to see
+  right now?" before revealing the Command(resume=...) call. Prereq: none
+  beyond 1_1's setup; checkpointer is new but self-contained.
+-->
+
+Here's the fix: put a human approval gate in front of the tool, using LangChain's `HumanInTheLoopMiddleware`.
+
+```python
+from langchain.agents import create_agent
+from langchain.agents.middleware import HumanInTheLoopMiddleware
+from langgraph.checkpoint.memory import InMemorySaver
+from langchain.tools import tool
+
+@tool
+def schedule_followup(patient_id: str, specialist: str, urgency: str) -> str:
+    """Schedule a follow-up appointment with a specialist for a patient."""
+    return f"Scheduled: patient {patient_id} with {specialist} ({urgency} priority)"
+
+agent = create_agent(
+    model="google_genai:gemini-2.5-flash",
+    tools=[schedule_followup],
+    middleware=[
+        HumanInTheLoopMiddleware(
+            interrupt_on={
+                "schedule_followup": {"allowed_decisions": ["approve", "edit", "reject"]},
+            },
+            description_prefix="Clinical action pending review",
+        ),
+    ],
+    checkpointer=InMemorySaver(),
+)
+```
+
+Watch what happens on `invoke` — execution pauses *before* the tool runs, and nothing happens until a human decides:
+
+```python
+config = {"configurable": {"thread_id": "patient-482-visit"}}
+
+result = agent.invoke(
+    {"messages": [{"role": "user", "content": "Patient reports chest pain, schedule urgent cardiology follow-up."}]},
+    config=config,
+)
+print(result.interrupts)  # the proposed action, waiting for a human
+```
+
+```python
+from langgraph.types import Command
+
+# A human reviews result.interrupts and approves it as-is
+final = agent.invoke(Command(resume=[{"type": "approve"}]), config=config)
+print(final["messages"][-1].content)
+```
+
+## Run It Yourself
+
+<!--
+  instructor: ~10 min. Most common snag: forgetting the `config` (thread_id)
+  on the resume call — without it the graph has no paused state to resume,
+  and the error is confusing. Have them print `result.interrupts` before
+  writing any resume logic so they see the actual shape of what a reviewer
+  would see.
+-->
+
+Run the snippet above yourself. Then try a `reject` decision instead of `approve`, and read what comes back — notice the agent gets the rejection as feedback, not just a silent failure.
+
+## Modify It, Build It
+
+<!--
+  instructor: ~15 min, pairs. Good work looks like a clear, deliberate
+  choice about which decisions are allowed on which tool, and a spoken
+  justification for it. The `when` predicate is the stretch goal — don't
+  require it, but flag it as the "smart" version of this pattern.
+-->
+
+Add a second tool — sending a message to the patient's care team, say — and give it a *different* `allowed_decisions` set than `schedule_followup` (e.g. no `edit`, only `approve`/`reject`). Be ready to justify why that tool deserves stricter or looser review than the first. (Stretch: add a `when` predicate so only high-urgency calls interrupt.)
+
+## Apply It
+
+<!--
+  instructor: Flag explicitly that any tool with a real-world side effect
+  (sending a message, booking something, moving money) in the Unit 1
+  personal-assistant project needs this pattern, not just healthcare tools —
+  this is a general guardrail requirement, and a strong Pass-off candidate
+  once Unit 3 opens.
+-->
+
+Add a human-approval gate to any action-taking tool in your Unit 1 personal-assistant project — anything that sends, books, or changes something in the real world, not just this healthcare example.
