@@ -496,6 +496,7 @@
   var RELATIONS = [
     { id: "comp-assess", label: "Competency × Assessment", rowsOf: "competencies", colsKind: "assessment", rule: ">=1" },
     { id: "comp-activity", label: "Competency × Activity", rowsOf: "competencies", colsKind: "teaching", rule: ">=1" },
+    { id: "uc-instance", label: "Use case × Instance", rowsOf: "useCases", colsKind: "uc_bearing", byUseCase: true, rule: ">=1" },
     { id: "uc-example", label: "Use case × Example", rowsOf: "useCases", colsKind: "example", byUseCase: true, rule: ">=1" }
   ];
 
@@ -529,7 +530,10 @@
 
     function hit(row, col) {
       if (rel.byUseCase) {
-        return (col.useCases || []).indexOf(row.id) !== -1;
+        var key = window.CoverageLinter.ucKey(row.id);
+        return (col.useCases || []).some(function (uc) {
+          return window.CoverageLinter.ucKey(uc) === key;
+        });
       }
       return (col.competencies || []).some(function (L) {
         return window.CoverageLinter.covers(L, row.id);
@@ -562,6 +566,10 @@
       return model.nodes.filter(function (n) {
         return n.kind === "in_class" || n.kind === "practice" || n.kind === "activity";
       });
+    }
+    if (rel.colsKind === "uc_bearing") {
+      var kinds = CFG.useCaseBearingKinds || ["example"];
+      return model.nodes.filter(function (n) { return kinds.indexOf(n.kind) !== -1; });
     }
     return model.nodes.filter(function (n) { return n.kind === rel.colsKind; });
   }

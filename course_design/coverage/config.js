@@ -43,6 +43,18 @@ window.COVERAGE_CONFIG = {
     lessons:  "in_class"      // lesson files hold in-class activities as L2 headers
   },
 
+  // Kinds that count as an INSTANCE of a use case (hard rule `uc-instance`).
+  // A use case is covered when a node of one of these kinds tags it with
+  // `use_case:`. This is deliberately wider than "example": the requirement
+  // descends from competency 5.5, where breadth IS the evidence, so a case-study
+  // prep reading about a telecom covers telecom as honestly as runnable code
+  // does. Wanting a *runnable* example on top of that is the separate soft rule
+  // `uc-example`. `untyped` is absent on purpose — a node that forgot its
+  // `type:` must never satisfy a use case by accident.
+  useCaseBearingKinds: [
+    "example", "prep_reading", "practice", "in_class", "activity", "assessment"
+  ],
+
   // Folders never scanned (the tool itself, research scratch, git internals).
   ignoreFolders: ["coverage", "research", ".git", "node_modules"]
 };

@@ -43,6 +43,13 @@
     return target === listed || target.startsWith(listed + ".");
   }
 
+  // Use case ids are opaque — no dotted-prefix hierarchy like competencies have,
+  // so the only question is whether two spellings name the same case. Both sides
+  // go through slug(), which makes `use_case: Supply Chain` find `id:
+  // supply-chain`. Views must use this same key (exported below) or the matrix
+  // will disagree with the dashboard.
+  function ucKey(s) { return slug(s); }
+
   // Negation: a node may carve a subtree out of a broader listing, e.g.
   // `competency: 3, !3.3.4` covers all of 3 EXCEPT 3.3.4 (and its descendants).
   // A value is an exclusion when prefixed with `!` or `-` (see splitComps); the
@@ -290,7 +297,7 @@
     };
   }
 
-  function runRules(model) {
+  function runRules(model, config) {
     var comps = model.competencies,
         nodes = model.nodes,          // all activity/assessment/example/prep nodes
         useCases = model.useCases,
@@ -330,13 +337,26 @@
     rules.push(ruleResult("prep-comp", "Prep reading → 1+ competency",
       preps.filter(noComp), preps.length, false));
 
-    // use case -> >=1 example (an example points to it via useCases)
-    var ucExampleCount = {};
-    examples.forEach(function (e) {
-      e.useCases.forEach(function (uc) { ucExampleCount[uc] = (ucExampleCount[uc] || 0) + 1; });
+    // use case -> >=1 instance (hard) and -> >=1 runnable example (soft).
+    // The edge always points UP, from the instance: a node declares `use_case:
+    // telecom`. A use case listing its own instances would be bookkeeping that
+    // drifts, so `examples:` on a use case is parsed but never read here.
+    // Which kinds count is config, not code — see `useCaseBearingKinds`.
+    var ucKinds = {};
+    (config.useCaseBearingKinds || ["example"]).forEach(function (k) {
+      var nk = normalizeKind(k);
+      if (nk !== "untyped") ucKinds[nk] = 1;
     });
-    rules.push(ruleResult("uc-example", "Use case → 1+ example",
-      useCases.filter(function (u) { return !ucExampleCount[u.id]; }), useCases.length, false));
+    var ucBearing = nodes.filter(function (n) { return !!ucKinds[n.kind]; });
+    var ucInstanceCount = tallyUseCases(ucBearing);
+    var ucExampleCount  = tallyUseCases(examples);
+    rules.push(ruleResult("uc-instance", "Use case → 1+ instance",
+      useCases.filter(function (u) { return !ucInstanceCount[ucKey(u.id)]; }), useCases.length, false,
+      "Any of: " + Object.keys(ucKinds).sort().join(", ") + " — tagged with `use_case: <id>`."));
+    rules.push(ruleResult("uc-example", "Use case → 1+ runnable example",
+      useCases.filter(function (u) { return !ucExampleCount[ucKey(u.id)]; }), useCases.length, true,
+      "Soft — the aspiration is code the student can run per use case; a case " +
+      "study still satisfies the hard rule above."));
 
     // day-level soft rules
     var dayList = Object.keys(days).map(function (d) { return days[d]; });
@@ -414,6 +434,17 @@
 
     function noComp(n) { return n.competencies.length === 0; }
     function noDay(n) { return !n.day; }
+
+    function tallyUseCases(ns) {
+      var count = {};
+      ns.forEach(function (n) {
+        n.useCases.forEach(function (uc) {
+          var k = ucKey(uc);
+          count[k] = (count[k] || 0) + 1;
+        });
+      });
+      return count;
+    }
   }
 
   function dayRule(id, name, dayList, kind, lo, hi) {
@@ -515,7 +546,7 @@
       nodes: nodes,
       days: days
     };
-    var rules = runRules(model);
+    var rules = runRules(model, config || {});
 
     var hard = rules.filter(function (r) { return !r.soft; });
     var summary = {
@@ -543,6 +574,7 @@
     analyze: analyze,
     covers: covers,
     coversComp: coversComp,   // views must use the same downward-coverage test
+    ucKey: ucKey,             // ...and the same use-case id normalization
     dayIndexOf: dayIndexOf
   };
 

@@ -4,6 +4,8 @@ One course requirement is to cover as many use cases as possible to bring intere
 
 A use case is a field a student would name as the one they want to work in — usually an industry, sometimes a practice. Entries overlap on purpose; a node may carry several `use_case:` tags. Coverage comes from those tags, not from file lists here.
 
+A case counts as covered once **one instance anywhere in the course** names it — an example, a prep reading, a practice or in-class activity, or an assessment, in any unit, on any day. It does not have to be runnable code: breadth is what competency 5.5 asks for, and an industry case study is evidence of breadth. A runnable example per case is still the goal, tracked as a soft rule.
+
 List is drawn from [research/every-use-case.md](research/every-use-case.md), compiled from:
 
 - [IBM](https://www.ibm.com/think/topics/ai-agent-use-cases)
